@@ -1,3 +1,7 @@
 {
+    "appName": "QuickNote",
+    "notebook": "notatnik",
+    "input_title": "tytuł",
+    "input_write_your_note_here": "Wpisz stoją notatkę tutaj...",
     "helloWorld": "Witaj świecie!"
 }
