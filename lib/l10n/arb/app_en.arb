@@ -1,4 +1,8 @@
 {
+  "appName": "QuickNote",
+  "notebook": "notebook",
+  "input_title": "title",
+  "input_write_your_note_here": "Write your note here...",
   "helloWorld": "Hello World!",
   "@helloWorld": {
     "description": "The conventional newborn programmer greeting"
