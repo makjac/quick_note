@@ -1,9 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:hive/hive.dart';
 
-part 'check_list_item.g.dart';
-
-@HiveType(typeId: 5)
 class ChecklistItem extends Equatable {
   const ChecklistItem({
     required this.id,

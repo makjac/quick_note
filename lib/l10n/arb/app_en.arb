@@ -3,8 +3,13 @@
   "notebook": "notebook",
   "input_title": "title",
   "input_write_your_note_here": "Write your note here...",
-  "helloWorld": "Hello World!",
-  "@helloWorld": {
-    "description": "The conventional newborn programmer greeting"
-  }
+  "search" : "Search notes...",
+  "header_stared" : "Stared",
+  "header_others" : "Others",
+  "menu_notes" : "Notes",
+  "menu_reminders" : "Reminders",
+  "menu_archive" : "Archive",
+  "menu_bin" : "Bin",
+  "menu_settings" : "Settings",
+  "menu_help" : "Help"
 }

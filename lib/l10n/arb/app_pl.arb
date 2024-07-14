@@ -3,5 +3,13 @@
     "notebook": "notatnik",
     "input_title": "tytuł",
     "input_write_your_note_here": "Wpisz stoją notatkę tutaj...",
-    "helloWorld": "Witaj świecie!"
+    "search" : "Szukaj Notatki...",
+    "header_stared" : "Ogwiazdkowane",
+    "header_others" : "Pozostałe",
+    "menu_notes" : "Notatki",
+    "menu_reminders" : "Powiadomienia",
+    "menu_archive" : "Archiwum",
+    "menu_bin" : "Kosz",
+    "menu_settings" : "Ustawienia",
+    "menu_help" : "Pomoc"
 }

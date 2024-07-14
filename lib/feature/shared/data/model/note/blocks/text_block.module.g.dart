@@ -1,38 +1,38 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'check_list_item.dart';
+part of 'text_block.module.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class ChecklistItemAdapter extends TypeAdapter<ChecklistItem> {
+class TextBlockModelAdapter extends TypeAdapter<TextBlockModel> {
   @override
-  final int typeId = 5;
+  final int typeId = 3;
 
   @override
-  ChecklistItem read(BinaryReader reader) {
+  TextBlockModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return ChecklistItem(
+    return TextBlockModel(
       id: fields[0] as num,
-      title: fields[10] == null ? '' : fields[10] as String,
-      isChecked: fields[20] == null ? false : fields[20] as bool,
+      type: fields[10] as NoteBlockType,
+      text: fields[20] == null ? '' : fields[20] as String,
     );
   }
 
   @override
-  void write(BinaryWriter writer, ChecklistItem obj) {
+  void write(BinaryWriter writer, TextBlockModel obj) {
     writer
       ..writeByte(3)
+      ..writeByte(20)
+      ..write(obj.text)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(10)
-      ..write(obj.title)
-      ..writeByte(20)
-      ..write(obj.isChecked);
+      ..write(obj.type);
   }
 
   @override
@@ -41,7 +41,7 @@ class ChecklistItemAdapter extends TypeAdapter<ChecklistItem> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is ChecklistItemAdapter &&
+      other is TextBlockModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

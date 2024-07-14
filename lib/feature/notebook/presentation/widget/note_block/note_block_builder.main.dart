@@ -9,10 +9,10 @@ class NoteBlockBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    switch (noteBlock.runtimeType) {
-      case TextBlock:
+    switch (noteBlock?.type) {
+      case NoteBlockType.text:
         return TextBlockWidget(content: noteBlock! as TextBlock);
-      case TodoBlock:
+      case NoteBlockType.todo:
         return TodoBlockWidget(content: noteBlock! as TodoBlock);
       default:
         return const SizedBox.shrink();

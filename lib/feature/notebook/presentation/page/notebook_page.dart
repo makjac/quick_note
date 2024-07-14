@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quick_note/core/constans/insets.dart';
 import 'package:quick_note/core/extension/color/hex_color.dart';
 import 'package:quick_note/core/extension/string.dart';
+import 'package:quick_note/feature/notebook/presentation/widget/add_note_block_button/add_note_block_button.dart';
 import 'package:quick_note/feature/notebook/presentation/widget/note_block/note_block_builder.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note.dart';
 import 'package:quick_note/l10n/l10n.dart';
@@ -44,10 +45,22 @@ class _NotebookPageState extends State<NotebookPage> {
           SliverToBoxAdapter(
             child: _titleTextField(context),
           ),
-          ...(widget.note.content ?? []).map((block) => SliverToBoxAdapter(
-                  child: NoteBlockBuilder(
+          ...(widget.note.content).map(
+            (block) => SliverToBoxAdapter(
+              child: NoteBlockBuilder(
                 noteBlock: block,
-              )))
+              ),
+            ),
+          ),
+          const SliverToBoxAdapter(
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: EdgeInsets.all(Insets.s),
+                child: AddNoteBlockButton(),
+              ),
+            ),
+          )
         ],
       ),
     );

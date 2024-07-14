@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quick_note/feature/home/presentation/bloc/app_bloc.dart';
 import 'package:quick_note/injection_container.dart';
 import 'package:quick_note/l10n/bloc/i10n_bloc.bloc.dart';
 import 'package:quick_note/l10n/l10n.dart';
@@ -15,6 +16,9 @@ class App extends StatelessWidget {
         BlocProvider<I10nBloc>(
           create: (context) => locator<I10nBloc>(),
         ),
+        BlocProvider<AppBloc>(
+          create: (context) => locator<AppBloc>()..add(LoadCachedNotes()),
+        )
       ],
       child: const _App(),
     );

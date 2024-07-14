@@ -1,28 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'note.dart';
+part of 'note.module.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class NoteAdapter extends TypeAdapter<Note> {
+class NoteModelAdapter extends TypeAdapter<NoteModel> {
   @override
   final int typeId = 0;
 
   @override
-  Note read(BinaryReader reader) {
+  NoteModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Note(
+    return NoteModel(
       id: fields[0] as num,
       created: fields[10] as DateTime,
       modified: fields[20] as DateTime,
-      title: fields[30] as String,
-      content:
-          fields[40] == null ? [] : (fields[40] as List?)?.cast<NoteBlock>(),
+      title: fields[30] == null ? '' : fields[30] as String,
+      content: fields[40] == null ? [] : (fields[40] as List).cast<NoteBlock>(),
       archived: fields[50] == null ? false : fields[50] as bool,
       author: fields[60] == null ? '' : fields[60] as String?,
       isStarred: fields[70] == null ? false : fields[70] as bool,
@@ -31,7 +30,7 @@ class NoteAdapter extends TypeAdapter<Note> {
   }
 
   @override
-  void write(BinaryWriter writer, Note obj) {
+  void write(BinaryWriter writer, NoteModel obj) {
     writer
       ..writeByte(9)
       ..writeByte(0)
@@ -60,7 +59,7 @@ class NoteAdapter extends TypeAdapter<Note> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is NoteAdapter &&
+      other is NoteModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

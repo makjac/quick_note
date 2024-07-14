@@ -1,34 +1,36 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'text_block.dart';
+part of 'todo_block.module.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class TextBlockAdapter extends TypeAdapter<TextBlock> {
+class TodoBlockModelAdapter extends TypeAdapter<TodoBlockModel> {
   @override
-  final int typeId = 3;
+  final int typeId = 4;
 
   @override
-  TextBlock read(BinaryReader reader) {
+  TodoBlockModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return TextBlock(
+    return TodoBlockModel(
       id: fields[0] as num,
       type: fields[10] as NoteBlockType,
-      text: fields[20] == null ? '' : fields[20] as String,
+      items: fields[20] == null
+          ? []
+          : (fields[20] as List).cast<ChecklistItemModel>(),
     );
   }
 
   @override
-  void write(BinaryWriter writer, TextBlock obj) {
+  void write(BinaryWriter writer, TodoBlockModel obj) {
     writer
       ..writeByte(3)
       ..writeByte(20)
-      ..write(obj.text)
+      ..write(obj.items)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(10)
@@ -41,7 +43,7 @@ class TextBlockAdapter extends TypeAdapter<TextBlock> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is TextBlockAdapter &&
+      other is TodoBlockModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
