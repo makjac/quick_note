@@ -1,6 +1,6 @@
 enum AppRoutes {
   homePage('Home page', '/'),
-  notebook('notebook', '/notebook');
+  notebook('notebook', '/notebook/:id');
 
   final String routeName;
   final String path;

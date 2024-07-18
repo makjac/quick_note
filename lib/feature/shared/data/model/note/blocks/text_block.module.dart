@@ -11,14 +11,21 @@ part 'text_block.module.g.dart';
 class TextBlockModel extends TextBlock implements NoteBlockModel {
   const TextBlockModel({
     required super.id,
+    super.title = "",
+    super.hasTitle = false,
     super.type = NoteBlockType.text,
     super.text = "",
   });
 
   factory TextBlockModel.fromEntity(TextBlock block) {
-    return TextBlockModel(id: block.id, text: block.text);
+    return TextBlockModel(
+      id: block.id,
+      title: block.title,
+      hasTitle: block.hasTitle,
+      text: block.text,
+    );
   }
 
   @override
-  List<Object?> get props => [super.props, text];
+  List<Object?> get props => [super.props, title, hasTitle, text, type];
 }

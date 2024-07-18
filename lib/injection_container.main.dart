@@ -6,7 +6,9 @@ Future<void> init() async {
   final sharedPreferences = await SharedPreferences.getInstance();
 
   await _initI10n();
+  await _initPreferences();
   await _initApp();
+  await _initNotebook();
 
   locator.registerLazySingleton<SharedPreferences>(() => sharedPreferences);
 }
@@ -14,6 +16,11 @@ Future<void> init() async {
 FutureOr<void> _initI10n() async {
   locator
       .registerFactory<I10nBloc>(() => I10nBloc(sharedPreferences: locator()));
+}
+
+FutureOr<void> _initPreferences() async {
+  locator.registerFactory<PreferencesBloc>(
+      () => PreferencesBloc(sharedPreferences: locator()));
 }
 
 FutureOr<void> _initApp() async {
@@ -45,6 +52,24 @@ FutureOr<void> _initApp() async {
         updateMultipleNotes: locator(),
         updateSingleNote: locator(),
         deleteSingleNote: locator(),
+      ),
+    );
+}
+
+FutureOr<void> _initNotebook() async {
+  locator
+    ..registerLazySingleton<NotebookLocalDatasource>(
+        () => NotebookLocalDatasourceImpl(hive: Hive))
+    ..registerLazySingleton<NotebookRepository>(
+        () => NotebookRepositoryImpl(datasource: locator()))
+    ..registerLazySingleton<GetNoteByKeyUsecase>(
+        () => GetNoteByKeyUsecase(repository: locator()))
+    ..registerFactory(
+      () => NotebookBloc(
+        createNote: locator(),
+        updateSingleNote: locator(),
+        deleteNote: locator(),
+        getNoteByKey: locator(),
       ),
     );
 }

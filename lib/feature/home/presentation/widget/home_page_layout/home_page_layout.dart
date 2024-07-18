@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quick_note/core/constans/app_constans.dart';
 import 'package:quick_note/core/constans/insets.dart';
 import 'package:quick_note/feature/home/presentation/bloc/app_bloc.dart';
 import 'package:quick_note/feature/home/presentation/widget/home_page_layout/home_page_header/home_page_search_bar_header.dart';
@@ -22,7 +23,8 @@ class HomePageLayout extends StatelessWidget {
         builder: (context, constraints) {
           return Row(
             children: [
-              if (constraints.maxWidth > 800) const HomePageSideMenu(),
+              if (constraints.maxWidth > AppConstans.mobileSize)
+                const HomePageSideMenu(),
               Expanded(
                   child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,7 +33,8 @@ class HomePageLayout extends StatelessWidget {
                     builder: (context, state) {
                       return state.isSelecting
                           ? const NoteEditBar()
-                          : const HomePageSearchBarHeader(mobileSize: 800);
+                          : const HomePageSearchBarHeader(
+                              mobileSize: AppConstans.mobileSize);
                     },
                   ),
                   Expanded(child: child),

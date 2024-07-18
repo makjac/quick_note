@@ -4,6 +4,7 @@ import 'package:quick_note/core/error/failure/failure.dart';
 import 'package:quick_note/core/usecase/usecase.dart';
 import 'package:quick_note/feature/home/domain/repository/app_repository.dart';
 import 'package:quick_note/feature/home/domain/usecase/update_multiple_notes_usecase.dart';
+import 'package:quick_note/feature/shared/data/model/note/note.module.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note.dart';
 
 class UpdateSingleNoteUsecase extends UseCase<void, UpdateSingleNoteParams> {
@@ -22,6 +23,10 @@ class UpdateSingleNoteParams extends Equatable {
 
   final Note note;
   final NoteUpdates updates;
+
+  Note update() {
+    return NoteModel.updateEntity(note, updates);
+  }
 
   @override
   List<Object?> get props => [note, updates];

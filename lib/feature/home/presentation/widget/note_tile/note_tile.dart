@@ -63,7 +63,10 @@ class _NoteTileState extends State<NoteTile> {
     if (isSelecting) {
       BlocProvider.of<AppBloc>(context).add(SelectNote(noteId: widget.note.id));
     } else {
-      context.push(AppRoutes.notebook.path, extra: widget.note);
+      context.pushNamed(
+        AppRoutes.notebook.name,
+        pathParameters: {"id": widget.note.id.toString()},
+      );
     }
   }
 

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:quick_note/core/constans/app_constans.dart';
 import 'package:quick_note/core/constans/insets.dart';
+import 'package:quick_note/core/utils/platform_helper.dart';
 import 'package:quick_note/feature/home/presentation/bloc/app_bloc.dart';
 import 'package:quick_note/feature/home/presentation/widget/home_page_layout/home_page_darwer.dart';
 import 'package:quick_note/feature/home/presentation/widget/home_page_layout/home_page_layout.dart';
@@ -36,10 +38,14 @@ class HomePage extends StatelessWidget {
           );
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => _addNote(context),
-        child: const Icon(Icons.add),
-      ),
+      floatingActionButton: width < AppConstans.mobileSize
+          ? FloatingActionButton(
+              onPressed: () => _addNote(context),
+              backgroundColor: Colors.grey[900],
+              foregroundColor: Colors.white,
+              child: const Icon(Icons.add),
+            )
+          : null,
       drawer: const HomePageDarwer(),
     );
   }
@@ -64,17 +70,25 @@ class HomePage extends StatelessWidget {
 
     return [
       _header(header),
-      SliverPadding(
-        padding: const EdgeInsets.all(Insets.s),
-        sliver: SliverMasonryGrid.count(
-          crossAxisCount: width > 200 ? width ~/ 200 : 1,
-          childCount: notes.length,
-          crossAxisSpacing: Insets.xs,
-          mainAxisSpacing: Insets.xs,
-          itemBuilder: (context, index) => NoteTile(note: notes[index]),
+      SliverToBoxAdapter(
+        child: Padding(
+          padding: const EdgeInsets.all(Insets.s),
+          child: StaggeredGrid.count(
+            crossAxisCount: _axisCount(width),
+            crossAxisSpacing: Insets.xs,
+            mainAxisSpacing: Insets.xs,
+            children: notes.map((note) => NoteTile(note: note)).toList(),
+          ),
         ),
       ),
     ];
+  }
+
+  int _axisCount(double width) {
+    if (PlatformHelper.isMobile()) {
+      return width > 200 ? width ~/ 200 : 1;
+    }
+    return width > 350 ? width ~/ 350 : 1;
   }
 
   Widget _header(String label) {

@@ -12,6 +12,8 @@ part 'todo_block.module.g.dart';
 class TodoBlockModel extends TodoBlock implements NoteBlockModel {
   const TodoBlockModel({
     required super.id,
+    super.title = "",
+    super.hasTitle = false,
     super.type = NoteBlockType.todo,
     required this.items,
   }) : super(items: items);
@@ -23,10 +25,12 @@ class TodoBlockModel extends TodoBlock implements NoteBlockModel {
   factory TodoBlockModel.fromEntity(TodoBlock block) {
     return TodoBlockModel(
       id: block.id,
+      title: block.title,
+      hasTitle: block.hasTitle,
       items: block.items.map(ChecklistItemModel.fromEntity).toList(),
     );
   }
 
   @override
-  List<Object?> get props => [super.props, items];
+  List<Object?> get props => [super.props, title, hasTitle, items, type];
 }

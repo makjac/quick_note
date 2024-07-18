@@ -7,7 +7,12 @@ import 'package:quick_note/feature/shared/domain/entity/note/blocks/todo_block.d
 import 'package:quick_note/feature/shared/domain/entity/note/note_block.dart';
 
 abstract class NoteBlockModel extends NoteBlock {
-  const NoteBlockModel({required super.id, required super.type});
+  const NoteBlockModel({
+    required super.id,
+    super.title = "",
+    super.hasTitle = false,
+    required super.type,
+  });
 
   factory NoteBlockModel.fromEntity(NoteBlock block) {
     if (block is TextBlock) {
@@ -20,5 +25,5 @@ abstract class NoteBlockModel extends NoteBlock {
   }
 
   @override
-  List<Object?> get props => [id, type];
+  List<Object?> get props => [id, title, hasTitle, type];
 }

@@ -15,6 +15,14 @@ class ChecklistItem extends Equatable {
   @HiveField(20, defaultValue: false)
   final bool isChecked;
 
+  ChecklistItem copyWith({String? title, bool? isChecked}) {
+    return ChecklistItem(
+      id: id,
+      title: title ?? this.title,
+      isChecked: isChecked ?? this.isChecked,
+    );
+  }
+
   @override
   List<Object?> get props => [id, title, isChecked];
 }

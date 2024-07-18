@@ -18,6 +18,7 @@ class TextBlockModelAdapter extends TypeAdapter<TextBlockModel> {
     };
     return TextBlockModel(
       id: fields[0] as num,
+      title: fields[1] == null ? '' : fields[1] as String,
       type: fields[10] as NoteBlockType,
       text: fields[20] == null ? '' : fields[20] as String,
     );
@@ -26,11 +27,13 @@ class TextBlockModelAdapter extends TypeAdapter<TextBlockModel> {
   @override
   void write(BinaryWriter writer, TextBlockModel obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(20)
       ..write(obj.text)
       ..writeByte(0)
       ..write(obj.id)
+      ..writeByte(1)
+      ..write(obj.title)
       ..writeByte(10)
       ..write(obj.type);
   }

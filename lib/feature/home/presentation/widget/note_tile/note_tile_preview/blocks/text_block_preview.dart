@@ -7,6 +7,9 @@ class TextBlockPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(content.text);
+    return Text(
+      content.text,
+      maxLines: 8,
+    );
   }
 }

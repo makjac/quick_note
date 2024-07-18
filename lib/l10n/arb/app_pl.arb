@@ -11,5 +11,12 @@
     "menu_archive" : "Archiwum",
     "menu_bin" : "Kosz",
     "menu_settings" : "Ustawienia",
-    "menu_help" : "Pomoc"
+    "menu_help" : "Pomoc",
+    "notebook_title_hint_text" : "Wpisz tytuł notatki...",
+    "notebook_add_new_block" : "Dodaj nowy blok notatki",
+    "text_block_title_hint_text" : "Dodaj tytuł dla tej notatki...",
+    "text_block_note_hint_text" : "Wpisz tutaj swoje notatki...",
+    "todo_block_note_hint_text" : "Dodaj tytuł dla listy zadań...",
+    "todo_block_item_hint_text" : "Opisz swoje zadanie...",
+    "todo_block_add_task" : "Dodaj nowe zadanie"
 }
