@@ -57,7 +57,6 @@ class _AddNoteBlockButtonState extends State<AddNoteBlockButton> {
       ],
       onClickMenu: (item) {
         if (item.menuUserInfo == null) return;
-        print(item);
         BlocProvider.of<NotebookBloc>(context)
             .add(NotebookAddNoteBlock(type: item.menuUserInfo));
       },

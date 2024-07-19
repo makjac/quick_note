@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_note/core/constans/insets.dart';
 import 'package:quick_note/feature/notebook/presentation/bloc/notebook_bloc.dart';
@@ -16,5 +15,9 @@ import 'package:quick_note/l10n/l10n.dart';
 
 part 'note_block_builder.main.dart';
 
-part "blocks/text_block_widget.dart";
-part "blocks/todo_block_widget.dart";
+part "blocks/text/text_block_widget.dart";
+part "blocks/todo/todo_block_widget.dart";
+part "blocks/todo/todo_block_title.dart";
+part "blocks/todo/todo_block_list.dart";
+part "blocks/todo/todo_block_check_list_item.dart";
+part "blocks/todo/todo_block_add_task_button.dart";

@@ -35,5 +35,15 @@ class Note extends Equatable {
   final String colorHex;
 
   @override
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [
+        id,
+        created,
+        modified,
+        title,
+        content,
+        archived,
+        author,
+        isStarred,
+        colorHex,
+      ];
 }

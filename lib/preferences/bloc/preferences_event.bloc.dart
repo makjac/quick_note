@@ -26,3 +26,12 @@ class PreferencesSetSideMenuCollapse extends PreferencesEvent {
   @override
   List<Object> get props => [collapsed];
 }
+
+class PreferencesSetLanguage extends PreferencesEvent {
+  const PreferencesSetLanguage({required this.language});
+
+  final AppLanguage language;
+
+  @override
+  List<Object> get props => [language];
+}

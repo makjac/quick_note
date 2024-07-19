@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_note/core/constans/app_constans.dart';
 import 'package:quick_note/core/constans/insets.dart';
 import 'package:quick_note/feature/home/presentation/bloc/app_bloc.dart';
-import 'package:quick_note/feature/home/presentation/widget/home_page_layout/home_page_header/home_page_search_bar_header.dart';
-import 'package:quick_note/feature/home/presentation/widget/home_page_layout/home_page_header/note_edit_bar.dart';
+import 'package:quick_note/feature/home/presentation/widget/home_page_layout/home_page_header/search_bar/home_page_search_bar_header.dart';
+import 'package:quick_note/feature/home/presentation/widget/home_page_layout/home_page_header/home_page_note_edit_bar.dart';
 import 'package:quick_note/feature/home/presentation/widget/home_page_layout/home_page_side_menu.dart';
 
 class HomePageLayout extends StatelessWidget {
@@ -26,20 +26,21 @@ class HomePageLayout extends StatelessWidget {
               if (constraints.maxWidth > AppConstans.mobileSize)
                 const HomePageSideMenu(),
               Expanded(
-                  child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  BlocBuilder<AppBloc, AppState>(
-                    builder: (context, state) {
-                      return state.isSelecting
-                          ? const NoteEditBar()
-                          : const HomePageSearchBarHeader(
-                              mobileSize: AppConstans.mobileSize);
-                    },
-                  ),
-                  Expanded(child: child),
-                ],
-              ))
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    BlocBuilder<AppBloc, AppState>(
+                      builder: (context, state) {
+                        return state.isSelecting
+                            ? const HomePageNoteEditBar()
+                            : const HomePageSearchBarHeader(
+                                mobileSize: AppConstans.mobileSize);
+                      },
+                    ),
+                    Expanded(child: child),
+                  ],
+                ),
+              ),
             ],
           );
         },

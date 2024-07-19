@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:quick_note/core/constans/shared_keys.dart';
-import 'package:quick_note/core/theme/app_theme.dart';
+import 'package:quick_note/preferences/theme/app_theme.dart';
+import 'package:quick_note/l10n/app_language.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'preferences_event.bloc.dart';
@@ -15,6 +16,7 @@ class PreferencesBloc extends Bloc<PreferencesEvent, PreferencesState> {
   PreferencesBloc({required this.sharedPreferences})
       : super(PreferencesInitial()) {
     on<PreferencesLoad>(_load);
+    on<PreferencesSetLanguage>(_setLanguage);
     on<PreferencesSetTheme>(_setTheme);
     on<PreferencesSetSideMenuCollapse>(_setSideMenuCollapse);
   }
@@ -31,6 +33,16 @@ class PreferencesBloc extends Bloc<PreferencesEvent, PreferencesState> {
         orElse: () => AppTheme.dark,
       ),
       sideMenuCollapsed: sideMenuCollapsed,
+    ));
+  }
+
+  FutureOr<void> _setLanguage(
+      PreferencesSetLanguage event, Emitter<PreferencesState> emit) async {
+    await sharedPreferences.setString(
+        SharedKeys.languagePref.name, event.language.name);
+
+    emit(state.copyWith(
+      language: event.language,
     ));
   }
 

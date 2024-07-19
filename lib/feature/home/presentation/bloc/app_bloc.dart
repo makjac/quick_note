@@ -35,28 +35,29 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     required this.updateSingleNote,
     required this.deleteSingleNote,
   }) : super(AppInitial()) {
-    on<LoadCachedNotes>(_loadCachedNotes);
-    on<CreateNote>(_createNote);
-    on<UpdateSingleNote>(_updateSingleNote);
-    on<UpdateSelectedNotes>(_updateSelectedNotes);
-    on<StarSelectedNotes>(_starSelectedNotes);
-    on<ArchiveSelectedNotes>(_archiveSelectedNotes);
-    on<DeleteSingleNote>(_deleteSingleNote);
-    on<DeleteAllNotes>(_deleteAllNotes);
-    on<DeleteSelectedNotes>(_deleteSelectedNotes);
-    on<SelectNote>(_selectNote);
-    on<UnselectAllNotes>(_unselectAllNotes);
-    on<SelectAllNotes>(_selectAllNotes);
+    on<AppLoadCachedNotes>(_loadCachedNotes);
+    on<AppCreateNote>(_createNote);
+    on<AppUpdateSingleNote>(_updateSingleNote);
+    on<AppUpdateSelectedNotes>(_updateSelectedNotes);
+    on<AppStarSelectedNotes>(_starSelectedNotes);
+    on<AppArchiveSelectedNotes>(_archiveSelectedNotes);
+    on<AppDeleteSingleNote>(_deleteSingleNote);
+    on<AppDeleteAllNotes>(_deleteAllNotes);
+    on<AppDeleteSelectedNotes>(_deleteSelectedNotes);
+    on<AppSelectNote>(_selectNote);
+    on<AppUnselectAllNotes>(_unselectAllNotes);
+    on<AppSelectAllNotes>(_selectAllNotes);
   }
 
   FutureOr<void> _loadCachedNotes(
-      LoadCachedNotes event, Emitter<AppState> emit) async {
+      AppLoadCachedNotes event, Emitter<AppState> emit) async {
     final notes = await loadCachedNotes.call(NoParams());
 
     notes.fold((failure) {}, (notes) => emit(state.copyWith(notes: notes)));
   }
 
-  FutureOr<void> _createNote(CreateNote event, Emitter<AppState> emit) async {
+  FutureOr<void> _createNote(
+      AppCreateNote event, Emitter<AppState> emit) async {
     final result = await createNote.call(event.note);
 
     result.fold(
@@ -73,7 +74,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   }
 
   FutureOr<void> _updateSingleNote(
-      UpdateSingleNote event, Emitter<AppState> emit) async {
+      AppUpdateSingleNote event, Emitter<AppState> emit) async {
     final result = await updateSingleNote
         .call(UpdateSingleNoteParams(note: event.note, updates: event.updates));
 
@@ -87,7 +88,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   }
 
   FutureOr<void> _updateSelectedNotes(
-      UpdateSelectedNotes event, Emitter<AppState> emit) async {
+      AppUpdateSelectedNotes event, Emitter<AppState> emit) async {
     final result = await updateMultipleNotes.call(
         UpdateNotesParams(keys: state.selectedNoteIds, updates: event.updates));
 
@@ -101,7 +102,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   }
 
   FutureOr<void> _starSelectedNotes(
-      StarSelectedNotes event, Emitter<AppState> emit) async {
+      AppStarSelectedNotes event, Emitter<AppState> emit) async {
     final isAllStared = state.selectedNoteIds.every(
         (id) => state.notes.singleWhere((note) => note.id == id).isStarred);
 
@@ -119,13 +120,16 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   }
 
   FutureOr<void> _archiveSelectedNotes(
-      ArchiveSelectedNotes event, Emitter<AppState> emit) async {
+      AppArchiveSelectedNotes event, Emitter<AppState> emit) async {
     final isAllArchived = state.selectedNoteIds.every(
         (id) => state.notes.singleWhere((note) => note.id == id).archived);
 
     final result = await updateMultipleNotes.call(UpdateNotesParams(
         keys: state.selectedNoteIds,
-        updates: NoteUpdates(isStarred: !isAllArchived)));
+        updates: NoteUpdates(
+          archived: !isAllArchived,
+          isStarred: false,
+        )));
 
     if (result.isRight()) {
       final notes = await loadCachedNotes.call(NoParams());
@@ -137,7 +141,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   }
 
   FutureOr<void> _deleteSingleNote(
-      DeleteSingleNote event, Emitter<AppState> emit) async {
+      AppDeleteSingleNote event, Emitter<AppState> emit) async {
     final result = await deleteSingleNote.call(event.id);
 
     if (result.isRight()) {
@@ -150,14 +154,14 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   }
 
   FutureOr<void> _deleteAllNotes(
-      DeleteAllNotes event, Emitter<AppState> emit) async {
+      AppDeleteAllNotes event, Emitter<AppState> emit) async {
     final result = await deleteAllNotes.call(NoParams());
 
     result.fold((failure) {}, (result) => emit(state.copyWith(notes: [])));
   }
 
   FutureOr<void> _deleteSelectedNotes(
-      DeleteSelectedNotes event, Emitter<AppState> emit) async {
+      AppDeleteSelectedNotes event, Emitter<AppState> emit) async {
     final result =
         await deleteMultipleNotes.call(state.selectedNoteIds.toList());
 
@@ -170,7 +174,8 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     }
   }
 
-  FutureOr<void> _selectNote(SelectNote event, Emitter<AppState> emit) async {
+  FutureOr<void> _selectNote(
+      AppSelectNote event, Emitter<AppState> emit) async {
     final isSelected = state.selectedNoteIds.contains(event.noteId);
 
     if (isSelected) {
@@ -189,7 +194,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   }
 
   FutureOr<void> _unselectAllNotes(
-      UnselectAllNotes event, Emitter<AppState> emit) async {
+      AppUnselectAllNotes event, Emitter<AppState> emit) async {
     emit(state.copyWith(
       selectedNoteIds: {},
       isSelecting: false,
@@ -197,7 +202,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   }
 
   FutureOr<void> _selectAllNotes(
-      SelectAllNotes event, Emitter<AppState> emit) async {
+      AppSelectAllNotes event, Emitter<AppState> emit) async {
     emit(state.copyWith(
       selectedNoteIds: state.notes.map((note) => note.id).toSet(),
       isSelecting: true,

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_note/core/constans/insets.dart';
 import 'package:quick_note/feature/home/presentation/bloc/app_bloc.dart';
+import 'package:quick_note/feature/home/presentation/widget/home_page_layout/home_page_header/search_bar/home_page_note_search_text_field.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note.dart';
-import 'package:quick_note/l10n/l10n.dart';
 
 class HomePageSearchBarHeader extends StatelessWidget {
   const HomePageSearchBarHeader({super.key, required this.mobileSize});
@@ -40,13 +40,7 @@ class _MobileSearchBar extends StatelessWidget {
                   color: Colors.white.withAlpha(180),
                 ),
               ),
-              Text(
-                context.l10n.search,
-                style: const TextStyle(
-                  color: Colors.white38,
-                ),
-              ),
-              const Spacer(),
+              const Expanded(child: HomePageNoteSearchTextField()),
               CircleAvatar(
                 radius: 15,
                 backgroundColor: Colors.white70,
@@ -70,7 +64,7 @@ class _DesktopSearchbar extends StatelessWidget {
   const _DesktopSearchbar();
 
   void _addNote(BuildContext context) {
-    BlocProvider.of<AppBloc>(context).add(CreateNote(
+    BlocProvider.of<AppBloc>(context).add(AppCreateNote(
         note: Note(
       id: DateTime.now().millisecondsSinceEpoch % 0xFFFFFFFF,
       created: DateTime.now(),
@@ -91,7 +85,7 @@ class _DesktopSearchbar extends StatelessWidget {
             child: Card(
               color: Colors.grey[900],
               child: Padding(
-                padding: const EdgeInsets.all(Insets.xxs),
+                padding: const EdgeInsets.symmetric(horizontal: Insets.xxs),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -103,13 +97,7 @@ class _DesktopSearchbar extends StatelessWidget {
                         color: Colors.white.withAlpha(180),
                       ),
                     ),
-                    Text(
-                      context.l10n.search,
-                      style: const TextStyle(
-                        color: Colors.white38,
-                      ),
-                    ),
-                    const SizedBox(width: Insets.xxl),
+                    const Expanded(child: HomePageNoteSearchTextField()),
                   ],
                 ),
               ),

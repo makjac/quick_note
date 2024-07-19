@@ -1,4 +1,4 @@
-part of '../note_block_builder.dart';
+part of '../../note_block_builder.dart';
 
 class TextBlockWidget extends StatelessWidget {
   const TextBlockWidget({super.key, required this.content});
@@ -32,6 +32,13 @@ class _TextBlockBodyState extends State<_TextBlockBody> {
     _titleController = TextEditingController(
         text: context.read<TextBlockCubit>().state.block.title);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    _titleController.dispose();
+    super.dispose();
   }
 
   @override
@@ -79,6 +86,10 @@ class _TextBlockBodyState extends State<_TextBlockBody> {
                 cursorColor: Colors.white38,
                 decoration: InputDecoration(
                   hintText: context.l10n.text_block_note_hint_text,
+                  hintStyle: Theme.of(context)
+                      .textTheme
+                      .bodyLarge
+                      ?.copyWith(color: Colors.white60),
                   border: InputBorder.none,
                 ),
                 style: const TextStyle(

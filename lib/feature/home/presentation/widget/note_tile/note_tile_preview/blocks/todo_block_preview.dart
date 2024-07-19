@@ -8,10 +8,50 @@ class TodoBlockPreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: content.items
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _TodoItemsPreview(items: content.items),
+        _RemainingItemsCount(items: content.items),
+      ],
+    );
+  }
+}
+
+class _TodoItemsPreview extends StatelessWidget {
+  const _TodoItemsPreview({required this.items});
+
+  final List<ChecklistItem> items;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: items
+          .take(4)
           .map((item) => _CheckListItemPreview(item: item))
           .toList(),
     );
+  }
+}
+
+class _RemainingItemsCount extends StatelessWidget {
+  const _RemainingItemsCount({required this.items});
+
+  final List<ChecklistItem> items;
+
+  int countOfRemainingElements() => items.length - 4;
+
+  @override
+  Widget build(BuildContext context) {
+    return items.length > 4
+        ? Padding(
+            padding: const EdgeInsets.symmetric(vertical: Insets.xxs),
+            child: Text(
+              "+ ${countOfRemainingElements()} items",
+              style: TextStyle(color: Colors.white.withAlpha(150)),
+            ),
+          )
+        : const SizedBox.shrink();
   }
 }
 
@@ -26,12 +66,13 @@ class _CheckListItemPreview extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         _checkBox(item.isChecked),
-        const SizedBox(width: Insets.xxs),
+        const SizedBox(width: Insets.xs),
         Flexible(
           child: Text(
             item.title,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
+            style: TextStyle(color: Colors.white.withAlpha(200)),
           ),
         ),
       ],
@@ -40,7 +81,7 @@ class _CheckListItemPreview extends StatelessWidget {
 
   Widget _checkBox(bool isChecked) => Icon(
         isChecked ? Icons.check_box : Icons.check_box_outline_blank,
-        color: Colors.black.withAlpha(200),
+        color: Colors.white.withAlpha(150),
         size: 20,
       );
 }

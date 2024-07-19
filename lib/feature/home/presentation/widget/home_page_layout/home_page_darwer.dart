@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:quick_note/core/constans/app_assets.dart';
 import 'package:quick_note/core/constans/insets.dart';
 import 'package:quick_note/l10n/l10n.dart';
+import 'package:quick_note/router/app_routes.dart';
 
 class HomePageDarwer extends StatelessWidget {
   const HomePageDarwer({super.key});
@@ -10,10 +12,10 @@ class HomePageDarwer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       backgroundColor: Colors.grey[850],
-      child: Column(
+      child: ListView(
         children: [
           SizedBox(
-            height: 85,
+            height: 120,
             child: DrawerHeader(
               padding: const EdgeInsets.all(Insets.s),
               child: Row(
@@ -44,18 +46,14 @@ class HomePageDarwer extends StatelessWidget {
             textColor: Colors.white,
             leading: const Icon(Icons.notes_rounded),
             title: const Text('Notes'),
-            onTap: () {
-              Navigator.pop(context);
-            },
+            onTap: () => context.pushNamed(AppRoutes.notesPage.name),
           ),
           ListTile(
             iconColor: Colors.white,
             textColor: Colors.white,
             leading: const Icon(Icons.notifications),
             title: const Text('Reminders'),
-            onTap: () {
-              Navigator.pop(context);
-            },
+            onTap: () => context.pushNamed(AppRoutes.remindersPage.name),
           ),
           const Divider(),
           ListTile(
@@ -63,39 +61,31 @@ class HomePageDarwer extends StatelessWidget {
             textColor: Colors.white,
             leading: const Icon(Icons.archive),
             title: const Text('Archive'),
-            onTap: () {
-              Navigator.pop(context);
-            },
+            onTap: () => context.pushNamed(AppRoutes.archivePage.name),
           ),
           ListTile(
             iconColor: Colors.white,
             textColor: Colors.white,
             leading: const Icon(Icons.delete),
             title: const Text('Bin'),
-            onTap: () {
-              Navigator.pop(context);
-            },
+            onTap: () => context.pushNamed(AppRoutes.trashPage.name),
           ),
-          const Spacer(),
+          const Divider(),
           ListTile(
             iconColor: Colors.white,
             textColor: Colors.white,
             leading: const Icon(Icons.settings),
             title: const Text('Settings'),
-            onTap: () {
-              Navigator.pop(context);
-            },
+            onTap: () => context.pushNamed(AppRoutes.settingsPage.name),
           ),
           ListTile(
             iconColor: Colors.white,
             textColor: Colors.white,
             leading: const Icon(Icons.help),
             title: const Text('Help'),
-            onTap: () {
-              Navigator.pop(context);
-            },
+            onTap: () => context.pushNamed(AppRoutes.helpPage.name),
           ),
-          const SizedBox(height: Insets.s),
+          const SizedBox(height: Insets.s)
         ],
       ),
     );

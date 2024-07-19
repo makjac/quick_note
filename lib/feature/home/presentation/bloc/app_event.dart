@@ -7,19 +7,19 @@ sealed class AppEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class LoadCachedNotes extends AppEvent {}
+class AppLoadCachedNotes extends AppEvent {}
 
-class CreateNote extends AppEvent {
+class AppCreateNote extends AppEvent {
   final Note note;
 
-  const CreateNote({required this.note});
+  const AppCreateNote({required this.note});
 
   @override
   List<Object> get props => [note];
 }
 
-class DeleteSingleNote extends AppEvent {
-  const DeleteSingleNote({required this.id});
+class AppDeleteSingleNote extends AppEvent {
+  const AppDeleteSingleNote({required this.id});
 
   final num id;
 
@@ -27,12 +27,12 @@ class DeleteSingleNote extends AppEvent {
   List<Object> get props => [id];
 }
 
-class DeleteAllNotes extends AppEvent {}
+class AppDeleteAllNotes extends AppEvent {}
 
-class DeleteSelectedNotes extends AppEvent {}
+class AppDeleteSelectedNotes extends AppEvent {}
 
-class UpdateSingleNote extends AppEvent {
-  const UpdateSingleNote({required this.note, required this.updates});
+class AppUpdateSingleNote extends AppEvent {
+  const AppUpdateSingleNote({required this.note, required this.updates});
 
   final Note note;
   final NoteUpdates updates;
@@ -41,8 +41,8 @@ class UpdateSingleNote extends AppEvent {
   List<Object> get props => [note, updates];
 }
 
-class UpdateSelectedNotes extends AppEvent {
-  const UpdateSelectedNotes({required this.updates});
+class AppUpdateSelectedNotes extends AppEvent {
+  const AppUpdateSelectedNotes({required this.updates});
 
   final NoteUpdates updates;
 
@@ -50,12 +50,12 @@ class UpdateSelectedNotes extends AppEvent {
   List<Object> get props => [updates];
 }
 
-class StarSelectedNotes extends AppEvent {}
+class AppStarSelectedNotes extends AppEvent {}
 
-class ArchiveSelectedNotes extends AppEvent {}
+class AppArchiveSelectedNotes extends AppEvent {}
 
-class SelectNote extends AppEvent {
-  const SelectNote({required this.noteId});
+class AppSelectNote extends AppEvent {
+  const AppSelectNote({required this.noteId});
 
   final num noteId;
 
@@ -63,6 +63,10 @@ class SelectNote extends AppEvent {
   List<Object> get props => [noteId];
 }
 
-class UnselectAllNotes extends AppEvent {}
+class AppUnselectAllNotes extends AppEvent {}
 
-class SelectAllNotes extends AppEvent {}
+class AppSelectAllNotes extends AppEvent {}
+
+class AppSetSearchTerm extends AppEvent {}
+
+class AppClearSearchTerm extends AppEvent {}

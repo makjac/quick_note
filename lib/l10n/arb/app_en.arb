@@ -6,10 +6,11 @@
   "search" : "Search notes...",
   "header_stared" : "Stared",
   "header_others" : "Others",
+  "header_archived" : "Archived",
   "menu_notes" : "Notes",
   "menu_reminders" : "Reminders",
   "menu_archive" : "Archive",
-  "menu_bin" : "Bin",
+  "menu_trash" : "Trash",
   "menu_settings" : "Settings",
   "menu_help" : "Help",
   "notebook_title_hint_text" : "Enter note title...",
@@ -18,5 +19,11 @@
   "text_block_note_hint_text" : "Type your notes here...",
   "todo_block_title_hint_text" : "Add a title for this to-do list...",
   "todo_block_item_hint_text" : "Describe your task...",
-  "todo_block_add_task" : "Add a new task"
+  "todo_block_add_task" : "Add a new task",
+  "note_page_empty" : "You don't have any notes yet.",
+  "note_page_create_first_note" : "Add your first note to get started!",
+  "reminders_page_empty": "No reminder notes!",
+  "archive_page_empty" : "No archived notes!",
+  "trash_page_empty" : "The trash is empty!",
+  "note_search_empty" : "No notes found..."
 }

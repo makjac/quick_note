@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:quick_note/core/constans/app_assets.dart';
 import 'package:quick_note/core/constans/insets.dart';
 import 'package:quick_note/l10n/l10n.dart';
+import 'package:quick_note/preferences/bloc/preferences.bloc.dart';
+import 'package:quick_note/router/app_routes.dart';
 
 class HomePageSideMenu extends StatefulWidget {
   const HomePageSideMenu({super.key});
@@ -16,18 +20,28 @@ class _HomePageSideMenuState extends State<HomePageSideMenu>
   late Animation<double> _widthAnimation;
   late Animation<double> _opacityAnimation;
   late Animation<double> _slideAnimation;
+  late bool isCollapsed;
 
   @override
   void initState() {
     super.initState();
+    isCollapsed =
+        BlocProvider.of<PreferencesBloc>(context).state.sideMenuCollapsed;
+
     _controller = AnimationController(
       duration: const Duration(milliseconds: 200),
       vsync: this,
     );
+
     _widthAnimation = Tween<double>(begin: 92, end: 270).animate(_controller);
     _opacityAnimation = Tween<double>(begin: 0, end: 1).animate(_controller);
     _slideAnimation = Tween<double>(begin: 0, end: 1).animate(_controller);
-    _controller.forward();
+
+    if (isCollapsed) {
+      _controller.value = 1.0;
+    } else {
+      _controller.value = 0.0;
+    }
   }
 
   @override
@@ -38,6 +52,10 @@ class _HomePageSideMenuState extends State<HomePageSideMenu>
 
   void _toggleExpand() {
     setState(() {
+      isCollapsed = !isCollapsed;
+      BlocProvider.of<PreferencesBloc>(context)
+          .add(PreferencesSetSideMenuCollapse(collapsed: isCollapsed));
+
       if (_controller.isCompleted) {
         _controller.reverse();
       } else {
@@ -54,22 +72,36 @@ class _HomePageSideMenuState extends State<HomePageSideMenu>
         return SizedBox(
           width: _widthAnimation.value,
           child: Container(
-            decoration: BoxDecoration(
-              color: Colors.grey[900],
-              boxShadow: const [BoxShadow(blurRadius: 2, spreadRadius: .5)],
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildHeader(context),
-                const SizedBox(height: Insets.xs),
-                ..._buildMenuItems(context),
-                const Spacer(),
-                _buildFooter(context),
-                const SizedBox(height: Insets.s),
-              ],
-            ),
-          ),
+              height: double.infinity,
+              decoration: BoxDecoration(
+                color: Colors.grey[900],
+                boxShadow: const [BoxShadow(blurRadius: 2, spreadRadius: .5)],
+              ),
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  if (constraints.maxHeight > 416.0) {
+                    return Column(
+                      children: [
+                        _buildHeader(context),
+                        const SizedBox(height: Insets.xs),
+                        ..._buildMenuItems(context),
+                        const Spacer(),
+                        _buildFooter(context),
+                        const SizedBox(height: Insets.s),
+                      ],
+                    );
+                  }
+                  return ListView(
+                    children: [
+                      _buildHeader(context),
+                      const SizedBox(height: Insets.xs),
+                      ..._buildMenuItems(context),
+                      _buildFooter(context),
+                      const SizedBox(height: Insets.s),
+                    ],
+                  );
+                },
+              )),
         );
       },
     );
@@ -110,7 +142,6 @@ class _HomePageSideMenuState extends State<HomePageSideMenu>
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 30,
-                  color: Colors.white,
                   letterSpacing: 1,
                   shadows: [BoxShadow(blurRadius: .5)],
                 ),
@@ -123,20 +154,47 @@ class _HomePageSideMenuState extends State<HomePageSideMenu>
     );
   }
 
+  bool _isSelected(AppRoutes route) {
+    final currentRouteName = GoRouterState.of(context).topRoute?.path;
+    final currentRoute = AppRoutes.values.firstWhere(
+      (value) => value.path == currentRouteName,
+      orElse: () => AppRoutes.notesPage,
+    );
+
+    return currentRoute == route;
+  }
+
   List<Widget> _buildMenuItems(BuildContext context) {
     final menuItems = [
-      {'icon': Icons.notes_rounded, 'label': context.l10n.menu_notes},
-      {'icon': Icons.notifications, 'label': context.l10n.menu_reminders},
-      {'icon': Icons.archive, 'label': context.l10n.menu_archive},
-      {'icon': Icons.delete, 'label': context.l10n.menu_bin},
+      {
+        'icon': Icons.notes_rounded,
+        'label': context.l10n.menu_notes,
+        'route': AppRoutes.notesPage,
+      },
+      {
+        'icon': Icons.notifications,
+        'label': context.l10n.menu_reminders,
+        'route': AppRoutes.remindersPage,
+      },
+      {
+        'icon': Icons.archive,
+        'label': context.l10n.menu_archive,
+        'route': AppRoutes.archivePage,
+      },
+      {
+        'icon': Icons.delete,
+        'label': context.l10n.menu_trash,
+        'route': AppRoutes.trashPage,
+      },
     ];
 
     return menuItems.map((item) {
       return SideMenuElement(
         icon: item['icon'] as IconData,
         label: item['label'] as String,
-        onTap: () {},
+        onTap: () => context.pushNamed((item['route'] as AppRoutes).name),
         expanded: _controller.isCompleted,
+        selected: _isSelected(item['route'] as AppRoutes),
       );
     }).toList();
   }
@@ -147,14 +205,16 @@ class _HomePageSideMenuState extends State<HomePageSideMenu>
         SideMenuElement(
           icon: Icons.settings,
           label: context.l10n.menu_settings,
-          onTap: () {},
+          onTap: () => context.pushNamed(AppRoutes.settingsPage.name),
           expanded: _controller.isCompleted,
+          selected: _isSelected(AppRoutes.settingsPage),
         ),
         SideMenuElement(
           icon: Icons.help,
           label: context.l10n.menu_help,
-          onTap: () {},
+          onTap: () => context.pushNamed(AppRoutes.helpPage.name),
           expanded: _controller.isCompleted,
+          selected: _isSelected(AppRoutes.helpPage),
         ),
       ],
     );
@@ -168,12 +228,14 @@ class SideMenuElement extends StatefulWidget {
     required this.label,
     required this.onTap,
     required this.expanded,
+    this.selected = false,
   });
 
   final IconData icon;
   final String label;
   final void Function() onTap;
   final bool expanded;
+  final bool selected;
 
   @override
   State<SideMenuElement> createState() => _SideMenuElementState();
@@ -181,6 +243,14 @@ class SideMenuElement extends StatefulWidget {
 
 class _SideMenuElementState extends State<SideMenuElement> {
   bool highlight = false;
+
+  Color _elementColor() {
+    if (widget.selected) {
+      return Colors.white24;
+    } else {
+      return highlight ? Colors.white10 : Colors.transparent;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -197,7 +267,7 @@ class _SideMenuElementState extends State<SideMenuElement> {
           top: Insets.xxs,
         ),
         decoration: BoxDecoration(
-          color: highlight ? Colors.white10 : Colors.transparent,
+          color: _elementColor(),
           borderRadius: const BorderRadius.only(
             bottomRight: Radius.circular(Insets.s),
             topRight: Radius.circular(Insets.xxs),
@@ -212,7 +282,6 @@ class _SideMenuElementState extends State<SideMenuElement> {
               child: Icon(
                 widget.icon,
                 size: 27,
-                color: Colors.white,
               ),
             ),
             if (widget.expanded)
@@ -222,7 +291,6 @@ class _SideMenuElementState extends State<SideMenuElement> {
                   widget.label,
                   maxLines: 1,
                   style: const TextStyle(
-                    color: Colors.white,
                     fontSize: 15,
                   ),
                 ),

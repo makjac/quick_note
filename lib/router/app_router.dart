@@ -8,21 +8,82 @@ import 'package:quick_note/router/app_routes.dart';
 
 class AppRouter extends Equatable {
   static final GoRouter router = GoRouter(
-    routes: _routes,
-  );
+      routes: _routes, initialLocation: '/${AppRoutes.notesPage.path}');
 
   static final List<RouteBase> _routes = [
     GoRoute(
       path: AppRoutes.homePage.path,
       name: AppRoutes.homePage.name,
+      pageBuilder: (context, state) =>
+          const NoTransitionPage(child: HomePage()),
       builder: (context, state) {
-        BlocProvider.of<AppBloc>(context).add(LoadCachedNotes());
+        BlocProvider.of<AppBloc>(context).add(AppLoadCachedNotes());
         return const HomePage();
       },
+      routes: [
+        GoRoute(
+          path: AppRoutes.notesPage.path,
+          name: AppRoutes.notesPage.name,
+          pageBuilder: (context, state) =>
+              const NoTransitionPage(child: HomePage()),
+          builder: (context, state) {
+            BlocProvider.of<AppBloc>(context).add(AppLoadCachedNotes());
+            return const HomePage();
+          },
+        ),
+        GoRoute(
+          path: AppRoutes.remindersPage.path,
+          name: AppRoutes.remindersPage.name,
+          pageBuilder: (context, state) =>
+              const NoTransitionPage(child: HomePage()),
+          builder: (context, state) {
+            BlocProvider.of<AppBloc>(context).add(AppLoadCachedNotes());
+            return const HomePage();
+          },
+        ),
+        GoRoute(
+          path: AppRoutes.archivePage.path,
+          name: AppRoutes.archivePage.name,
+          pageBuilder: (context, state) =>
+              const NoTransitionPage(child: HomePage()),
+          builder: (context, state) {
+            BlocProvider.of<AppBloc>(context).add(AppLoadCachedNotes());
+            return const HomePage();
+          },
+        ),
+        GoRoute(
+          path: AppRoutes.trashPage.path,
+          name: AppRoutes.trashPage.name,
+          pageBuilder: (context, state) =>
+              const NoTransitionPage(child: HomePage()),
+          builder: (context, state) {
+            BlocProvider.of<AppBloc>(context).add(AppLoadCachedNotes());
+            return const HomePage();
+          },
+        ),
+        GoRoute(
+          path: AppRoutes.settingsPage.path,
+          name: AppRoutes.settingsPage.name,
+          pageBuilder: (context, state) =>
+              const NoTransitionPage(child: HomePage()),
+          builder: (context, state) => const HomePage(),
+        ),
+        GoRoute(
+          path: AppRoutes.helpPage.path,
+          name: AppRoutes.helpPage.name,
+          pageBuilder: (context, state) =>
+              const NoTransitionPage(child: HomePage()),
+          builder: (context, state) => const HomePage(),
+        ),
+      ],
     ),
     GoRoute(
       path: AppRoutes.notebook.path,
       name: AppRoutes.notebook.name,
+      onExit: (context, state) {
+        BlocProvider.of<AppBloc>(context).add(AppLoadCachedNotes());
+        return true;
+      },
       builder: (context, state) => NotebookPage(
         noteId: num.tryParse(state.pathParameters["id"] ?? ""),
       ),

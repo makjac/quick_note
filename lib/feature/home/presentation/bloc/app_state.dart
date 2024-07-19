@@ -17,6 +17,7 @@ class AppState extends Equatable {
     List<Note>? notes,
     Set<num>? selectedNoteIds,
     bool? isSelecting,
+    String? searchTerm,
   }) {
     return AppState(
       notes: notes ?? this.notes,

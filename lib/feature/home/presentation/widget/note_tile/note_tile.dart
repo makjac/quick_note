@@ -4,15 +4,12 @@ import 'package:go_router/go_router.dart';
 import 'package:quick_note/core/constans/insets.dart';
 import 'package:quick_note/core/extension/color/color.dart';
 import 'package:quick_note/core/extension/color/hex_color.dart';
-import 'package:quick_note/core/utils/note_helper.dart';
 import 'package:quick_note/core/utils/platform_helper.dart';
-import 'package:quick_note/feature/home/domain/usecase/update_multiple_notes_usecase.dart';
 import 'package:quick_note/feature/home/presentation/bloc/app_bloc.dart';
+import 'package:quick_note/feature/home/presentation/widget/note_tile/note_tile_popup_menu.dart';
 import 'package:quick_note/feature/home/presentation/widget/note_tile/note_tile_preview/note_tile_preview_builder.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note.dart';
 import 'package:quick_note/router/app_routes.dart';
-
-enum _Menu { select, color, star, delete }
 
 class NoteTile extends StatefulWidget {
   const NoteTile({super.key, required this.note});
@@ -35,7 +32,7 @@ class _NoteTileState extends State<NoteTile> {
           child: InkWell(
             onTap: () => _onTap(context),
             onLongPress: () => BlocProvider.of<AppBloc>(context)
-                .add(SelectNote(noteId: widget.note.id)),
+                .add(AppSelectNote(noteId: widget.note.id)),
             onHover: (value) => setState(() => _showMenuIcon = value),
             child: Container(
               decoration: _noteTailDecoratioon(state),
@@ -45,7 +42,7 @@ class _NoteTileState extends State<NoteTile> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   PlatformHelper.isMobile()
-                      ? _noteTitle()
+                      ? _mobileNoteTitle()
                       : _desktopNoteTitle(context),
                   _noteContent(),
                 ],
@@ -61,7 +58,8 @@ class _NoteTileState extends State<NoteTile> {
     bool isSelecting = BlocProvider.of<AppBloc>(context).state.isSelecting;
 
     if (isSelecting) {
-      BlocProvider.of<AppBloc>(context).add(SelectNote(noteId: widget.note.id));
+      BlocProvider.of<AppBloc>(context)
+          .add(AppSelectNote(noteId: widget.note.id));
     } else {
       context.pushNamed(
         AppRoutes.notebook.name,
@@ -126,14 +124,12 @@ class _NoteTileState extends State<NoteTile> {
     );
   }
 
-  Widget _noteTitle() => Text(
+  Widget _mobileNoteTitle() => Text(
         widget.note.title.isNotEmpty ? widget.note.title : "...",
         maxLines: 2,
-        style: const TextStyle(
-          fontWeight: FontWeight.w700,
-          fontSize: 15,
-          overflow: TextOverflow.ellipsis,
-        ),
+        style: Theme.of(context).textTheme.titleSmall?.copyWith(
+              color: Colors.white.withAlpha(220),
+            ),
       );
 
   Widget _desktopNoteTitle(BuildContext context) => Row(
@@ -142,124 +138,18 @@ class _NoteTileState extends State<NoteTile> {
             child: Text(
               widget.note.title.isNotEmpty ? widget.note.title : "...",
               maxLines: 1,
-              style: const TextStyle(
-                fontWeight: FontWeight.w700,
-                fontSize: 15,
-                overflow: TextOverflow.ellipsis,
-              ),
+              style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                    color: Colors.white.withAlpha(220),
+                  ),
             ),
           ),
-          ..._showMenuIcon ? [_popupmenu(context)] : [],
+          if (_showMenuIcon)
+            NoteTilePopupMenu(
+              note: widget.note,
+              context: context,
+            ),
         ],
       );
-
-  Widget _popupmenu(BuildContext context) {
-    return PopupMenuButton<_Menu>(
-      color: Colors.grey[850],
-      popUpAnimationStyle: AnimationStyle.noAnimation,
-      iconSize: 20,
-      splashRadius: 20,
-      itemBuilder: (_) => <PopupMenuEntry<_Menu>>[
-        _buildSelectMenuItem(context),
-        _buildColorMenuItem(context),
-        _buildStarMenuItem(context),
-        _buildArchiveMenuItem(context),
-        const PopupMenuDivider(),
-        _buildDeleteMenuItem(context),
-      ],
-      child: const Icon(
-        Icons.more_vert_sharp,
-        size: 20,
-      ),
-    );
-  }
-
-  PopupMenuItem<_Menu> _buildSelectMenuItem(BuildContext context) {
-    final appBloc = BlocProvider.of<AppBloc>(context);
-    return PopupMenuItem<_Menu>(
-      value: _Menu.select,
-      onTap: () => appBloc.add(SelectNote(noteId: widget.note.id)),
-      child: const ListTile(
-        iconColor: Colors.white70,
-        textColor: Colors.white70,
-        leading: Icon(Icons.check_box_outlined),
-        title: Text('Select'),
-      ),
-    );
-  }
-
-  PopupMenuItem<_Menu> _buildColorMenuItem(BuildContext context) {
-    final appBloc = BlocProvider.of<AppBloc>(context);
-    return PopupMenuItem<_Menu>(
-      value: _Menu.color,
-      onTap: () async {
-        final color = await NoteHelper.showNoteColorPickerDialog(context);
-        if (color != null) {
-          appBloc.add(UpdateSingleNote(
-            note: widget.note,
-            updates: NoteUpdates(colorHex: color.toHex()),
-          ));
-        }
-      },
-      child: const ListTile(
-        iconColor: Colors.white70,
-        textColor: Colors.white70,
-        leading: Icon(
-          Icons.color_lens_outlined,
-        ),
-        title: Text('Change Color'),
-      ),
-    );
-  }
-
-  PopupMenuItem<_Menu> _buildStarMenuItem(BuildContext context) {
-    final appBloc = BlocProvider.of<AppBloc>(context);
-    return PopupMenuItem<_Menu>(
-      value: _Menu.star,
-      onTap: () => appBloc.add(UpdateSingleNote(
-        note: widget.note,
-        updates: NoteUpdates(isStarred: !widget.note.isStarred),
-      )),
-      child: const ListTile(
-        iconColor: Colors.white70,
-        textColor: Colors.white70,
-        leading: Icon(Icons.star_border),
-        title: Text('Star'),
-      ),
-    );
-  }
-
-  PopupMenuItem<_Menu> _buildArchiveMenuItem(BuildContext context) {
-    final appBloc = BlocProvider.of<AppBloc>(context);
-    return PopupMenuItem<_Menu>(
-      value: _Menu.star,
-      onTap: () => appBloc.add(UpdateSingleNote(
-        note: widget.note,
-        updates: NoteUpdates(archived: !widget.note.archived),
-      )),
-      child: const ListTile(
-        iconColor: Colors.white70,
-        textColor: Colors.white70,
-        leading: Icon(Icons.archive_outlined),
-        title: Text('Archive'),
-      ),
-    );
-  }
-
-  PopupMenuItem<_Menu> _buildDeleteMenuItem(BuildContext context) {
-    final appBloc = BlocProvider.of<AppBloc>(context);
-    final redColor = Colors.red.withAlpha(200);
-    return PopupMenuItem<_Menu>(
-      value: _Menu.delete,
-      onTap: () => appBloc.add(DeleteSingleNote(id: widget.note.id)),
-      child: ListTile(
-        iconColor: redColor,
-        textColor: redColor,
-        leading: const Icon(Icons.delete_outline),
-        title: const Text('delete'),
-      ),
-    );
-  }
 
   Widget _noteContent() {
     if (widget.note.content.isEmpty) return const SizedBox.shrink();

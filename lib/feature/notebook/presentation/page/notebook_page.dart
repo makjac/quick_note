@@ -92,17 +92,14 @@ class _NotebookPageState extends State<NotebookPage> {
         },
         maxLines: null,
         keyboardType: TextInputType.multiline,
-        style: const TextStyle(
-          fontSize: 22,
-          fontWeight: FontWeight.w600,
-          color: Colors.white,
-        ),
+        style: Theme.of(context).textTheme.titleMedium,
         decoration: InputDecoration(
           border: InputBorder.none,
           hintText: context.l10n.notebook_title_hint_text,
           hintStyle: const TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w700,
+            color: Colors.white54,
           ),
         ),
       ),

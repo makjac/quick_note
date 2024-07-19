@@ -10,6 +10,7 @@ class TextBlockPreview extends StatelessWidget {
     return Text(
       content.text,
       maxLines: 8,
+      style: TextStyle(color: Colors.white.withAlpha(150)),
     );
   }
 }
