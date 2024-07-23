@@ -60,6 +60,7 @@ class NoteSearchPage extends StatelessWidget {
     }
 
     return [
+      _header(context.l10n.header_search_results(filteredNotes.length)),
       SliverToBoxAdapter(
         child: Padding(
           padding: const EdgeInsets.all(Insets.s),
@@ -73,6 +74,22 @@ class NoteSearchPage extends StatelessWidget {
         ),
       ),
     ];
+  }
+
+  Widget _header(String label) {
+    return SliverToBoxAdapter(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: Insets.s),
+        child: Text(
+          label,
+          style: const TextStyle(
+            color: Colors.white70,
+            fontWeight: FontWeight.w500,
+            letterSpacing: .8,
+          ),
+        ),
+      ),
+    );
   }
 
   int _axisCount(double width) {

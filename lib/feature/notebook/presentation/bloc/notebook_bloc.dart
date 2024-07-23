@@ -32,10 +32,13 @@ class NotebookBloc extends Bloc<NotebookEvent, NotebookState> {
     on<NotebookGetNote>(_handleGetNote);
     on<NotebookCreateNote>(_handleCreateNote);
     on<NotebookUpdateNote>(_handleUpdateNote);
-    on<NotebookDeleteNote>(_handleDeleteNote);
     on<NotebookDeleteBlock>(_handleDeleteBlock);
     on<NotebookAddNoteBlock>(_handleAddNoteBlock);
     on<NotebookUpdateNoteBlock>(_updateNoteBlock);
+    on<NotebookChangeColor>(_changeColor);
+    on<NotebookToggleStar>(_toggleStar);
+    on<NotebookToggleArchive>(_toggleArchive);
+    on<NotebookDeleteNote>(_handleDeleteNote);
   }
 
   FutureOr<void> _handleGetNote(
@@ -79,12 +82,6 @@ class NotebookBloc extends Bloc<NotebookEvent, NotebookState> {
 
     final result = await updateSingleNote.call(updates);
     _handleResult(result, () => emit(state.copyWith(note: updates.update())));
-  }
-
-  FutureOr<void> _handleDeleteNote(
-      NotebookDeleteNote event, Emitter<NotebookState> emit) async {
-    final result = await deleteNote.call(event.noteId);
-    _handleResult(result, () => emit(NotebookNoteDeleted()));
   }
 
   FutureOr<void> _handleDeleteBlock(
@@ -161,5 +158,44 @@ class NotebookBloc extends Bloc<NotebookEvent, NotebookState> {
 
     final result = await updateSingleNote.call(updates);
     _handleResult(result, () => emit(state.copyWith(note: updates.update())));
+  }
+
+  FutureOr<void> _changeColor(
+      NotebookChangeColor event, Emitter<NotebookState> emit) async {}
+
+  FutureOr<void> _toggleStar(
+      NotebookToggleStar event, Emitter<NotebookState> emit) async {
+    final note = state.note;
+
+    if (note == null) return;
+
+    final updates = UpdateSingleNoteParams(
+      note: note,
+      updates: NoteUpdates(isStarred: !note.isStarred),
+    );
+
+    final result = await updateSingleNote.call(updates);
+    _handleResult(result, () => emit(state.copyWith(note: updates.update())));
+  }
+
+  FutureOr<void> _toggleArchive(
+      NotebookToggleArchive event, Emitter<NotebookState> emit) async {
+    final note = state.note;
+
+    if (note == null) return;
+
+    final updates = UpdateSingleNoteParams(
+      note: note,
+      updates: NoteUpdates(archived: !note.archived),
+    );
+
+    final result = await updateSingleNote.call(updates);
+    _handleResult(result, () => emit(state.copyWith(note: updates.update())));
+  }
+
+  FutureOr<void> _handleDeleteNote(
+      NotebookDeleteNote event, Emitter<NotebookState> emit) async {
+    final result = await deleteNote.call(state.note?.id ?? -1);
+    _handleResult(result, () => emit(NotebookNoteDeleted()));
   }
 }

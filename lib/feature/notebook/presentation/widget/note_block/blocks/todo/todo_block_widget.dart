@@ -1,15 +1,21 @@
 part of '../../note_block_builder.dart';
 
 class TodoBlockWidget extends StatelessWidget {
-  const TodoBlockWidget({super.key, required this.content});
+  const TodoBlockWidget({super.key, required this.block});
 
-  final TodoBlock content;
+  final TodoBlock block;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => TodoBlockCubit(block: content),
-      child: const TodoBlockBody(),
+      create: (context) => TodoBlockCubit(block: block),
+      child: Builder(
+        builder: (context) => NoteBlockWidget(
+          block: const TodoBlockBody(),
+          blockId: block.id,
+          onMorePressed: () => showTodoBlockSettingsDialog(context, block),
+        ),
+      ),
     );
   }
 }
@@ -26,22 +32,12 @@ class TodoBlockBody extends StatelessWidget {
             .add(NotebookUpdateNoteBlock(block: state.block));
       },
       builder: (context, state) {
-        return Container(
-          padding: const EdgeInsets.all(Insets.s),
-          margin: const EdgeInsets.symmetric(vertical: Insets.xs),
-          decoration: const BoxDecoration(
-            border: Border(
-              top: BorderSide(color: Colors.white10),
-              bottom: BorderSide(color: Colors.white10),
-            ),
-          ),
-          child: Column(
-            children: [
-              const TodoBlockTitle(),
-              TodoBlockList(items: state.block.items),
-              const TodoBlockAddTaskButton(),
-            ],
-          ),
+        return Column(
+          children: [
+            if (state.block.hasTitle) const TodoBlockTitle(),
+            TodoBlockList(items: state.block.items),
+            const TodoBlockAddTaskButton(),
+          ],
         );
       },
     );

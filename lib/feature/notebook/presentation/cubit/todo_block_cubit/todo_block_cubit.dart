@@ -68,4 +68,25 @@ class TodoBlockCubit extends Cubit<TodoBlockState> {
     final updatedBlock = state.block.copyWith(title: title);
     emit(state.copyWith(block: updatedBlock));
   }
+
+  Future<void> changeBlockTitleVisibility(bool? visible) async {
+    if (visible == null) return;
+
+    final updatedBlock = state.block.copyWith(hasTitle: visible);
+    emit(state.copyWith(block: updatedBlock));
+  }
+
+  Future<void> changeBlockCompleteTasksVisibility(bool? visible) async {
+    if (visible == null) return;
+
+    final updatedBlock = state.block.copyWith(showCompleteTasks: visible);
+    emit(state.copyWith(block: updatedBlock));
+  }
+
+  Future<void> changeBlockProgressBarVisibility(bool? visible) async {
+    if (visible == null) return;
+
+    final updatedBlock = state.block.copyWith(showProgressBar: visible);
+    emit(state.copyWith(block: updatedBlock));
+  }
 }

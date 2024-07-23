@@ -18,7 +18,6 @@ class NoteTilePopupMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton<_Menu>(
-      color: Colors.grey[850],
       popUpAnimationStyle: AnimationStyle.noAnimation,
       iconSize: 20,
       splashRadius: 20,
@@ -43,8 +42,6 @@ class NoteTilePopupMenu extends StatelessWidget {
       value: _Menu.select,
       onTap: () => appBloc.add(AppSelectNote(noteId: note.id)),
       child: const ListTile(
-        iconColor: Colors.white70,
-        textColor: Colors.white70,
         leading: Icon(Icons.check_box_outlined),
         title: Text('Select'),
       ),
@@ -65,8 +62,6 @@ class NoteTilePopupMenu extends StatelessWidget {
         }
       },
       child: const ListTile(
-        iconColor: Colors.white70,
-        textColor: Colors.white70,
         leading: Icon(
           Icons.color_lens_outlined,
         ),
@@ -84,8 +79,6 @@ class NoteTilePopupMenu extends StatelessWidget {
         updates: NoteUpdates(isStarred: !note.isStarred),
       )),
       child: const ListTile(
-        iconColor: Colors.white70,
-        textColor: Colors.white70,
         leading: Icon(Icons.star_border),
         title: Text('Star'),
       ),
@@ -101,8 +94,6 @@ class NoteTilePopupMenu extends StatelessWidget {
         updates: NoteUpdates(archived: !note.archived, isStarred: false),
       )),
       child: const ListTile(
-        iconColor: Colors.white70,
-        textColor: Colors.white70,
         leading: Icon(Icons.archive_outlined),
         title: Text('Archive'),
       ),
@@ -111,15 +102,15 @@ class NoteTilePopupMenu extends StatelessWidget {
 
   PopupMenuItem<_Menu> _buildDeleteMenuItem(BuildContext context) {
     final appBloc = BlocProvider.of<AppBloc>(context);
-    final redColor = Colors.red.withAlpha(200);
+    const redColor = Colors.red;
     return PopupMenuItem<_Menu>(
       value: _Menu.delete,
       onTap: () => appBloc.add(AppDeleteSingleNote(id: note.id)),
-      child: ListTile(
+      child: const ListTile(
         iconColor: redColor,
         textColor: redColor,
-        leading: const Icon(Icons.delete_outline),
-        title: const Text('delete'),
+        leading: Icon(Icons.delete_outline),
+        title: Text('delete'),
       ),
     );
   }

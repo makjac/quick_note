@@ -54,21 +54,14 @@ class _TodoBlockCheckListItem extends State<TodoBlockCheckListItem> {
   }
 
   Widget _buildCheckbox(BuildContext context) {
-    return Theme(
-      data: Theme.of(context).copyWith(
-        checkboxTheme: const CheckboxThemeData(
-          side: BorderSide(color: Colors.white38, width: 2),
-        ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.only(top: Insets.xxs),
-        child: Checkbox(
-          value: widget.item.isChecked,
-          onChanged: (_) =>
-              context.read<TodoBlockCubit>().toggleCheckbox(widget.item.id),
-          checkColor: Colors.black,
-          activeColor: Colors.white,
-        ),
+    return Padding(
+      padding: const EdgeInsets.only(top: Insets.xxs),
+      child: Checkbox(
+        value: widget.item.isChecked,
+        onChanged: (_) =>
+            context.read<TodoBlockCubit>().toggleCheckbox(widget.item.id),
+        checkColor: Colors.black,
+        activeColor: Colors.white,
       ),
     );
   }

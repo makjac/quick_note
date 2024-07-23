@@ -19,6 +19,7 @@ class TodoBlockModelAdapter extends TypeAdapter<TodoBlockModel> {
     return TodoBlockModel(
       id: fields[0] as num,
       title: fields[1] == null ? '' : fields[1] as String,
+      hasTitle: fields[2] == null ? true : fields[2] as bool,
       type: fields[10] as NoteBlockType,
       items: fields[20] == null
           ? []
@@ -29,13 +30,23 @@ class TodoBlockModelAdapter extends TypeAdapter<TodoBlockModel> {
   @override
   void write(BinaryWriter writer, TodoBlockModel obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(9)
       ..writeByte(20)
       ..write(obj.items)
+      ..writeByte(30)
+      ..write(obj.showCompleteTasks)
+      ..writeByte(40)
+      ..write(obj.showProgressBar)
+      ..writeByte(50)
+      ..write(obj.maxVisibleTasks)
+      ..writeByte(60)
+      ..write(obj.dedline)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
       ..write(obj.title)
+      ..writeByte(2)
+      ..write(obj.hasTitle)
       ..writeByte(10)
       ..write(obj.type);
   }

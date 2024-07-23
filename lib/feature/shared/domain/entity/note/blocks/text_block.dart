@@ -9,10 +9,14 @@ class TextBlock extends NoteBlock {
     super.hasTitle = false,
     super.type = NoteBlockType.text,
     this.text = "",
+    this.maxLines,
   });
 
   @HiveField(20, defaultValue: "")
   final String text;
+
+  @HiveField(30, defaultValue: null)
+  final int? maxLines;
 
   TextBlock copyWith({
     num? id,

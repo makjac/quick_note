@@ -128,7 +128,8 @@ class _NoteTileState extends State<NoteTile> {
         widget.note.title.isNotEmpty ? widget.note.title : "...",
         maxLines: 2,
         style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              color: Colors.white.withAlpha(220),
+              color:
+                  Theme.of(context).textTheme.titleSmall?.color?.withAlpha(220),
             ),
       );
 
@@ -139,7 +140,11 @@ class _NoteTileState extends State<NoteTile> {
               widget.note.title.isNotEmpty ? widget.note.title : "...",
               maxLines: 1,
               style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                    color: Colors.white.withAlpha(220),
+                    color: Theme.of(context)
+                        .textTheme
+                        .titleSmall
+                        ?.color
+                        ?.withAlpha(220),
                   ),
             ),
           ),

@@ -1,15 +1,19 @@
 part of '../../note_block_builder.dart';
 
 class TextBlockWidget extends StatelessWidget {
-  const TextBlockWidget({super.key, required this.content});
+  const TextBlockWidget({super.key, required this.block});
 
-  final TextBlock content;
+  final TextBlock block;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => TextBlockCubit(block: content),
-      child: const _TextBlockBody(),
+      create: (context) => TextBlockCubit(block: block),
+      child: NoteBlockWidget(
+        block: const _TextBlockBody(),
+        blockId: block.id,
+        onMorePressed: () {},
+      ),
     );
   }
 }
@@ -50,57 +54,47 @@ class _TextBlockBodyState extends State<_TextBlockBody> {
             .add(NotebookUpdateNoteBlock(block: state.block));
       },
       builder: (context, state) {
-        return Container(
-          padding: const EdgeInsets.all(Insets.s),
-          margin: const EdgeInsets.symmetric(vertical: Insets.xs),
-          decoration: const BoxDecoration(
-            border: Border(
-              top: BorderSide(color: Colors.white10),
-              bottom: BorderSide(color: Colors.white10),
+        return Column(
+          children: [
+            TextField(
+              controller: _titleController,
+              maxLines: null,
+              cursorColor: Colors.white38,
+              decoration: InputDecoration(
+                hintText: context.l10n.text_block_title_hint_text,
+                border: InputBorder.none,
+              ),
+              style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w600,
+                letterSpacing: .7,
+                fontSize: 17,
+              ),
+              onChanged: (title) =>
+                  context.read<TextBlockCubit>().changeBlockTitle(title),
             ),
-          ),
-          child: Column(
-            children: [
-              TextField(
-                controller: _titleController,
-                maxLines: null,
-                cursorColor: Colors.white38,
-                decoration: InputDecoration(
-                  hintText: context.l10n.text_block_title_hint_text,
-                  border: InputBorder.none,
-                ),
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                  letterSpacing: .7,
-                  fontSize: 17,
-                ),
-                onChanged: (title) =>
-                    context.read<TextBlockCubit>().changeBlockTitle(title),
+            const SizedBox(height: Insets.xxs),
+            TextField(
+              controller: _controller,
+              maxLines: null,
+              keyboardType: TextInputType.multiline,
+              cursorColor: Colors.white38,
+              decoration: InputDecoration(
+                hintText: context.l10n.text_block_note_hint_text,
+                hintStyle: Theme.of(context)
+                    .textTheme
+                    .bodyLarge
+                    ?.copyWith(color: Colors.white60),
+                border: InputBorder.none,
               ),
-              const SizedBox(height: Insets.xxs),
-              TextField(
-                controller: _controller,
-                maxLines: null,
-                keyboardType: TextInputType.multiline,
-                cursorColor: Colors.white38,
-                decoration: InputDecoration(
-                  hintText: context.l10n.text_block_note_hint_text,
-                  hintStyle: Theme.of(context)
-                      .textTheme
-                      .bodyLarge
-                      ?.copyWith(color: Colors.white60),
-                  border: InputBorder.none,
-                ),
-                style: const TextStyle(
-                  color: Colors.white,
-                  letterSpacing: .6,
-                ),
-                onChanged: (value) =>
-                    context.read<TextBlockCubit>().changeNoteText(value),
+              style: const TextStyle(
+                color: Colors.white,
+                letterSpacing: .6,
               ),
-            ],
-          ),
+              onChanged: (value) =>
+                  context.read<TextBlockCubit>().changeNoteText(value),
+            ),
+          ],
         );
       },
     );

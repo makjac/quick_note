@@ -5,7 +5,7 @@ import 'package:quick_note/core/constans/insets.dart';
 import 'package:quick_note/feature/home/presentation/bloc/app_bloc.dart';
 import 'package:quick_note/feature/home/presentation/widget/home_page_layout/home_page_header/search_bar/home_page_search_bar_header.dart';
 import 'package:quick_note/feature/home/presentation/widget/home_page_layout/home_page_header/home_page_note_edit_bar.dart';
-import 'package:quick_note/feature/home/presentation/widget/home_page_layout/home_page_side_menu.dart';
+import 'package:quick_note/feature/home/presentation/widget/home_page_layout/home_page_menu/home_page_side_menu.dart';
 
 class HomePageLayout extends StatelessWidget {
   const HomePageLayout({super.key, required this.child});
@@ -31,13 +31,33 @@ class HomePageLayout extends StatelessWidget {
                   children: [
                     BlocBuilder<AppBloc, AppState>(
                       builder: (context, state) {
-                        return state.isSelecting
-                            ? const HomePageNoteEditBar()
-                            : const HomePageSearchBarHeader(
-                                mobileSize: AppConstans.mobileSize);
+                        return Container(
+                          child: state.isSelecting
+                              ? const HomePageNoteEditBar()
+                              : const HomePageSearchBarHeader(
+                                  mobileSize: AppConstans.mobileSize),
+                        );
                       },
                     ),
-                    Expanded(child: child),
+                    Expanded(
+                      child: ShaderMask(
+                        shaderCallback: (bounds) {
+                          return const LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              Colors.grey,
+                              Colors.transparent,
+                              Colors.transparent,
+                              Colors.grey
+                            ],
+                            stops: [0.0, 0.04, 0.97, 1.0],
+                          ).createShader(bounds);
+                        },
+                        blendMode: BlendMode.dstOut,
+                        child: child,
+                      ),
+                    ),
                   ],
                 ),
               ),

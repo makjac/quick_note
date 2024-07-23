@@ -11,7 +11,7 @@ import 'package:quick_note/feature/home/presentation/page/note_search_page.dart'
 import 'package:quick_note/feature/home/presentation/page/reminders_page.dart';
 import 'package:quick_note/feature/home/presentation/page/settings_page.dart';
 import 'package:quick_note/feature/home/presentation/page/trash_page.dart';
-import 'package:quick_note/feature/home/presentation/widget/home_page_layout/home_page_darwer.dart';
+import 'package:quick_note/feature/home/presentation/widget/home_page_layout/home_page_menu/home_page_darwer.dart';
 import 'package:quick_note/feature/home/presentation/widget/home_page_layout/home_page_layout.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note.dart';
 import 'package:quick_note/injection_container.dart';
@@ -27,7 +27,6 @@ class HomePage extends StatelessWidget {
     return BlocProvider<NoteSearchCubit>(
       create: (context) => locator<NoteSearchCubit>(),
       child: Scaffold(
-        backgroundColor: Colors.grey[850],
         drawer: const HomePageDarwer(),
         body: const SafeArea(
           child: HomePageLayout(

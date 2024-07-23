@@ -29,14 +29,7 @@ class NotebookUpdateNote extends NotebookEvent {
   List<Object> get props => [updates];
 }
 
-class NotebookDeleteNote extends NotebookEvent {
-  const NotebookDeleteNote({required this.noteId});
-
-  final num noteId;
-
-  @override
-  List<Object> get props => [noteId];
-}
+class NotebookDeleteNote extends NotebookEvent {}
 
 class NotebookAddNoteBlock extends NotebookEvent {
   const NotebookAddNoteBlock({required this.type});
@@ -66,3 +59,16 @@ class NotebookDeleteBlock extends NotebookEvent {
   @override
   List<Object> get props => [blockId];
 }
+
+class NotebookChangeColor extends NotebookEvent {
+  const NotebookChangeColor({required this.color});
+
+  final String color;
+
+  @override
+  List<Object> get props => [color];
+}
+
+class NotebookToggleStar extends NotebookEvent {}
+
+class NotebookToggleArchive extends NotebookEvent {}

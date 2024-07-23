@@ -95,15 +95,9 @@ class _MobileEditButtons extends StatelessWidget {
   Widget _buildPopupMenuItem(String title, IconData iconData) {
     return Row(
       children: [
-        Icon(
-          iconData,
-          color: Colors.white,
-        ),
+        Icon(iconData),
         const SizedBox(width: Insets.xs),
-        Text(
-          title,
-          style: const TextStyle(color: Colors.white),
-        ),
+        Text(title),
       ],
     );
   }

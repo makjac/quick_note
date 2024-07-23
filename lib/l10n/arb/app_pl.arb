@@ -7,6 +7,7 @@
   "header_stared" : "Ogwiazdkowane",
   "header_others" : "Pozostałe",
   "header_archived" : "Zarchiwizowane",
+  "header_search_results" : "Wyniki ({count})",
   "menu_notes" : "Notatki",
   "menu_reminders" : "Powiadomienia",
   "menu_archive" : "Archiwum",
@@ -16,6 +17,7 @@
   "notebook_title_hint_text" : "Wpisz tytuł notatki...",
   "notebook_add_new_block" : "Dodaj nowy blok notatki",
   "text_block_title_hint_text" : "Dodaj tytuł dla tej notatki...",
+  "todo_block_title_hint_text" : "Dodaj tytuł dla listy zadań...",
   "text_block_note_hint_text" : "Wpisz tutaj swoje notatki...",
   "todo_block_note_hint_text" : "Dodaj tytuł dla listy zadań...",
   "todo_block_item_hint_text" : "Opisz swoje zadanie...",
@@ -25,5 +27,13 @@
   "reminders_page_empty": "Brak notatek z przypomnieniami!",
   "archive_page_empty" : "Brak zarchiwizowanych notatek!",
   "trash_page_empty" : "Kosz jest pusty!",
-  "note_search_empty" : "Nie znaleziono notatek..."
+  "note_search_empty" : "Nie znaleziono notatek...",
+  "app_info_app_name" : "Nazwa aplikacji:",
+  "app_info_package_name" : "Nazwa pakietu:",
+  "app_info_version" : "Wersja:",
+  "app_info_build_number" : "Wersja kompilacji:",
+  "app_info_platform_version" : "wersja platformy:",
+  "tooltip_move_note_block" : "Przenieś blok",
+  "tooltip_delete_note_block" : "Usuń blok",
+  "tooltip_more" : "Więcej opcji"
 }

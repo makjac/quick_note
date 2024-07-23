@@ -6,6 +6,8 @@ import 'package:quick_note/core/constans/insets.dart';
 import 'package:quick_note/feature/notebook/presentation/bloc/notebook_bloc.dart';
 import 'package:quick_note/feature/notebook/presentation/cubit/text_block_cubit/text_block_cubit.dart';
 import 'package:quick_note/feature/notebook/presentation/cubit/todo_block_cubit/todo_block_cubit.dart';
+import 'package:quick_note/feature/notebook/presentation/widget/note_block/block_settings/note_block_settings.dart';
+import 'package:quick_note/feature/notebook/presentation/widget/note_block/block_settings/todo/todo_block_settings_dialog.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/blocks/check_list_item.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/blocks/text_block.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/blocks/todo_block.dart';
@@ -14,6 +16,7 @@ import 'package:quick_note/feature/shared/domain/entity/note/note_block_type.dar
 import 'package:quick_note/l10n/l10n.dart';
 
 part 'note_block_builder.main.dart';
+part 'note_block_widget.dart';
 
 part "blocks/text/text_block_widget.dart";
 part "blocks/todo/todo_block_widget.dart";
