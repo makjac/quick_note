@@ -3,12 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quick_note/core/constans/insets.dart';
 import 'package:quick_note/core/extension/color/color.dart';
-import 'package:quick_note/core/extension/color/hex_color.dart';
 import 'package:quick_note/core/utils/platform_helper.dart';
 import 'package:quick_note/feature/home/presentation/bloc/app_bloc.dart';
 import 'package:quick_note/feature/home/presentation/widget/note_tile/note_tile_popup_menu.dart';
 import 'package:quick_note/feature/home/presentation/widget/note_tile/note_tile_preview/note_tile_preview_builder.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note.dart';
+import 'package:quick_note/feature/shared/domain/entity/note/note_colors.dart';
+import 'package:quick_note/preferences/bloc/preferences.bloc.dart';
 import 'package:quick_note/router/app_routes.dart';
 
 class NoteTile extends StatefulWidget {
@@ -73,7 +74,8 @@ class _NoteTileState extends State<NoteTile> {
   }
 
   BoxDecoration _borderDecoration(AppState state) {
-    final Color noteColor = HexColor.fromHex(widget.note.colorHex);
+    final Color noteColor =
+        widget.note.color.color(context.read<PreferencesBloc>().state.theme);
 
     final bool isSelected = _isSelected(state) && state.isSelecting;
 
@@ -90,7 +92,8 @@ class _NoteTileState extends State<NoteTile> {
   }
 
   BoxDecoration _noteTailDecoratioon(AppState state) {
-    final Color noteColor = HexColor.fromHex(widget.note.colorHex);
+    final Color noteColor =
+        widget.note.color.color(context.read<PreferencesBloc>().state.theme);
     final bool isSelected = _isSelected(state);
     final bool isSelecting = state.isSelecting;
 

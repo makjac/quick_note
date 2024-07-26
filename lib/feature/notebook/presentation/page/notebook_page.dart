@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_note/core/constans/insets.dart';
-import 'package:quick_note/core/extension/color/hex_color.dart';
 import 'package:quick_note/feature/home/domain/usecase/update_multiple_notes_usecase.dart';
 import 'package:quick_note/feature/notebook/presentation/bloc/notebook_bloc.dart';
 import 'package:quick_note/feature/notebook/presentation/widget/add_note_block_button/add_note_block_button.dart';
 import 'package:quick_note/feature/notebook/presentation/widget/note_block/note_block_builder.dart';
 import 'package:quick_note/feature/notebook/presentation/widget/notebook_popup_menu.dart/notebook_popup_menu.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note.dart';
+import 'package:quick_note/feature/shared/domain/entity/note/note_colors.dart';
 import 'package:quick_note/injection_container.dart';
 import 'package:quick_note/l10n/l10n.dart';
+import 'package:quick_note/preferences/bloc/preferences.bloc.dart';
 
 class NotebookPage extends StatefulWidget {
   const NotebookPage({super.key, this.noteId});
@@ -42,10 +43,12 @@ class _NotebookPageState extends State<NotebookPage> {
           _controller.text = state.note?.title ?? "";
         },
         builder: (context, state) {
-          final noteColor = HexColor.fromHex(state.note?.colorHex ?? "");
+          final noteColor = (state.note?.color ?? NoteColors.color1)
+              .color(context.read<PreferencesBloc>().state.theme);
 
           return Scaffold(
             backgroundColor: noteColor,
+            resizeToAvoidBottomInset: true,
             body: CustomScrollView(
               slivers: [
                 SliverAppBar(

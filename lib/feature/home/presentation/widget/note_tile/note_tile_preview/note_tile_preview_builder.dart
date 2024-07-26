@@ -5,6 +5,7 @@ import 'package:quick_note/feature/shared/domain/entity/note/blocks/text_block.d
 import 'package:quick_note/feature/shared/domain/entity/note/blocks/todo_block.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note_block.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note_block_type.dart';
+import 'package:quick_note/preferences/theme/app_custom_colors.dart';
 
 part 'note_tile_preview_builder.main.dart';
 part 'blocks/text_block_preview.dart';

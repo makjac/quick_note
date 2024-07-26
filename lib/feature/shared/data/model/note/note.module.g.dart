@@ -25,7 +25,7 @@ class NoteModelAdapter extends TypeAdapter<NoteModel> {
       archived: fields[50] == null ? false : fields[50] as bool,
       author: fields[60] == null ? '' : fields[60] as String?,
       isStarred: fields[70] == null ? false : fields[70] as bool,
-      colorHex: fields[80] == null ? 'ffa600' : fields[80] as String,
+      color: fields[81] == null ? NoteColors.color1 : fields[81] as NoteColors,
     );
   }
 
@@ -49,8 +49,8 @@ class NoteModelAdapter extends TypeAdapter<NoteModel> {
       ..write(obj.author)
       ..writeByte(70)
       ..write(obj.isStarred)
-      ..writeByte(80)
-      ..write(obj.colorHex);
+      ..writeByte(81)
+      ..write(obj.color);
   }
 
   @override

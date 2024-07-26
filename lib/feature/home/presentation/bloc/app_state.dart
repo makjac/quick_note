@@ -32,6 +32,34 @@ class AppState extends Equatable {
 
 final class AppInitial extends AppState {}
 
+class AppNoteCreated extends AppState {
+  const AppNoteCreated({
+    super.notes,
+    super.selectedNoteIds,
+    super.isSelecting,
+    required this.createdNoteId,
+  });
+
+  final num createdNoteId;
+
+  factory AppNoteCreated.fromState(AppState state, num createdNoteId) {
+    return AppNoteCreated(
+      notes: state.notes,
+      selectedNoteIds: state.selectedNoteIds,
+      isSelecting: state.isSelecting,
+      createdNoteId: createdNoteId,
+    );
+  }
+
+  @override
+  List<Object> get props => [
+        notes,
+        selectedNoteIds,
+        isSelecting,
+        createdNoteId,
+      ];
+}
+
 class AppError extends AppState {
   const AppError({
     super.notes,

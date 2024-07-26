@@ -5,10 +5,12 @@ class TodoBlockCheckListItem extends StatefulWidget {
     super.key,
     required this.item,
     required this.index,
+    this.draggable = true,
   });
 
   final ChecklistItem item;
   final int index;
+  final bool draggable;
 
   @override
   State<TodoBlockCheckListItem> createState() => _TodoBlockCheckListItem();
@@ -34,7 +36,11 @@ class _TodoBlockCheckListItem extends State<TodoBlockCheckListItem> {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        _buildDragHandle(),
+        if (widget.draggable) _buildDragHandle(),
+        if (!widget.draggable)
+          const SizedBox(
+            width: Insets.m,
+          ),
         _buildCheckbox(context),
         const SizedBox(width: Insets.xxs),
         _buildTextField(context),
@@ -46,9 +52,12 @@ class _TodoBlockCheckListItem extends State<TodoBlockCheckListItem> {
   Widget _buildDragHandle() {
     return ReorderableDragStartListener(
       index: widget.index,
-      child: const Padding(
-        padding: EdgeInsets.only(top: 2),
-        child: Icon(Icons.drag_indicator, color: Colors.white30),
+      child: Padding(
+        padding: const EdgeInsets.only(top: 2),
+        child: Icon(
+          Icons.drag_indicator,
+          color: Theme.of(context).todoTaskDragIconColor,
+        ),
       ),
     );
   }
@@ -60,7 +69,6 @@ class _TodoBlockCheckListItem extends State<TodoBlockCheckListItem> {
         value: widget.item.isChecked,
         onChanged: (_) =>
             context.read<TodoBlockCubit>().toggleCheckbox(widget.item.id),
-        checkColor: Colors.black,
         activeColor: Colors.white,
       ),
     );
@@ -71,20 +79,17 @@ class _TodoBlockCheckListItem extends State<TodoBlockCheckListItem> {
       child: TextField(
         controller: _controller,
         style: TextStyle(
-          color: widget.item.isChecked ? Colors.white60 : null,
+          color: widget.item.isChecked
+              ? Theme.of(context).todoCheckedTextColor
+              : null,
           decoration: widget.item.isChecked ? TextDecoration.lineThrough : null,
-          decorationColor: Colors.white60,
+          decorationColor: Theme.of(context).todoCheckedTextColor,
         ),
-        cursorColor: Colors.white30,
         maxLines: null,
         decoration: InputDecoration(
           isDense: true,
           contentPadding: const EdgeInsets.symmetric(vertical: Insets.xxs),
           hintText: context.l10n.todo_block_item_hint_text,
-          hintStyle: Theme.of(context)
-              .textTheme
-              .bodyLarge
-              ?.copyWith(color: Colors.white60),
           border: InputBorder.none,
         ),
         onChanged: (value) => context
@@ -97,7 +102,7 @@ class _TodoBlockCheckListItem extends State<TodoBlockCheckListItem> {
   Widget _buildDeleteButton(BuildContext context) {
     return IconButton(
       icon: const Icon(Icons.close),
-      color: Colors.white70,
+      color: Theme.of(context).todoTaskDeleteIconColor,
       onPressed: () =>
           context.read<TodoBlockCubit>().removeCheckbox(widget.item.id),
     );

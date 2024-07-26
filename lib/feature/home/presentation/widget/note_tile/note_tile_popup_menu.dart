@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quick_note/core/extension/color/hex_color.dart';
 import 'package:quick_note/core/utils/note_helper.dart';
 import 'package:quick_note/feature/home/domain/usecase/update_multiple_notes_usecase.dart';
 import 'package:quick_note/feature/home/presentation/bloc/app_bloc.dart';
@@ -57,7 +56,7 @@ class NoteTilePopupMenu extends StatelessWidget {
         if (color != null) {
           appBloc.add(AppUpdateSingleNote(
             note: note,
-            updates: NoteUpdates(colorHex: color.toHex()),
+            updates: NoteUpdates(color: color),
           ));
         }
       },

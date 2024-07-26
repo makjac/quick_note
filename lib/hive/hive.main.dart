@@ -11,4 +11,5 @@ FutureOr<void> _registerNoteAdapters() async {
   Hive.registerAdapter(TextBlockModelAdapter());
   Hive.registerAdapter(ChecklistItemModelAdapter());
   Hive.registerAdapter(TodoBlockModelAdapter());
+  Hive.registerAdapter(NoteColorsAdapter());
 }

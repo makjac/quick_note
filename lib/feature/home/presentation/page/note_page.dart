@@ -5,6 +5,7 @@ import 'package:quick_note/core/constans/insets.dart';
 import 'package:quick_note/core/utils/platform_helper.dart';
 import 'package:quick_note/feature/home/presentation/bloc/app_bloc.dart';
 import 'package:quick_note/feature/home/presentation/widget/note_tile/note_tile.dart';
+import 'package:quick_note/feature/home/presentation/widget/notes_segent_header.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note.dart';
 import 'package:quick_note/l10n/l10n.dart';
 
@@ -53,7 +54,7 @@ class NotePage extends StatelessWidget {
   List<Widget> _buildNotesSection(
       List<Note> notes, double width, String header) {
     return [
-      _header(header),
+      NotesSegentHeader(title: header),
       SliverToBoxAdapter(
         child: Padding(
           padding: const EdgeInsets.all(Insets.s),
@@ -73,22 +74,6 @@ class NotePage extends StatelessWidget {
       return width > 200 ? width ~/ 200 : 1;
     }
     return width > 350 ? width ~/ 350 : 1;
-  }
-
-  Widget _header(String label) {
-    return SliverToBoxAdapter(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: Insets.s),
-        child: Text(
-          label,
-          style: const TextStyle(
-            color: Colors.white70,
-            fontWeight: FontWeight.w500,
-            letterSpacing: .8,
-          ),
-        ),
-      ),
-    );
   }
 
   Widget _emptyScreen(BuildContext context) {

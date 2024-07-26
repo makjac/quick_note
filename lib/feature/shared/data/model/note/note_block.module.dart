@@ -10,7 +10,7 @@ abstract class NoteBlockModel extends NoteBlock {
   const NoteBlockModel({
     required super.id,
     super.title = "",
-    super.hasTitle = false,
+    super.hasTitle = true,
     required super.type,
   });
 

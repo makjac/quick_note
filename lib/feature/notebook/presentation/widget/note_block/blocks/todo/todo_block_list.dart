@@ -5,20 +5,41 @@ class TodoBlockList extends StatelessWidget {
 
   final List<ChecklistItem> items;
 
+  List<ChecklistItem> _fiteredItems(BuildContext context) {
+    final showCompletedItems =
+        context.read<TodoBlockCubit>().state.block.showCompleteTasks;
+
+    if (showCompletedItems) {
+      return items.where((item) => !item.isChecked).toList();
+    } else {
+      return items;
+    }
+  }
+
+  int getTaskIndex(ChecklistItem task) {
+    return items.indexOf(task);
+  }
+
   @override
   Widget build(BuildContext context) {
+    final tasks = _fiteredItems(context);
     return ReorderableListView.builder(
       itemBuilder: (context, index) => TodoBlockCheckListItem(
-        key: ValueKey("${items[index].id}"),
-        item: items[index],
+        key: ValueKey("${tasks[index].id}"),
+        item: tasks[index],
         index: index,
       ),
-      itemCount: items.length,
+      itemCount: tasks.length,
       onReorder: (oldIndex, newIndex) {
         if (oldIndex < newIndex) {
           newIndex -= 1;
         }
-        context.read<TodoBlockCubit>().changeCheckboxOrder(oldIndex, newIndex);
+        context.read<TodoBlockCubit>().changeCheckboxOrder(
+              getTaskIndex(tasks[oldIndex]),
+              getTaskIndex(
+                tasks[newIndex],
+              ),
+            );
       },
       proxyDecorator: proxyDecorator,
       shrinkWrap: true,

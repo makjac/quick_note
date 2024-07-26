@@ -1,19 +1,21 @@
 part of '../../note_block_builder.dart';
 
-class TodoBlockTitle extends StatefulWidget {
-  const TodoBlockTitle({super.key});
+class NoteBlockTitle extends StatefulWidget {
+  const NoteBlockTitle({super.key, this.initValue, this.onChanged});
+
+  final String? initValue;
+  final void Function(String title)? onChanged;
 
   @override
-  State<TodoBlockTitle> createState() => _TodoBlockTitleState();
+  State<NoteBlockTitle> createState() => _NoteBlockTitleState();
 }
 
-class _TodoBlockTitleState extends State<TodoBlockTitle> {
+class _NoteBlockTitleState extends State<NoteBlockTitle> {
   late TextEditingController _controller;
 
   @override
   void initState() {
-    _controller = TextEditingController(
-        text: context.read<TodoBlockCubit>().state.block.title);
+    _controller = TextEditingController(text: widget.initValue);
     super.initState();
   }
 
@@ -28,19 +30,16 @@ class _TodoBlockTitleState extends State<TodoBlockTitle> {
     return TextField(
       controller: _controller,
       maxLines: null,
-      cursorColor: Colors.white38,
       decoration: InputDecoration(
         hintText: context.l10n.todo_block_title_hint_text,
         border: InputBorder.none,
       ),
       style: const TextStyle(
-        color: Colors.white,
         fontWeight: FontWeight.w600,
         letterSpacing: .7,
         fontSize: 17,
       ),
-      onChanged: (title) =>
-          context.read<TodoBlockCubit>().changeBlockTitle(title),
+      onChanged: widget.onChanged,
     );
   }
 }

@@ -6,33 +6,48 @@ class TextBlock extends NoteBlock {
   const TextBlock({
     required super.id,
     super.title = "",
-    super.hasTitle = false,
+    super.hasTitle = true,
     super.type = NoteBlockType.text,
     this.text = "",
-    this.maxLines,
+    this.hasMaxLineLimit = false,
+    this.maxLines = 3,
   });
 
   @HiveField(20, defaultValue: "")
   final String text;
 
-  @HiveField(30, defaultValue: null)
-  final int? maxLines;
+  @HiveField(29, defaultValue: false)
+  final bool hasMaxLineLimit;
+
+  @HiveField(30, defaultValue: 3)
+  final int maxLines;
 
   TextBlock copyWith({
     num? id,
     String? title,
     bool? hasTitle,
     String? text,
+    bool? hasMaxLineLimit,
+    int? maxLines,
   }) {
     return TextBlock(
-      id: id ?? this.id,
-      title: title ?? this.title,
-      hasTitle: hasTitle ?? this.hasTitle,
-      text: text ?? this.text,
-      type: type,
-    );
+        id: id ?? this.id,
+        title: title ?? this.title,
+        hasTitle: hasTitle ?? this.hasTitle,
+        text: text ?? this.text,
+        type: type,
+        hasMaxLineLimit: hasMaxLineLimit ?? this.hasMaxLineLimit,
+        maxLines: maxLines ?? this.maxLines);
   }
 
   @override
-  List<Object?> get props => [id, title, hasTitle, type, text];
+  List<Object?> get props => [
+        id,
+        title,
+        hasTitle,
+        type,
+        text,
+        maxLines,
+        hasMaxLineLimit,
+      ];
 }

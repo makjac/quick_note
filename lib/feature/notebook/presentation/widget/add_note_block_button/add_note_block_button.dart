@@ -4,6 +4,7 @@ import 'package:popup_menu/popup_menu.dart';
 import 'package:quick_note/core/constans/insets.dart';
 import 'package:quick_note/feature/notebook/presentation/bloc/notebook_bloc.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note_block_type.dart';
+import 'package:quick_note/preferences/theme/app_custom_colors.dart';
 
 class AddNoteBlockButton extends StatefulWidget {
   const AddNoteBlockButton({super.key});
@@ -21,8 +22,7 @@ class _AddNoteBlockButtonState extends State<AddNoteBlockButton> {
       key: _key,
       onPressed: () => _showContextMenu(context),
       style: OutlinedButton.styleFrom(
-        foregroundColor: Colors.white,
-        side: const BorderSide(color: Colors.white70),
+        side: BorderSide(color: Theme.of(context).addBlockBurronBorderColor),
       ),
       child: const Row(
         mainAxisSize: MainAxisSize.min,

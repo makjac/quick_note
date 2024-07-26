@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_note/core/constans/insets.dart';
 import 'package:quick_note/core/extension/color/color.dart';
-import 'package:quick_note/core/extension/color/hex_color.dart';
+import 'package:quick_note/feature/shared/domain/entity/note/note_colors.dart';
+import 'package:quick_note/preferences/bloc/preferences.bloc.dart';
 
 class NoteHelper {
-  static Future<Color?> showNoteColorPickerDialog(BuildContext context) {
-    return showDialog<Color>(
+  static Future<NoteColors?> showNoteColorPickerDialog(BuildContext context) {
+    return showDialog<NoteColors>(
       context: context,
       builder: (BuildContext context) {
         return Dialog(
@@ -17,7 +19,7 @@ class NoteHelper {
                 maxWidth: 300,
               ),
               child: AspectRatio(
-                aspectRatio: 4 / 3,
+                aspectRatio: 4 / 3.1,
                 child: GridView.count(
                   crossAxisCount: 4,
                   crossAxisSpacing: Insets.xs,
@@ -25,18 +27,18 @@ class NoteHelper {
                   padding: const EdgeInsets.all(8.0),
                   shrinkWrap: true,
                   children: [
-                    _buildColorTile(HexColor.fromHex("#262626"), context),
-                    _buildColorTile(HexColor.fromHex("#595959"), context),
-                    _buildColorTile(HexColor.fromHex("#663535"), context),
-                    _buildColorTile(HexColor.fromHex("#665135"), context),
-                    _buildColorTile(HexColor.fromHex("#646635"), context),
-                    _buildColorTile(HexColor.fromHex("#3c6635"), context),
-                    _buildColorTile(HexColor.fromHex("#35664e"), context),
-                    _buildColorTile(HexColor.fromHex("#355f66"), context),
-                    _buildColorTile(HexColor.fromHex("#354566"), context),
-                    _buildColorTile(HexColor.fromHex("#403566"), context),
-                    _buildColorTile(HexColor.fromHex("#5f3566"), context),
-                    _buildColorTile(HexColor.fromHex("#663547"), context),
+                    _buildColorTile(NoteColors.color1, context),
+                    _buildColorTile(NoteColors.color2, context),
+                    _buildColorTile(NoteColors.color3, context),
+                    _buildColorTile(NoteColors.color4, context),
+                    _buildColorTile(NoteColors.color5, context),
+                    _buildColorTile(NoteColors.color6, context),
+                    _buildColorTile(NoteColors.color7, context),
+                    _buildColorTile(NoteColors.color8, context),
+                    _buildColorTile(NoteColors.color9, context),
+                    _buildColorTile(NoteColors.color10, context),
+                    _buildColorTile(NoteColors.color11, context),
+                    _buildColorTile(NoteColors.color12, context),
                   ],
                 ),
               ),
@@ -47,16 +49,20 @@ class NoteHelper {
     );
   }
 
-  static Widget _buildColorTile(Color color, BuildContext context) {
+  static Widget _buildColorTile(NoteColors color, BuildContext context) {
+    final displayColor =
+        color.color(context.read<PreferencesBloc>().state.theme);
+
     return GestureDetector(
       onTap: () {
         Navigator.pop(context, color);
       },
       child: Container(
         decoration: BoxDecoration(
-          color: color,
+          color: displayColor,
           borderRadius: const BorderRadius.all(Radius.circular(1000)),
-          border: Border.all(color: color.changeBrightness(.22), width: 3),
+          border:
+              Border.all(color: displayColor.changeBrightness(.22), width: 3),
         ),
       ),
     );

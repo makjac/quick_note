@@ -5,6 +5,7 @@ import 'package:quick_note/feature/shared/data/model/note/note_block.module.dart
 import 'package:quick_note/feature/shared/domain/entity/note/note.dart';
 import 'package:hive/hive.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note_block.dart';
+import 'package:quick_note/feature/shared/domain/entity/note/note_colors.dart';
 
 part 'note.module.g.dart';
 
@@ -19,7 +20,7 @@ class NoteModel extends Note with HiveObjectMixin {
     super.archived,
     super.author,
     super.isStarred,
-    super.colorHex,
+    super.color,
   });
 
   factory NoteModel.fromEntity(Note entity) {
@@ -32,7 +33,7 @@ class NoteModel extends Note with HiveObjectMixin {
       archived: entity.archived,
       author: entity.author,
       isStarred: entity.isStarred,
-      colorHex: entity.colorHex,
+      color: entity.color,
     );
   }
 
@@ -47,7 +48,7 @@ class NoteModel extends Note with HiveObjectMixin {
       archived: updates.archived ?? entity.archived,
       author: updates.author ?? entity.author,
       isStarred: updates.isStarred ?? entity.isStarred,
-      colorHex: updates.colorHex ?? entity.colorHex,
+      color: updates.color ?? entity.color,
     );
   }
 
@@ -59,7 +60,7 @@ class NoteModel extends Note with HiveObjectMixin {
       title: title,
       archived: archived,
       author: author,
-      colorHex: colorHex,
+      color: color,
       isStarred: isStarred,
       content: content,
     );
@@ -75,6 +76,6 @@ class NoteModel extends Note with HiveObjectMixin {
         archived,
         author,
         isStarred,
-        colorHex,
+        color,
       ];
 }

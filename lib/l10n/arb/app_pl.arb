@@ -22,6 +22,8 @@
   "todo_block_note_hint_text" : "Dodaj tytuł dla listy zadań...",
   "todo_block_item_hint_text" : "Opisz swoje zadanie...",
   "todo_block_add_task" : "Dodaj nowe zadanie",
+  "todo_block_complete_one_task" : "1 zakończone zadanie",
+  "todo_block_complete_tasks" : "{count} zakończone zadania",
   "note_page_empty" : "Nie masz jeszcze żadnych notatek.",
   "note_page_create_first_note" : "Dodaj swoją pierwszą notatkę, aby rozpocząć!",
   "reminders_page_empty": "Brak notatek z przypomnieniami!",

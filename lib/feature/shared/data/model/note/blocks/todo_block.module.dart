@@ -16,6 +16,10 @@ class TodoBlockModel extends TodoBlock implements NoteBlockModel {
     super.hasTitle = false,
     super.type = NoteBlockType.todo,
     required this.items,
+    super.showCompleteTasks = false,
+    super.showProgressBar = false,
+    super.maxVisibleTasks,
+    super.dedline,
   }) : super(items: items);
 
   @override
@@ -28,9 +32,19 @@ class TodoBlockModel extends TodoBlock implements NoteBlockModel {
       title: block.title,
       hasTitle: block.hasTitle,
       items: block.items.map(ChecklistItemModel.fromEntity).toList(),
+      showCompleteTasks: block.showCompleteTasks,
+      showProgressBar: block.showProgressBar,
+      maxVisibleTasks: block.maxVisibleTasks,
+      dedline: block.dedline,
     );
   }
 
   @override
-  List<Object?> get props => [super.props, title, hasTitle, items, type];
+  List<Object?> get props => [
+        super.props,
+        title,
+        hasTitle,
+        items,
+        type,
+      ];
 }

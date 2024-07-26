@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_note/core/constans/insets.dart';
-import 'package:quick_note/core/extension/color/hex_color.dart';
 import 'package:quick_note/core/utils/note_helper.dart';
 import 'package:quick_note/feature/home/domain/usecase/update_multiple_notes_usecase.dart';
 import 'package:quick_note/feature/notebook/presentation/bloc/notebook_bloc.dart';
@@ -32,7 +31,7 @@ class NotebookPopupMenu extends StatelessWidget {
                 if (color != null) {
                   notebookBloc.add(
                     NotebookUpdateNote(
-                      updates: NoteUpdates(colorHex: color.toHex()),
+                      updates: NoteUpdates(color: color),
                     ),
                   );
                 }

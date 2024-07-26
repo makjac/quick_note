@@ -17,13 +17,28 @@ class NoteBlockWidget extends StatefulWidget {
 }
 
 class _NoteBlockWidgetState extends State<NoteBlockWidget> {
-  bool isHovered = false;
+  bool _isHovered = false;
+
+  void _setHover(bool hoverValue) {
+    final isMobile = PlatformHelper.isMobile();
+    if (isMobile) return;
+
+    setState(() {
+      _isHovered = hoverValue;
+    });
+  }
+
+  bool _showSettings() {
+    final isMobile = PlatformHelper.isMobile();
+
+    return isMobile || _isHovered;
+  }
 
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
-      onEnter: (_) => setState(() => isHovered = true),
-      onExit: (_) => setState(() => isHovered = false),
+      onEnter: (_) => _setHover(true),
+      onExit: (_) => _setHover(false),
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: Insets.xs),
         decoration: const BoxDecoration(
@@ -43,7 +58,7 @@ class _NoteBlockWidgetState extends State<NoteBlockWidget> {
               right: 0,
               child: AnimatedOpacity(
                 duration: const Duration(milliseconds: 200),
-                opacity: isHovered ? 1 : 0,
+                opacity: _showSettings() ? 1 : 0,
                 child: NoteBlockSettings(
                   blockId: widget.blockId,
                   onMorePressed: widget.onMorePressed,

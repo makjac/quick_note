@@ -15,6 +15,8 @@ class TextBlockModel extends TextBlock implements NoteBlockModel {
     super.hasTitle = false,
     super.type = NoteBlockType.text,
     super.text = "",
+    super.hasMaxLineLimit = false,
+    super.maxLines = 3,
   });
 
   factory TextBlockModel.fromEntity(TextBlock block) {
@@ -23,9 +25,19 @@ class TextBlockModel extends TextBlock implements NoteBlockModel {
       title: block.title,
       hasTitle: block.hasTitle,
       text: block.text,
+      hasMaxLineLimit: block.hasMaxLineLimit,
+      maxLines: block.maxLines,
     );
   }
 
   @override
-  List<Object?> get props => [super.props, title, hasTitle, text, type];
+  List<Object?> get props => [
+        super.props,
+        title,
+        hasTitle,
+        text,
+        type,
+        hasMaxLineLimit,
+        maxLines,
+      ];
 }

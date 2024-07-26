@@ -22,4 +22,23 @@ class TextBlockCubit extends Cubit<TextBlockState> {
     final updatedBlock = state.block.copyWith(title: title, hasTitle: true);
     emit(state.copyWith(block: updatedBlock));
   }
+
+  Future<void> changeBlockTitleVisibility(bool? visibility) async {
+    if (visibility == null) return;
+
+    final updatedBlock = state.block.copyWith(hasTitle: visibility);
+    emit(state.copyWith(block: updatedBlock));
+  }
+
+  Future<void> setMaxLinesLimitOption(bool? isEnabled) async {
+    if (isEnabled == null) return;
+
+    final updatedBlock = state.block.copyWith(hasMaxLineLimit: isEnabled);
+    emit(state.copyWith(block: updatedBlock));
+  }
+
+  Future<void> setTextLinecountLimit(int? limit) async {
+    final updatedBlock = state.block.copyWith(maxLines: limit);
+    emit(state.copyWith(block: updatedBlock));
+  }
 }

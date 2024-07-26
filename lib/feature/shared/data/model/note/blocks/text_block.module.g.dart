@@ -22,15 +22,19 @@ class TextBlockModelAdapter extends TypeAdapter<TextBlockModel> {
       hasTitle: fields[2] == null ? true : fields[2] as bool,
       type: fields[10] as NoteBlockType,
       text: fields[20] == null ? '' : fields[20] as String,
+      hasMaxLineLimit: fields[29] == null ? false : fields[29] as bool,
+      maxLines: fields[30] == null ? 3 : fields[30] as int,
     );
   }
 
   @override
   void write(BinaryWriter writer, TextBlockModel obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(20)
       ..write(obj.text)
+      ..writeByte(29)
+      ..write(obj.hasMaxLineLimit)
       ..writeByte(30)
       ..write(obj.maxLines)
       ..writeByte(0)

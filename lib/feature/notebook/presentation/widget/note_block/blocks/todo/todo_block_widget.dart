@@ -11,17 +11,17 @@ class TodoBlockWidget extends StatelessWidget {
       create: (context) => TodoBlockCubit(block: block),
       child: Builder(
         builder: (context) => NoteBlockWidget(
-          block: const TodoBlockBody(),
+          block: const _TodoBlockBody(),
           blockId: block.id,
-          onMorePressed: () => showTodoBlockSettingsDialog(context, block),
+          onMorePressed: () => showTodoBlockSettings(context),
         ),
       ),
     );
   }
 }
 
-class TodoBlockBody extends StatelessWidget {
-  const TodoBlockBody({super.key});
+class _TodoBlockBody extends StatelessWidget {
+  const _TodoBlockBody();
 
   @override
   Widget build(BuildContext context) {
@@ -34,12 +34,28 @@ class TodoBlockBody extends StatelessWidget {
       builder: (context, state) {
         return Column(
           children: [
-            if (state.block.hasTitle) const TodoBlockTitle(),
+            _blockTitle(context, state),
+            if (state.block.showProgressBar)
+              TodoBlockProgressBar(items: state.block.items),
             TodoBlockList(items: state.block.items),
             const TodoBlockAddTaskButton(),
+            if (state.block.showCompleteTasks)
+              TodoBlockHiddenItemsList(items: state.block.items),
           ],
         );
       },
     );
+  }
+
+  Widget _blockTitle(BuildContext context, TodoBlockState state) {
+    if (state.block.hasTitle) {
+      return NoteBlockTitle(
+        initValue: state.block.title,
+        onChanged: (title) =>
+            context.read<TodoBlockCubit>().changeBlockTitle(title),
+      );
+    } else {
+      return const SizedBox(height: Insets.s);
+    }
   }
 }

@@ -5,6 +5,7 @@ import 'package:quick_note/core/constans/app_assets.dart';
 import 'package:quick_note/core/constans/insets.dart';
 import 'package:quick_note/l10n/l10n.dart';
 import 'package:quick_note/preferences/bloc/preferences.bloc.dart';
+import 'package:quick_note/preferences/theme/app_custom_colors.dart';
 import 'package:quick_note/router/app_routes.dart';
 
 class HomePageSideMenu extends StatefulWidget {
@@ -74,7 +75,7 @@ class _HomePageSideMenuState extends State<HomePageSideMenu>
           child: Container(
               height: double.infinity,
               decoration: BoxDecoration(
-                color: Colors.grey[900],
+                color: Theme.of(context).sideMenuBackgroundColor,
                 boxShadow: const [BoxShadow(blurRadius: 2, spreadRadius: .5)],
               ),
               child: LayoutBuilder(

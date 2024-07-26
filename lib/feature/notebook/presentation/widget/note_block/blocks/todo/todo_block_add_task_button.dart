@@ -10,7 +10,7 @@ class TodoBlockAddTaskButton extends StatelessWidget {
       child: TextButton(
         onPressed: () => context.read<TodoBlockCubit>().addCheckbox(),
         style: TextButton.styleFrom(
-          foregroundColor: Colors.white60,
+          foregroundColor: Theme.of(context).todoAddTaskForegroundButtonColor,
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(

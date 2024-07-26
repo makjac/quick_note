@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quick_note/core/constans/app_constans.dart';
 import 'package:quick_note/core/constans/insets.dart';
 import 'package:quick_note/feature/home/presentation/bloc/app_bloc.dart';
 import 'package:quick_note/feature/home/presentation/widget/home_page_layout/home_page_header/search_bar/home_page_note_search_text_field.dart';
-import 'package:quick_note/feature/shared/domain/entity/note/note.dart';
+import 'package:quick_note/preferences/theme/app_custom_colors.dart';
 
 class HomePageSearchBarHeader extends StatelessWidget {
-  const HomePageSearchBarHeader({super.key, required this.mobileSize});
-
-  final double mobileSize;
+  const HomePageSearchBarHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    if (width < mobileSize) {
+    if (width < AppConstans.mobileSize) {
       return const _MobileSearchBar();
     }
     return const _DesktopSearchbar();
@@ -28,7 +27,7 @@ class _MobileSearchBar extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(Insets.s),
       child: Card(
-        color: Colors.grey[900],
+        color: Theme.of(context).searchBarBackgroundColor,
         child: Padding(
           padding: const EdgeInsets.all(Insets.xxs),
           child: Row(
@@ -37,17 +36,18 @@ class _MobileSearchBar extends StatelessWidget {
                 onPressed: () => Scaffold.of(context).openDrawer(),
                 icon: Icon(
                   Icons.menu,
-                  color: Colors.white.withAlpha(180),
+                  color: Theme.of(context).searchBarForegroundColor,
                 ),
               ),
               const Expanded(child: HomePageNoteSearchTextField()),
               CircleAvatar(
                 radius: 15,
-                backgroundColor: Colors.white70,
+                backgroundColor:
+                    Theme.of(context).mSearchBarUserBackgroundColor,
                 child: FittedBox(
                   child: Icon(
                     Icons.person,
-                    color: Colors.grey[900],
+                    color: Theme.of(context).mSearchBarUserForegroundColor,
                   ),
                 ),
               ),
@@ -63,17 +63,6 @@ class _MobileSearchBar extends StatelessWidget {
 class _DesktopSearchbar extends StatelessWidget {
   const _DesktopSearchbar();
 
-  void _addNote(BuildContext context) {
-    BlocProvider.of<AppBloc>(context).add(AppCreateNote(
-        note: Note(
-      id: DateTime.now().millisecondsSinceEpoch % 0xFFFFFFFF,
-      created: DateTime.now(),
-      modified: DateTime.now(),
-      colorHex: "fe653a",
-      title: (DateTime.now().millisecondsSinceEpoch % 0xFFFFFFFF).toString(),
-    )));
-  }
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -83,7 +72,7 @@ class _DesktopSearchbar extends StatelessWidget {
           Expanded(
             flex: 3,
             child: Card(
-              color: Colors.grey[900],
+              color: Theme.of(context).searchBarBackgroundColor,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: Insets.xxs),
                 child: Row(
@@ -94,7 +83,7 @@ class _DesktopSearchbar extends StatelessWidget {
                       width: Insets.xl,
                       child: Icon(
                         Icons.search,
-                        color: Colors.white.withAlpha(180),
+                        color: Theme.of(context).searchBarForegroundColor,
                       ),
                     ),
                     const Expanded(child: HomePageNoteSearchTextField()),
@@ -105,28 +94,28 @@ class _DesktopSearchbar extends StatelessWidget {
           ),
           const Spacer(),
           InkWell(
-            onTap: () => _addNote(context),
+            onTap: () => BlocProvider.of<AppBloc>(context).add(AppCreateNote()),
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.grey[900],
+                color: Theme.of(context).searchBarBackgroundColor,
                 borderRadius: BorderRadius.circular(Insets.xxl),
               ),
               padding: const EdgeInsets.symmetric(
                 vertical: 12,
                 horizontal: Insets.s,
               ),
-              child: const Row(
+              child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Icon(
                     Icons.add,
-                    color: Colors.white70,
+                    color: Theme.of(context).searchBarForegroundColor,
                   ),
-                  SizedBox(width: Insets.xs),
+                  const SizedBox(width: Insets.xs),
                   Text(
                     "Add note",
                     style: TextStyle(
-                      color: Colors.white70,
+                      color: Theme.of(context).searchBarForegroundColor,
                       fontWeight: FontWeight.w600,
                       letterSpacing: .7,
                     ),
@@ -137,10 +126,10 @@ class _DesktopSearchbar extends StatelessWidget {
           ),
           const SizedBox(width: Insets.s),
           CircleAvatar(
-            backgroundColor: Colors.grey[900],
-            child: const Icon(
+            backgroundColor: Theme.of(context).searchBarBackgroundColor,
+            child: Icon(
               Icons.person,
-              color: Colors.white70,
+              color: Theme.of(context).searchBarForegroundColor,
             ),
           ),
         ],

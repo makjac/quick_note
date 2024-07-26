@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_note/core/constans/app_constans.dart';
 import 'package:quick_note/core/constans/insets.dart';
-import 'package:quick_note/core/extension/color/hex_color.dart';
 import 'package:quick_note/core/utils/note_helper.dart';
 import 'package:quick_note/feature/home/domain/usecase/update_multiple_notes_usecase.dart';
 import 'package:quick_note/feature/home/presentation/bloc/app_bloc.dart';
+import 'package:quick_note/preferences/theme/app_custom_colors.dart';
 
 enum _EditOption { color, star, archive, delete }
 
@@ -20,10 +20,10 @@ class HomePageNoteEditBar extends StatelessWidget {
         final appBloc = BlocProvider.of<AppBloc>(context);
 
         return Container(
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             border: Border(
               bottom: BorderSide(
-                color: Colors.white30,
+                color: Theme.of(context).editHeaderDividerColor,
               ),
             ),
           ),
@@ -57,7 +57,6 @@ class _MobileEditButtons extends StatelessWidget {
     final appBloc = BlocProvider.of<AppBloc>(context);
     return PopupMenuButton<_EditOption>(
       icon: const Icon(Icons.more_vert),
-      color: Colors.grey[900],
       itemBuilder: (context) {
         return [
           PopupMenuItem<_EditOption>(
@@ -67,8 +66,8 @@ class _MobileEditButtons extends StatelessWidget {
             onTap: () async {
               final color = await NoteHelper.showNoteColorPickerDialog(context);
               if (color != null) {
-                appBloc.add(AppUpdateSelectedNotes(
-                    updates: NoteUpdates(colorHex: color.toHex())));
+                appBloc.add(
+                    AppUpdateSelectedNotes(updates: NoteUpdates(color: color)));
               }
             },
           ),
@@ -131,11 +130,10 @@ class _CloseButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      hoverColor: Colors.white12,
       onPressed: () => appBloc.add(AppUnselectAllNotes()),
-      icon: const Icon(
+      icon: Icon(
         Icons.close,
-        color: Colors.white70,
+        color: Theme.of(context).editHeaderForegroundColor?.withAlpha(200),
       ),
     );
   }
@@ -152,8 +150,8 @@ class _SelectedNotesCount extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: Insets.xxs),
       child: Text(
         "$count Selected",
-        style: const TextStyle(
-          color: Colors.white,
+        style: TextStyle(
+          color: Theme.of(context).editHeaderForegroundColor?.withAlpha(255),
           fontWeight: FontWeight.w400,
           letterSpacing: .4,
           fontSize: 20,
@@ -174,13 +172,13 @@ class _ColorPickerButton extends StatelessWidget {
       onPressed: () async {
         final color = await NoteHelper.showNoteColorPickerDialog(context);
         if (color != null) {
-          appBloc.add(AppUpdateSelectedNotes(
-              updates: NoteUpdates(colorHex: color.toHex())));
+          appBloc
+              .add(AppUpdateSelectedNotes(updates: NoteUpdates(color: color)));
         }
       },
       icon: Icon(
         Icons.color_lens_outlined,
-        color: Colors.white.withAlpha(200),
+        color: Theme.of(context).editHeaderForegroundColor?.withAlpha(200),
       ),
     );
   }
@@ -197,7 +195,7 @@ class _StarButton extends StatelessWidget {
       onPressed: () => appBloc.add(AppStarSelectedNotes()),
       icon: Icon(
         Icons.star_border,
-        color: Colors.white.withAlpha(200),
+        color: Theme.of(context).editHeaderForegroundColor?.withAlpha(200),
       ),
     );
   }
@@ -214,7 +212,7 @@ class _ArchivedButton extends StatelessWidget {
       onPressed: () => appBloc.add(AppArchiveSelectedNotes()),
       icon: Icon(
         Icons.archive_outlined,
-        color: Colors.white.withAlpha(200),
+        color: Theme.of(context).editHeaderForegroundColor?.withAlpha(200),
       ),
     );
   }
@@ -231,7 +229,7 @@ class _DeleteButton extends StatelessWidget {
       onPressed: () => appBloc.add(AppDeleteSelectedNotes()),
       icon: Icon(
         Icons.delete_outline,
-        color: Colors.white.withAlpha(200),
+        color: Theme.of(context).editHeaderForegroundColor?.withAlpha(200),
       ),
     );
   }

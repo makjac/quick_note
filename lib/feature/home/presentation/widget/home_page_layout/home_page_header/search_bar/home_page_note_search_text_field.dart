@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_note/core/constans/insets.dart';
 import 'package:quick_note/feature/home/presentation/cubit/note_search_cubit.dart';
 import 'package:quick_note/l10n/l10n.dart';
+import 'package:quick_note/preferences/theme/app_custom_colors.dart';
 
 class HomePageNoteSearchTextField extends StatefulWidget {
   const HomePageNoteSearchTextField({super.key});
@@ -43,17 +44,14 @@ class _HomePageNoteSearchTextFieldState
               Expanded(
                 child: TextField(
                   controller: _controller,
-                  cursorColor: Colors.white38,
                   maxLines: 1,
                   onChanged: (value) {
                     context.read<NoteSearchCubit>().setSearchTerm(value);
                   },
                   decoration: InputDecoration(
                     hintText: context.l10n.search,
-                    hintStyle: Theme.of(context)
-                        .textTheme
-                        .bodyLarge
-                        ?.copyWith(color: Colors.white38),
+                    hintStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        color: Theme.of(context).searchBarForegroundColor),
                     border: InputBorder.none,
                   ),
                 ),

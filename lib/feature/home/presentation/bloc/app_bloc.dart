@@ -58,7 +58,14 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   FutureOr<void> _createNote(
       AppCreateNote event, Emitter<AppState> emit) async {
-    final result = await createNote.call(event.note);
+    final newID = DateTime.now().millisecondsSinceEpoch % 0xFFFFFFFF;
+    final note = Note(
+      id: newID,
+      created: DateTime.now(),
+      modified: DateTime.now(),
+    );
+
+    final result = await createNote.call(note);
 
     result.fold(
       (failure) {
@@ -69,7 +76,10 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         }
         emit(AppError.fromState(state, "Unable to create note..."));
       },
-      (result) => emit(state.copyWith(notes: [...state.notes, event.note])),
+      (result) => emit(AppNoteCreated.fromState(
+        state.copyWith(notes: [...state.notes, note]),
+        newID,
+      )),
     );
   }
 

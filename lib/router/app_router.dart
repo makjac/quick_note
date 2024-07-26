@@ -87,7 +87,7 @@ class AppRouter extends Equatable {
       builder: (context, state) => NotebookPage(
         noteId: num.tryParse(state.pathParameters["id"] ?? ""),
       ),
-    )
+    ),
   ];
 
   @override

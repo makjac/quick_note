@@ -3,13 +3,17 @@ import 'package:quick_note/core/constans/insets.dart';
 
 final ThemeData darkTheme = ThemeData(
   useMaterial3: true,
+  brightness: Brightness.dark,
   appBarTheme: const AppBarTheme(
     iconTheme: IconThemeData(color: Colors.white),
   ),
   scaffoldBackgroundColor: Colors.grey[850],
   inputDecorationTheme: const InputDecorationTheme(
     hintStyle: TextStyle(
-      color: Colors.white54,
+      color: Colors.white60,
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
+      letterSpacing: .6,
     ),
   ),
   iconTheme: const IconThemeData(
@@ -64,6 +68,7 @@ final ThemeData darkTheme = ThemeData(
     titleTextStyle: TextStyle(
       fontWeight: FontWeight.w600,
       fontSize: 18,
+      color: Colors.white,
     ),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.all(
@@ -79,6 +84,33 @@ final ThemeData darkTheme = ThemeData(
     textStyle: const TextStyle(color: Colors.white70),
     labelTextStyle: const WidgetStatePropertyAll<TextStyle>(
       TextStyle(color: Colors.white70, fontWeight: FontWeight.w600),
+    ),
+  ),
+  progressIndicatorTheme: const ProgressIndicatorThemeData(
+    color: Colors.white,
+    linearTrackColor: Colors.white12,
+  ),
+  drawerTheme: DrawerThemeData(
+    backgroundColor: Colors.grey[850],
+    elevation: 3,
+  ),
+  bottomSheetTheme: BottomSheetThemeData(
+    backgroundColor: Colors.grey[800],
+  ),
+  textSelectionTheme: const TextSelectionThemeData(
+    cursorColor: Colors.white38,
+  ),
+  textButtonTheme: const TextButtonThemeData(
+    style: ButtonStyle(
+      foregroundColor: WidgetStatePropertyAll<Color>(Colors.white),
+    ),
+  ),
+  dividerTheme: const DividerThemeData(
+    color: Colors.white60,
+  ),
+  outlinedButtonTheme: const OutlinedButtonThemeData(
+    style: ButtonStyle(
+      foregroundColor: WidgetStatePropertyAll<Color>(Colors.white),
     ),
   ),
 );

@@ -9,14 +9,7 @@ sealed class AppEvent extends Equatable {
 
 class AppLoadCachedNotes extends AppEvent {}
 
-class AppCreateNote extends AppEvent {
-  final Note note;
-
-  const AppCreateNote({required this.note});
-
-  @override
-  List<Object> get props => [note];
-}
+class AppCreateNote extends AppEvent {}
 
 class AppDeleteSingleNote extends AppEvent {
   const AppDeleteSingleNote({required this.id});

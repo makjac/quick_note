@@ -4,6 +4,7 @@ import 'package:quick_note/core/error/failure/failure.dart';
 import 'package:quick_note/core/usecase/usecase.dart';
 import 'package:quick_note/feature/home/domain/repository/app_repository.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note_block.dart';
+import 'package:quick_note/feature/shared/domain/entity/note/note_colors.dart';
 
 class UpdateMultipleNotesUsecase extends UseCase<void, UpdateNotesParams> {
   UpdateMultipleNotesUsecase({required this.repository});
@@ -34,7 +35,7 @@ class NoteUpdates extends Equatable {
     this.archived,
     this.author,
     this.isStarred,
-    this.colorHex,
+    this.color,
   });
 
   final DateTime? modified;
@@ -43,7 +44,7 @@ class NoteUpdates extends Equatable {
   final bool? archived;
   final String? author;
   final bool? isStarred;
-  final String? colorHex;
+  final NoteColors? color;
 
   @override
   List<Object?> get props => [
@@ -53,6 +54,6 @@ class NoteUpdates extends Equatable {
         archived,
         author,
         isStarred,
-        colorHex,
+        color,
       ];
 }

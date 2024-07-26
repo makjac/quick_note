@@ -48,7 +48,7 @@ class _RemainingItemsCount extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: Insets.xxs),
             child: Text(
               "+ ${countOfRemainingElements()} items",
-              style: TextStyle(color: Colors.white.withAlpha(150)),
+              style: TextStyle(color: Theme.of(context).noteTilecontentColor),
             ),
           )
         : const SizedBox.shrink();
@@ -65,23 +65,23 @@ class _CheckListItemPreview extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        _checkBox(item.isChecked),
+        _checkBox(context, item.isChecked),
         const SizedBox(width: Insets.xs),
         Flexible(
           child: Text(
             item.title,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(color: Colors.white.withAlpha(200)),
+            style: TextStyle(color: Theme.of(context).noteTilecontentColor),
           ),
         ),
       ],
     );
   }
 
-  Widget _checkBox(bool isChecked) => Icon(
+  Widget _checkBox(BuildContext context, bool isChecked) => Icon(
         isChecked ? Icons.check_box : Icons.check_box_outline_blank,
-        color: Colors.white.withAlpha(150),
+        color: Theme.of(context).noteTilecontentColor,
         size: 20,
       );
 }

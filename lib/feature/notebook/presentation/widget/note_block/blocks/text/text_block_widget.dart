@@ -9,41 +9,19 @@ class TextBlockWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => TextBlockCubit(block: block),
-      child: NoteBlockWidget(
-        block: const _TextBlockBody(),
-        blockId: block.id,
-        onMorePressed: () {},
+      child: Builder(
+        builder: (context) => NoteBlockWidget(
+          block: const _TextBlockBody(),
+          blockId: block.id,
+          onMorePressed: () => showTextBlockSettings(context),
+        ),
       ),
     );
   }
 }
 
-class _TextBlockBody extends StatefulWidget {
+class _TextBlockBody extends StatelessWidget {
   const _TextBlockBody();
-
-  @override
-  State<_TextBlockBody> createState() => _TextBlockBodyState();
-}
-
-class _TextBlockBodyState extends State<_TextBlockBody> {
-  late TextEditingController _controller;
-  late TextEditingController _titleController;
-
-  @override
-  void initState() {
-    _controller = TextEditingController(
-        text: context.read<TextBlockCubit>().state.block.text);
-    _titleController = TextEditingController(
-        text: context.read<TextBlockCubit>().state.block.title);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    _titleController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,47 +34,24 @@ class _TextBlockBodyState extends State<_TextBlockBody> {
       builder: (context, state) {
         return Column(
           children: [
-            TextField(
-              controller: _titleController,
-              maxLines: null,
-              cursorColor: Colors.white38,
-              decoration: InputDecoration(
-                hintText: context.l10n.text_block_title_hint_text,
-                border: InputBorder.none,
-              ),
-              style: const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w600,
-                letterSpacing: .7,
-                fontSize: 17,
-              ),
-              onChanged: (title) =>
-                  context.read<TextBlockCubit>().changeBlockTitle(title),
-            ),
+            _blockTitle(context, state),
             const SizedBox(height: Insets.xxs),
-            TextField(
-              controller: _controller,
-              maxLines: null,
-              keyboardType: TextInputType.multiline,
-              cursorColor: Colors.white38,
-              decoration: InputDecoration(
-                hintText: context.l10n.text_block_note_hint_text,
-                hintStyle: Theme.of(context)
-                    .textTheme
-                    .bodyLarge
-                    ?.copyWith(color: Colors.white60),
-                border: InputBorder.none,
-              ),
-              style: const TextStyle(
-                color: Colors.white,
-                letterSpacing: .6,
-              ),
-              onChanged: (value) =>
-                  context.read<TextBlockCubit>().changeNoteText(value),
-            ),
+            TextBlockContent(block: state.block),
           ],
         );
       },
     );
+  }
+
+  Widget _blockTitle(BuildContext context, TextBlockState state) {
+    if (state.block.hasTitle) {
+      return NoteBlockTitle(
+        initValue: state.block.title,
+        onChanged: (title) =>
+            context.read<TextBlockCubit>().changeBlockTitle(title),
+      );
+    } else {
+      return const SizedBox(height: Insets.s);
+    }
   }
 }

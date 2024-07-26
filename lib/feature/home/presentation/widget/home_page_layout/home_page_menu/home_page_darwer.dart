@@ -11,7 +11,6 @@ class HomePageDarwer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Colors.grey[850],
       child: ListView(
         children: [
           SizedBox(

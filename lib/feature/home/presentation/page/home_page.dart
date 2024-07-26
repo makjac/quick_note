@@ -13,7 +13,6 @@ import 'package:quick_note/feature/home/presentation/page/settings_page.dart';
 import 'package:quick_note/feature/home/presentation/page/trash_page.dart';
 import 'package:quick_note/feature/home/presentation/widget/home_page_layout/home_page_menu/home_page_darwer.dart';
 import 'package:quick_note/feature/home/presentation/widget/home_page_layout/home_page_layout.dart';
-import 'package:quick_note/feature/shared/domain/entity/note/note.dart';
 import 'package:quick_note/injection_container.dart';
 import 'package:quick_note/router/app_routes.dart';
 
@@ -35,28 +34,14 @@ class HomePage extends StatelessWidget {
         ),
         floatingActionButton: width < AppConstans.mobileSize
             ? FloatingActionButton.extended(
-                onPressed: () => _addNote(context),
+                onPressed: () =>
+                    BlocProvider.of<AppBloc>(context).add(AppCreateNote()),
                 backgroundColor: Colors.grey[900],
                 foregroundColor: Colors.white,
                 icon: const Icon(Icons.add),
                 label: const Text("Add note"),
               )
             : null,
-      ),
-    );
-  }
-
-  void _addNote(BuildContext context) {
-    BlocProvider.of<AppBloc>(context).add(
-      AppCreateNote(
-        note: Note(
-          id: DateTime.now().millisecondsSinceEpoch % 0xFFFFFFFF,
-          created: DateTime.now(),
-          modified: DateTime.now(),
-          colorHex: "fe653a",
-          title:
-              (DateTime.now().millisecondsSinceEpoch % 0xFFFFFFFF).toString(),
-        ),
       ),
     );
   }

@@ -15,8 +15,15 @@ class TodoBlockCubit extends Cubit<TodoBlockState> {
   }
 
   FutureOr<void> addCheckbox() async {
+    final maxId = state.block.items.isNotEmpty
+        ? state.block.items
+            .map((item) => item.id)
+            .reduce((a, b) => a > b ? a : b)
+        : 0;
+
     final updatedItems = List<ChecklistItem>.from(state.block.items)
-      ..add(ChecklistItem(id: state.block.items.length));
+      ..add(ChecklistItem(id: maxId + 1));
+
     final updatedBlock = state.block.copyWith(items: updatedItems);
     emit(state.copyWith(block: updatedBlock));
   }

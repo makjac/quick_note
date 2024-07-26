@@ -24,6 +24,10 @@ class TodoBlockModelAdapter extends TypeAdapter<TodoBlockModel> {
       items: fields[20] == null
           ? []
           : (fields[20] as List).cast<ChecklistItemModel>(),
+      showCompleteTasks: fields[30] == null ? false : fields[30] as bool,
+      showProgressBar: fields[40] == null ? false : fields[40] as bool,
+      maxVisibleTasks: fields[50] as int?,
+      dedline: fields[60] as DateTime?,
     );
   }
 

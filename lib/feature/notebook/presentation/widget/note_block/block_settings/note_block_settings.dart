@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quick_note/core/constans/insets.dart';
-import 'package:quick_note/feature/notebook/presentation/bloc/notebook_bloc.dart';
-import 'package:quick_note/l10n/l10n.dart';
+part of '../note_block_builder.dart';
 
 class NoteBlockSettings extends StatefulWidget {
   const NoteBlockSettings({
@@ -21,7 +17,7 @@ class NoteBlockSettings extends StatefulWidget {
 class _NoteBlockSettingsState extends State<NoteBlockSettings> {
   bool isShowned = false;
 
-  void setShowSettings(bool value) {
+  void _setShowSettings(bool value) {
     setState(() {
       isShowned = value;
     });
@@ -30,8 +26,8 @@ class _NoteBlockSettingsState extends State<NoteBlockSettings> {
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
-      onEnter: (event) => setShowSettings(true),
-      onExit: (event) => setShowSettings(false),
+      onEnter: (event) => _setShowSettings(true),
+      onExit: (event) => _setShowSettings(false),
       child: AnimatedSize(
         duration: const Duration(milliseconds: 200),
         reverseDuration: const Duration(milliseconds: 200),
@@ -57,9 +53,12 @@ class _NoteBlockSettingsState extends State<NoteBlockSettings> {
   }
 
   Widget _settingsIcon() {
-    return Icon(
-      Icons.settings,
-      color: Colors.grey[800],
+    return GestureDetector(
+      onTap: () => _setShowSettings(true),
+      child: Icon(
+        Icons.settings,
+        color: Colors.grey[800],
+      ),
     );
   }
 
@@ -95,7 +94,23 @@ class _NoteBlockSettingsState extends State<NoteBlockSettings> {
             color: Colors.grey[800],
           ),
         ),
+        _hideSettingsIcon(),
       ],
+    );
+  }
+
+  Widget _hideSettingsIcon() {
+    final isMobile = PlatformHelper.isMobile();
+    if (!isMobile) return const SizedBox.shrink();
+
+    return Tooltip(
+      message: "hide Setting",
+      child: IconButton(
+        onPressed: () => _setShowSettings(false),
+        icon: const Icon(Icons.close),
+        padding: EdgeInsets.zero,
+        color: Colors.grey[800],
+      ),
     );
   }
 }

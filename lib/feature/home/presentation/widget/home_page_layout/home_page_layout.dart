@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:quick_note/core/constans/app_constans.dart';
 import 'package:quick_note/core/constans/insets.dart';
 import 'package:quick_note/feature/home/presentation/bloc/app_bloc.dart';
 import 'package:quick_note/feature/home/presentation/widget/home_page_layout/home_page_header/search_bar/home_page_search_bar_header.dart';
 import 'package:quick_note/feature/home/presentation/widget/home_page_layout/home_page_header/home_page_note_edit_bar.dart';
 import 'package:quick_note/feature/home/presentation/widget/home_page_layout/home_page_menu/home_page_side_menu.dart';
+import 'package:quick_note/router/app_routes.dart';
 
 class HomePageLayout extends StatelessWidget {
   const HomePageLayout({super.key, required this.child});
@@ -15,9 +17,18 @@ class HomePageLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<AppBloc, AppState>(
-      listenWhen: (previous, current) => current is AppError,
+      listenWhen: (previous, current) =>
+          current is AppError || current is AppNoteCreated,
       listener: (context, state) {
+        if (!context.mounted) return;
         if (state is AppError) _showCustomToast(context, state.errorMessage);
+        if (state is AppNoteCreated) {
+          final uri =
+              GoRouter.of(context).routeInformationProvider.value.uri.path;
+          if (uri.contains(state.createdNoteId.toString())) return;
+          context.pushNamed(AppRoutes.notebook.name,
+              pathParameters: {"id": state.createdNoteId.toString()});
+        }
       },
       child: LayoutBuilder(
         builder: (context, constraints) {
@@ -34,8 +45,7 @@ class HomePageLayout extends StatelessWidget {
                         return Container(
                           child: state.isSelecting
                               ? const HomePageNoteEditBar()
-                              : const HomePageSearchBarHeader(
-                                  mobileSize: AppConstans.mobileSize),
+                              : const HomePageSearchBarHeader(),
                         );
                       },
                     ),

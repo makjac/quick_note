@@ -7,7 +7,7 @@ class TodoBlock extends NoteBlock {
   const TodoBlock({
     required super.id,
     super.title = "",
-    super.hasTitle = false,
+    super.hasTitle = true,
     super.type = NoteBlockType.todo,
     required this.items,
     this.showCompleteTasks = false,
