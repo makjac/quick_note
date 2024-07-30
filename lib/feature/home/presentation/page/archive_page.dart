@@ -55,7 +55,7 @@ class ArchivePage extends StatelessWidget {
     }
 
     return [
-      const NotesSegentHeader(title: "Archived"),
+      NotesSegentHeader(title: context.l10n.header_archived),
       SliverToBoxAdapter(
         child: Padding(
           padding: const EdgeInsets.all(Insets.s),

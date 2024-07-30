@@ -1,7 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:quick_note/core/error/exception/cache_value_exception.dart';
 import 'package:quick_note/core/error/failure/cache_failure.dart';
-import 'package:quick_note/core/error/failure/cache_value_failure.dart';
 import 'package:quick_note/core/error/failure/failure.dart';
 import 'package:quick_note/feature/home/data/datasource/app_local_data_source.dart';
 import 'package:quick_note/feature/home/domain/repository/app_repository.dart';
@@ -19,18 +17,6 @@ class AppRepositoryImpl implements AppRepository {
     try {
       final notes = await localDataSource.getNotes();
       return Right(notes);
-    } catch (e) {
-      return left(CacheFailure());
-    }
-  }
-
-  @override
-  Future<Either<Failure, Note>> getNote(int key) async {
-    try {
-      final note = await localDataSource.getNoteById(key);
-      return Right(note);
-    } on CacheValueException {
-      return left(CacheValueFailure());
     } catch (e) {
       return left(CacheFailure());
     }

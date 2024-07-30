@@ -6,7 +6,8 @@ enum AppRoutes {
   trashPage('Trasch_page', 'trash'),
   settingsPage('Settings_page', 'settings'),
   helpPage('Help_page', 'help'),
-  notebook('Notebook_page', '/notebook/:id');
+  notebook('Notebook_page', '/notebook/:id'),
+  notebookReorderBlocks('Notebook_reorder_blocks_page', 'reorder');
 
   final String routeName;
   final String path;

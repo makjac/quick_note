@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quick_note/core/constans/insets.dart';
-import 'package:quick_note/feature/home/domain/usecase/update_multiple_notes_usecase.dart';
+import 'package:go_router/go_router.dart';
 import 'package:quick_note/feature/notebook/presentation/bloc/notebook_bloc.dart';
-import 'package:quick_note/feature/notebook/presentation/widget/add_note_block_button/add_note_block_button.dart';
-import 'package:quick_note/feature/notebook/presentation/widget/note_block/note_block_builder.dart';
-import 'package:quick_note/feature/notebook/presentation/widget/notebook_popup_menu.dart/notebook_popup_menu.dart';
+import 'package:quick_note/feature/notebook/presentation/page/notebook_edit_note_blocks_order.dart';
+import 'package:quick_note/feature/notebook/presentation/page/notebook_edit_notes_view.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note.dart';
-import 'package:quick_note/feature/shared/domain/entity/note/note_colors.dart';
 import 'package:quick_note/injection_container.dart';
-import 'package:quick_note/l10n/l10n.dart';
-import 'package:quick_note/preferences/bloc/preferences.bloc.dart';
+import 'package:quick_note/router/app_routes.dart';
 
 class NotebookPage extends StatefulWidget {
   const NotebookPage({super.key, this.noteId});
@@ -22,15 +18,12 @@ class NotebookPage extends StatefulWidget {
 }
 
 class _NotebookPageState extends State<NotebookPage> {
-  late TextEditingController _controller;
-
   final Note note =
       Note(id: 1, created: DateTime.now(), modified: DateTime.now());
 
   @override
   void initState() {
     super.initState();
-    _controller = TextEditingController(text: note.title);
   }
 
   @override
@@ -38,76 +31,27 @@ class _NotebookPageState extends State<NotebookPage> {
     return BlocProvider(
       create: (context) =>
           locator<NotebookBloc>()..add(NotebookGetNote(noteId: widget.noteId)),
-      child: BlocConsumer<NotebookBloc, NotebookState>(
-        listener: (context, state) {
-          _controller.text = state.note?.title ?? "";
-        },
+      child: BlocBuilder<NotebookBloc, NotebookState>(
         builder: (context, state) {
-          final noteColor = (state.note?.color ?? NoteColors.color1)
-              .color(context.read<PreferencesBloc>().state.theme);
-
-          return Scaffold(
-            backgroundColor: noteColor,
-            resizeToAvoidBottomInset: true,
-            body: CustomScrollView(
-              slivers: [
-                SliverAppBar(
-                  centerTitle: true,
-                  backgroundColor: noteColor,
-                  pinned: true,
-                  shadowColor: noteColor,
-                  actions: [NotebookPopupMenu(context)],
-                ),
-                SliverToBoxAdapter(
-                  child: _titleTextField(context),
-                ),
-                ...(state.note?.content)?.map(
-                      (block) => SliverToBoxAdapter(
-                        child: NoteBlockBuilder(
-                          noteBlock: block,
-                        ),
-                      ),
-                    ) ??
-                    [],
-                const SliverToBoxAdapter(
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: EdgeInsets.all(Insets.s),
-                      child: AddNoteBlockButton(),
-                    ),
-                  ),
-                )
-              ],
-            ),
-          );
+          return _buildPage(state);
         },
       ),
     );
   }
 
-  Widget _titleTextField(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: Insets.s),
-      child: TextField(
-        controller: _controller,
-        onChanged: (value) {
-          BlocProvider.of<NotebookBloc>(context)
-              .add(NotebookUpdateNote(updates: NoteUpdates(title: value)));
-        },
-        maxLines: null,
-        keyboardType: TextInputType.multiline,
-        style: Theme.of(context).textTheme.titleMedium,
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          hintText: context.l10n.notebook_title_hint_text,
-          hintStyle: const TextStyle(
-            fontSize: 22,
-            fontWeight: FontWeight.w700,
-            color: Colors.white54,
-          ),
-        ),
-      ),
+  Widget _buildPage(NotebookState state) {
+    final currentRouteName = GoRouterState.of(context).topRoute?.path;
+    final currentRoute = AppRoutes.values.firstWhere(
+      (value) => value.path == currentRouteName,
+      orElse: () => AppRoutes.notebook,
     );
+
+    final pageMap = {
+      AppRoutes.notebook: NotebookEditNotesView(note: state.note),
+      AppRoutes.notebookReorderBlocks:
+          NotebookEditNoteBlocksOrder(note: state.note),
+    };
+
+    return pageMap[currentRoute] ?? NotebookEditNotesView(note: state.note);
   }
 }

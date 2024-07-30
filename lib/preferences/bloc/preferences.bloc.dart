@@ -23,6 +23,7 @@ class PreferencesBloc extends Bloc<PreferencesEvent, PreferencesState> {
 
   Future<void> _load(
       PreferencesLoad event, Emitter<PreferencesState> emit) async {
+    final language = sharedPreferences.getString(SharedKeys.languagePref.name);
     final theme = sharedPreferences.getString(SharedKeys.themePref.name);
     final sideMenuCollapsed =
         sharedPreferences.getBool(SharedKeys.colapseSideMenuPerf.name);
@@ -31,6 +32,10 @@ class PreferencesBloc extends Bloc<PreferencesEvent, PreferencesState> {
       theme: AppTheme.values.firstWhere(
         (element) => element.name == theme,
         orElse: () => AppTheme.dark,
+      ),
+      language: AppLanguage.values.firstWhere(
+        (element) => element.name == language,
+        orElse: () => AppLanguage.english,
       ),
       sideMenuCollapsed: sideMenuCollapsed,
     ));

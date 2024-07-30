@@ -16,7 +16,7 @@ Future<void> _showTodoBlockSettingsDialog(BuildContext context) async {
     context: context,
     builder: (_) {
       return NoteBlockSettingsDialog(
-        title: "Edit todo block",
+        title: context.l10n.block_settings_todo_title,
         child: _TodoBlockSettings(context),
       );
     },
@@ -28,7 +28,7 @@ Future<void> _showTodoBlockModalBottomSheet(BuildContext context) async {
     context: context,
     useSafeArea: true,
     builder: (_) => NoteBlockModalBottomSheet(
-      title: "Edit todo block",
+      title: context.l10n.block_settings_todo_title,
       child: _TodoBlockSettings(context),
     ),
   );
@@ -52,21 +52,21 @@ class _TodoBlockSettings extends StatelessWidget {
               activeColor: Colors.white,
               onChanged: (value) => BlocProvider.of<TodoBlockCubit>(context)
                   .changeBlockTitleVisibility(value),
-              title: const Text("Show block title"),
+              title: Text(context.l10n.block_settings_todo_show_header),
             ),
             CheckboxListTile.adaptive(
               value: state.block.showCompleteTasks,
               activeColor: Colors.white,
               onChanged: (value) => BlocProvider.of<TodoBlockCubit>(context)
                   .changeBlockCompleteTasksVisibility(value),
-              title: const Text("Hide complete tasks"),
+              title: Text(context.l10n.block_settings_todo_hide_complete_tasks),
             ),
             CheckboxListTile.adaptive(
               value: state.block.showProgressBar,
               activeColor: Colors.white,
               onChanged: (value) => BlocProvider.of<TodoBlockCubit>(context)
                   .changeBlockProgressBarVisibility(value),
-              title: const Text("Show progress bar"),
+              title: Text(context.l10n.block_settings_todo_progress_bar),
             ),
           ],
         );

@@ -62,6 +62,20 @@ class _NoteBlockSettingsState extends State<NoteBlockSettings> {
     );
   }
 
+  void _openReorderNoteBlocksRoute() {
+    final goRouterState = GoRouterState.of(context);
+    final noteId = goRouterState.pathParameters['id'];
+
+    if (noteId == null) return;
+
+    context.pushNamed(
+      AppRoutes.notebookReorderBlocks.name,
+      pathParameters: {
+        "id": noteId,
+      },
+    );
+  }
+
   Widget _settingsOptions() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -69,7 +83,7 @@ class _NoteBlockSettingsState extends State<NoteBlockSettings> {
         Tooltip(
           message: context.l10n.tooltip_move_note_block,
           child: IconButton(
-            onPressed: () {},
+            onPressed: _openReorderNoteBlocksRoute,
             icon: const Icon(Icons.drag_handle),
             padding: EdgeInsets.zero,
             color: Colors.grey[800],

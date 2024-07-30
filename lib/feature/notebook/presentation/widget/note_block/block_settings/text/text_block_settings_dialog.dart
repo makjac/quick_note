@@ -16,7 +16,7 @@ Future<void> _showTextBlockSettingsDialog(BuildContext context) async {
     context: context,
     builder: (_) {
       return NoteBlockSettingsDialog(
-        title: "Edit text block",
+        title: context.l10n.block_settings_text_title,
         child: _TextBlockSettings(context: context),
       );
     },
@@ -29,7 +29,7 @@ Future<void> _showTextBlockModalBottomSheet(BuildContext context) async {
     isScrollControlled: true,
     useSafeArea: true,
     builder: (_) => NoteBlockModalBottomSheet(
-      title: "Edit text block",
+      title: context.l10n.block_settings_text_title,
       child: _TextBlockSettings(context: context),
     ),
   );
@@ -53,14 +53,14 @@ class _TextBlockSettings extends StatelessWidget {
               activeColor: Colors.white,
               onChanged: (value) => BlocProvider.of<TextBlockCubit>(context)
                   .changeBlockTitleVisibility(value),
-              title: const Text("Title"),
+              title: Text(context.l10n.block_settings_text_show_header),
             ),
             CheckboxListTile.adaptive(
               value: state.block.hasMaxLineLimit,
               activeColor: Colors.white,
               onChanged: (value) => BlocProvider.of<TextBlockCubit>(context)
                   .setMaxLinesLimitOption(value),
-              title: const Text("Text line count limit"),
+              title: Text(context.l10n.block_settings_text_line_limit),
             ),
             if (state.block.hasMaxLineLimit)
               Padding(
@@ -116,7 +116,7 @@ class _MaxLinesLimitState extends State<_MaxLinesLimit> {
       child: Row(
         children: [
           Text(
-            "Limit:",
+            context.l10n.block_settings_text_limit,
             style: Theme.of(context).textTheme.bodyLarge,
           ),
           const Spacer(),

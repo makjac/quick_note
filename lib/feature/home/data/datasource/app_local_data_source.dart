@@ -1,12 +1,10 @@
 import 'package:hive/hive.dart';
 import 'package:quick_note/core/error/exception/cache_exception.dart';
-import 'package:quick_note/core/error/exception/cache_value_exception.dart';
 import 'package:quick_note/feature/shared/data/model/note/note.module.dart';
 import 'package:quick_note/hive/hive_keys.dart';
 
 abstract class AppLocalDataSource {
   Future<List<NoteModel>> getNotes();
-  Future<NoteModel> getNoteById(num id);
   Future<void> createNote(NoteModel note);
   Future<void> updateNote(num id, NoteModel note);
   Future<void> updateMultipleNotes(Map<dynamic, NoteModel> updates);
@@ -21,31 +19,11 @@ class AppLocalDataSourceImpl implements AppLocalDataSource {
 
   AppLocalDataSourceImpl({required this.hive});
 
-  Future<Box<NoteModel>> _openBox() async {
-    return _noteBox ??= await hive.openBox<NoteModel>(HiveBoxes.note.name);
-  }
-
   @override
   Future<List<NoteModel>> getNotes() async {
     try {
       final box = await hive.openBox<NoteModel>(HiveBoxes.note.name);
       List<NoteModel> note = box.values.toList();
-
-      return note;
-    } catch (_) {
-      throw CacheException();
-    }
-  }
-
-  @override
-  Future<NoteModel> getNoteById(num id) async {
-    try {
-      final box = await _openBox();
-      final note = box.get(id);
-
-      if (note == null) {
-        throw CacheValueException();
-      }
 
       return note;
     } catch (_) {

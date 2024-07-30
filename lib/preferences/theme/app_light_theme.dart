@@ -20,18 +20,54 @@ final ThemeData lightTheme = ThemeData(
     color: Colors.black,
   ),
   textTheme: const TextTheme(
-    bodySmall: TextStyle(color: Colors.black),
-    bodyMedium: TextStyle(color: Colors.black),
-    bodyLarge: TextStyle(color: Colors.black),
-    displaySmall: TextStyle(color: Colors.black),
-    displayMedium: TextStyle(color: Colors.black),
-    displayLarge: TextStyle(color: Colors.black),
-    headlineSmall: TextStyle(color: Colors.black),
-    headlineMedium: TextStyle(color: Colors.black),
-    headlineLarge: TextStyle(color: Colors.black),
-    labelSmall: TextStyle(color: Colors.black),
-    labelMedium: TextStyle(color: Colors.black),
-    labelLarge: TextStyle(color: Colors.black),
+    bodySmall: TextStyle(
+      color: Colors.black,
+      overflow: TextOverflow.ellipsis,
+    ),
+    bodyMedium: TextStyle(
+      color: Colors.black,
+      overflow: TextOverflow.ellipsis,
+    ),
+    bodyLarge: TextStyle(
+      color: Colors.black,
+      overflow: TextOverflow.ellipsis,
+    ),
+    displaySmall: TextStyle(
+      color: Colors.black,
+      overflow: TextOverflow.ellipsis,
+    ),
+    displayMedium: TextStyle(
+      color: Colors.black,
+      overflow: TextOverflow.ellipsis,
+    ),
+    displayLarge: TextStyle(
+      color: Colors.black,
+      overflow: TextOverflow.ellipsis,
+    ),
+    headlineSmall: TextStyle(
+      color: Colors.black,
+      overflow: TextOverflow.ellipsis,
+    ),
+    headlineMedium: TextStyle(
+      color: Colors.black,
+      overflow: TextOverflow.ellipsis,
+    ),
+    headlineLarge: TextStyle(
+      color: Colors.black,
+      overflow: TextOverflow.ellipsis,
+    ),
+    labelSmall: TextStyle(
+      color: Colors.black,
+      overflow: TextOverflow.ellipsis,
+    ),
+    labelMedium: TextStyle(
+      color: Colors.black,
+      overflow: TextOverflow.ellipsis,
+    ),
+    labelLarge: TextStyle(
+      color: Colors.black,
+      overflow: TextOverflow.ellipsis,
+    ),
     titleSmall: TextStyle(
       color: Colors.black,
       fontSize: 15,

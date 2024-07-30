@@ -5,7 +5,6 @@ import 'package:quick_note/feature/shared/domain/entity/note/note.dart';
 
 abstract class AppRepository {
   Future<Either<Failure, List<Note>>> getAllNotes();
-  Future<Either<Failure, Note>> getNote(int key);
   Future<Either<Failure, void>> createNote(Note note);
   Future<Either<Failure, void>> updateNote(Note note, NoteUpdates updates);
   Future<Either<Failure, void>> updateMultipleNotes(

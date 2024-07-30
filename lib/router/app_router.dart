@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quick_note/feature/home/presentation/bloc/app_bloc.dart';
@@ -84,9 +85,21 @@ class AppRouter extends Equatable {
         BlocProvider.of<AppBloc>(context).add(AppLoadCachedNotes());
         return true;
       },
-      builder: (context, state) => NotebookPage(
-        noteId: num.tryParse(state.pathParameters["id"] ?? ""),
+      pageBuilder: (context, state) => MaterialPage<void>(
+        key: UniqueKey(),
+        child: NotebookPage(
+          noteId: num.tryParse(state.pathParameters["id"] ?? ""),
+        ),
       ),
+      routes: [
+        GoRoute(
+          path: AppRoutes.notebookReorderBlocks.path,
+          name: AppRoutes.notebookReorderBlocks.name,
+          builder: (context, state) => NotebookPage(
+            noteId: num.tryParse(state.pathParameters["id"] ?? ""),
+          ),
+        )
+      ],
     ),
   ];
 

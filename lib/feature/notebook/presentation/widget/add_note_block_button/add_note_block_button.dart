@@ -4,6 +4,7 @@ import 'package:popup_menu/popup_menu.dart';
 import 'package:quick_note/core/constans/insets.dart';
 import 'package:quick_note/feature/notebook/presentation/bloc/notebook_bloc.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note_block_type.dart';
+import 'package:quick_note/l10n/l10n.dart';
 import 'package:quick_note/preferences/theme/app_custom_colors.dart';
 
 class AddNoteBlockButton extends StatefulWidget {
@@ -24,12 +25,12 @@ class _AddNoteBlockButtonState extends State<AddNoteBlockButton> {
       style: OutlinedButton.styleFrom(
         side: BorderSide(color: Theme.of(context).addBlockBurronBorderColor),
       ),
-      child: const Row(
+      child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(Icons.add),
-          SizedBox(width: Insets.xs),
-          Text("Add note block"),
+          const Icon(Icons.add),
+          const SizedBox(width: Insets.xs),
+          Text(context.l10n.add_note_block),
         ],
       ),
     );
@@ -41,17 +42,17 @@ class _AddNoteBlockButtonState extends State<AddNoteBlockButton> {
       config: const MenuConfig(maxColumn: 3),
       items: [
         MenuItem(
-          title: 'Text',
+          title: context.l10n.text,
           image: const Icon(Icons.text_fields, color: Colors.white),
           userInfo: NoteBlockType.text,
         ),
         MenuItem(
-          title: 'Todo',
+          title: context.l10n.todo,
           image: const Icon(Icons.check_box_outlined, color: Colors.white),
           userInfo: NoteBlockType.todo,
         ),
         MenuItem(
-          title: 'other',
+          title: context.l10n.other,
           image: const Icon(Icons.more_horiz, color: Colors.white),
         ),
       ],

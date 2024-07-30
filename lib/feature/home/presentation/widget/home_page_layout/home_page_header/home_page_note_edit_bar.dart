@@ -5,6 +5,7 @@ import 'package:quick_note/core/constans/insets.dart';
 import 'package:quick_note/core/utils/note_helper.dart';
 import 'package:quick_note/feature/home/domain/usecase/update_multiple_notes_usecase.dart';
 import 'package:quick_note/feature/home/presentation/bloc/app_bloc.dart';
+import 'package:quick_note/l10n/l10n.dart';
 import 'package:quick_note/preferences/theme/app_custom_colors.dart';
 
 enum _EditOption { color, star, archive, delete }
@@ -61,8 +62,8 @@ class _MobileEditButtons extends StatelessWidget {
         return [
           PopupMenuItem<_EditOption>(
             value: _EditOption.color,
-            child:
-                _buildPopupMenuItem("Change color", Icons.color_lens_outlined),
+            child: _buildPopupMenuItem(
+                context.l10n.note_settings_color, Icons.color_lens_outlined),
             onTap: () async {
               final color = await NoteHelper.showNoteColorPickerDialog(context);
               if (color != null) {
@@ -73,17 +74,20 @@ class _MobileEditButtons extends StatelessWidget {
           ),
           PopupMenuItem<_EditOption>(
             value: _EditOption.star,
-            child: _buildPopupMenuItem("Star", Icons.star_border_outlined),
+            child: _buildPopupMenuItem(
+                context.l10n.note_settings_star, Icons.star_border_outlined),
             onTap: () => appBloc.add(AppStarSelectedNotes()),
           ),
           PopupMenuItem<_EditOption>(
             value: _EditOption.archive,
-            child: _buildPopupMenuItem("Archive", Icons.archive_outlined),
+            child: _buildPopupMenuItem(
+                context.l10n.note_settings_archive, Icons.archive_outlined),
             onTap: () => appBloc.add(AppArchiveSelectedNotes()),
           ),
           PopupMenuItem<_EditOption>(
             value: _EditOption.delete,
-            child: _buildPopupMenuItem("Delete", Icons.delete_outline),
+            child: _buildPopupMenuItem(
+                context.l10n.note_settings_delete, Icons.delete_outline),
             onTap: () => appBloc.add(AppDeleteSelectedNotes()),
           ),
         ];

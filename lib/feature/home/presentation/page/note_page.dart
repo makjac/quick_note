@@ -79,7 +79,7 @@ class NotePage extends StatelessWidget {
   Widget _emptyScreen(BuildContext context) {
     return SliverFillRemaining(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           const Icon(
             Icons.folder_off_outlined,

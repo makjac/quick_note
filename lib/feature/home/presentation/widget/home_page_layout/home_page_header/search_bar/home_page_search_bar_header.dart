@@ -4,6 +4,7 @@ import 'package:quick_note/core/constans/app_constans.dart';
 import 'package:quick_note/core/constans/insets.dart';
 import 'package:quick_note/feature/home/presentation/bloc/app_bloc.dart';
 import 'package:quick_note/feature/home/presentation/widget/home_page_layout/home_page_header/search_bar/home_page_note_search_text_field.dart';
+import 'package:quick_note/l10n/l10n.dart';
 import 'package:quick_note/preferences/theme/app_custom_colors.dart';
 
 class HomePageSearchBarHeader extends StatelessWidget {
@@ -113,7 +114,7 @@ class _DesktopSearchbar extends StatelessWidget {
                   ),
                   const SizedBox(width: Insets.xs),
                   Text(
-                    "Add note",
+                    context.l10n.add_note,
                     style: TextStyle(
                       color: Theme.of(context).searchBarForegroundColor,
                       fontWeight: FontWeight.w600,

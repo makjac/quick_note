@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:quick_note/core/constans/app_constans.dart';
 import 'package:quick_note/core/constans/insets.dart';
 import 'package:quick_note/core/utils/platform_helper.dart';
@@ -17,6 +18,7 @@ import 'package:quick_note/feature/shared/domain/entity/note/note_block.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note_block_type.dart';
 import 'package:quick_note/l10n/l10n.dart';
 import 'package:quick_note/preferences/theme/app_custom_colors.dart';
+import 'package:quick_note/router/app_routes.dart';
 
 part 'note_block_builder.main.dart';
 part 'note_block_widget.dart';

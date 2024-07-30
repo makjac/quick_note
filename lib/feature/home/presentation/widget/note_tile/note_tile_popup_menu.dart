@@ -4,6 +4,7 @@ import 'package:quick_note/core/utils/note_helper.dart';
 import 'package:quick_note/feature/home/domain/usecase/update_multiple_notes_usecase.dart';
 import 'package:quick_note/feature/home/presentation/bloc/app_bloc.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note.dart';
+import 'package:quick_note/l10n/l10n.dart';
 
 enum _Menu { select, color, star, delete }
 
@@ -21,12 +22,12 @@ class NoteTilePopupMenu extends StatelessWidget {
       iconSize: 20,
       splashRadius: 20,
       itemBuilder: (_) => <PopupMenuEntry<_Menu>>[
-        _buildSelectMenuItem(this.context),
-        _buildColorMenuItem(this.context),
-        _buildStarMenuItem(this.context),
-        _buildArchiveMenuItem(this.context),
+        _buildSelectMenuItem(context),
+        _buildColorMenuItem(context),
+        _buildStarMenuItem(context),
+        _buildArchiveMenuItem(context),
         const PopupMenuDivider(),
-        _buildDeleteMenuItem(this.context),
+        _buildDeleteMenuItem(context),
       ],
       child: const Icon(
         Icons.more_vert_sharp,
@@ -40,9 +41,9 @@ class NoteTilePopupMenu extends StatelessWidget {
     return PopupMenuItem<_Menu>(
       value: _Menu.select,
       onTap: () => appBloc.add(AppSelectNote(noteId: note.id)),
-      child: const ListTile(
-        leading: Icon(Icons.check_box_outlined),
-        title: Text('Select'),
+      child: ListTile(
+        leading: const Icon(Icons.check_box_outlined),
+        title: Text(context.l10n.note_settings_select),
       ),
     );
   }
@@ -60,11 +61,11 @@ class NoteTilePopupMenu extends StatelessWidget {
           ));
         }
       },
-      child: const ListTile(
-        leading: Icon(
+      child: ListTile(
+        leading: const Icon(
           Icons.color_lens_outlined,
         ),
-        title: Text('Change Color'),
+        title: Text(context.l10n.note_settings_color),
       ),
     );
   }
@@ -77,9 +78,9 @@ class NoteTilePopupMenu extends StatelessWidget {
         note: note,
         updates: NoteUpdates(isStarred: !note.isStarred),
       )),
-      child: const ListTile(
-        leading: Icon(Icons.star_border),
-        title: Text('Star'),
+      child: ListTile(
+        leading: const Icon(Icons.star_border),
+        title: Text(context.l10n.note_settings_star),
       ),
     );
   }
@@ -92,9 +93,9 @@ class NoteTilePopupMenu extends StatelessWidget {
         note: note,
         updates: NoteUpdates(archived: !note.archived, isStarred: false),
       )),
-      child: const ListTile(
-        leading: Icon(Icons.archive_outlined),
-        title: Text('Archive'),
+      child: ListTile(
+        leading: const Icon(Icons.archive_outlined),
+        title: Text(context.l10n.note_settings_archive),
       ),
     );
   }
@@ -105,11 +106,11 @@ class NoteTilePopupMenu extends StatelessWidget {
     return PopupMenuItem<_Menu>(
       value: _Menu.delete,
       onTap: () => appBloc.add(AppDeleteSingleNote(id: note.id)),
-      child: const ListTile(
+      child: ListTile(
         iconColor: redColor,
         textColor: redColor,
-        leading: Icon(Icons.delete_outline),
-        title: Text('delete'),
+        leading: const Icon(Icons.delete_outline),
+        title: Text(context.l10n.note_settings_delete),
       ),
     );
   }

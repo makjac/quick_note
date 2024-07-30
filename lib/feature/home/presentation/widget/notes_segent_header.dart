@@ -10,11 +10,12 @@ class NotesSegentHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: Insets.s),
+        padding: const EdgeInsets.symmetric(horizontal: Insets.m),
         child: Text(
           title,
           style: const TextStyle(
             fontWeight: FontWeight.w500,
+            fontSize: 15,
             letterSpacing: .8,
           ),
         ),
