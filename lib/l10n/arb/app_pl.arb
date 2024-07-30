@@ -8,6 +8,7 @@
   "header_stared" : "Ogwiazdkowane",
   "header_others" : "Pozostałe",
   "header_archived" : "Zarchiwizowane",
+  "header_deleted": "Usunięte",
   "header_search_results" : "Wyniki ({count})",
   "menu_notes" : "Notatki",
   "menu_reminders" : "Powiadomienia",
@@ -50,6 +51,8 @@
   "note_settings_star": "Wyróżnij",
   "note_settings_archive": "Archiwizuj",
   "note_settings_delete": "Usuń",
+  "note_settings_delete_forever": "Usuń na zawsze",
+  "note_settings_restore": "Przywróć",
   "reorder_block_info": "Przeciągnij i upuść bloki, aby zmienić ich kolejność. Przytrzymaj i przeciągnij uchwyt po prawej stronie każdego bloku, aby go przesunąć. Zwolnij blok, aby upuścić go w nowej pozycji.",
   "block_type_text": "Blok tekstowy",
   "text": "Tekst",
@@ -57,6 +60,8 @@
   "block_settings_text_show_header": "Pokaż tytuł bloku",
   "block_settings_text_line_limit": "Limit liczby linii tekstu",
   "block_settings_text_limit": "Limit:",
+  "block_text_limit_show_more" : "Pokaż więcej",
+  "block_text_limit_show_less" : "Pokaż mniej",
   "block_type_todo": "Blok z zadaniami",
   "todo": "Zadania",
   "block_settings_todo_title": "Edytuj blok z zadaniami",
@@ -76,5 +81,7 @@
   "language_french": "francuski",
   "language_russian": "rosyjski",
   "language_hindi": "hindi",
-  "language_chinese" : "Chiński"
+  "language_chinese" : "Chiński",
+  "trash_info": "Wszystkie notatki w koszu zostaną trwale usunięte po 7 dniach.",
+  "trash_empty": "Opróżnij kosz"
 }

@@ -9,8 +9,7 @@ import 'package:quick_note/l10n/l10n.dart';
 enum _Menu { select, color, star, delete }
 
 class NoteTilePopupMenu extends StatelessWidget {
-  const NoteTilePopupMenu(
-      {super.key, required this.note, required this.context});
+  const NoteTilePopupMenu(this.context, {super.key, required this.note});
 
   final Note note;
   final BuildContext context;
@@ -105,7 +104,7 @@ class NoteTilePopupMenu extends StatelessWidget {
     const redColor = Colors.red;
     return PopupMenuItem<_Menu>(
       value: _Menu.delete,
-      onTap: () => appBloc.add(AppDeleteSingleNote(id: note.id)),
+      onTap: () => appBloc.add(AppMoveToTrashSingleNote(note: note)),
       child: ListTile(
         iconColor: redColor,
         textColor: redColor,

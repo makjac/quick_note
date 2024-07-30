@@ -8,6 +8,7 @@
   "header_stared" : "Marcadas",
   "header_others" : "Otras",
   "header_archived" : "Archivadas",
+  "header_deleted": "Eliminado",
   "header_search_results" : "Resultados de búsqueda ({count})",
   "menu_notes" : "Notas",
   "menu_reminders" : "Recordatorios",
@@ -48,7 +49,9 @@
   "note_settings_color" : "Cambiar color",
   "note_settings_star" : "Marcar",
   "note_settings_archive" : "Archivar",
-  "note_settings_delete" : "Eliminar",
+  "note_settings_delete": "Eliminar",
+  "note_settings_delete_forever": "Eliminar para siempre",
+  "note_settings_restore": "Restaurar",
   "reorder_block_info" : "Arrastra y suelta los bloques para reordenarlos. Mantén presionada y arrastra la manija en el lado derecho de cada bloque para moverlo. Suelta el bloque para dejarlo en su nueva posición.",
   "block_type_text" : "Bloque de texto",
   "text" : "Texto",
@@ -56,6 +59,8 @@
   "block_settings_text_show_header" : "Mostrar título del bloque",
   "block_settings_text_line_limit" : "Límite de líneas de texto",
   "block_settings_text_limit" : "Límite:",
+  "block_text_limit_show_more" : "Mostrar más",
+  "block_text_limit_show_less" : "Mostrar menos",
   "block_type_todo" : "Bloque de tareas",
   "todo" : "Tareas",
   "block_settings_todo_title" : "Editar bloque de tareas",
@@ -75,5 +80,7 @@
   "language_french" : "Francés",
   "language_russian" : "Ruso",
   "language_hindi" : "Hindi",
-  "language_chinese" : "Chino"
+  "language_chinese" : "Chino",
+  "trash_info": "Cualquier nota en la papelera será eliminada para siempre después de 7 días.",
+  "trash_empty": "Vaciar papelera"
 }

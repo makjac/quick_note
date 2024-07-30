@@ -88,7 +88,7 @@ class _MobileEditButtons extends StatelessWidget {
             value: _EditOption.delete,
             child: _buildPopupMenuItem(
                 context.l10n.note_settings_delete, Icons.delete_outline),
-            onTap: () => appBloc.add(AppDeleteSelectedNotes()),
+            onTap: () => appBloc.add(AppMoveSelectedNotesToTrash()),
           ),
         ];
       },
@@ -180,9 +180,12 @@ class _ColorPickerButton extends StatelessWidget {
               .add(AppUpdateSelectedNotes(updates: NoteUpdates(color: color)));
         }
       },
-      icon: Icon(
-        Icons.color_lens_outlined,
-        color: Theme.of(context).editHeaderForegroundColor?.withAlpha(200),
+      icon: Tooltip(
+        message: context.l10n.note_settings_color,
+        child: Icon(
+          Icons.color_lens_outlined,
+          color: Theme.of(context).editHeaderForegroundColor?.withAlpha(200),
+        ),
       ),
     );
   }
@@ -197,9 +200,12 @@ class _StarButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: () => appBloc.add(AppStarSelectedNotes()),
-      icon: Icon(
-        Icons.star_border,
-        color: Theme.of(context).editHeaderForegroundColor?.withAlpha(200),
+      icon: Tooltip(
+        message: context.l10n.note_settings_star,
+        child: Icon(
+          Icons.star_border,
+          color: Theme.of(context).editHeaderForegroundColor?.withAlpha(200),
+        ),
       ),
     );
   }
@@ -214,9 +220,12 @@ class _ArchivedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: () => appBloc.add(AppArchiveSelectedNotes()),
-      icon: Icon(
-        Icons.archive_outlined,
-        color: Theme.of(context).editHeaderForegroundColor?.withAlpha(200),
+      icon: Tooltip(
+        message: context.l10n.note_settings_archive,
+        child: Icon(
+          Icons.archive_outlined,
+          color: Theme.of(context).editHeaderForegroundColor?.withAlpha(200),
+        ),
       ),
     );
   }
@@ -230,10 +239,13 @@ class _DeleteButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: () => appBloc.add(AppDeleteSelectedNotes()),
-      icon: Icon(
-        Icons.delete_outline,
-        color: Theme.of(context).editHeaderForegroundColor?.withAlpha(200),
+      onPressed: () => appBloc.add(AppMoveSelectedNotesToTrash()),
+      icon: Tooltip(
+        message: context.l10n.note_settings_delete,
+        child: Icon(
+          Icons.delete_outline,
+          color: Theme.of(context).editHeaderForegroundColor?.withAlpha(200),
+        ),
       ),
     );
   }

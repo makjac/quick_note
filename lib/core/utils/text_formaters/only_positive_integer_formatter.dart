@@ -12,9 +12,10 @@ class OnlyPositiveIntegerFormatter extends TextInputFormatter {
   ) {
     final newText = newValue.text.replaceAll(RegExp(r'[^0-9]'), '');
 
-    if (newText.isNotEmpty &&
-        int.parse(newText) >= 1 &&
-        newText.length <= maxLength) {
+    if (newText.isEmpty ||
+        (newText.isNotEmpty &&
+            int.parse(newText) >= 1 &&
+            newText.length <= maxLength)) {
       return newValue.copyWith(
         text: newText,
         selection: TextSelection.collapsed(offset: newText.length),

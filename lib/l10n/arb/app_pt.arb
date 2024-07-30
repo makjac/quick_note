@@ -8,6 +8,7 @@
   "header_stared" : "Marcadas",
   "header_others" : "Outras",
   "header_archived" : "Arquivadas",
+  "header_deleted": "Excluído",
   "header_search_results" : "Resultados da busca ({count})",
   "menu_notes" : "Notas",
   "menu_reminders" : "Lembretes",
@@ -49,6 +50,8 @@
   "note_settings_star" : "Estrela",
   "note_settings_archive" : "Arquivar",
   "note_settings_delete" : "Excluir",
+  "note_settings_delete_forever": "Excluir para sempre",
+  "note_settings_restore": "Restaurar",
   "reorder_block_info" : "Arraste e solte os blocos para reordená-los. Mantenha pressionada e arraste a alça no lado direito de cada bloco para movê-lo. Solte o bloco para colocá-lo em sua nova posição.",
   "block_type_text" : "Bloco de texto",
   "text" : "Texto",
@@ -56,6 +59,8 @@
   "block_settings_text_show_header" : "Mostrar título do bloco",
   "block_settings_text_line_limit" : "Limite de linhas de texto",
   "block_settings_text_limit" : "Limite:",
+  "block_text_limit_show_more" : "Mostrar mais",
+  "block_text_limit_show_less" : "Mostrar menos",
   "block_type_todo" : "Bloco de tarefas",
   "todo" : "Tarefas",
   "block_settings_todo_title" : "Editar bloco de tarefas",
@@ -75,5 +80,7 @@
   "language_french" : "Francês",
   "language_russian" : "Russo",
   "language_hindi" : "Hindi",
-  "language_chinese" : "Chinês"
+  "language_chinese" : "Chinês",
+  "trash_info": "Quaisquer notas na lixeira serão excluídas para sempre após 7 dias.",
+  "trash_empty": "Esvaziar Lixeira"
 }

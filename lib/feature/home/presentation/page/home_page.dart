@@ -27,9 +27,12 @@ class HomePage extends StatelessWidget {
       create: (context) => locator<NoteSearchCubit>(),
       child: Scaffold(
         drawer: const HomePageDarwer(),
-        body: const SafeArea(
+        body: SafeArea(
           child: HomePageLayout(
-            child: _HomePageBuilder(),
+            isTrash: _isTrashPage(context),
+            child: _HomePageBuilder(
+              currentRoute: _getCurrentRoute(context),
+            ),
           ),
         ),
         floatingActionButton: width < AppConstans.mobileSize
@@ -45,19 +48,31 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
-}
 
-class _HomePageBuilder extends StatelessWidget {
-  const _HomePageBuilder();
-
-  @override
-  Widget build(BuildContext context) {
+  AppRoutes _getCurrentRoute(BuildContext context) {
     final currentRouteName = GoRouterState.of(context).topRoute?.path;
     final currentRoute = AppRoutes.values.firstWhere(
       (value) => value.path == currentRouteName,
       orElse: () => AppRoutes.notesPage,
     );
 
+    return currentRoute;
+  }
+
+  bool _isTrashPage(BuildContext context) {
+    final currentRoute = _getCurrentRoute(context);
+
+    return currentRoute == AppRoutes.trashPage;
+  }
+}
+
+class _HomePageBuilder extends StatelessWidget {
+  const _HomePageBuilder({required this.currentRoute});
+
+  final AppRoutes currentRoute;
+
+  @override
+  Widget build(BuildContext context) {
     return BlocBuilder<NoteSearchCubit, NoteSearchState>(
       builder: (context, state) {
         if (state.searchTerm.isNotEmpty) return const NoteSearchPage();

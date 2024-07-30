@@ -4,15 +4,17 @@ import 'package:go_router/go_router.dart';
 import 'package:quick_note/core/constans/app_constans.dart';
 import 'package:quick_note/core/constans/insets.dart';
 import 'package:quick_note/feature/home/presentation/bloc/app_bloc.dart';
+import 'package:quick_note/feature/home/presentation/widget/home_page_layout/home_page_header/edit_bar/trash_page_note_edit_bar.dart';
 import 'package:quick_note/feature/home/presentation/widget/home_page_layout/home_page_header/search_bar/home_page_search_bar_header.dart';
-import 'package:quick_note/feature/home/presentation/widget/home_page_layout/home_page_header/home_page_note_edit_bar.dart';
+import 'package:quick_note/feature/home/presentation/widget/home_page_layout/home_page_header/edit_bar/home_page_note_edit_bar.dart';
 import 'package:quick_note/feature/home/presentation/widget/home_page_layout/home_page_menu/home_page_side_menu.dart';
 import 'package:quick_note/router/app_routes.dart';
 
 class HomePageLayout extends StatelessWidget {
-  const HomePageLayout({super.key, required this.child});
+  const HomePageLayout({super.key, required this.child, this.isTrash = false});
 
   final Widget child;
+  final bool isTrash;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,7 @@ class HomePageLayout extends StatelessWidget {
                       builder: (context, state) {
                         return Container(
                           child: state.isSelecting
-                              ? const HomePageNoteEditBar()
+                              ? _noteEditBar()
                               : const HomePageSearchBarHeader(),
                         );
                       },
@@ -76,6 +78,11 @@ class HomePageLayout extends StatelessWidget {
         },
       ),
     );
+  }
+
+  Widget _noteEditBar() {
+    if (isTrash) return const TrashPageNoteEditBar();
+    return const HomePageNoteEditBar();
   }
 
   void _showCustomToast(BuildContext context, String message) {

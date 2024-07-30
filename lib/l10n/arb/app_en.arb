@@ -8,6 +8,7 @@
   "header_stared" : "Stared",
   "header_others" : "Others",
   "header_archived" : "Archived",
+  "header_deleted" : "Deleted",
   "header_search_results" : "Search results ({count})",
   "@header_search_results" : {
     "placeholders" : {
@@ -65,6 +66,8 @@
   "note_settings_star" : "Star",
   "note_settings_archive" : "Archive",
   "note_settings_delete" : "Delete",
+  "note_settings_delete_forever" : "Delete forever",
+  "note_settings_restore" : "Restore",
   "reorder_block_info" : "Drag and drop the blocks to reorder them. Hold and drag the handle on the right side of each block to move it. Release the block to drop it in its new position.",
   "block_type_text" : "Text block",
   "text" : "Text",
@@ -72,6 +75,8 @@
   "block_settings_text_show_header" : "Show block title",
   "block_settings_text_line_limit" : "Text line count limit",
   "block_settings_text_limit" : "Limit:",
+  "block_text_limit_show_more" : "Show more",
+  "block_text_limit_show_less" : "Show less",
   "block_type_todo" : "Todo block",
   "todo" : "Todo",
   "block_settings_todo_title" : "Edit todo block",
@@ -91,5 +96,7 @@
   "language_french" : "French",
   "language_russian" : "Russian",
   "language_hindi" : "Hindi",
-  "language_chinese" : "Chinese"
+  "language_chinese" : "Chinese",
+  "trash_info" : "Any notes in recycle bin will be deleted forever after 7 days.",
+  "trash_empty" : "Empty Recycle Bin"
 }

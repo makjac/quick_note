@@ -6,6 +6,7 @@ enum AppRoutes {
   trashPage('Trasch_page', 'trash'),
   settingsPage('Settings_page', 'settings'),
   helpPage('Help_page', 'help'),
+  license('license_page', 'license'),
   notebook('Notebook_page', '/notebook/:id'),
   notebookReorderBlocks('Notebook_reorder_blocks_page', 'reorder');
 

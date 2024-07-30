@@ -65,25 +65,25 @@ class LanguageSelection extends StatelessWidget {
   String _getLanguageName(BuildContext context, AppLanguage langauage) {
     switch (langauage) {
       case AppLanguage.english:
-        return context.l10n.language_english;
+        return "🇬🇧 ${context.l10n.language_english}";
       case AppLanguage.polish:
-        return context.l10n.language_polish;
+        return "🇵🇱 ${context.l10n.language_polish}";
       case AppLanguage.german:
-        return context.l10n.language_german;
+        return "🇩🇪 ${context.l10n.language_german}";
       case AppLanguage.spanish:
-        return context.l10n.language_spanish;
+        return "🇪🇸 ${context.l10n.language_spanish}";
       case AppLanguage.portuguese:
-        return context.l10n.language_portuguese;
+        return "🇵🇹 ${context.l10n.language_portuguese}";
       case AppLanguage.french:
-        return context.l10n.language_french;
+        return "🇫🇷 ${context.l10n.language_french}";
       case AppLanguage.russian:
-        return context.l10n.language_russian;
+        return "🇷🇺 ${context.l10n.language_russian}";
       case AppLanguage.hindi:
-        return context.l10n.language_hindi;
+        return "🇮🇳 ${context.l10n.language_hindi}";
       case AppLanguage.chinese:
-        return context.l10n.language_chinese;
+        return "🇨🇳 ${context.l10n.language_chinese}";
       default:
-        return "";
+        return "🏳️";
     }
   }
 }

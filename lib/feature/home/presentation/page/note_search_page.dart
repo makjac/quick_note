@@ -37,6 +37,7 @@ class NoteSearchPage extends StatelessWidget {
     final filteredNotes = notes
         .where((note) =>
             (note.title.toLowerCase()).contains(searchTerm.toLowerCase()))
+        .where((note) => note.expiryDate == null)
         .toList();
 
     if (filteredNotes.isEmpty) {

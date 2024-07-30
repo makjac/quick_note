@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:quick_note/core/constans/app_assets.dart';
 import 'package:quick_note/core/constans/insets.dart';
 import 'package:quick_note/l10n/l10n.dart';
+import 'package:quick_note/router/app_routes.dart';
 
 class HelpPage extends StatelessWidget {
   const HelpPage({super.key});
@@ -62,7 +64,11 @@ class HelpPage extends StatelessWidget {
                     }
                     return const Text("...");
                   },
-                )
+                ),
+                const SizedBox(height: Insets.s),
+                ElevatedButton(
+                    onPressed: () => context.pushNamed(AppRoutes.license.name),
+                    child: const Text("Licenses Open Source"))
               ],
             ),
           ),

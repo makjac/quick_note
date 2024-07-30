@@ -8,6 +8,7 @@
   "header_stared" : "Закрепленные",
   "header_others" : "Другие",
   "header_archived" : "Архивные",
+  "header_deleted": "Удалено",
   "header_search_results" : "Результаты поиска ({count})",
   "menu_notes" : "Заметки",
   "menu_reminders" : "Напоминания",
@@ -49,6 +50,8 @@
   "note_settings_star" : "Звезда",
   "note_settings_archive" : "Архивировать",
   "note_settings_delete" : "Удалить",
+  "note_settings_delete_forever": "Удалить навсегда",
+  "note_settings_restore": "Восстановить",
   "reorder_block_info" : "Перетащите блоки, чтобы изменить их порядок. Удерживайте и перетаскивайте ручку с правой стороны каждого блока, чтобы переместить его. Отпустите блок, чтобы разместить его на новом месте.",
   "block_type_text" : "Текстовый блок",
   "text" : "Текст",
@@ -56,6 +59,8 @@
   "block_settings_text_show_header" : "Показывать заголовок блока",
   "block_settings_text_line_limit" : "Лимит строк текста",
   "block_settings_text_limit" : "Лимит:",
+  "block_text_limit_show_more" : "Показать больше",
+  "block_text_limit_show_less" : "Показать меньше",
   "block_type_todo" : "Блок задач",
   "todo" : "Задачи",
   "block_settings_todo_title" : "Редактировать блок задач",
@@ -75,5 +80,7 @@
   "language_french" : "Французский",
   "language_russian" : "Русский",
   "language_hindi" : "Хинди",
-  "language_chinese" : "Китайский"
+  "language_chinese" : "Китайский",
+  "trash_info": "Любые заметки в корзине будут удалены навсегда через 7 дней.",
+  "trash_empty": "Очистить корзину"
 }

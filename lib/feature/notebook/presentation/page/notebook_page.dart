@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:quick_note/feature/notebook/presentation/bloc/notebook_bloc.dart';
 import 'package:quick_note/feature/notebook/presentation/page/notebook_edit_note_blocks_order.dart';
 import 'package:quick_note/feature/notebook/presentation/page/notebook_edit_notes_view.dart';
-import 'package:quick_note/feature/shared/domain/entity/note/note.dart';
 import 'package:quick_note/injection_container.dart';
 import 'package:quick_note/router/app_routes.dart';
 
@@ -18,9 +17,6 @@ class NotebookPage extends StatefulWidget {
 }
 
 class _NotebookPageState extends State<NotebookPage> {
-  final Note note =
-      Note(id: 1, created: DateTime.now(), modified: DateTime.now());
-
   @override
   void initState() {
     super.initState();

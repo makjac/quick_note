@@ -8,6 +8,7 @@
   "header_stared" : "Épinglées",
   "header_others" : "Autres",
   "header_archived" : "Archivées",
+  "header_deleted": "Supprimé",
   "header_search_results" : "Résultats de la recherche ({count})",
   "menu_notes" : "Notes",
   "menu_reminders" : "Rappels",
@@ -48,7 +49,9 @@
   "note_settings_color" : "Changer la couleur",
   "note_settings_star" : "Étoile",
   "note_settings_archive" : "Archiver",
-  "note_settings_delete" : "Supprimer",
+  "note_settings_delete": "Supprimer",
+  "note_settings_delete_forever": "Supprimer définitivement",
+  "note_settings_restore": "Restaurer",
   "reorder_block_info" : "Faites glisser et déposez les blocs pour les réorganiser. Maintenez enfoncé et faites glisser la poignée sur le côté droit de chaque bloc pour le déplacer. Relâchez le bloc pour le déposer à sa nouvelle position.",
   "block_type_text" : "Bloc de texte",
   "text" : "Texte",
@@ -56,6 +59,8 @@
   "block_settings_text_show_header" : "Afficher le titre du bloc",
   "block_settings_text_line_limit" : "Limite de lignes de texte",
   "block_settings_text_limit" : "Limite :",
+  "block_text_limit_show_more" : "Afficher plus",
+  "block_text_limit_show_less" : "Afficher moins",
   "block_type_todo" : "Bloc de tâches",
   "todo" : "Tâches",
   "block_settings_todo_title" : "Modifier le bloc de tâches",
@@ -75,5 +80,7 @@
   "language_french" : "Français",
   "language_russian" : "Russe",
   "language_hindi" : "Hindi",
-  "language_chinese" : "Chinois"
+  "language_chinese" : "Chinois",
+  "trash_info": "Toutes les notes dans la corbeille seront supprimées définitivement après 7 jours.",
+  "trash_empty": "Vider la corbeille"
 }

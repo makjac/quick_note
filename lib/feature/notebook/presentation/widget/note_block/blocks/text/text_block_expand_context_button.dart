@@ -21,7 +21,9 @@ class _TextBlockExpandContextButtonState
   }
 
   String _setupButtonTextI() {
-    return _isExpanded ? "Show less" : "Show more";
+    return _isExpanded
+        ? context.l10n.block_text_limit_show_less
+        : context.l10n.block_text_limit_show_more;
   }
 
   @override

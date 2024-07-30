@@ -8,6 +8,7 @@
   "header_stared" : "Markiert",
   "header_others" : "Andere",
   "header_archived" : "Archiviert",
+  "header_deleted": "Gelöscht",
   "header_search_results" : "Suchergebnisse ({count})",
   "menu_notes" : "Notizen",
   "menu_reminders" : "Erinnerungen",
@@ -48,7 +49,9 @@
   "note_settings_color" : "Farbe ändern",
   "note_settings_star" : "Stern",
   "note_settings_archive" : "Archivieren",
-  "note_settings_delete" : "Löschen",
+  "note_settings_delete": "Löschen",
+  "note_settings_delete_forever": "Endgültig löschen",
+  "note_settings_restore": "Wiederherstellen",
   "reorder_block_info" : "Ziehen und legen Sie die Blöcke ab, um sie neu anzuordnen. Halten Sie den Griff auf der rechten Seite jedes Blocks gedrückt, um ihn zu verschieben. Lassen Sie den Block los, um ihn an seiner neuen Position abzulegen.",
   "block_type_text" : "Textblock",
   "text" : "Text",
@@ -56,6 +59,8 @@
   "block_settings_text_show_header" : "Blocktitel anzeigen",
   "block_settings_text_line_limit" : "Textzeilenanzahl begrenzen",
   "block_settings_text_limit" : "Limit:",
+  "block_text_limit_show_more" : "Mehr anzeigen",
+  "block_text_limit_show_less" : "Weniger anzeigen",
   "block_type_todo" : "To-Do-Block",
   "todo" : "To-Do",
   "block_settings_todo_title" : "To-Do-Block bearbeiten",
@@ -75,5 +80,7 @@
   "language_french" : "Französisch",
   "language_russian" : "Russisch",
   "language_hindi" : "Hindi",
-  "language_chinese" : "Chinesisch"
+  "language_chinese" : "Chinesisch",
+  "trash_info": "Alle Notizen im Papierkorb werden nach 7 Tagen endgültig gelöscht.",
+  "trash_empty": "Papierkorb leeren"
 }

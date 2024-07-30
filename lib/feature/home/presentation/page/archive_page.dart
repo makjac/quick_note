@@ -31,7 +31,10 @@ class ArchivePage extends StatelessWidget {
 
   List<Widget> _buildNotesSection(
       BuildContext context, AppState state, double width, String header) {
-    final notes = state.notes.where((note) => note.archived).toList();
+    final notes = state.notes
+        .where((note) => note.archived)
+        .where((note) => note.expiryDate == null)
+        .toList();
 
     if (notes.isEmpty) {
       return [

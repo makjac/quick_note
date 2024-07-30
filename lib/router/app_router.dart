@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quick_note/feature/home/presentation/bloc/app_bloc.dart';
 import 'package:quick_note/feature/home/presentation/page/home_page.dart';
+import 'package:quick_note/feature/home/presentation/widget/settings/licence_info_view.dart';
 import 'package:quick_note/feature/notebook/presentation/page/notebook_page.dart';
 import 'package:quick_note/router/app_routes.dart';
 
@@ -75,6 +76,15 @@ class AppRouter extends Equatable {
           pageBuilder: (context, state) =>
               const NoTransitionPage(child: HomePage()),
           builder: (context, state) => const HomePage(),
+          routes: [
+            GoRoute(
+              path: AppRoutes.license.path,
+              name: AppRoutes.license.name,
+              pageBuilder: (context, state) =>
+                  const NoTransitionPage(child: LicenceInfoView()),
+              builder: (context, state) => const LicenceInfoView(),
+            )
+          ],
         ),
       ],
     ),

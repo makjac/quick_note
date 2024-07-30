@@ -30,6 +30,7 @@ class UpdateNotesParams extends Equatable {
 class NoteUpdates extends Equatable {
   const NoteUpdates({
     this.modified,
+    this.expirydate,
     this.title,
     this.content,
     this.archived,
@@ -39,6 +40,7 @@ class NoteUpdates extends Equatable {
   });
 
   final DateTime? modified;
+  final DateTime? expirydate;
   final String? title;
   final List<NoteBlock>? content;
   final bool? archived;
@@ -49,6 +51,7 @@ class NoteUpdates extends Equatable {
   @override
   List<Object?> get props => [
         modified,
+        expirydate,
         title,
         content,
         archived,

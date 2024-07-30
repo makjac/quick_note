@@ -8,6 +8,7 @@ class Note extends Equatable {
     required this.id,
     required this.created,
     required this.modified,
+    this.expiryDate,
     this.title = "",
     this.content = const [],
     this.archived = false,
@@ -22,6 +23,8 @@ class Note extends Equatable {
   final DateTime created;
   @HiveField(20)
   final DateTime modified;
+  @HiveField(25, defaultValue: null)
+  final DateTime? expiryDate;
   @HiveField(30, defaultValue: "")
   final String title;
   @HiveField(40, defaultValue: [])
@@ -40,6 +43,7 @@ class Note extends Equatable {
         id,
         created,
         modified,
+        expiryDate,
         title,
         content,
         archived,

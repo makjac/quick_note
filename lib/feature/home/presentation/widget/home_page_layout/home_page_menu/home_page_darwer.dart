@@ -47,14 +47,14 @@ class HomePageDarwer extends StatelessWidget {
             title: Text(context.l10n.menu_notes),
             onTap: () => context.pushNamed(AppRoutes.notesPage.name),
           ),
-          ListTile(
-            iconColor: Colors.white,
-            textColor: Colors.white,
-            leading: const Icon(Icons.notifications),
-            title: Text(context.l10n.menu_reminders),
-            onTap: () => context.pushNamed(AppRoutes.remindersPage.name),
-          ),
-          const Divider(),
+          // ListTile(
+          //   iconColor: Colors.white,
+          //   textColor: Colors.white,
+          //   leading: const Icon(Icons.notifications),
+          //   title: Text(context.l10n.menu_reminders),
+          //   onTap: () => context.pushNamed(AppRoutes.remindersPage.name),
+          // ),
+          // const Divider(),
           ListTile(
             iconColor: Colors.white,
             textColor: Colors.white,

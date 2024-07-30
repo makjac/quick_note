@@ -47,6 +47,12 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     on<AppSelectNote>(_selectNote);
     on<AppUnselectAllNotes>(_unselectAllNotes);
     on<AppSelectAllNotes>(_selectAllNotes);
+    on<AppMoveSelectedNotesToTrash>(_moveToTrashSelectedNotes);
+    on<AppMoveToTrashSingleNote>(_moveToTrashSingleNote);
+    on<AppRestoreSelectedNotes>(_restoreSelectedNotes);
+    on<AppRestoreSingleNote>(_restoreSingleNote);
+    on<AppEmptyRecycleBin>(_emptyRecycleBin);
+    on<AppCheckDeleteNotes>(_checkDeletedNotes);
   }
 
   FutureOr<void> _loadCachedNotes(
@@ -217,5 +223,125 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       selectedNoteIds: state.notes.map((note) => note.id).toSet(),
       isSelecting: true,
     ));
+  }
+
+  FutureOr<void> _moveToTrashSelectedNotes(
+      AppMoveSelectedNotesToTrash event, Emitter<AppState> emit) async {
+    final result = await updateMultipleNotes.call(
+      UpdateNotesParams(
+        keys: state.selectedNoteIds,
+        updates: NoteUpdates(
+          expirydate: DateTime.now().add(const Duration(days: 7)),
+        ),
+      ),
+    );
+
+    if (result.isRight()) {
+      final notes = await loadCachedNotes.call(NoParams());
+
+      notes.fold((failure) {}, (notes) {
+        emit(AppState(notes: notes));
+      });
+    }
+  }
+
+  FutureOr<void> _moveToTrashSingleNote(
+      AppMoveToTrashSingleNote event, Emitter<AppState> emit) async {
+    final result = await updateSingleNote.call(
+      UpdateSingleNoteParams(
+        note: event.note,
+        updates: NoteUpdates(
+          expirydate: DateTime.now().add(const Duration(days: 7)),
+        ),
+      ),
+    );
+
+    if (result.isRight()) {
+      final notes = await loadCachedNotes.call(NoParams());
+
+      notes.fold((failure) {}, (notes) {
+        emit(AppState(notes: notes));
+      });
+    }
+  }
+
+  FutureOr<void> _restoreSelectedNotes(
+      AppRestoreSelectedNotes event, Emitter<AppState> emit) async {
+    final result = await updateMultipleNotes.call(
+      UpdateNotesParams(
+        keys: state.selectedNoteIds,
+        updates: const NoteUpdates(
+          expirydate: null,
+          isStarred: false,
+          archived: false,
+        ),
+      ),
+    );
+
+    if (result.isRight()) {
+      final notes = await loadCachedNotes.call(NoParams());
+
+      notes.fold((failure) {}, (notes) {
+        emit(AppState(notes: notes));
+      });
+    }
+  }
+
+  FutureOr<void> _restoreSingleNote(
+      AppRestoreSingleNote event, Emitter<AppState> emit) async {
+    final result = await updateSingleNote.call(
+      UpdateSingleNoteParams(
+        note: event.note,
+        updates: const NoteUpdates(
+          expirydate: null,
+          isStarred: false,
+          archived: false,
+        ),
+      ),
+    );
+
+    if (result.isRight()) {
+      final notes = await loadCachedNotes.call(NoParams());
+
+      notes.fold((failure) {}, (notes) {
+        emit(AppState(notes: notes));
+      });
+    }
+  }
+
+  FutureOr<void> _emptyRecycleBin(
+      AppEmptyRecycleBin event, Emitter<AppState> emit) async {
+    final notesInTrash = state.notes.where((note) => note.expiryDate != null);
+
+    final trashNotesIds = notesInTrash.map((note) => note.id).toList();
+
+    final result = await deleteMultipleNotes.call(trashNotesIds);
+
+    if (result.isRight()) {
+      final notes = await loadCachedNotes.call(NoParams());
+
+      notes.fold((failure) {}, (notes) {
+        emit(AppState(notes: notes));
+      });
+    }
+  }
+
+  Future<void> _checkDeletedNotes(
+      AppCheckDeleteNotes event, Emitter<AppState> emit) async {
+    final notesInTrash = state.notes.where((note) => note.expiryDate != null);
+    final expiredNotes =
+        notesInTrash.where((note) => note.expiryDate!.isBefore(DateTime.now()));
+
+    final expiredNotesIds = expiredNotes.map((note) => note.id).toList();
+
+    final result = await deleteMultipleNotes.call(expiredNotesIds);
+
+    if (result.isRight()) {
+      final notes = await loadCachedNotes.call(NoParams());
+
+      notes.fold((failure) {}, (notes) {
+        emit(AppState(notes: notes));
+      });
+    }
   }
 }

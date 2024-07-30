@@ -20,6 +20,7 @@ class NoteModelAdapter extends TypeAdapter<NoteModel> {
       id: fields[0] as num,
       created: fields[10] as DateTime,
       modified: fields[20] as DateTime,
+      expiryDate: fields[25] as DateTime?,
       title: fields[30] == null ? '' : fields[30] as String,
       content: fields[40] == null ? [] : (fields[40] as List).cast<NoteBlock>(),
       archived: fields[50] == null ? false : fields[50] as bool,
@@ -32,13 +33,15 @@ class NoteModelAdapter extends TypeAdapter<NoteModel> {
   @override
   void write(BinaryWriter writer, NoteModel obj) {
     writer
-      ..writeByte(9)
+      ..writeByte(10)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(10)
       ..write(obj.created)
       ..writeByte(20)
       ..write(obj.modified)
+      ..writeByte(25)
+      ..write(obj.expiryDate)
       ..writeByte(30)
       ..write(obj.title)
       ..writeByte(40)

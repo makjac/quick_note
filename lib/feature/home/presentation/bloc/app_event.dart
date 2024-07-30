@@ -63,3 +63,29 @@ class AppSelectAllNotes extends AppEvent {}
 class AppSetSearchTerm extends AppEvent {}
 
 class AppClearSearchTerm extends AppEvent {}
+
+class AppMoveSelectedNotesToTrash extends AppEvent {}
+
+class AppMoveToTrashSingleNote extends AppEvent {
+  const AppMoveToTrashSingleNote({required this.note});
+
+  final Note note;
+
+  @override
+  List<Object> get props => [note];
+}
+
+class AppRestoreSelectedNotes extends AppEvent {}
+
+class AppRestoreSingleNote extends AppEvent {
+  const AppRestoreSingleNote({required this.note});
+
+  final Note note;
+
+  @override
+  List<Object> get props => [note];
+}
+
+class AppEmptyRecycleBin extends AppEvent {}
+
+class AppCheckDeleteNotes extends AppEvent {}

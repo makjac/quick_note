@@ -8,6 +8,7 @@
   "header_stared" : "पिन की गई",
   "header_others" : "अन्य",
   "header_archived" : "आर्काइव की गई",
+  "header_deleted": "हटा दिया गया",
   "header_search_results" : "खोज परिणाम ({count})",
   "menu_notes" : "नोट्स",
   "menu_reminders" : "याद दिलाने वाले",
@@ -49,6 +50,8 @@
   "note_settings_star" : "स्टार",
   "note_settings_archive" : "आर्काइव",
   "note_settings_delete" : "हटाएँ",
+  "note_settings_delete_forever": "हमेशा के लिए हटाएं",
+  "note_settings_restore": "बहाल करें",
   "reorder_block_info" : "ब्लॉक्स को क्रम में पुनर्व्यवस्थित करने के लिए खींचें और छोड़ें। प्रत्येक ब्लॉक के दाहिने ओर हैंडल को दबाकर और खींचकर इसे स्थानांतरित करें। इसे नई स्थिति में छोड़ने के लिए ब्लॉक को छोड़ें।",
   "block_type_text" : "टेक्स्ट ब्लॉक",
   "text" : "टेक्स्ट",
@@ -56,6 +59,8 @@
   "block_settings_text_show_header" : "ब्लॉक शीर्षक दिखाएँ",
   "block_settings_text_line_limit" : "टेक्स्ट लाइन की सीमा",
   "block_settings_text_limit" : "सीमा:",
+  "block_text_limit_show_more" : "और दिखाओ",
+  "block_text_limit_show_less" : "कम दिखाओ",
   "block_type_todo" : "टास्क ब्लॉक",
   "todo" : "टास्क",
   "block_settings_todo_title" : "टास्क ब्लॉक संपादित करें",
@@ -75,5 +80,7 @@
   "language_french" : "फ्रेंच",
   "language_russian" : "रूसी",
   "language_hindi" : "हिंदी",
-  "language_chinese" : "चीनी"
+  "language_chinese" : "चीनी",
+  "trash_info": "किसी भी नोट को रीसायकल बिन में 7 दिनों के बाद हमेशा के लिए हटा दिया जाएगा।",
+  "trash_empty": "रीसायकल बिन खाली करें"
 }

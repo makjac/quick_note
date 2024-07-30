@@ -5,17 +5,19 @@ import 'package:quick_note/core/constans/insets.dart';
 import 'package:quick_note/core/extension/color/color.dart';
 import 'package:quick_note/core/utils/platform_helper.dart';
 import 'package:quick_note/feature/home/presentation/bloc/app_bloc.dart';
-import 'package:quick_note/feature/home/presentation/widget/note_tile/note_tile_popup_menu.dart';
+import 'package:quick_note/feature/home/presentation/widget/note_tile/popup_menu/note_tile_popup_menu.dart';
 import 'package:quick_note/feature/home/presentation/widget/note_tile/note_tile_preview/note_tile_preview_builder.dart';
+import 'package:quick_note/feature/home/presentation/widget/note_tile/popup_menu/note_tile_trash_popup_menu.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note_colors.dart';
 import 'package:quick_note/preferences/bloc/preferences.bloc.dart';
 import 'package:quick_note/router/app_routes.dart';
 
 class NoteTile extends StatefulWidget {
-  const NoteTile({super.key, required this.note});
+  const NoteTile({super.key, required this.note, this.isTrash = false});
 
   final Note note;
+  final bool isTrash;
 
   @override
   State<NoteTile> createState() => _NoteTileState();
@@ -62,10 +64,12 @@ class _NoteTileState extends State<NoteTile> {
       BlocProvider.of<AppBloc>(context)
           .add(AppSelectNote(noteId: widget.note.id));
     } else {
-      context.pushNamed(
-        AppRoutes.notebook.name,
-        pathParameters: {"id": widget.note.id.toString()},
-      );
+      if (!widget.isTrash) {
+        context.pushNamed(
+          AppRoutes.notebook.name,
+          pathParameters: {"id": widget.note.id.toString()},
+        );
+      }
     }
   }
 
@@ -151,11 +155,7 @@ class _NoteTileState extends State<NoteTile> {
                   ),
             ),
           ),
-          if (_showMenuIcon)
-            NoteTilePopupMenu(
-              note: widget.note,
-              context: context,
-            ),
+          if (_showMenuIcon) _popupMenu(),
         ],
       );
 
@@ -165,5 +165,12 @@ class _NoteTileState extends State<NoteTile> {
       padding: const EdgeInsets.only(top: Insets.xs),
       child: NoteTilePreviewBuilder(noteBlock: widget.note.content.first),
     );
+  }
+
+  Widget _popupMenu() {
+    if (widget.isTrash) {
+      return NoteTileTrashPopupMenu(context, note: widget.note);
+    }
+    return NoteTilePopupMenu(context, note: widget.note);
   }
 }

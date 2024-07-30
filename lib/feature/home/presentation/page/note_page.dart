@@ -34,10 +34,12 @@ class NotePage extends StatelessWidget {
     final staredNotes = notes
         .where((note) => (note.isStarred))
         .where((note) => !note.archived)
+        .where((note) => note.expiryDate == null)
         .toList();
     final otherNotes = notes
         .where((note) => (!note.isStarred))
         .where((note) => !note.archived)
+        .where((note) => note.expiryDate == null)
         .toList();
 
     bool hasNotes = staredNotes.isNotEmpty || otherNotes.isNotEmpty;

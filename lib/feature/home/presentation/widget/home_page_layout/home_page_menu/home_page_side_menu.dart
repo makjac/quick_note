@@ -172,11 +172,11 @@ class _HomePageSideMenuState extends State<HomePageSideMenu>
         'label': context.l10n.menu_notes,
         'route': AppRoutes.notesPage,
       },
-      {
-        'icon': Icons.notifications,
-        'label': context.l10n.menu_reminders,
-        'route': AppRoutes.remindersPage,
-      },
+      // {
+      //   'icon': Icons.notifications,
+      //   'label': context.l10n.menu_reminders,
+      //   'route': AppRoutes.remindersPage,
+      // },
       {
         'icon': Icons.archive,
         'label': context.l10n.menu_archive,
