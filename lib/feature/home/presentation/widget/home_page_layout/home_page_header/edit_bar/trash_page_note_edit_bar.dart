@@ -68,7 +68,7 @@ class _MobileEditButtons extends StatelessWidget {
             value: _EditOption.deleteForever,
             child: _buildPopupMenuItem(
                 context.l10n.note_settings_delete_forever,
-                Icons.delete_outline),
+                Icons.delete_forever),
             onTap: () => appBloc.add(AppDeleteSelectedNotes()),
           ),
         ];
@@ -174,7 +174,7 @@ class _DeleteButton extends StatelessWidget {
       icon: Tooltip(
         message: context.l10n.note_settings_delete_forever,
         child: Icon(
-          Icons.delete_outline,
+          Icons.delete_forever_outlined,
           color: Theme.of(context).editHeaderForegroundColor?.withAlpha(200),
         ),
       ),

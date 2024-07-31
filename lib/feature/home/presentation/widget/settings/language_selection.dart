@@ -13,19 +13,21 @@ class LanguageSelection extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              context.l10n.settings_language_title,
-              style: Theme.of(context).textTheme.titleSmall,
-            ),
-            const SizedBox(height: Insets.xs),
-            Text(
-              context.l10n.settings_language_subtitle,
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-          ],
+        Flexible(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                context.l10n.settings_language_title,
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
+              const SizedBox(height: Insets.xs),
+              Text(
+                context.l10n.settings_language_subtitle,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+            ],
+          ),
         ),
         DropdownButtonHideUnderline(
           child: Container(

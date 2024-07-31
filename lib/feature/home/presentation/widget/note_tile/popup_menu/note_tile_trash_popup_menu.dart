@@ -64,7 +64,7 @@ class NoteTileTrashPopupMenu extends StatelessWidget {
       child: ListTile(
         iconColor: redColor,
         textColor: redColor,
-        leading: const Icon(Icons.delete_outline),
+        leading: const Icon(Icons.delete_forever),
         title: Text(context.l10n.note_settings_delete_forever),
       ),
     );

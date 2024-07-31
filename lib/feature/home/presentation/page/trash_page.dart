@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:quick_note/core/constans/app_constans.dart';
 import 'package:quick_note/core/constans/insets.dart';
 import 'package:quick_note/core/utils/platform_helper.dart';
 import 'package:quick_note/feature/home/presentation/bloc/app_bloc.dart';
@@ -55,11 +56,23 @@ class TrashPage extends StatelessWidget {
           TextButton(
             onPressed: () =>
                 BlocProvider.of<AppBloc>(context).add(AppEmptyRecycleBin()),
-            child: Text(context.l10n.trash_empty),
+            child: _emptyRecycleBinChild(context),
           ),
         ],
       ),
     );
+  }
+
+  Widget _emptyRecycleBinChild(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+
+    if (AppConstans.mobileSize > width) {
+      return Tooltip(
+        message: context.l10n.trash_empty,
+        child: const Icon(Icons.delete_forever),
+      );
+    }
+    return Text(context.l10n.trash_empty);
   }
 
   List<Widget> _buildNotesSection(
