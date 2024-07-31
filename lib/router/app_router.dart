@@ -1,7 +1,9 @@
 import 'package:equatable/equatable.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quick_note/core/utils/platform_helper.dart';
 import 'package:quick_note/feature/home/presentation/bloc/app_bloc.dart';
 import 'package:quick_note/feature/home/presentation/page/home_page.dart';
 import 'package:quick_note/feature/home/presentation/widget/settings/licence_info_view.dart';
@@ -9,8 +11,17 @@ import 'package:quick_note/feature/notebook/presentation/page/notebook_page.dart
 import 'package:quick_note/router/app_routes.dart';
 
 class AppRouter extends Equatable {
+  static FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+  static FirebaseAnalyticsObserver observer =
+      FirebaseAnalyticsObserver(analytics: analytics);
+
   static final GoRouter router = GoRouter(
-      routes: _routes, initialLocation: '/${AppRoutes.notesPage.path}');
+    routes: _routes,
+    initialLocation: '/${AppRoutes.notesPage.path}',
+    observers: [
+      if (PlatformHelper.isMobile()) observer,
+    ],
+  );
 
   static final List<RouteBase> _routes = [
     GoRoute(
