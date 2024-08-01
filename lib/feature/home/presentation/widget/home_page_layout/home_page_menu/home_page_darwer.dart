@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:quick_note/core/constans/app_assets.dart';
 import 'package:quick_note/core/constans/insets.dart';
 import 'package:quick_note/l10n/l10n.dart';
+import 'package:quick_note/preferences/theme/app_custom_colors.dart';
 import 'package:quick_note/router/app_routes.dart';
 
 class HomePageDarwer extends StatelessWidget {
@@ -11,6 +12,7 @@ class HomePageDarwer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: Theme.of(context).drawerMenuBackgroundColor,
       child: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
@@ -43,7 +45,7 @@ class HomePageDarwer extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 mainAxisSize: MainAxisSize.max,
-        children: [
+                children: [
                   const Divider(),
                   ListTile(
                     leading: const Icon(Icons.settings),
@@ -67,28 +69,28 @@ class HomePageDarwer extends StatelessWidget {
 
   Widget _drawerHeader(BuildContext context) {
     return SizedBox(
-            height: 120,
-            child: DrawerHeader(
-              padding: const EdgeInsets.all(Insets.s),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    AppAssets.logoRectangle,
-                    fit: BoxFit.contain,
-                  ),
-                  const SizedBox(width: Insets.s),
-                  Text(
-                    context.l10n.appName,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                      letterSpacing: 1,
-                    ),
-                  ),
-                ],
+      height: 120,
+      child: DrawerHeader(
+        padding: const EdgeInsets.all(Insets.s),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image.asset(
+              AppAssets.logoRectangle,
+              fit: BoxFit.contain,
+            ),
+            const SizedBox(width: Insets.s),
+            Text(
+              context.l10n.appName,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 30,
+                letterSpacing: 1,
               ),
+            ),
+          ],
+        ),
       ),
     );
   }

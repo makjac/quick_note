@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 extension AppColors on ThemeData {
   // HomePage
   //
-  // Side menu
+  // menu
   Color? get sideMenuBackgroundColor =>
-      brightness == Brightness.dark ? Colors.grey[900] : Colors.grey;
+      brightness == Brightness.dark ? Colors.grey[900] : Colors.grey[400];
+  Color? get drawerMenuBackgroundColor =>
+      brightness == Brightness.dark ? Colors.grey[850] : Colors.grey[350];
   //
   // Headers
   // Searchbar header
@@ -23,7 +25,7 @@ extension AppColors on ThemeData {
       brightness == Brightness.dark ? Colors.white : Colors.black;
   //
   // Note tile
-  Color? get noteTilecontentColor =>
+  Color get noteTilecontentColor =>
       brightness == Brightness.dark ? Colors.white70 : Colors.black87;
   //
   // Blocks
@@ -31,7 +33,7 @@ extension AppColors on ThemeData {
       brightness == Brightness.dark ? Colors.white70 : Colors.black54;
   Color get noteBlockBorderColor =>
       brightness == Brightness.dark ? Colors.white10 : Colors.black12;
-Color get noteTitleTextFieldColor =>
+  Color get noteTitleTextFieldColor =>
       brightness == Brightness.dark ? Colors.white54 : Colors.black54;
   // Todo
   Color get todoTaskDragIconColor =>
