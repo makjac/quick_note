@@ -121,9 +121,11 @@ class _HomePageSideMenuState extends State<HomePageSideMenu>
             ),
             height: 60,
             width: 60,
-            margin: const EdgeInsets.symmetric(
-              horizontal: Insets.s,
-              vertical: Insets.s,
+            margin: const EdgeInsets.only(
+              top: Insets.s,
+              bottom: Insets.s,
+              left: Insets.s,
+              right: Insets.xs + 2,
             ),
             padding: const EdgeInsets.all(Insets.xxs),
             child: Image.asset(
