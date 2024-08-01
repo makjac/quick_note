@@ -41,10 +41,10 @@ class _NoteBlockWidgetState extends State<NoteBlockWidget> {
       onExit: (_) => _setHover(false),
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: Insets.xs),
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           border: Border(
-            top: BorderSide(color: Colors.white10),
-            bottom: BorderSide(color: Colors.white10),
+            top: BorderSide(color: Theme.of(context).noteBlockBorderColor),
+            bottom: BorderSide(color: Theme.of(context).noteBlockBorderColor),
           ),
         ),
         child: Stack(
