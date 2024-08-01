@@ -146,7 +146,6 @@ class _HomePageSideMenuState extends State<HomePageSideMenu>
                   fontWeight: FontWeight.bold,
                   fontSize: 30,
                   letterSpacing: 1,
-                  shadows: [BoxShadow(blurRadius: .5)],
                 ),
                 overflow: TextOverflow.ellipsis,
               ),
