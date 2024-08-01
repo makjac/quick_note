@@ -4,6 +4,7 @@ import 'package:quick_note/core/constans/insets.dart';
 import 'package:quick_note/feature/home/domain/usecase/update_multiple_notes_usecase.dart';
 import 'package:quick_note/feature/notebook/presentation/bloc/notebook_bloc.dart';
 import 'package:quick_note/l10n/l10n.dart';
+import 'package:quick_note/preferences/theme/app_custom_colors.dart';
 
 class NotebookTitleTextField extends StatefulWidget {
   const NotebookTitleTextField({super.key});
@@ -41,10 +42,10 @@ class _NotebookTitleTextFieldState extends State<NotebookTitleTextField> {
           decoration: InputDecoration(
             border: InputBorder.none,
             hintText: context.l10n.notebook_title_hint_text,
-            hintStyle: const TextStyle(
+            hintStyle: TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.w700,
-              color: Colors.white54,
+              color: Theme.of(context).noteTitleTextFieldColor,
             ),
           ),
         ),
