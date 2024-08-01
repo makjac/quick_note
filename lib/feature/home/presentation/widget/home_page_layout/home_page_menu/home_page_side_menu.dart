@@ -144,7 +144,7 @@ class _HomePageSideMenuState extends State<HomePageSideMenu>
                 context.l10n.appName,
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 30,
+                  fontSize: 31,
                   letterSpacing: 1,
                 ),
                 overflow: TextOverflow.ellipsis,
