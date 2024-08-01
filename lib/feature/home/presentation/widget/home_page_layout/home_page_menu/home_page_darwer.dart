@@ -11,9 +11,62 @@ class HomePageDarwer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView(
+      child: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: Column(
+              children: [
+                _drawerHeader(context),
+                ListTile(
+                  leading: const Icon(Icons.notes_rounded),
+                  title: Text(context.l10n.menu_notes),
+                  onTap: () => context.pushNamed(AppRoutes.notesPage.name),
+                ),
+                ListTile(
+                  leading: const Icon(Icons.archive),
+                  title: Text(context.l10n.menu_archive),
+                  onTap: () => context.pushNamed(AppRoutes.archivePage.name),
+                ),
+                ListTile(
+                  leading: const Icon(Icons.delete),
+                  title: Text(context.l10n.menu_trash),
+                  onTap: () => context.pushNamed(AppRoutes.trashPage.name),
+                ),
+                const Divider(),
+              ],
+            ),
+          ),
+          SliverFillRemaining(
+            hasScrollBody: false,
+            child: Container(
+              alignment: Alignment.bottomCenter,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisSize: MainAxisSize.max,
         children: [
-          SizedBox(
+                  const Divider(),
+                  ListTile(
+                    leading: const Icon(Icons.settings),
+                    title: Text(context.l10n.menu_settings),
+                    onTap: () => context.pushNamed(AppRoutes.settingsPage.name),
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.help),
+                    title: Text(context.l10n.menu_help),
+                    onTap: () => context.pushNamed(AppRoutes.helpPage.name),
+                  ),
+                  const SizedBox(height: Insets.s)
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _drawerHeader(BuildContext context) {
+    return SizedBox(
             height: 120,
             child: DrawerHeader(
               padding: const EdgeInsets.all(Insets.s),
@@ -31,61 +84,11 @@ class HomePageDarwer extends StatelessWidget {
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 30,
-                      color: Colors.white,
                       letterSpacing: 1,
-                      shadows: [BoxShadow(blurRadius: .5)],
                     ),
                   ),
                 ],
               ),
-            ),
-          ),
-          ListTile(
-            iconColor: Colors.white,
-            textColor: Colors.white,
-            leading: const Icon(Icons.notes_rounded),
-            title: Text(context.l10n.menu_notes),
-            onTap: () => context.pushNamed(AppRoutes.notesPage.name),
-          ),
-          // ListTile(
-          //   iconColor: Colors.white,
-          //   textColor: Colors.white,
-          //   leading: const Icon(Icons.notifications),
-          //   title: Text(context.l10n.menu_reminders),
-          //   onTap: () => context.pushNamed(AppRoutes.remindersPage.name),
-          // ),
-          // const Divider(),
-          ListTile(
-            iconColor: Colors.white,
-            textColor: Colors.white,
-            leading: const Icon(Icons.archive),
-            title: Text(context.l10n.menu_archive),
-            onTap: () => context.pushNamed(AppRoutes.archivePage.name),
-          ),
-          ListTile(
-            iconColor: Colors.white,
-            textColor: Colors.white,
-            leading: const Icon(Icons.delete),
-            title: Text(context.l10n.menu_trash),
-            onTap: () => context.pushNamed(AppRoutes.trashPage.name),
-          ),
-          const Divider(),
-          ListTile(
-            iconColor: Colors.white,
-            textColor: Colors.white,
-            leading: const Icon(Icons.settings),
-            title: Text(context.l10n.menu_settings),
-            onTap: () => context.pushNamed(AppRoutes.settingsPage.name),
-          ),
-          ListTile(
-            iconColor: Colors.white,
-            textColor: Colors.white,
-            leading: const Icon(Icons.help),
-            title: Text(context.l10n.menu_help),
-            onTap: () => context.pushNamed(AppRoutes.helpPage.name),
-          ),
-          const SizedBox(height: Insets.s)
-        ],
       ),
     );
   }
