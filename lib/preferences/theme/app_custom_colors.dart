@@ -27,8 +27,12 @@ extension AppColors on ThemeData {
       brightness == Brightness.dark ? Colors.white70 : Colors.black87;
   //
   // Blocks
-  Color get addBlockBurronBorderColor =>
+  Color get addBlockButtonBorderColor =>
       brightness == Brightness.dark ? Colors.white70 : Colors.black54;
+  Color get noteBlockBorderColor =>
+      brightness == Brightness.dark ? Colors.white10 : Colors.black12;
+Color get noteTitleTextFieldColor =>
+      brightness == Brightness.dark ? Colors.white54 : Colors.black54;
   // Todo
   Color get todoTaskDragIconColor =>
       brightness == Brightness.dark ? Colors.white30 : Colors.black38;

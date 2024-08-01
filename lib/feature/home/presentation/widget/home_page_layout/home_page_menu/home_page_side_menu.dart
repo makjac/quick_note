@@ -121,9 +121,11 @@ class _HomePageSideMenuState extends State<HomePageSideMenu>
             ),
             height: 60,
             width: 60,
-            margin: const EdgeInsets.symmetric(
-              horizontal: Insets.s,
-              vertical: Insets.s,
+            margin: const EdgeInsets.only(
+              top: Insets.s,
+              bottom: Insets.s,
+              left: Insets.s,
+              right: Insets.xs + 2,
             ),
             padding: const EdgeInsets.all(Insets.xxs),
             child: Image.asset(
@@ -142,9 +144,8 @@ class _HomePageSideMenuState extends State<HomePageSideMenu>
                 context.l10n.appName,
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 30,
+                  fontSize: 31,
                   letterSpacing: 1,
-                  shadows: [BoxShadow(blurRadius: .5)],
                 ),
                 overflow: TextOverflow.ellipsis,
               ),
@@ -172,11 +173,6 @@ class _HomePageSideMenuState extends State<HomePageSideMenu>
         'label': context.l10n.menu_notes,
         'route': AppRoutes.notesPage,
       },
-      // {
-      //   'icon': Icons.notifications,
-      //   'label': context.l10n.menu_reminders,
-      //   'route': AppRoutes.remindersPage,
-      // },
       {
         'icon': Icons.archive,
         'label': context.l10n.menu_archive,

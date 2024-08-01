@@ -23,7 +23,7 @@ class _AddNoteBlockButtonState extends State<AddNoteBlockButton> {
       key: _key,
       onPressed: () => _showContextMenu(context),
       style: OutlinedButton.styleFrom(
-        side: BorderSide(color: Theme.of(context).addBlockBurronBorderColor),
+        side: BorderSide(color: Theme.of(context).addBlockButtonBorderColor),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
