@@ -10,6 +10,7 @@ Future<void> init() async {
   await _initApp();
   await _initNotebook();
   await _initAnalyticsService();
+  await _initAdMobService();
 
   locator.registerLazySingleton<SharedPreferences>(() => sharedPreferences);
 }
@@ -79,7 +80,9 @@ FutureOr<void> _initAnalyticsService() async {
     locator.registerLazySingleton<AnalyticsService>(() => AnalyticsService());
   }
 }
+
+FutureOr<void> _initAdMobService() async {
   if (PlatformHelper.isMobile()) {
-    locator.registerLazySingleton<AnalyticsManager>(() => AnalyticsManager());
+    locator.registerLazySingleton<AdMobService>(() => AdMobService());
   }
 }
