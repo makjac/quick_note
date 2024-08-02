@@ -9,7 +9,7 @@ Future<void> init() async {
   await _initNoteSearch();
   await _initApp();
   await _initNotebook();
-  await _initAnalyticsManager();
+  await _initAnalyticsService();
 
   locator.registerLazySingleton<SharedPreferences>(() => sharedPreferences);
 }
@@ -74,7 +74,11 @@ FutureOr<void> _initNotebook() async {
     );
 }
 
-FutureOr<void> _initAnalyticsManager() async {
+FutureOr<void> _initAnalyticsService() async {
+  if (PlatformHelper.isMobile()) {
+    locator.registerLazySingleton<AnalyticsService>(() => AnalyticsService());
+  }
+}
   if (PlatformHelper.isMobile()) {
     locator.registerLazySingleton<AnalyticsManager>(() => AnalyticsManager());
   }
