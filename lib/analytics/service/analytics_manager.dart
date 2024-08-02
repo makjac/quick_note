@@ -49,4 +49,11 @@ class AnalyticsManager {
       parameters: {'action': NoteAction.restored.name},
     );
   }
+
+  void logStarNoteEvent() {
+    _analytics.logEvent(
+      name: 'note_event',
+      parameters: {'action': NoteAction.stared.name},
+    );
+  }
 }
