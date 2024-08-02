@@ -1,5 +1,6 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:quick_note/analytics/enum/note_action.dart';
+import 'package:quick_note/feature/shared/domain/entity/note/note_block_type.dart';
 
 class AnalyticsManager {
   factory AnalyticsManager() => _instance;
@@ -68,6 +69,16 @@ class AnalyticsManager {
     _analytics.logEvent(
       name: 'note_event',
       parameters: {'action': NoteAction.colorChanged.name},
+    );
+  }
+
+  void logAddBlockEvent(NoteBlockType blockType) {
+    _analytics.logEvent(
+      name: 'note_event',
+      parameters: {
+        'action': NoteAction.addedBlock.name,
+        'block_type': blockType.name,
+      },
     );
   }
 }
