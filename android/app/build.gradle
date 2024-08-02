@@ -54,6 +54,10 @@ android {
             signingConfig = signingConfigs.debug
         }
     }
+
+    dependencies {
+        implementation 'com.google.android.gms:play-services-ads:23.2.0'
+    }
 }
 
 flutter {
