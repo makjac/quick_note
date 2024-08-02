@@ -81,4 +81,14 @@ class AnalyticsManager {
       },
     );
   }
+
+  void logRemoveBlockEvent(NoteBlockType blockType) {
+    _analytics.logEvent(
+      name: 'note_event',
+      parameters: {
+        'action': NoteAction.removedBlock.name,
+        'block_type': blockType.name,
+      },
+    );
+  }
 }
