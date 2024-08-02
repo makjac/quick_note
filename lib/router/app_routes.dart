@@ -1,4 +1,5 @@
 enum AppRoutes {
+  unknown('Unknown', '/'),
   homePage('Home_page', '/'),
   notesPage('Notes_Page', 'notes'),
   remindersPage('Reminders_page', 'reminders'),

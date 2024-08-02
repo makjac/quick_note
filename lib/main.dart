@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:ui';
 
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
@@ -17,12 +18,19 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  await _initAnalytics();
   await _initCrashlytics();
 
   await hive.init();
   await di.init();
 
   runApp(const App());
+}
+
+FutureOr<void> _initAnalytics() async {
+  if (PlatformHelper.isMobile()) {
+    await FirebaseAnalytics.instance.logAppOpen();
+  }
 }
 
 FutureOr<void> _initCrashlytics() async {

@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
+import 'package:quick_note/analytics/service/analytics_manager.dart';
+import 'package:quick_note/core/utils/platform_helper.dart';
 import 'package:quick_note/feature/home/data/datasource/app_local_data_source.dart';
 import 'package:quick_note/feature/home/data/repository/app_repository_impl.dart';
 import 'package:quick_note/feature/home/domain/repository/app_repository.dart';
