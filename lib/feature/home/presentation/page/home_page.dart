@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quick_note/core/constans/app_constans.dart';
+import 'package:quick_note/core/utils/platform_helper.dart';
 import 'package:quick_note/feature/home/presentation/bloc/app_bloc.dart';
 import 'package:quick_note/feature/home/presentation/cubit/note_search_cubit.dart';
 import 'package:quick_note/feature/home/presentation/page/archive_page.dart';
@@ -46,7 +47,7 @@ class HomePage extends StatelessWidget {
                 label: const Text("Add note"),
               )
             : null,
-        bottomNavigationBar: const HomePageAdBanner(),
+        bottomNavigationBar: _buildBottomNavigationBar(),
       ),
     );
   }
@@ -65,6 +66,13 @@ class HomePage extends StatelessWidget {
     final currentRoute = _getCurrentRoute(context);
 
     return currentRoute == AppRoutes.trashPage;
+  }
+
+  Widget? _buildBottomNavigationBar() {
+    if (PlatformHelper.isMobile()) {
+      return const HomePageAdBanner();
+    }
+    return null;
   }
 }
 
