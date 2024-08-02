@@ -563,18 +563,10 @@ class _PackageLicenceSection extends StatelessWidget {
           top: BorderSide(),
         ),
       ),
-      child: Column(
+      child: ExpansionTile(
+        title: Text(name),
+        collapsedBackgroundColor: Colors.grey[700],
         children: [
-          Container(
-            padding: const EdgeInsets.all(Insets.s),
-            width: double.infinity,
-            color: Colors.grey,
-            child: Text(
-              name,
-              style: const TextStyle(fontSize: 16),
-            ),
-          ),
-          const SizedBox(height: Insets.xs),
           Padding(
             padding: const EdgeInsets.all(Insets.s),
             child: SizedBox(
