@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -8,18 +7,15 @@ import 'package:quick_note/feature/home/presentation/bloc/app_bloc.dart';
 import 'package:quick_note/feature/home/presentation/page/home_page.dart';
 import 'package:quick_note/feature/home/presentation/widget/settings/licence_info_view.dart';
 import 'package:quick_note/feature/notebook/presentation/page/notebook_page.dart';
+import 'package:quick_note/router/analytics_route_observer.dart';
 import 'package:quick_note/router/app_routes.dart';
 
 class AppRouter extends Equatable {
-  static FirebaseAnalytics analytics = FirebaseAnalytics.instance;
-  static FirebaseAnalyticsObserver observer =
-      FirebaseAnalyticsObserver(analytics: analytics);
-
   static final GoRouter router = GoRouter(
     routes: _routes,
     initialLocation: '/${AppRoutes.notesPage.path}',
     observers: [
-      if (PlatformHelper.isMobile()) observer,
+      if (PlatformHelper.isMobile()) AnalyticsRouteObserver(),
     ],
   );
 
@@ -27,8 +23,10 @@ class AppRouter extends Equatable {
     GoRoute(
       path: AppRoutes.homePage.path,
       name: AppRoutes.homePage.name,
-      pageBuilder: (context, state) =>
-          const NoTransitionPage(child: HomePage()),
+      pageBuilder: (context, state) => NoTransitionPage(
+        child: const HomePage(),
+        name: AppRoutes.homePage.name,
+      ),
       builder: (context, state) {
         BlocProvider.of<AppBloc>(context).add(AppLoadCachedNotes());
         return const HomePage();
@@ -37,8 +35,10 @@ class AppRouter extends Equatable {
         GoRoute(
           path: AppRoutes.notesPage.path,
           name: AppRoutes.notesPage.name,
-          pageBuilder: (context, state) =>
-              const NoTransitionPage(child: HomePage()),
+          pageBuilder: (context, state) => NoTransitionPage(
+            child: const HomePage(),
+            name: AppRoutes.notesPage.name,
+          ),
           builder: (context, state) {
             BlocProvider.of<AppBloc>(context).add(AppLoadCachedNotes());
             return const HomePage();
@@ -47,8 +47,10 @@ class AppRouter extends Equatable {
         GoRoute(
           path: AppRoutes.remindersPage.path,
           name: AppRoutes.remindersPage.name,
-          pageBuilder: (context, state) =>
-              const NoTransitionPage(child: HomePage()),
+          pageBuilder: (context, state) => NoTransitionPage(
+            child: const HomePage(),
+            name: AppRoutes.remindersPage.name,
+          ),
           builder: (context, state) {
             BlocProvider.of<AppBloc>(context).add(AppLoadCachedNotes());
             return const HomePage();
@@ -57,8 +59,10 @@ class AppRouter extends Equatable {
         GoRoute(
           path: AppRoutes.archivePage.path,
           name: AppRoutes.archivePage.name,
-          pageBuilder: (context, state) =>
-              const NoTransitionPage(child: HomePage()),
+          pageBuilder: (context, state) => NoTransitionPage(
+            child: const HomePage(),
+            name: AppRoutes.archivePage.name,
+          ),
           builder: (context, state) {
             BlocProvider.of<AppBloc>(context).add(AppLoadCachedNotes());
             return const HomePage();
@@ -67,8 +71,10 @@ class AppRouter extends Equatable {
         GoRoute(
           path: AppRoutes.trashPage.path,
           name: AppRoutes.trashPage.name,
-          pageBuilder: (context, state) =>
-              const NoTransitionPage(child: HomePage()),
+          pageBuilder: (context, state) => NoTransitionPage(
+            child: const HomePage(),
+            name: AppRoutes.trashPage.name,
+          ),
           builder: (context, state) {
             BlocProvider.of<AppBloc>(context).add(AppLoadCachedNotes());
             return const HomePage();
@@ -77,22 +83,28 @@ class AppRouter extends Equatable {
         GoRoute(
           path: AppRoutes.settingsPage.path,
           name: AppRoutes.settingsPage.name,
-          pageBuilder: (context, state) =>
-              const NoTransitionPage(child: HomePage()),
+          pageBuilder: (context, state) => NoTransitionPage(
+            child: const HomePage(),
+            name: AppRoutes.settingsPage.name,
+          ),
           builder: (context, state) => const HomePage(),
         ),
         GoRoute(
           path: AppRoutes.helpPage.path,
           name: AppRoutes.helpPage.name,
-          pageBuilder: (context, state) =>
-              const NoTransitionPage(child: HomePage()),
+          pageBuilder: (context, state) => NoTransitionPage(
+            child: const HomePage(),
+            name: AppRoutes.helpPage.name,
+          ),
           builder: (context, state) => const HomePage(),
           routes: [
             GoRoute(
               path: AppRoutes.license.path,
               name: AppRoutes.license.name,
-              pageBuilder: (context, state) =>
-                  const NoTransitionPage(child: LicenceInfoView()),
+              pageBuilder: (context, state) => NoTransitionPage(
+                child: const LicenceInfoView(),
+                name: AppRoutes.license.name,
+              ),
               builder: (context, state) => const LicenceInfoView(),
             )
           ],
@@ -111,6 +123,7 @@ class AppRouter extends Equatable {
         child: NotebookPage(
           noteId: num.tryParse(state.pathParameters["id"] ?? ""),
         ),
+        name: AppRoutes.notebook.name,
       ),
       routes: [
         GoRoute(
