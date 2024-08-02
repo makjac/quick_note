@@ -15,4 +15,14 @@ class AdMobService {
   Future<void> initialize() async {
     await _mobileAds.initialize();
   }
+
+  String? get bannerAdUnitId {
+    if (Platform.isAndroid) {
+      return 'ca-app-pub-5166777989324584/8485435308';
+    } else if (Platform.isIOS) {
+      return null;
+    } else {
+      throw UnsupportedError('Unsupported platform');
+    }
+  }
 }
