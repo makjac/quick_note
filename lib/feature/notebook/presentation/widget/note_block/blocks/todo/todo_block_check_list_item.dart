@@ -37,10 +37,7 @@ class _TodoBlockCheckListItem extends State<TodoBlockCheckListItem> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         if (widget.draggable) _buildDragHandle(),
-        if (!widget.draggable)
-          const SizedBox(
-            width: Insets.m,
-          ),
+        if (!widget.draggable) const SizedBox(width: Insets.m),
         _buildCheckbox(context),
         const SizedBox(width: Insets.xxs),
         _buildTextField(context),

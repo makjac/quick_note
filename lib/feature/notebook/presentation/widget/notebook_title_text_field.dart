@@ -28,6 +28,9 @@ class _NotebookTitleTextFieldState extends State<NotebookTitleTextField> {
       listener: (context, state) {
         _controller.text = state.note?.title ?? "";
       },
+      listenWhen: (previous, current) {
+        return _controller.text.isEmpty;
+      },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: Insets.s),
         child: TextField(
