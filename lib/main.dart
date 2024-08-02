@@ -6,6 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:quick_note/app/app.dart';
+import 'package:quick_note/core/service/admob/ad_mob_service.dart';
 import 'package:quick_note/core/utils/platform_helper.dart';
 import 'package:quick_note/firebase_options.dart';
 import 'package:quick_note/hive/hive.dart' as hive;
@@ -23,6 +24,8 @@ Future<void> main() async {
 
   await hive.init();
   await di.init();
+
+  await _initAdMobService();
 
   runApp(const App());
 }
@@ -43,5 +46,11 @@ FutureOr<void> _initCrashlytics() async {
       FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
       return true;
     };
+  }
+}
+
+FutureOr<void> _initAdMobService() async {
+  if (PlatformHelper.isMobile()) {
+    await di.locator<AdMobService>().initialize();
   }
 }
