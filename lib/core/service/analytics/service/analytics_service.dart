@@ -1,14 +1,14 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:quick_note/analytics/enum/note_action.dart';
+import 'package:quick_note/core/service/analytics/enum/note_action.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note_block_type.dart';
 
-class AnalyticsManager {
-  factory AnalyticsManager() => _instance;
+class AnalyticsService {
+  factory AnalyticsService() => _instance;
 
-  AnalyticsManager._({FirebaseAnalytics? analytics})
+  AnalyticsService._({FirebaseAnalytics? analytics})
       : _analytics = analytics ?? FirebaseAnalytics.instance;
 
-  static final _instance = AnalyticsManager._();
+  static final _instance = AnalyticsService._();
 
   final FirebaseAnalytics _analytics;
 
