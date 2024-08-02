@@ -9,4 +9,8 @@ class AnalyticsManager {
   static final _instance = AnalyticsManager._();
 
   final FirebaseAnalytics _analytics;
+
+  void logScreenView(String screenName) {
+    _analytics.logScreenView(screenName: screenName);
+  }
 }
