@@ -21,4 +21,11 @@ class AnalyticsManager {
       parameters: {'action': NoteAction.created.name},
     );
   }
+
+  void logDeleteNoteEvent() {
+    _analytics.logEvent(
+      name: 'note_event',
+      parameters: {'action': NoteAction.deleted.name},
+    );
+  }
 }
