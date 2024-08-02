@@ -25,4 +25,17 @@ class AdMobService {
       throw UnsupportedError('Unsupported platform');
     }
   }
+
+  BannerAdListener getBannerAdListener() {
+    return BannerAdListener(
+      onAdLoaded: (ad) {},
+      onAdFailedToLoad: (ad, error) {
+        ad.dispose();
+      },
+      onAdOpened: (ad) {},
+      onAdClosed: (ad) {},
+      onAdImpression: (ad) {},
+      onAdClicked: (ad) {},
+    );
+  }
 }
