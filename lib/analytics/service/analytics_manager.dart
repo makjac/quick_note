@@ -91,4 +91,11 @@ class AnalyticsManager {
       },
     );
   }
+
+  void logReorderBlocksEvent() {
+    _analytics.logEvent(
+      name: 'note_event',
+      parameters: {'action': NoteAction.reorderBlocks.name},
+    );
+  }
 }
