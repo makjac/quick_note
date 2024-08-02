@@ -56,4 +56,11 @@ class AnalyticsManager {
       parameters: {'action': NoteAction.stared.name},
     );
   }
+
+  void logUnstarNoteEvent() {
+    _analytics.logEvent(
+      name: 'note_event',
+      parameters: {'action': NoteAction.unstared.name},
+    );
+  }
 }
