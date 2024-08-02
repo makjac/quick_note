@@ -17,12 +17,19 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  await _initAnalytics();
   await _initCrashlytics();
 
   await hive.init();
   await di.init();
 
   runApp(const App());
+}
+
+FutureOr<void> _initAnalytics() async {
+  if (PlatformHelper.isMobile()) {
+    await FirebaseAnalytics.instance.logAppOpen();
+  }
 }
 
 FutureOr<void> _initCrashlytics() async {
