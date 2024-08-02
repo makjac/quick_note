@@ -63,4 +63,11 @@ class AnalyticsManager {
       parameters: {'action': NoteAction.unstared.name},
     );
   }
+
+  void logChangeNoteColorEvent() {
+    _analytics.logEvent(
+      name: 'note_event',
+      parameters: {'action': NoteAction.colorChanged.name},
+    );
+  }
 }
