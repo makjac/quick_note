@@ -36,7 +36,6 @@ class HomePage extends StatelessWidget {
             ),
           ),
         ),
-        bottomNavigationBar: const HomePageAdBanner(),
         floatingActionButton: width < AppConstans.mobileSize
             ? FloatingActionButton.extended(
                 onPressed: () =>
@@ -47,6 +46,7 @@ class HomePage extends StatelessWidget {
                 label: const Text("Add note"),
               )
             : null,
+        bottomNavigationBar: const HomePageAdBanner(),
       ),
     );
   }
