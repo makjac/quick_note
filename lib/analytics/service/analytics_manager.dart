@@ -35,4 +35,11 @@ class AnalyticsManager {
       parameters: {'action': NoteAction.archived.name},
     );
   }
+
+  void logUnarchiveNoteEvent() {
+    _analytics.logEvent(
+      name: 'note_event',
+      parameters: {'action': NoteAction.unarchived.name},
+    );
+  }
 }
