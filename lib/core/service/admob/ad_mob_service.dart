@@ -26,6 +26,15 @@ class AdMobService {
     }
   }
 
+  BannerAd createBannerAd() {
+    return BannerAd(
+      size: AdSize.banner,
+      adUnitId: bannerAdUnitId!,
+      listener: getBannerAdListener(),
+      request: const AdRequest(),
+    );
+  }
+
   BannerAdListener getBannerAdListener() {
     return BannerAdListener(
       onAdLoaded: (ad) {},
