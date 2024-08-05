@@ -18,32 +18,6 @@ QuickNote is a note-taking application developed using Flutter. It allows users 
 - **Language Support**: The app is available in 9 languages.
 - **Themes**: Choose between light and dark themes.
 
-## Installation
-
-1. **Clone the repository:**
-
-   ```bash
-   git clone https://github.com/YourUsername/QuickNote.git
-   ```
-
-2. **Navigate to the project directory:**
-
-    ```bash
-    cd QuickNote
-    ```
-
-3. **Install dependencies:**
-
-    ```bash
-    flutter pub get
-    ```
-
-4. **Run the application:**
-
-    ```bash
-    flutter run
-    ```
-
 ## Screenshots
 
 ![desktop:home_page](https://i.imgur.com/yYNgptY.png)
