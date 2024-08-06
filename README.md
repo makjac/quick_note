@@ -3,6 +3,8 @@
 
 ![header](https://i.imgur.com/L0fK5I9.png)
 
+[![google_play](https://i.imgur.com/phZKkjj.png)]([https://www.youtube.com/watch?v=QdGdgI1xUeE](https://play.google.com/store/apps/details?id=com.quicknoteecoala.app&pcampaignid=web_share))
+
 QuickNote is a note-taking application developed using Flutter. It allows users to create, edit, archive, search, and delete notes. Each note consists of blocks that users can add, such as text blocks and to-do blocks. The app supports 9 languages and offers two themes: light and dark.
 
 ## Features
