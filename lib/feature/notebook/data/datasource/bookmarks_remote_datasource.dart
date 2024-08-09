@@ -82,4 +82,14 @@ class BookmarksRemoteDatasourceImpl implements BookmarksRemoteDatasource {
     var favicons = await fetchAllFaviconUrls(url);
     return favicons.where((favicon) => favicon.type == type).toList();
   }
+
+  @override
+  Future<List<FaviconDataModel>> fetchFaviconsBySizeRange(
+      String url, int minSize, int maxSize) async {
+    var favicons = await fetchAllFaviconUrls(url);
+    return favicons.where((favicon) {
+      var size = _parseSize(favicon.sizes);
+      return size >= minSize && size <= maxSize;
+    }).toList();
+  }
   }
