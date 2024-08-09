@@ -44,6 +44,18 @@ abstract class BookmarksRemoteDatasource {
   /// }
   /// ```
   Future<List<FaviconDataModel>> fetchFaviconsByType(String url, String type);
+
+  /// Fetches favicons within a specified size range for a given URL.
+  ///
+  /// This method retrieves favicons that fall within the given size range (e.g., 16 to 32 pixels) for the specified URL.
+  ///
+  /// Example usage:
+  /// ```dart
+  /// final faviconsBySize = await datasource.fetchFaviconsBySizeRange('https://example.com', 16, 32);
+  /// for (var favicon in faviconsBySize) {
+  ///   print('Favicon URL: ${favicon.url}, Sizes: ${favicon.sizes}');
+  /// }
+  /// ```
   Future<List<FaviconDataModel>> fetchFaviconsBySizeRange(
       String url, int minSize, int maxSize);
   Future<bool> isValidFaviconUrl(String url);
