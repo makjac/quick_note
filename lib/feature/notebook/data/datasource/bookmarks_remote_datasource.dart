@@ -69,6 +69,18 @@ abstract class BookmarksRemoteDatasource {
   /// print('Is valid favicon URL: $isValid');
   /// ```
   Future<bool> isValidFaviconUrl(String url);
+
+  /// Fetches all favicons available for a specific domain.
+  ///
+  /// This method retrieves all favicons for a given domain. The domain should be provided in its base form (e.g., 'https://example.com').
+  ///
+  /// Example usage:
+  /// ```dart
+  /// final domainFavicons = await datasource.fetchFaviconsByDomain('https://example.com');
+  /// for (var favicon in domainFavicons) {
+  ///   print('Domain Favicon URL: ${favicon.url}');
+  /// }
+  /// ```
   Future<List<FaviconDataModel>> fetchFaviconsByDomain(String domain);
 }
 class BookmarksRemoteDatasourceImpl implements BookmarksRemoteDatasource {
