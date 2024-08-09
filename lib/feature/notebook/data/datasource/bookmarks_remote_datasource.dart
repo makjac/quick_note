@@ -18,6 +18,18 @@ abstract class BookmarksRemoteDatasource {
   /// print('Best Favicon URL: $bestFaviconUrl');
   /// ```
   Future<String?> fetchBestFaviconUrl(String url);
+
+  /// Fetches all available favicon URLs for a given URL.
+  ///
+  /// This method retrieves all favicon URLs found on the specified webpage. The result may include favicons of different sizes and types.
+  ///
+  /// Example usage:
+  /// ```dart
+  /// final allFavicons = await datasource.fetchAllFaviconUrls('https://example.com');
+  /// for (var favicon in allFavicons) {
+  ///   print('Favicon URL: ${favicon.url}, Sizes: ${favicon.sizes}, Type: ${favicon.type}');
+  /// }
+  /// ```
   Future<List<FaviconDataModel>> fetchAllFaviconUrls(String url);
   Future<List<FaviconDataModel>> fetchFaviconsByType(String url, String type);
   Future<List<FaviconDataModel>> fetchFaviconsBySizeRange(
