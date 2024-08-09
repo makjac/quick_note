@@ -92,4 +92,9 @@ class BookmarksRemoteDatasourceImpl implements BookmarksRemoteDatasource {
       return size >= minSize && size <= maxSize;
     }).toList();
   }
+
+  @override
+  Future<bool> isValidFaviconUrl(String url) async {
+    return await _verifyImage(url);
+  }
   }
