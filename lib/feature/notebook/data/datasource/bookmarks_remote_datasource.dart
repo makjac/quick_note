@@ -5,6 +5,8 @@ import 'package:http/http.dart' as http;
 import 'package:html/parser.dart' as html_parser;
 import 'package:image/image.dart';
 import 'package:quick_note/feature/notebook/data/model/favicon_data.module.dart';
+
+/// Abstract class for managing remote bookmark data sources related to favicons.
 abstract class BookmarksRemoteDatasource {
   Future<String?> fetchBestFaviconUrl(String url);
   Future<List<FaviconDataModel>> fetchAllFaviconUrls(String url);
