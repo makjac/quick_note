@@ -31,6 +31,18 @@ abstract class BookmarksRemoteDatasource {
   /// }
   /// ```
   Future<List<FaviconDataModel>> fetchAllFaviconUrls(String url);
+
+  /// Fetches favicons of a specific type for a given URL.
+  ///
+  /// This method filters favicons based on their MIME type (e.g., 'image/png', 'image/svg+xml') for the specified URL.
+  ///
+  /// Example usage:
+  /// ```dart
+  /// final pngFavicons = await datasource.fetchFaviconsByType('https://example.com', 'image/png');
+  /// for (var favicon in pngFavicons) {
+  ///   print('PNG Favicon URL: ${favicon.url}');
+  /// }
+  /// ```
   Future<List<FaviconDataModel>> fetchFaviconsByType(String url, String type);
   Future<List<FaviconDataModel>> fetchFaviconsBySizeRange(
       String url, int minSize, int maxSize);
