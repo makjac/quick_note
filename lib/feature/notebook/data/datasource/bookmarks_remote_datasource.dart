@@ -104,4 +104,19 @@ class BookmarksRemoteDatasourceImpl implements BookmarksRemoteDatasource {
     var url = '${uri.scheme}://${uri.host}';
     return await fetchAllFaviconUrls(url);
   }
+  String _sanitizeUrl(String url, Uri baseUri) {
+    if (url.startsWith('//')) {
+      return '${baseUri.scheme}:$url';
+    }
+
+    if (url.startsWith('/')) {
+      return '${baseUri.scheme}://${baseUri.host}$url';
+    }
+
+    if (!url.startsWith('http')) {
+      return '${baseUri.scheme}://${baseUri.host}/$url';
+    }
+
+    return url.split('?').first;
+  }
   }
