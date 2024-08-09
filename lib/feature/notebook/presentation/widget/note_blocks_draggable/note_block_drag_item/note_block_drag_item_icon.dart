@@ -13,6 +13,8 @@ class NoteBlockDragItemIcon extends StatelessWidget {
         return const Icon(Icons.text_fields);
       case NoteBlockType.todo:
         return const Icon(Icons.check_box_outlined);
+      case NoteBlockType.bookmarks:
+        return const Icon(Icons.link);
       default:
         return const Icon(Icons.text_fields);
     }
