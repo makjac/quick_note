@@ -119,4 +119,23 @@ class BookmarksRemoteDatasourceImpl implements BookmarksRemoteDatasource {
 
     return url.split('?').first;
   }
+  Future<bool> _verifyImage(String url) async {
+    var response = await client.get(Uri.parse(url));
+
+    var contentType = response.headers['content-type'];
+    if (contentType == null || !contentType.contains('image')) return false;
+
+    if (url.endsWith('.ico')) {
+      if (response.bodyBytes.length < 4) return false;
+      if (!_verifySignature(response.bodyBytes, [0, 0, 1, 0]) &&
+          !_verifySignature(
+              response.bodyBytes, [137, 80, 78, 71, 13, 10, 26, 10])) {
+        return false;
+      }
+    }
+
+    return response.statusCode == 200 &&
+        (response.contentLength ?? 0) > 0 &&
+        contentType.contains('image');
+  }
   }
