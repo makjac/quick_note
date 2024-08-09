@@ -97,4 +97,11 @@ class BookmarksRemoteDatasourceImpl implements BookmarksRemoteDatasource {
   Future<bool> isValidFaviconUrl(String url) async {
     return await _verifyImage(url);
   }
+
+  @override
+  Future<List<FaviconDataModel>> fetchFaviconsByDomain(String domain) async {
+    var uri = Uri.parse(domain);
+    var url = '${uri.scheme}://${uri.host}';
+    return await fetchAllFaviconUrls(url);
+  }
   }
