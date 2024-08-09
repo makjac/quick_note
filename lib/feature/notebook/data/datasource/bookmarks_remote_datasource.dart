@@ -58,6 +58,16 @@ abstract class BookmarksRemoteDatasource {
   /// ```
   Future<List<FaviconDataModel>> fetchFaviconsBySizeRange(
       String url, int minSize, int maxSize);
+
+  /// Checks if a given URL is a valid favicon URL.
+  ///
+  /// This method verifies if the specified URL points to a valid favicon by checking its image content.
+  ///
+  /// Example usage:
+  /// ```dart
+  /// final isValid = await datasource.isValidFaviconUrl('https://example.com/favicon.ico');
+  /// print('Is valid favicon URL: $isValid');
+  /// ```
   Future<bool> isValidFaviconUrl(String url);
   Future<List<FaviconDataModel>> fetchFaviconsByDomain(String domain);
 }
