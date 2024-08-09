@@ -8,7 +8,7 @@ enum NoteBlockType {
   text,
   @HiveField(10)
   todo,
-@HiveField(20)
+  @HiveField(20)
   bookmarks,
   // image,
   // video,
@@ -20,7 +20,7 @@ enum NoteBlockType {
   // quote,
   // seperator,
   // location,
-// contact,
+  // contact,
   // calendar,
   // rrs,
 }

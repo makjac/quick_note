@@ -1,39 +1,39 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'note_block_type.dart';
+part of 'bookmark_view_mode.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class NoteBlockTypeAdapter extends TypeAdapter<NoteBlockType> {
+class BookmarkViewModeAdapter extends TypeAdapter<BookmarkViewMode> {
   @override
-  final int typeId = 2;
+  final int typeId = 9;
 
   @override
-  NoteBlockType read(BinaryReader reader) {
+  BookmarkViewMode read(BinaryReader reader) {
     switch (reader.readByte()) {
       case 0:
-        return NoteBlockType.text;
+        return BookmarkViewMode.list;
       case 10:
-        return NoteBlockType.todo;
+        return BookmarkViewMode.grid;
       case 20:
-        return NoteBlockType.bookmarks;
+        return BookmarkViewMode.icons;
       default:
-        return NoteBlockType.text;
+        return BookmarkViewMode.list;
     }
   }
 
   @override
-  void write(BinaryWriter writer, NoteBlockType obj) {
+  void write(BinaryWriter writer, BookmarkViewMode obj) {
     switch (obj) {
-      case NoteBlockType.text:
+      case BookmarkViewMode.list:
         writer.writeByte(0);
         break;
-      case NoteBlockType.todo:
+      case BookmarkViewMode.grid:
         writer.writeByte(10);
         break;
-      case NoteBlockType.bookmarks:
+      case BookmarkViewMode.icons:
         writer.writeByte(20);
         break;
     }
@@ -45,7 +45,7 @@ class NoteBlockTypeAdapter extends TypeAdapter<NoteBlockType> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is NoteBlockTypeAdapter &&
+      other is BookmarkViewModeAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
