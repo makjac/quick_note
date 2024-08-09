@@ -138,4 +138,11 @@ class BookmarksRemoteDatasourceImpl implements BookmarksRemoteDatasource {
         (response.contentLength ?? 0) > 0 &&
         contentType.contains('image');
   }
+  bool _verifySignature(Uint8List bodyBytes, List<int> signature) {
+    var fileSignature = bodyBytes.sublist(0, signature.length);
+    for (var i = 0; i < fileSignature.length; i++) {
+      if (fileSignature[i] != signature[i]) return false;
+    }
+    return true;
+  }
   }
