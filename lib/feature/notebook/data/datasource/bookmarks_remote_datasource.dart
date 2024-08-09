@@ -8,6 +8,15 @@ import 'package:quick_note/feature/notebook/data/model/favicon_data.module.dart'
 
 /// Abstract class for managing remote bookmark data sources related to favicons.
 abstract class BookmarksRemoteDatasource {
+  /// Fetches the URL of the best favicon for a given URL.
+  ///
+  /// This method identifies the most suitable favicon (usually the highest quality or most relevant one) for the specified URL.
+  ///
+  /// Example usage:
+  /// ```dart
+  /// final bestFaviconUrl = await datasource.fetchBestFaviconUrl('https://example.com');
+  /// print('Best Favicon URL: $bestFaviconUrl');
+  /// ```
   Future<String?> fetchBestFaviconUrl(String url);
   Future<List<FaviconDataModel>> fetchAllFaviconUrls(String url);
   Future<List<FaviconDataModel>> fetchFaviconsByType(String url, String type);
