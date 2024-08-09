@@ -1,3 +1,9 @@
+// ignore_for_file: avoid_print, depend_on_referenced_packages
+
+import 'dart:typed_data';
+import 'package:http/http.dart' as http;
+import 'package:html/parser.dart' as html_parser;
+import 'package:image/image.dart';
 import 'package:quick_note/feature/notebook/data/model/favicon_data.module.dart';
 abstract class BookmarksRemoteDatasource {
   Future<String?> fetchBestFaviconUrl(String url);
@@ -13,6 +19,15 @@ class BookmarksRemoteDatasourceImpl implements BookmarksRemoteDatasource {
       : client = client ?? http.Client();
 
   final http.Client client;
+
+  @override
+  Future<String?> fetchBestFaviconUrl(String url) async {
+    var favicons = await fetchAllFaviconUrls(url);
+    if (favicons.isEmpty) return null;
+
+    favicons.sort();
+    return favicons.first.url;
+  }
 
   @override
   Future<List<FaviconDataModel>> fetchAllFaviconUrls(String url) async {
