@@ -75,4 +75,11 @@ class BookmarksRemoteDatasourceImpl implements BookmarksRemoteDatasource {
 
     return favicons;
   }
+
+  @override
+  Future<List<FaviconDataModel>> fetchFaviconsByType(
+      String url, String type) async {
+    var favicons = await fetchAllFaviconUrls(url);
+    return favicons.where((favicon) => favicon.type == type).toList();
+  }
   }
