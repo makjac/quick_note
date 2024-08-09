@@ -145,4 +145,12 @@ class BookmarksRemoteDatasourceImpl implements BookmarksRemoteDatasource {
     }
     return true;
   }
+  int _parseSize(String? size) {
+    if (size == null) return 16;
+    var sizeParts = size.split('x');
+    if (sizeParts.length == 2) {
+      return int.parse(sizeParts[0]);
+    }
+    return 16;
+  }
   }
