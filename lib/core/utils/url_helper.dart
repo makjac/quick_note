@@ -1,2 +1,12 @@
 class UrlHelper {
+  static const String urlPattern = r'^(https?:\/\/)?' // protokół opcjonalny
+      r'^(https?:\/\/)?' // Optional protocol (http or https)
+      r'((([a-zA-Z\d]([a-zA-Z\d-]*[a-zA-Z\d])*)\.)+[a-zA-Z]{2,}' // Domain (e.g., example.com or sub.example.com)
+      r'|((\d{1,3}\.){3}\d{1,3})' // IP address (e.g., 192.168.1.1)
+      r'|(([a-zA-Z0-9\u00a1-\uffff][a-zA-Z0-9\u00a1-\uffff-]{0,62})?[a-zA-Z0-9\u00a1-\uffff]\.)+([a-zA-Z\u00a1-\uffff]{2,}\.?))' // International domain (e.g., example.co.uk or example.世界)
+      r'(:\d{2,5})?' // Optional port (e.g., :8080)
+      r'(\/[a-zA-Z\d%_.~+=:@-]*)*' // Path (must not have consecutive slashes or invalid characters)
+      r'(\?[;&a-zA-Z\d%_.~+=-]*)?' // Optional query string (e.g., ?key=value&anotherkey=anothervalue)
+      r'(#[-a-zA-Z\d_]*)?$'; // Optional fragment (e.g., #section1)
+
 }
