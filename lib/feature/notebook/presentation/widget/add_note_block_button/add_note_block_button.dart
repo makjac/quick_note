@@ -52,8 +52,9 @@ class _AddNoteBlockButtonState extends State<AddNoteBlockButton> {
           userInfo: NoteBlockType.todo,
         ),
         MenuItem(
-          title: context.l10n.other,
-          image: const Icon(Icons.more_horiz, color: Colors.white),
+          title: context.l10n.bookmarks,
+          image: const Icon(Icons.link, color: Colors.white),
+          userInfo: NoteBlockType.bookmarks,
         ),
       ],
       onClickMenu: (item) {
