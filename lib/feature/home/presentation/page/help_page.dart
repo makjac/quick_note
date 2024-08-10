@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:quick_note/core/constans/app_assets.dart';
@@ -24,12 +25,11 @@ class HelpPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(
+                SvgPicture.asset(
+                  AppAssets.logoBoxSVG,
+                  height: 150,
                   width: 150,
-                  child: Image.asset(
-                    AppAssets.logoRectangle,
-                    fit: BoxFit.contain,
-                  ),
+                  fit: BoxFit.contain,
                 ),
                 const SizedBox(height: Insets.xl),
                 FutureBuilder<PackageInfo>(
