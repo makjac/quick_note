@@ -31,4 +31,12 @@ class UrlHelper {
     return uri.host;
   }
 
+static Future<void> launchUrl(String url) async {
+    final uri = Uri.parse(url);
+
+    final canLaunch = await ul.canLaunchUrl(uri);
+    if (!canLaunch) return;
+
+    await ul.launchUrl(uri, mode: ul.LaunchMode.externalApplication);
+  }
 }
