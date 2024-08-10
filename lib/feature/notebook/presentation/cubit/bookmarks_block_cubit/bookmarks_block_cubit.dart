@@ -21,4 +21,11 @@ class BookmarksBlockCubit extends Cubit<BookmarksBlockState> {
   FutureOr<void> loadBlock(BookmarksBlock block) async {
     emit(state.copyWith(block: block));
   }
+
+  Future<void> changeBlockTitleVisibility(bool? visible) async {
+    if (visible == null) return;
+
+    final updatedBlock = state.block.copyWith(hasTitle: visible);
+    emit(state.copyWith(block: updatedBlock));
+  }
 }
