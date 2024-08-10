@@ -20,26 +20,17 @@ class NoteHelper {
               ),
               child: AspectRatio(
                 aspectRatio: 4 / 3.1,
-                child: GridView.count(
-                  crossAxisCount: 4,
-                  crossAxisSpacing: Insets.xs,
-                  mainAxisSpacing: Insets.xs,
+                child: GridView.builder(
                   padding: const EdgeInsets.all(8.0),
-                  shrinkWrap: true,
-                  children: [
-                    _buildColorTile(NoteColors.color1, context),
-                    _buildColorTile(NoteColors.color2, context),
-                    _buildColorTile(NoteColors.color3, context),
-                    _buildColorTile(NoteColors.color4, context),
-                    _buildColorTile(NoteColors.color5, context),
-                    _buildColorTile(NoteColors.color6, context),
-                    _buildColorTile(NoteColors.color7, context),
-                    _buildColorTile(NoteColors.color8, context),
-                    _buildColorTile(NoteColors.color9, context),
-                    _buildColorTile(NoteColors.color10, context),
-                    _buildColorTile(NoteColors.color11, context),
-                    _buildColorTile(NoteColors.color12, context),
-                  ],
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 4,
+                    crossAxisSpacing: Insets.xs,
+                    mainAxisSpacing: Insets.xs,
+                  ),
+                  itemCount: NoteColors.values.length,
+                  itemBuilder: (context, index) {
+                    return _buildColorTile(NoteColors.values[index], context);
+                  },
                 ),
               ),
             ),
