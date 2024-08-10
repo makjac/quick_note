@@ -28,4 +28,11 @@ class BookmarksBlockCubit extends Cubit<BookmarksBlockState> {
     final updatedBlock = state.block.copyWith(hasTitle: visible);
     emit(state.copyWith(block: updatedBlock));
   }
+
+  Future<void> changeFaviconsVisibility(bool? visible) async {
+    if (visible == null) return;
+
+    final updatedBlock = state.block.copyWith(visibleFavicons: visible);
+    emit(state.copyWith(block: updatedBlock));
+  }
 }
