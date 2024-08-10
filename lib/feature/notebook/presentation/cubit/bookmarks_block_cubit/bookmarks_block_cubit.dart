@@ -95,4 +95,12 @@ class BookmarksBlockCubit extends Cubit<BookmarksBlockState> {
       addingStatus: AddBookmarkStatus.success,
     ));
   }
+
+  FutureOr<void> removeBookmark(num id) {
+    final updatedBlock = state.block.copyWith(
+      items: state.block.items.where((item) => item.id != id).toList(),
+    );
+
+    emit(state.copyWith(block: updatedBlock));
+  }
 }
