@@ -28,6 +28,25 @@ class UrlHelper {
     return _urlRegExp.hasMatch(url);
   }
 
+  /// Completes the given [url] by adding 'http://www.' if necessary.
+  ///
+  /// If the [url] does not start with 'http://' or 'https://', it adds 'http://'.
+  /// If the [url] does not start with 'www.', it adds 'www.' as well.
+  ///
+  /// Example:
+  /// ```dart
+  /// String completedUrl = UrlHelper.completeUrl('example.com');
+  /// print(completedUrl); // http://www.example.com
+  ///
+  /// completedUrl = UrlHelper.completeUrl('www.example.com');
+  /// print(completedUrl); // http://www.example.com
+  ///
+  /// completedUrl = UrlHelper.completeUrl('http://example.com');
+  /// print(completedUrl); // http://example.com
+  ///
+  /// completedUrl = UrlHelper.completeUrl('https://example.com');
+  /// print(completedUrl); // https://example.com
+  /// ```
   static String completeUrl(String url) {
     if (!url.startsWith("http://") && !url.startsWith("https://")) {
       if (!url.startsWith("www.")) {
