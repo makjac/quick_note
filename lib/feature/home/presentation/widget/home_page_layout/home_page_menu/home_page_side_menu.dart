@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quick_note/core/constans/app_assets.dart';
 import 'package:quick_note/core/constans/insets.dart';
@@ -128,8 +129,8 @@ class _HomePageSideMenuState extends State<HomePageSideMenu>
               right: Insets.xs + 2,
             ),
             padding: const EdgeInsets.all(Insets.xxs),
-            child: Image.asset(
-              AppAssets.logo,
+            child: SvgPicture.asset(
+              AppAssets.logoSVG,
               fit: BoxFit.contain,
             ),
           ),
