@@ -13,3 +13,16 @@ enum BookmarkViewMode {
   @HiveField(20, defaultValue: [])
   icons,
 }
+
+extension BookmarkViewModeExtension on BookmarkViewMode {
+  String translatedName(BuildContext context) {
+    switch (this) {
+      case BookmarkViewMode.list:
+        return context.l10n.bookmark_list_view_mode;
+      case BookmarkViewMode.grid:
+        return context.l10n.bookmark_grid_view_mode;
+      case BookmarkViewMode.icons:
+        return context.l10n.bookmark_icons_view_mode;
+    }
+  }
+}
