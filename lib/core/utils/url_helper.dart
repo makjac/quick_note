@@ -9,4 +9,5 @@ class UrlHelper {
       r'(\?[;&a-zA-Z\d%_.~+=-]*)?' // Optional query string (e.g., ?key=value&anotherkey=anothervalue)
       r'(#[-a-zA-Z\d_]*)?$'; // Optional fragment (e.g., #section1)
 
+  static final RegExp _urlRegExp = RegExp(urlPattern);
 }
