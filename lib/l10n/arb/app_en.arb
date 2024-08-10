@@ -26,7 +26,7 @@
   "menu_help" : "Help",
   "notebook_title_hint_text" : "Enter note title...",
   "notebook_add_new_block" : "Add a new note block",
-  "text_block_title_hint_text" : "Add a title for this note...",
+  "text_block_title_hint_text" : "Add a title for this text block...",
   "text_block_note_hint_text" : "Type your notes here...",
   "todo_block_title_hint_text" : "Add a title for this todo list...",
   "todo_block_item_hint_text" : "Describe your task...",
