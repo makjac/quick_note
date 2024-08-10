@@ -1,7 +1,7 @@
 
 # QuickNote
 
-![header](https://i.imgur.com/L0fK5I9.png)
+![header](https://i.imgur.com/C4vrC2B.png)
 
 [![google_play](https://i.imgur.com/faQM4h4.png)](https://play.google.com/store/apps/details?id=com.quicknoteecoala.app&pcampaignid=web_share)
 
