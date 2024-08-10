@@ -66,4 +66,8 @@ class BookmarksBlockCubit extends Cubit<BookmarksBlockState> {
   void _addBookmarkWithoutFavicon(String url) {
     _addBookmark(url, "");
   }
+
+  void _addBookmarkWithFavicon(String url, String? favicon) {
+    _addBookmark(url, favicon);
+  }
 }
