@@ -62,4 +62,8 @@ class BookmarksBlockCubit extends Cubit<BookmarksBlockState> {
       emit(state.copyWith(addingStatus: AddBookmarkStatus.error));
     }
   }
+
+  void _addBookmarkWithoutFavicon(String url) {
+    _addBookmark(url, "");
+  }
 }
