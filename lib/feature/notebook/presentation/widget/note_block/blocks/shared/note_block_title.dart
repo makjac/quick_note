@@ -1,9 +1,11 @@
 part of '../../note_block_builder.dart';
 
 class NoteBlockTitle extends StatefulWidget {
-  const NoteBlockTitle({super.key, this.initValue, this.onChanged});
+  const NoteBlockTitle(
+      {super.key, this.initValue, this.onChanged, required this.hintText});
 
   final String? initValue;
+  final String hintText;
   final void Function(String title)? onChanged;
 
   @override
@@ -31,7 +33,7 @@ class _NoteBlockTitleState extends State<NoteBlockTitle> {
       controller: _controller,
       maxLines: null,
       decoration: InputDecoration(
-        hintText: context.l10n.todo_block_title_hint_text,
+        hintText: widget.hintText,
         border: InputBorder.none,
       ),
       style: const TextStyle(
