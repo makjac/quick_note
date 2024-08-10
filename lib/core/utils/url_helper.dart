@@ -14,4 +14,16 @@ class UrlHelper {
     return _urlRegExp.hasMatch(url);
   }
 
+  static String completeUrl(String url) {
+    if (!url.startsWith("http://") && !url.startsWith("https://")) {
+      if (!url.startsWith("www.")) {
+        return "http://www.$url".toLowerCase();
+      } else {
+        return "http://$url".toLowerCase();
+      }
+    }
+
+    return url;
+  }
+
 }
