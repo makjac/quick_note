@@ -42,4 +42,9 @@ class BookmarksBlockCubit extends Cubit<BookmarksBlockState> {
     final updatedBlock = state.block.copyWith(viewMode: visible);
     emit(state.copyWith(block: updatedBlock));
   }
+
+  FutureOr<void> changeBlockTitle(String title) {
+    final updatedBlock = state.block.copyWith(title: title);
+    emit(state.copyWith(block: updatedBlock));
+  }
 }
