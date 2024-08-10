@@ -35,4 +35,11 @@ class BookmarksBlockCubit extends Cubit<BookmarksBlockState> {
     final updatedBlock = state.block.copyWith(visibleFavicons: visible);
     emit(state.copyWith(block: updatedBlock));
   }
+
+  Future<void> changeBookmarksViewMode(BookmarkViewMode? visible) async {
+    if (visible == null) return;
+
+    final updatedBlock = state.block.copyWith(viewMode: visible);
+    emit(state.copyWith(block: updatedBlock));
+  }
 }
