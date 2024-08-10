@@ -4,7 +4,7 @@ final locator = GetIt.instance;
 
 Future<void> init() async {
   final sharedPreferences = await SharedPreferences.getInstance();
-locator.registerLazySingleton<SharedPreferences>(() => sharedPreferences);
+  locator.registerLazySingleton<SharedPreferences>(() => sharedPreferences);
 
   final http.Client client = http.Client();
   locator.registerLazySingleton<http.Client>(() => client);
@@ -13,10 +13,9 @@ locator.registerLazySingleton<SharedPreferences>(() => sharedPreferences);
   await _initNoteSearch();
   await _initApp();
   await _initNotebook();
+  await _initBookmarks();
   await _initAnalyticsService();
   await _initAdMobService();
-
-  locator.registerLazySingleton<SharedPreferences>(() => sharedPreferences);
 }
 
 FutureOr<void> _initPreferences() async {
@@ -75,6 +74,26 @@ FutureOr<void> _initNotebook() async {
         updateSingleNote: locator(),
         deleteNote: locator(),
         getNoteByKey: locator(),
+      ),
+    );
+}
+
+FutureOr<void> _initBookmarks() async {
+  locator
+    ..registerLazySingleton<BookmarksRemoteDatasource>(
+        () => BookmarksRemoteDatasourceImpl(client: locator()))
+    ..registerLazySingleton<BookmarkRepository>(
+        () => BookmarkRepositoryImpl(datasource: locator()))
+    ..registerLazySingleton<FetchAllFaviconDataUsecase>(
+        () => FetchAllFaviconDataUsecase(repository: locator()))
+    ..registerLazySingleton<FetchBestFaviconUrlUsecase>(
+        () => FetchBestFaviconUrlUsecase(repository: locator()))
+    ..registerLazySingleton<IsValidFaviconUrlUsecase>(
+        () => IsValidFaviconUrlUsecase(repository: locator()))
+    ..registerFactoryParam<BookmarksBlockCubit, BookmarksBlock?, void>(
+      (block, _) => BookmarksBlockCubit(
+        block: block,
+        fetchBestFaviconUrlUsecase: locator(),
       ),
     );
 }

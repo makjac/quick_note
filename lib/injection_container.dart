@@ -18,11 +18,19 @@ import 'package:quick_note/feature/home/domain/usecase/update_multiple_notes_use
 import 'package:quick_note/feature/home/domain/usecase/update_note_usecase.dart';
 import 'package:quick_note/feature/home/presentation/bloc/app_bloc.dart';
 import 'package:quick_note/feature/home/presentation/cubit/note_search_cubit.dart';
+import 'package:quick_note/feature/notebook/data/datasource/bookmarks_remote_datasource.dart';
 import 'package:quick_note/feature/notebook/data/datasource/notebook_local_datasource.dart';
+import 'package:quick_note/feature/notebook/data/repository/bookmarks_repository_impl.dart';
 import 'package:quick_note/feature/notebook/data/repository/notebook_repository_impl.dart';
+import 'package:quick_note/feature/notebook/domain/repository/bookmarks_repository.dart';
 import 'package:quick_note/feature/notebook/domain/repository/notebook_repository.dart';
+import 'package:quick_note/feature/notebook/domain/usecase/fetch_all_favicon_data_usecase.dart';
+import 'package:quick_note/feature/notebook/domain/usecase/fetch_best_favicon_url_usecase.dart';
 import 'package:quick_note/feature/notebook/domain/usecase/get_note_by_key_usecase.dart';
+import 'package:quick_note/feature/notebook/domain/usecase/is_valid_favicon_url_usecase.dart';
 import 'package:quick_note/feature/notebook/presentation/bloc/notebook_bloc.dart';
+import 'package:quick_note/feature/notebook/presentation/cubit/bookmarks_block_cubit/bookmarks_block_cubit.dart';
+import 'package:quick_note/feature/shared/domain/entity/note/blocks/bookmarks/bookmarks_block.dart';
 import 'package:quick_note/preferences/bloc/preferences.bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
