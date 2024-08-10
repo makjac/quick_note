@@ -55,4 +55,14 @@ class BookmarkRepositoryImpl implements BookmarkRepository {
       return const Left(ValidationFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, bool>> isValidFaviconUrl(String url) async {
+    try {
+      final result = await datasource.isValidFaviconUrl(url);
+      return Right(result);
+    } catch (e) {
+      return const Left(NetworkFailure());
+    }
+  }
 }
