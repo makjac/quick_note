@@ -103,4 +103,17 @@ class BookmarksBlockCubit extends Cubit<BookmarksBlockState> {
 
     emit(state.copyWith(block: updatedBlock));
   }
+
+  FutureOr<void> updateBookmark(BookmarkItem item) {
+    final updatedBlock = state.block.copyWith(
+      items: state.block.items.map((oldItem) {
+        if (oldItem.id == item.id) {
+          return item;
+        }
+        return oldItem;
+      }).toList(),
+    );
+
+    emit(state.copyWith(block: updatedBlock));
+  }
 }
