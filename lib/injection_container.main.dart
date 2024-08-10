@@ -4,6 +4,10 @@ final locator = GetIt.instance;
 
 Future<void> init() async {
   final sharedPreferences = await SharedPreferences.getInstance();
+locator.registerLazySingleton<SharedPreferences>(() => sharedPreferences);
+
+  final http.Client client = http.Client();
+  locator.registerLazySingleton<http.Client>(() => client);
 
   await _initPreferences();
   await _initNoteSearch();

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
+import 'package:http/http.dart' as http;
 import 'package:quick_note/core/service/admob/ad_mob_service.dart';
 import 'package:quick_note/core/service/analytics/service/analytics_service.dart';
 import 'package:quick_note/core/utils/platform_helper.dart';
