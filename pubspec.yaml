@@ -94,6 +94,8 @@ flutter:
     - assets/
     - assets/logo/quick_note.png
     - assets/logo/quick_note_rectangle.png
+    - assets/svg/quick_note.svg
+    - assets/svg/quickNote_box.svg
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
