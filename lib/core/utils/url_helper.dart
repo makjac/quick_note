@@ -59,6 +59,22 @@ class UrlHelper {
     return url;
   }
 
+  /// Extracts the domain from the given [url].
+  ///
+  /// If the [url] does not start with 'http://' or 'https://', it is first completed
+  /// using [completeUrl], then the domain is extracted.
+  ///
+  /// Example:
+  /// ```dart
+  /// String domain = UrlHelper.extractDomain('http://www.example.com/path');
+  /// print(domain); // www.example.com
+  ///
+  /// domain = UrlHelper.extractDomain('example.com/path');
+  /// print(domain); // www.example.com
+  ///
+  /// domain = UrlHelper.extractDomain('http://example.com/path');
+  /// print(domain); // example.com
+  /// ```
   static String extractDomain(String url) {
     final Uri uri = Uri.parse(completeUrl(url));
     return uri.host;
