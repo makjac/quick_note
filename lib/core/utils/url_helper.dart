@@ -1,4 +1,8 @@
+import 'package:url_launcher/url_launcher.dart' as ul;
+
+/// A helper class for handling URLs.
 class UrlHelper {
+/// A regular expression pattern for validating URLs.
   static const String urlPattern = r'^(https?:\/\/)?' // protokół opcjonalny
       r'^(https?:\/\/)?' // Optional protocol (http or https)
       r'((([a-zA-Z\d]([a-zA-Z\d-]*[a-zA-Z\d])*)\.)+[a-zA-Z]{2,}' // Domain (e.g., example.com or sub.example.com)
