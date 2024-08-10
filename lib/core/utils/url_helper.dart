@@ -14,6 +14,16 @@ class UrlHelper {
       r'(#[-a-zA-Z\d_]*)?$'; // Optional fragment (e.g., #section1)
 
   static final RegExp _urlRegExp = RegExp(urlPattern);
+
+  /// Checks if the given [url] is a valid URL.
+  ///
+  /// Returns `true` if the [url] matches the URL pattern, otherwise `false`.
+  ///
+  /// Example:
+  /// ```dart
+  /// bool isValid = UrlHelper.isValidUrl('http://www.example.com');
+  /// print(isValid); // true
+  /// ```
   static bool isValidUrl(String url) {
     return _urlRegExp.hasMatch(url);
   }
