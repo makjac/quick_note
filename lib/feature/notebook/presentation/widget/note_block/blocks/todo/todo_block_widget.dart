@@ -51,6 +51,7 @@ class _TodoBlockBody extends StatelessWidget {
     if (state.block.hasTitle) {
       return NoteBlockTitle(
         initValue: state.block.title,
+        hintText: context.l10n.todo_block_title_hint_text,
         onChanged: (title) =>
             context.read<TodoBlockCubit>().changeBlockTitle(title),
       );

@@ -17,6 +17,8 @@ class NoteBlockTypeAdapter extends TypeAdapter<NoteBlockType> {
         return NoteBlockType.text;
       case 10:
         return NoteBlockType.todo;
+      case 20:
+        return NoteBlockType.bookmarks;
       default:
         return NoteBlockType.text;
     }
@@ -30,6 +32,9 @@ class NoteBlockTypeAdapter extends TypeAdapter<NoteBlockType> {
         break;
       case NoteBlockType.todo:
         writer.writeByte(10);
+        break;
+      case NoteBlockType.bookmarks:
+        writer.writeByte(20);
         break;
     }
   }

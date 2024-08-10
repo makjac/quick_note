@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:quick_note/feature/shared/domain/entity/note/blocks/check_list_item.dart';
-import 'package:quick_note/feature/shared/domain/entity/note/blocks/todo_block.dart';
+import 'package:quick_note/feature/shared/domain/entity/note/blocks/todo/check_list_item.dart';
+import 'package:quick_note/feature/shared/domain/entity/note/blocks/todo/todo_block.dart';
 
 part 'todo_block_state.dart';
 

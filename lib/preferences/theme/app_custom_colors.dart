@@ -31,9 +31,9 @@ extension AppColors on ThemeData {
       brightness == Brightness.dark ? Colors.white70 : Colors.black54;
   Color get noteBlockBorderColor =>
       brightness == Brightness.dark ? Colors.white10 : Colors.black12;
-Color get noteTitleTextFieldColor =>
+  Color get noteTitleTextFieldColor =>
       brightness == Brightness.dark ? Colors.white54 : Colors.black54;
-  // Todo
+  // _Todo
   Color get todoTaskDragIconColor =>
       brightness == Brightness.dark ? Colors.white30 : Colors.black38;
   Color get todoTaskDeleteIconColor =>
@@ -46,4 +46,15 @@ Color get noteTitleTextFieldColor =>
       brightness == Brightness.dark ? Colors.black87 : Colors.white70;
   Color get todoAddTaskForegroundButtonColor =>
       brightness == Brightness.dark ? Colors.white60 : Colors.black54;
+  // Bookmark
+  Color get bookmarkDragIconColor =>
+      brightness == Brightness.dark ? Colors.white30 : Colors.black38;
+  Color get bookmarkDeleteIconColor =>
+      brightness == Brightness.dark ? Colors.white70 : Colors.black87;
+  Color get bookmarkFaviconBackgroundColor =>
+      brightness == Brightness.dark ? Colors.white : Colors.white70;
+  Color get bookmarkFullUrlColor =>
+      brightness == Brightness.dark ? Colors.white54 : Colors.black54;
+  Color get bookmarkHoverColor =>
+      brightness == Brightness.dark ? Colors.white12 : Colors.black12;
 }

@@ -5,7 +5,7 @@ import 'package:quick_note/core/constans/insets.dart';
 import 'package:quick_note/feature/home/domain/usecase/update_multiple_notes_usecase.dart';
 import 'package:quick_note/feature/notebook/presentation/bloc/notebook_bloc.dart';
 import 'package:quick_note/feature/notebook/presentation/cubit/reorder_note_block/reorder_note_block_cubit.dart';
-import 'package:quick_note/feature/notebook/presentation/widget/note_blocks_draggable/no_note_blocks/notebook_no_note_block_found.dart';
+import 'package:quick_note/feature/notebook/presentation/widget/note_blocks_draggable/empty_note/notebook_empty_note_block.dart';
 import 'package:quick_note/feature/notebook/presentation/widget/note_blocks_draggable/note_block_drag_item/note_blocks_drag_item.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note_block.dart';

@@ -12,4 +12,7 @@ FutureOr<void> _registerNoteAdapters() async {
   Hive.registerAdapter(ChecklistItemModelAdapter());
   Hive.registerAdapter(TodoBlockModelAdapter());
   Hive.registerAdapter(NoteColorsAdapter());
+  Hive.registerAdapter(BookmarksBlockModelAdapter());
+  Hive.registerAdapter(BookmarkItemModelAdapter());
+  Hive.registerAdapter(BookmarkViewModeAdapter());
 }

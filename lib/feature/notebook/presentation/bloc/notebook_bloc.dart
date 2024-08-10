@@ -8,8 +8,9 @@ import 'package:quick_note/feature/home/domain/usecase/delete_single_note_usecas
 import 'package:quick_note/feature/home/domain/usecase/update_multiple_notes_usecase.dart';
 import 'package:quick_note/feature/home/domain/usecase/update_note_usecase.dart';
 import 'package:quick_note/feature/notebook/domain/usecase/get_note_by_key_usecase.dart';
-import 'package:quick_note/feature/shared/domain/entity/note/blocks/text_block.dart';
-import 'package:quick_note/feature/shared/domain/entity/note/blocks/todo_block.dart';
+import 'package:quick_note/feature/shared/domain/entity/note/blocks/bookmarks/bookmarks_block.dart';
+import 'package:quick_note/feature/shared/domain/entity/note/blocks/text/text_block.dart';
+import 'package:quick_note/feature/shared/domain/entity/note/blocks/todo/todo_block.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note_block.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note_block_type.dart';
@@ -124,6 +125,8 @@ class NotebookBloc extends Bloc<NotebookEvent, NotebookState> {
         return TextBlock(id: id);
       case NoteBlockType.todo:
         return TodoBlock(id: id, items: const []);
+      case NoteBlockType.bookmarks:
+        return BookmarksBlock(id: id);
       default:
         return null;
     }

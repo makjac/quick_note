@@ -14,6 +14,8 @@ class NoteBlockBuilder extends StatelessWidget {
         return TextBlockWidget(block: noteBlock! as TextBlock);
       case NoteBlockType.todo:
         return TodoBlockWidget(block: noteBlock! as TodoBlock);
+      case NoteBlockType.bookmarks:
+        return BookmarksBlockWidget(block: noteBlock! as BookmarksBlock);
       default:
         return const SizedBox.shrink();
     }

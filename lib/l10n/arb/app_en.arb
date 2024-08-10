@@ -26,7 +26,7 @@
   "menu_help" : "Help",
   "notebook_title_hint_text" : "Enter note title...",
   "notebook_add_new_block" : "Add a new note block",
-  "text_block_title_hint_text" : "Add a title for this note...",
+  "text_block_title_hint_text" : "Add a title for this text block...",
   "text_block_note_hint_text" : "Type your notes here...",
   "todo_block_title_hint_text" : "Add a title for this todo list...",
   "todo_block_item_hint_text" : "Describe your task...",
@@ -41,6 +41,22 @@
       }
     }
   },
+  "bookmark_block_title_hint_text" : "Add a title for this bookmarks block...",
+  "bookmark_add_url_field_hint_text" : "Enter the bookmark URL",
+  "bookmark_remove_tooltip" : "Remove Bookmark",
+  "bookmark_add_bookmark_tooltip" : "Add Bookmark",
+  "bookmark_duplicates_tooltip" : "{count} duplicate bookmarks",
+  "@bookmark_duplicates_tooltip" : {
+    "placeholders" : {
+      "count" : {
+        "type" : "int",
+        "description" : "count of the complete tasks"
+      }
+    }
+  },
+  "bookmark_list_view_mode" : "List",
+  "bookmark_grid_view_mode" : "Grid",
+  "bookmark_icons_view_mode" : "Icons",
   "note_page_empty" : "You don't have any notes yet.",
   "note_page_create_first_note" : "Add your first note to get started!",
   "reminders_page_empty": "No reminder notes!",
@@ -83,6 +99,11 @@
   "block_settings_todo_show_header" : "Show block title",
   "block_settings_todo_hide_complete_tasks" : "Hide complete tasks",
   "block_settings_todo_progress_bar" : "Show progress bar",
+  "bookmarks" : "Bookmarks",
+  "block_settings_bookmark_title" : "Edit bookmark block",
+  "block_settings_bookmark_show_header" : "Show block title",
+  "block_settings_bookmark_show_favicons" : "Show URL icons",
+  "block_settings_bookmark_block_view_mode" : "Bookmarks view mode:",
   "block_type_other" : "Other block",
   "other" : "Other",
   "add_note_block" : "Add note block",

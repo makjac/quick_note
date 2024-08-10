@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:quick_note/feature/shared/domain/entity/note/blocks/text_block.dart';
+import 'package:quick_note/feature/shared/domain/entity/note/blocks/text/text_block.dart';
 
 part 'text_block_state.dart';
 
