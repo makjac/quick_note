@@ -47,6 +47,7 @@ class _TextBlockBody extends StatelessWidget {
     if (state.block.hasTitle) {
       return NoteBlockTitle(
         initValue: state.block.title,
+        hintText: context.l10n.text_block_title_hint_text,
         onChanged: (title) =>
             context.read<TextBlockCubit>().changeBlockTitle(title),
       );
