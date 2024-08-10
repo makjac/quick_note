@@ -17,6 +17,7 @@ QuickNote is a note-taking application developed using Flutter. It allows users 
 - **Note Blocks**: Supports two types of blocks:
   - **Text Block**: For adding and formatting text.
   - **To-Do Block**: For creating task lists.
+  - **Bookmark Block**: Save and organize important bookmarks for quick access.
 - **Language Support**: The app is available in 9 languages.
 - **Themes**: Choose between light and dark themes.
 
