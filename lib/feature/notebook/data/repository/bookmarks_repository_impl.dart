@@ -65,4 +65,15 @@ class BookmarkRepositoryImpl implements BookmarkRepository {
       return const Left(NetworkFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, List<FaviconData>>> fetchFaviconsByDomain(
+      String domain) async {
+    try {
+      final result = await datasource.fetchFaviconsByDomain(domain);
+      return Right(result);
+    } catch (e) {
+      return const Left(NetworkFailure());
+    }
+  }
 }
