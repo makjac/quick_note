@@ -26,4 +26,9 @@ class UrlHelper {
     return url;
   }
 
+  static String extractDomain(String url) {
+    final Uri uri = Uri.parse(completeUrl(url));
+    return uri.host;
+  }
+
 }
