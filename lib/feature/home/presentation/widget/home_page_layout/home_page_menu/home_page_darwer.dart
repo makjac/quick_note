@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quick_note/core/constans/app_assets.dart';
 import 'package:quick_note/core/constans/insets.dart';
@@ -43,7 +44,7 @@ class HomePageDarwer extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 mainAxisSize: MainAxisSize.max,
-        children: [
+                children: [
                   const Divider(),
                   ListTile(
                     leading: const Icon(Icons.settings),
@@ -67,28 +68,28 @@ class HomePageDarwer extends StatelessWidget {
 
   Widget _drawerHeader(BuildContext context) {
     return SizedBox(
-            height: 120,
-            child: DrawerHeader(
-              padding: const EdgeInsets.all(Insets.s),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    AppAssets.logoRectangle,
-                    fit: BoxFit.contain,
-                  ),
-                  const SizedBox(width: Insets.s),
-                  Text(
-                    context.l10n.appName,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                      letterSpacing: 1,
-                    ),
-                  ),
-                ],
+      height: 120,
+      child: DrawerHeader(
+        padding: const EdgeInsets.all(Insets.s),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SvgPicture.asset(
+              AppAssets.logoBoxSVG,
+              width: 65,
+            ),
+            const SizedBox(width: Insets.s),
+            Text(
+              context.l10n.appName,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 30,
+                letterSpacing: 1,
               ),
+            ),
+          ],
+        ),
       ),
     );
   }
