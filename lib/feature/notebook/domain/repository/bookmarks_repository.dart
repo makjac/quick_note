@@ -16,6 +16,19 @@ abstract class BookmarkRepository {
   ///
   /// Returns an `Either` with a `Failure` on error or the best favicon URL on success.
   Future<Either<Failure, String?>> fetchBestFaviconUrl(String url);
+
+  /// Fetches all available favicon URLs for a given bookmark URL.
+  ///
+  /// Example usage:
+  /// ```dart
+  /// final result = await bookmarkRepository.fetchAllFaviconUrls('https://example.com');
+  /// result.fold(
+  ///   (failure) => print('Error: $failure'),
+  ///   (favicons) => favicons.forEach((favicon) => print('Favicon URL: ${favicon.url}')),
+  /// );
+  /// ```
+  ///
+  /// Returns an `Either` with a `Failure` on error or a list of `FaviconDataModel` on success.
   Future<Either<Failure, List<FaviconData>>> fetchAllFaviconUrls(String url);
   Future<Either<Failure, List<FaviconData>>> fetchFaviconsByType(
       String url, String type);
