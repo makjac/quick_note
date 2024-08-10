@@ -45,6 +45,19 @@ abstract class BookmarkRepository {
   /// Returns an `Either` with a `Failure` on error or a list of `FaviconDataModel` on success.
   Future<Either<Failure, List<FaviconData>>> fetchFaviconsByType(
       String url, String type);
+
+  /// Fetches favicons within a specified size range for a given bookmark URL.
+  ///
+  /// Example usage:
+  /// ```dart
+  /// final result = await bookmarkRepository.fetchFaviconsBySizeRange('https://example.com', 16, 32);
+  /// result.fold(
+  ///   (failure) => print('Error: $failure'),
+  ///   (favicons) => favicons.forEach((favicon) => print('Favicon URL: ${favicon.url}, Size: ${favicon.sizes}')),
+  /// );
+  /// ```
+  ///
+  /// Returns an `Either` with a `Failure` on error or a list of `FaviconDataModel` on success.
   Future<Either<Failure, List<FaviconData>>> fetchFaviconsBySizeRange(
       String url, int minSize, int maxSize);
   Future<Either<Failure, bool>> isValidFaviconUrl(String url);
