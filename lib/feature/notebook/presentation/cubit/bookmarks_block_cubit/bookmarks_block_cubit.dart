@@ -47,4 +47,19 @@ class BookmarksBlockCubit extends Cubit<BookmarksBlockState> {
     final updatedBlock = state.block.copyWith(title: title);
     emit(state.copyWith(block: updatedBlock));
   }
+
+  FutureOr<void> addBookmark(String url) async {
+    emit(state.copyWith(addingStatus: AddBookmarkStatus.loading));
+
+    try {
+      final faviconUrl = await fetchBestFaviconUrlUsecase.call(url);
+
+      faviconUrl.fold(
+        (failure) => _addBookmarkWithoutFavicon(url),
+        (favicon) => _addBookmarkWithFavicon(url, favicon),
+      );
+    } catch (e) {
+      emit(state.copyWith(addingStatus: AddBookmarkStatus.error));
+    }
+  }
 }
