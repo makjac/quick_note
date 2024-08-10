@@ -83,7 +83,9 @@ abstract class BookmarksRemoteDatasource {
   /// ```
   Future<List<FaviconDataModel>> fetchFaviconsByDomain(String domain);
 }
+
 class BookmarksRemoteDatasourceImpl implements BookmarksRemoteDatasource {
+  // const BookmarksRemoteDatasourceImpl({required this.client});
   BookmarksRemoteDatasourceImpl({http.Client? client})
       : client = client ?? http.Client();
 
@@ -91,10 +93,14 @@ class BookmarksRemoteDatasourceImpl implements BookmarksRemoteDatasource {
 
   @override
   Future<String?> fetchBestFaviconUrl(String url) async {
+    // Fetch all available favicon URLs
     var favicons = await fetchAllFaviconUrls(url);
+    // Return null if no favicons are found
     if (favicons.isEmpty) return null;
 
+    // Sort favicons by quality (as defined in the FaviconDataModel's Comparable implementation)
     favicons.sort();
+    // Return the URL of the best (highest quality) favicon
     return favicons.first.url;
   }
 
@@ -103,9 +109,11 @@ class BookmarksRemoteDatasourceImpl implements BookmarksRemoteDatasource {
     var favicons = <FaviconDataModel>[];
     var iconUrls = <String>[];
 
+    // Parse the URL and fetch the webpage content
     var uri = Uri.parse(url);
     var document = html_parser.parse((await client.get(uri)).body);
 
+    // Look for link tags with various rel attributes to find favicon URLs
     for (var rel in ['icon', 'shortcut icon', 'apple-touch-icon']) {
       for (var iconTag in document.querySelectorAll("link[rel='$rel']")) {
         if (iconTag.attributes['href'] != null) {
@@ -117,13 +125,16 @@ class BookmarksRemoteDatasourceImpl implements BookmarksRemoteDatasource {
       }
     }
 
+    // Check the standard location for the favicon
     var iconUrl = '${uri.scheme}://${uri.host}/favicon.ico';
     if (await _verifyImage(iconUrl)) {
       iconUrls.add(iconUrl);
     }
 
+    // Remove duplicate URLs
     iconUrls = iconUrls.toSet().toList();
 
+    // Retrieve favicon details for each URL
     for (var iconUrl in iconUrls) {
       if (iconUrl.endsWith('.svg')) {
         favicons.add(FaviconDataModel(url: iconUrl));
@@ -135,6 +146,7 @@ class BookmarksRemoteDatasourceImpl implements BookmarksRemoteDatasource {
         continue;
       }
 
+      // Fetch image and get its dimensions
       var image = decodeImage((await client.get(Uri.parse(iconUrl))).bodyBytes);
       if (image != null) {
         favicons.add(FaviconDataModel(
@@ -148,6 +160,7 @@ class BookmarksRemoteDatasourceImpl implements BookmarksRemoteDatasource {
   @override
   Future<List<FaviconDataModel>> fetchFaviconsByType(
       String url, String type) async {
+    // Fetch all favicons and filter by MIME type
     var favicons = await fetchAllFaviconUrls(url);
     return favicons.where((favicon) => favicon.type == type).toList();
   }
@@ -155,6 +168,7 @@ class BookmarksRemoteDatasourceImpl implements BookmarksRemoteDatasource {
   @override
   Future<List<FaviconDataModel>> fetchFaviconsBySizeRange(
       String url, int minSize, int maxSize) async {
+    // Fetch all favicons and filter by size range
     var favicons = await fetchAllFaviconUrls(url);
     return favicons.where((favicon) {
       var size = _parseSize(favicon.sizes);
@@ -164,15 +178,21 @@ class BookmarksRemoteDatasourceImpl implements BookmarksRemoteDatasource {
 
   @override
   Future<bool> isValidFaviconUrl(String url) async {
+    // Verify if the provided URL is a valid favicon
     return await _verifyImage(url);
   }
 
   @override
   Future<List<FaviconDataModel>> fetchFaviconsByDomain(String domain) async {
+    // Convert domain to base URL and fetch all favicons for that domain
     var uri = Uri.parse(domain);
     var url = '${uri.scheme}://${uri.host}';
     return await fetchAllFaviconUrls(url);
   }
+
+  /// Sanitizes a relative or absolute URL to a full URL.
+  ///
+  /// This method handles relative URLs, protocol-relative URLs, and absolute URLs.
   String _sanitizeUrl(String url, Uri baseUri) {
     if (url.startsWith('//')) {
       return '${baseUri.scheme}:$url';
@@ -188,6 +208,10 @@ class BookmarksRemoteDatasourceImpl implements BookmarksRemoteDatasource {
 
     return url.split('?').first;
   }
+
+  /// Verifies if the given URL points to a valid image (favicon).
+  ///
+  /// This method checks the content type and optionally verifies the file signature for ICO files.
   Future<bool> _verifyImage(String url) async {
     var response = await client.get(Uri.parse(url));
 
@@ -207,6 +231,8 @@ class BookmarksRemoteDatasourceImpl implements BookmarksRemoteDatasource {
         (response.contentLength ?? 0) > 0 &&
         contentType.contains('image');
   }
+
+  /// Verifies if the file signature matches the provided signature.
   bool _verifySignature(Uint8List bodyBytes, List<int> signature) {
     var fileSignature = bodyBytes.sublist(0, signature.length);
     for (var i = 0; i < fileSignature.length; i++) {
@@ -214,6 +240,10 @@ class BookmarksRemoteDatasourceImpl implements BookmarksRemoteDatasource {
     }
     return true;
   }
+
+  /// Parses the size from a string.
+  ///
+  /// Returns the width part of the size if it is in 'widthxheight' format; otherwise, returns a default size of 16.
   int _parseSize(String? size) {
     if (size == null) return 16;
     var sizeParts = size.split('x');
@@ -222,4 +252,4 @@ class BookmarksRemoteDatasourceImpl implements BookmarksRemoteDatasource {
     }
     return 16;
   }
-  }
+}
