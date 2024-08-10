@@ -14,6 +14,8 @@ class NoteTilePreviewBuilder extends StatelessWidget {
         return TextBlockPreview(content: noteBlock! as TextBlock);
       case NoteBlockType.todo:
         return TodoBlockPreview(content: noteBlock! as TodoBlock);
+      case NoteBlockType.bookmarks:
+        return BookmarksBlockPreview(content: noteBlock! as BookmarksBlock);
       default:
         return const SizedBox.shrink();
     }
