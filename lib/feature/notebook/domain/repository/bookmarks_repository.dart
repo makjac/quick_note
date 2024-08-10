@@ -3,6 +3,18 @@ import 'package:quick_note/core/error/failure/failure.dart';
 import 'package:quick_note/feature/notebook/domain/entity/favicon_data.dart';
 
 abstract class BookmarkRepository {
+/// Fetches the best favicon URL for a given bookmark URL.
+  ///
+  /// Example usage:
+  /// ```dart
+  /// final result = await bookmarkRepository.fetchBestFaviconUrl('https://example.com');
+  /// result.fold(
+  ///   (failure) => print('Error: $failure'),
+  ///   (faviconUrl) => print('Best favicon URL: $faviconUrl'),
+  /// );
+  /// ```
+  ///
+  /// Returns an `Either` with a `Failure` on error or the best favicon URL on success.
   Future<Either<Failure, String?>> fetchBestFaviconUrl(String url);
   Future<Either<Failure, List<FaviconData>>> fetchAllFaviconUrls(String url);
   Future<Either<Failure, List<FaviconData>>> fetchFaviconsByType(
