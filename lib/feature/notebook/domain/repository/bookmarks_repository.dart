@@ -3,7 +3,7 @@ import 'package:quick_note/core/error/failure/failure.dart';
 import 'package:quick_note/feature/notebook/domain/entity/favicon_data.dart';
 
 abstract class BookmarkRepository {
-/// Fetches the best favicon URL for a given bookmark URL.
+  /// Fetches the best favicon URL for a given bookmark URL.
   ///
   /// Example usage:
   /// ```dart
