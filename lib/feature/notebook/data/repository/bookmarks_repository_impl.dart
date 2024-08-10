@@ -43,4 +43,16 @@ class BookmarkRepositoryImpl implements BookmarkRepository {
       return const Left(ParsingFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, List<FaviconData>>> fetchFaviconsBySizeRange(
+      String url, int minSize, int maxSize) async {
+    try {
+      final result =
+          await datasource.fetchFaviconsBySizeRange(url, minSize, maxSize);
+      return Right(result);
+    } catch (e) {
+      return const Left(ValidationFailure());
+    }
+  }
 }
