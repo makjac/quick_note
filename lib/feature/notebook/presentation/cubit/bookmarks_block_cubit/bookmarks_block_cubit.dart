@@ -17,4 +17,8 @@ class BookmarksBlockCubit extends Cubit<BookmarksBlockState> {
   }) : super(BookmarksBlockState(block: block));
 
   final FetchBestFaviconUrlUsecase fetchBestFaviconUrlUsecase;
+
+  FutureOr<void> loadBlock(BookmarksBlock block) async {
+    emit(state.copyWith(block: block));
+  }
 }
