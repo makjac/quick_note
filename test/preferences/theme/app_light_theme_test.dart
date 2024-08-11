@@ -80,3 +80,7 @@ void main() {
       expect(lightTheme.drawerTheme.backgroundColor, Colors.grey[400]);
       expect(lightTheme.drawerTheme.elevation, 3);
     });
+
+    test('should have correct bottom sheet theme', () {
+      expect(lightTheme.bottomSheetTheme.backgroundColor, Colors.grey[400]);
+    });
