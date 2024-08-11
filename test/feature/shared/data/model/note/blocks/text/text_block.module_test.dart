@@ -44,5 +44,29 @@ void main() {
       expect(textBlockModel.maxLines, textBlock.maxLines);
       expect(textBlockModel.type, textBlock.type);
     });
+
+    test(
+        'should compare two TextBlockModel instances with the same values as equal',
+        () {
+      const textBlockModel1 = TextBlockModel(
+        id: 1,
+        title: 'Sample Title',
+        hasTitle: true,
+        text: 'Sample text',
+        hasMaxLineLimit: true,
+        maxLines: 5,
+      );
+
+      const textBlockModel2 = TextBlockModel(
+        id: 1,
+        title: 'Sample Title',
+        hasTitle: true,
+        text: 'Sample text',
+        hasMaxLineLimit: true,
+        maxLines: 5,
+      );
+
+      expect(textBlockModel1, textBlockModel2);
+    });
   });
 }
