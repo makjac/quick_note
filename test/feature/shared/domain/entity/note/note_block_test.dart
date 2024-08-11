@@ -57,5 +57,25 @@ void main() {
 
       expect(noteBlock1, noteBlock2);
     });
+
+    test(
+        'should compare two NoteBlock instances with different values as not equal',
+        () {
+      const noteBlock1 = _TestNoteBlock(
+        id: 4,
+        title: "Title 1",
+        hasTitle: true,
+        type: NoteBlockType.text,
+      );
+
+      const noteBlock2 = _TestNoteBlock(
+        id: 4,
+        title: "Title 2",
+        hasTitle: true,
+        type: NoteBlockType.text,
+      );
+
+      expect(noteBlock1, isNot(noteBlock2));
+    });
   });
 }
