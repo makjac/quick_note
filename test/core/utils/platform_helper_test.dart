@@ -80,5 +80,25 @@ void main() {
 
       debugDefaultTargetPlatformOverride = null;
     });
+
+    testWidgets('isMobile returns true for iOS platform',
+        (WidgetTester tester) async {
+      debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
+
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: _BaseWidget(),
+        ),
+      );
+
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.text('Check platform'));
+      await tester.pumpAndSettle();
+
+      expect(find.text("mobile"), findsOneWidget);
+
+      debugDefaultTargetPlatformOverride = null;
+    });
   });
 }
