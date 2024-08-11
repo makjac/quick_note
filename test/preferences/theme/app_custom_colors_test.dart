@@ -9,5 +9,11 @@ void main() {
       final darkTheme = ThemeData(brightness: Brightness.dark);
       expect(darkTheme.sideMenuBackgroundColor, Colors.grey[900]);
     });
+
+    test('sideMenuBackgroundColor should return correct color for light theme',
+        () {
+      final lightTheme = ThemeData(brightness: Brightness.light);
+      expect(lightTheme.sideMenuBackgroundColor, Colors.grey);
+    });
   });
 }
