@@ -93,3 +93,10 @@ void main() {
       expect(lightTheme.textButtonTheme.style!.foregroundColor!.resolve({}),
           Colors.black);
     });
+
+    test('should have correct outlined button theme', () {
+      expect(lightTheme.outlinedButtonTheme.style!.foregroundColor!.resolve({}),
+          Colors.black);
+    });
+  });
+}
