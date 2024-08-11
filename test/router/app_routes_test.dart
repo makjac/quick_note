@@ -17,5 +17,19 @@ void main() {
       expect(AppRoutes.notebookReorderBlocks.routeName,
           'Notebook_reorder_blocks_page');
     });
+
+    test('AppRoutes values should have correct paths', () {
+      expect(AppRoutes.unknown.path, '/');
+      expect(AppRoutes.homePage.path, '/');
+      expect(AppRoutes.notesPage.path, 'notes');
+      expect(AppRoutes.remindersPage.path, 'reminders');
+      expect(AppRoutes.archivePage.path, 'archive');
+      expect(AppRoutes.trashPage.path, 'trash');
+      expect(AppRoutes.settingsPage.path, 'settings');
+      expect(AppRoutes.helpPage.path, 'help');
+      expect(AppRoutes.license.path, 'license');
+      expect(AppRoutes.notebook.path, '/notebook/:id');
+      expect(AppRoutes.notebookReorderBlocks.path, 'reorder');
+    });
   });
 }
