@@ -88,3 +88,8 @@ void main() {
     test('should have correct text selection theme', () {
       expect(lightTheme.textSelectionTheme.cursorColor, Colors.black38);
     });
+
+    test('should have correct text button theme', () {
+      expect(lightTheme.textButtonTheme.style!.foregroundColor!.resolve({}),
+          Colors.black);
+    });
