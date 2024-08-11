@@ -26,5 +26,20 @@ void main() {
       expect(NoteAction.values.length, equals(12));
     });
 
+    test('each enum value has correct index', () {
+      expect(NoteAction.created.index, equals(0));
+      expect(NoteAction.deleted.index, equals(1));
+      expect(NoteAction.updated.index, equals(2));
+      expect(NoteAction.restored.index, equals(3));
+      expect(NoteAction.archived.index, equals(4));
+      expect(NoteAction.unarchived.index, equals(5));
+      expect(NoteAction.stared.index, equals(6));
+      expect(NoteAction.unstared.index, equals(7));
+      expect(NoteAction.colorChanged.index, equals(8));
+      expect(NoteAction.addedBlock.index, equals(9));
+      expect(NoteAction.removedBlock.index, equals(10));
+      expect(NoteAction.reorderBlocks.index, equals(11));
+    });
+
   });
 }
