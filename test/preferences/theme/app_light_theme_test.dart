@@ -75,3 +75,8 @@ void main() {
       expect(
           lightTheme.progressIndicatorTheme.linearTrackColor, Colors.black12);
     });
+
+    test('should have correct drawer theme', () {
+      expect(lightTheme.drawerTheme.backgroundColor, Colors.grey[400]);
+      expect(lightTheme.drawerTheme.elevation, 3);
+    });
