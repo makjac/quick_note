@@ -63,3 +63,9 @@ void main() {
     test('should have correct divider color', () {
       expect(lightTheme.dividerColor, Colors.black54);
     });
+
+    test('should have correct popup menu theme', () {
+      expect(lightTheme.popupMenuTheme.color, Colors.grey[400]);
+      expect(lightTheme.popupMenuTheme.iconColor, Colors.black54);
+      expect(lightTheme.popupMenuTheme.textStyle!.color, Colors.black54);
+    });
