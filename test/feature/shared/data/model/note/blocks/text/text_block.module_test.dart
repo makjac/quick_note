@@ -23,5 +23,26 @@ void main() {
       expect(textBlockModel.maxLines, 5);
       expect(textBlockModel.type, NoteBlockType.text);
     });
+
+    test('should convert TextBlock to TextBlockModel using fromEntity', () {
+      const textBlock = TextBlock(
+        id: 1,
+        title: 'Sample Title',
+        hasTitle: true,
+        text: 'Sample text',
+        hasMaxLineLimit: true,
+        maxLines: 5,
+      );
+
+      final textBlockModel = TextBlockModel.fromEntity(textBlock);
+
+      expect(textBlockModel.id, textBlock.id);
+      expect(textBlockModel.title, textBlock.title);
+      expect(textBlockModel.hasTitle, textBlock.hasTitle);
+      expect(textBlockModel.text, textBlock.text);
+      expect(textBlockModel.hasMaxLineLimit, textBlock.hasMaxLineLimit);
+      expect(textBlockModel.maxLines, textBlock.maxLines);
+      expect(textBlockModel.type, textBlock.type);
+    });
   });
 }
