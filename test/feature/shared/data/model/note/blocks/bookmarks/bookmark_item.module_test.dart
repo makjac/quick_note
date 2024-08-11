@@ -61,5 +61,27 @@ void main() {
 
       expect(bookmarkItemModel1, bookmarkItemModel2);
     });
+
+    test(
+        'should compare two BookmarkItemModel instances with different values as not equal',
+        () {
+      final bookmarkItemModel1 = BookmarkItemModel(
+        id: 1,
+        title: 'Sample Title',
+        url: 'http://example.com',
+        faviconUrl: 'http://example.com/favicon.ico',
+        description: 'Sample Description',
+      );
+
+      final bookmarkItemModel2 = BookmarkItemModel(
+        id: 2,
+        title: 'Different Title',
+        url: 'http://different.com',
+        faviconUrl: 'http://different.com/favicon.ico',
+        description: 'Different Description',
+      );
+
+      expect(bookmarkItemModel1, isNot(bookmarkItemModel2));
+    });
   });
 }
