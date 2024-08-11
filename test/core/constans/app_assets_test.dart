@@ -6,5 +6,9 @@ void main() {
     test('should have correct logo path', () {
       expect(AppAssets.logo, "assets/logo/quick_note.png");
     });
+
+    test('should have correct logoSVG path', () {
+      expect(AppAssets.logoSVG, "assets/svg/quick_note.svg");
+    });
   });
 }
