@@ -89,5 +89,47 @@ void main() {
           bookmarksBlock.maxVisibleBookmakrs);
       expect(bookmarksBlockModel.viewMode, bookmarksBlock.viewMode);
     });
+
+    test(
+        'should compare two BookmarksBlockModel instances with the same values as equal',
+        () {
+      final bookmarkItemModel1 = BookmarkItemModel(
+        id: 1,
+        title: 'Item 1',
+        url: 'http://example.com/1',
+        faviconUrl: 'http://example.com/1/favicon.ico',
+        description: 'Description 1',
+      );
+
+      final bookmarkItemModel2 = BookmarkItemModel(
+        id: 2,
+        title: 'Item 2',
+        url: 'http://example.com/2',
+        faviconUrl: 'http://example.com/2/favicon.ico',
+        description: 'Description 2',
+      );
+
+      final bookmarksBlockModel1 = BookmarksBlockModel(
+        id: 1,
+        title: 'Bookmarks Block',
+        hasTitle: true,
+        items: [bookmarkItemModel1, bookmarkItemModel2],
+        visibleFavicons: true,
+        maxVisibleBookmakrs: 10,
+        viewMode: BookmarkViewMode.grid,
+      );
+
+      final bookmarksBlockModel2 = BookmarksBlockModel(
+        id: 1,
+        title: 'Bookmarks Block',
+        hasTitle: true,
+        items: [bookmarkItemModel1, bookmarkItemModel2],
+        visibleFavicons: true,
+        maxVisibleBookmakrs: 10,
+        viewMode: BookmarkViewMode.grid,
+      );
+
+      expect(bookmarksBlockModel1, bookmarksBlockModel2);
+    });
   });
 }
