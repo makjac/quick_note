@@ -45,5 +45,14 @@ void main() {
         parameters: {'action': NoteAction.deleted.name},
       )).called(1);
     });
+
+    test('logArchiveNoteEvent logs the correct event', () {
+      analyticsService.logArchiveNoteEvent();
+
+      verify(mockFirebaseAnalytics.logEvent(
+        name: 'note_event',
+        parameters: {'action': NoteAction.archived.name},
+      )).called(1);
+    });
   });
 }
