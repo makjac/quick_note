@@ -8,5 +8,10 @@ void main() {
       const failure = NetworkFailure();
       expect(failure, isA<Failure>());
     });
+
+    test('should have the correct default message', () {
+      const failure = NetworkFailure();
+      expect(failure.message, 'Network error occurred.');
+    });
   });
 }
