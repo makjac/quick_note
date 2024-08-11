@@ -80,5 +80,31 @@ void main() {
       expect(updatedBlock.maxVisibleTasks, 10); // updated
       expect(updatedBlock.dedline, isNull); // unchanged
     });
+
+    test('should compare two TodoBlock instances with same values as equal',
+        () {
+      final items = [
+        const ChecklistItem(id: 1, title: "Task 1", isChecked: false),
+        const ChecklistItem(id: 2, title: "Task 2", isChecked: true),
+      ];
+
+      final todoBlock1 = TodoBlock(
+        id: 4,
+        title: "Todo Block",
+        items: items,
+        showCompleteTasks: false,
+        showProgressBar: false,
+      );
+
+      final todoBlock2 = TodoBlock(
+        id: 4,
+        title: "Todo Block",
+        items: items,
+        showCompleteTasks: false,
+        showProgressBar: false,
+      );
+
+      expect(todoBlock1, todoBlock2);
+    });
   });
 }
