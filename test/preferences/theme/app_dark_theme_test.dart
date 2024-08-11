@@ -20,5 +20,13 @@ void main() {
     test('should have correct scaffold background color', () {
       expect(darkTheme.scaffoldBackgroundColor, Colors.grey[850]);
     });
+
+    test('should have correct input decoration theme', () {
+      expect(darkTheme.inputDecorationTheme.hintStyle!.color, Colors.white60);
+      expect(darkTheme.inputDecorationTheme.hintStyle!.fontSize, 16);
+      expect(darkTheme.inputDecorationTheme.hintStyle!.fontWeight,
+          FontWeight.w400);
+      expect(darkTheme.inputDecorationTheme.hintStyle!.letterSpacing, 0.6);
+    });
   });
 }
