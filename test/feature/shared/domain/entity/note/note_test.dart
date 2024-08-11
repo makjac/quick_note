@@ -50,5 +50,21 @@ void main() {
       expect(note.isStarred, true);
       expect(note.color, NoteColors.color5);
     });
+
+    test('should compare two Note instances with same values as equal', () {
+      final note1 = Note(
+        id: 3,
+        created: DateTime(2023, 8, 10),
+        modified: DateTime(2023, 8, 11),
+      );
+
+      final note2 = Note(
+        id: 3,
+        created: DateTime(2023, 8, 10),
+        modified: DateTime(2023, 8, 11),
+      );
+
+      expect(note1, note2);
+    });
   });
 }
