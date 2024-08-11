@@ -103,5 +103,32 @@ void main() {
       expect(updatedNoteModel.isStarred, true);
       expect(updatedNoteModel.color, NoteColors.color2);
     });
+
+    test('should convert NoteModel back to Note using toEntity', () {
+      final now = DateTime.now();
+      final noteModel = NoteModel(
+        id: 1,
+        created: now,
+        modified: now,
+        title: 'Test Note',
+        content: const [],
+        archived: false,
+        author: 'Author',
+        isStarred: true,
+        color: NoteColors.color2,
+      );
+
+      final note = noteModel.toEntity();
+
+      expect(note.id, noteModel.id);
+      expect(note.created, noteModel.created);
+      expect(note.modified, noteModel.modified);
+      expect(note.title, noteModel.title);
+      expect(note.content, noteModel.content);
+      expect(note.archived, noteModel.archived);
+      expect(note.author, noteModel.author);
+      expect(note.isStarred, noteModel.isStarred);
+      expect(note.color, noteModel.color);
+    });
   });
 }
