@@ -50,6 +50,12 @@ void main() {
         expect(UrlHelper.extractDomain('https://sub.example.co.uk/path'),
             'sub.example.co.uk');
       });
+
+      test('handles URLs without a path', () {
+        expect(UrlHelper.extractDomain('http://example.com'), 'example.com');
+        expect(UrlHelper.extractDomain('https://www.example.com'),
+            'www.example.com');
+      });
     });
   });
 }
