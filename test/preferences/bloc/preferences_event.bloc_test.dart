@@ -49,5 +49,23 @@ void main() {
 
       expect(event3, event4);
     });
+
+    test(
+        'Different PreferencesEvents with different properties should not be equal',
+        () {
+      const theme1 = AppTheme.dark;
+      const theme2 = AppTheme.light;
+      const event1 = PreferencesSetTheme(theme: theme1);
+      const event2 = PreferencesSetTheme(theme: theme2);
+
+      expect(event1, isNot(event2));
+
+      const language1 = AppLanguage.english;
+      const language2 = AppLanguage.french;
+      const event3 = PreferencesSetLanguage(language: language1);
+      const event4 = PreferencesSetLanguage(language: language2);
+
+      expect(event3, isNot(event4));
+    });
   });
 }
