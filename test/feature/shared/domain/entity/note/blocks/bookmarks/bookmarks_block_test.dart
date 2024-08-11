@@ -44,5 +44,35 @@ void main() {
       expect(bookmarksBlock.maxVisibleBookmakrs, 5);
       expect(bookmarksBlock.viewMode, BookmarkViewMode.grid);
     });
+
+    test('should correctly copy a BookmarksBlock using copyWith', () {
+      const originalItems = [
+        BookmarkItem(id: 1, title: "Google", url: "https://google.com"),
+      ];
+
+      const bookmarksBlock = BookmarksBlock(
+        id: 3,
+        title: "Old Bookmarks",
+        items: originalItems,
+        visibleFavicons: true,
+        maxVisibleBookmakrs: 3,
+        viewMode: BookmarkViewMode.list,
+      );
+
+      final updatedBlock = bookmarksBlock.copyWith(
+        title: "Updated Bookmarks",
+        visibleFavicons: false,
+        maxVisibleBookmakrs: 10,
+        viewMode: BookmarkViewMode.icons,
+      );
+
+      expect(updatedBlock.id, 3); // id remains the same
+      expect(updatedBlock.title, "Updated Bookmarks"); // title updated
+      expect(updatedBlock.items, originalItems); // items remain the same
+      expect(updatedBlock.visibleFavicons, false); // visibleFavicons updated
+      expect(
+          updatedBlock.maxVisibleBookmakrs, 10); // maxVisibleBookmakrs updated
+      expect(updatedBlock.viewMode, BookmarkViewMode.icons); // viewMode updated
+    });
   });
 }
