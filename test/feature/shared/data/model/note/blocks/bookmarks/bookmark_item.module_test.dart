@@ -39,5 +39,27 @@ void main() {
       expect(bookmarkItemModel.faviconUrl, bookmarkItem.faviconUrl);
       expect(bookmarkItemModel.description, bookmarkItem.description);
     });
+
+    test(
+        'should compare two BookmarkItemModel instances with the same values as equal',
+        () {
+      final bookmarkItemModel1 = BookmarkItemModel(
+        id: 1,
+        title: 'Sample Title',
+        url: 'http://example.com',
+        faviconUrl: 'http://example.com/favicon.ico',
+        description: 'Sample Description',
+      );
+
+      final bookmarkItemModel2 = BookmarkItemModel(
+        id: 1,
+        title: 'Sample Title',
+        url: 'http://example.com',
+        faviconUrl: 'http://example.com/favicon.ico',
+        description: 'Sample Description',
+      );
+
+      expect(bookmarkItemModel1, bookmarkItemModel2);
+    });
   });
 }
