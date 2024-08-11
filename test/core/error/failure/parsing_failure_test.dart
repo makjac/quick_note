@@ -8,5 +8,10 @@ void main() {
       const failure = ParsingFailure();
       expect(failure, isA<Failure>());
     });
+
+    test('should have the correct default message', () {
+      const failure = ParsingFailure();
+      expect(failure.message, 'Failed to parse data.');
+    });
   });
 }
