@@ -29,5 +29,13 @@ void main() {
       expect(newState.language, AppLanguage.french);
       expect(newState.sideMenuCollapsed, false);
     });
+
+    test('copyWith should return the same instance if no changes are made', () {
+      const state = PreferencesState();
+
+      final newState = state.copyWith();
+
+      expect(newState, state);
+    });
   });
 }
