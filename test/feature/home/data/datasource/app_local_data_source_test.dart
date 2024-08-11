@@ -93,5 +93,25 @@ void main() {
       expect(() => localDataSource.createNote(note),
           throwsA(isA<CacheException>()));
     });
+
+    test('should update a note successfully', () async {
+      // Arrange
+      final note = NoteModel(
+        id: 1,
+        created: DateTime.now(),
+        modified: DateTime.now(),
+        title: 'Test Note',
+        content: const [],
+      );
+      when(() => mockHive.openBox<NoteModel>(HiveBoxes.note.name))
+          .thenAnswer((_) async => mockBox);
+      when(() => mockBox.put(note.id, note)).thenAnswer((_) async => 0);
+
+      // Act
+      await localDataSource.updateNote(1, note);
+
+      // Assert
+      verify(() => mockBox.put(note.id, note)).called(1);
+    });
   });
 }
