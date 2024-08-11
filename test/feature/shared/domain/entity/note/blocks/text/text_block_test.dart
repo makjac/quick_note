@@ -75,5 +75,23 @@ void main() {
 
       expect(textBlock1, textBlock2);
     });
+
+    test(
+        'should compare two TextBlock instances with different values as not equal',
+        () {
+      const textBlock1 = TextBlock(
+        id: 5,
+        title: "Title 1",
+        text: "Text 1",
+      );
+
+      const textBlock2 = TextBlock(
+        id: 5,
+        title: "Title 2",
+        text: "Text 2",
+      );
+
+      expect(textBlock1, isNot(textBlock2));
+    });
   });
 }
