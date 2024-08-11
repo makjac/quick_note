@@ -60,5 +60,12 @@ void main() {
       final darkTheme = ThemeData(brightness: Brightness.dark);
       expect(darkTheme.bookmarkFaviconBackgroundColor, Colors.white);
     });
+
+    test(
+        'bookmarkFaviconBackgroundColor should return correct color for light theme',
+        () {
+      final lightTheme = ThemeData(brightness: Brightness.light);
+      expect(lightTheme.bookmarkFaviconBackgroundColor, Colors.white70);
+    });
   });
 }
