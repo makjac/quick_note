@@ -58,5 +58,22 @@ void main() {
       expect(copiedBlock.hasMaxLineLimit, true); // unchanged
       expect(copiedBlock.maxLines, 6); // updated
     });
+
+    test('should compare two TextBlock instances with same values as equal',
+        () {
+      const textBlock1 = TextBlock(
+        id: 4,
+        title: "Same Title",
+        text: "Same text",
+      );
+
+      const textBlock2 = TextBlock(
+        id: 4,
+        title: "Same Title",
+        text: "Same text",
+      );
+
+      expect(textBlock1, textBlock2);
+    });
   });
 }
