@@ -45,5 +45,15 @@ void main() {
       expect(result, notes);
       verify(() => mockHive.openBox<NoteModel>(HiveBoxes.note.name)).called(1);
     });
+
+    test('should throw CacheException when getNotes throws an exception',
+        () async {
+      // Arrange
+      when(() => mockHive.openBox<NoteModel>(HiveBoxes.note.name))
+          .thenThrow(Exception());
+
+      // Act & Assert
+      expect(() => localDataSource.getNotes(), throwsA(isA<CacheException>()));
+    });
   });
 }
