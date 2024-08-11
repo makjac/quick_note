@@ -19,5 +19,14 @@ void main() {
 
       expect(resultColor.value, equals(color.value));
     });
+
+    test('should clamp brightness within range [0.0, 1.0]', () {
+      const color = Colors.green;
+      final darkColor = color.changeBrightness(-1.0);
+      final lightColor = color.changeBrightness(1.0);
+
+      expect(darkColor.computeLuminance(), lessThanOrEqualTo(0.0));
+      expect(lightColor.computeLuminance(), greaterThanOrEqualTo(1.0));
+    });
   });
 }
