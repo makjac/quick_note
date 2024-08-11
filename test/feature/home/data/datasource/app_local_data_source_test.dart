@@ -131,5 +131,27 @@ void main() {
       expect(() => localDataSource.updateNote(1, note),
           throwsA(isA<CacheException>()));
     });
+
+    test('should update multiple notes successfully', () async {
+      // Arrange
+      final updates = {
+        1: NoteModel(
+          id: 1,
+          created: DateTime.now(),
+          modified: DateTime.now(),
+          title: 'Test Note',
+          content: const [],
+        )
+      };
+      when(() => mockHive.openBox<NoteModel>(HiveBoxes.note.name))
+          .thenAnswer((_) async => mockBox);
+      when(() => mockBox.putAll(updates)).thenAnswer((_) async => 0);
+
+      // Act
+      await localDataSource.updateMultipleNotes(updates);
+
+      // Assert
+      verify(() => mockBox.putAll(updates)).called(1);
+    });
   });
 }
