@@ -7,5 +7,10 @@ void main() {
       final exception = CacheException();
       expect(exception, isA<Exception>());
     });
+
+    test('should be an instance of CacheException', () {
+      final exception = CacheException();
+      expect(exception, isA<CacheException>());
+    });
   });
 }
