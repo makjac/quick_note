@@ -28,5 +28,25 @@ void main() {
       expect(bookmarkItem.faviconUrl, "https://example.com/favicon.ico");
       expect(bookmarkItem.description, "This is an example bookmark.");
     });
+
+    test('should copy BookmarkItem with updated values using copyWith', () {
+      const bookmarkItem = BookmarkItem(
+        id: 3,
+        title: "Example",
+        url: "https://example.com",
+        faviconUrl: "https://example.com/favicon.ico",
+      );
+
+      final updatedItem = bookmarkItem.copyWith(
+        title: "Updated Example",
+        url: "https://updated.com",
+      );
+
+      expect(updatedItem.id, 3); // id remains the same
+      expect(updatedItem.title, "Updated Example"); // title updated
+      expect(updatedItem.url, "https://updated.com"); // url updated
+      expect(updatedItem.faviconUrl,
+          "https://example.com/favicon.ico"); // faviconUrl remains the same
+    });
   });
 }
