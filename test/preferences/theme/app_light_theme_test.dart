@@ -59,3 +59,7 @@ void main() {
             borderRadius: BorderRadius.all(Radius.circular(Insets.xs)),
           ));
     });
+
+    test('should have correct divider color', () {
+      expect(lightTheme.dividerColor, Colors.black54);
+    });
