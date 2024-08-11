@@ -63,5 +63,14 @@ void main() {
         parameters: {'action': NoteAction.unarchived.name},
       )).called(1);
     });
+
+    test('logRestoreNoteEvent logs the correct event', () {
+      analyticsService.logRestoreNoteEvent();
+
+      verify(mockFirebaseAnalytics.logEvent(
+        name: 'note_event',
+        parameters: {'action': NoteAction.restored.name},
+      )).called(1);
+    });
   });
 }
