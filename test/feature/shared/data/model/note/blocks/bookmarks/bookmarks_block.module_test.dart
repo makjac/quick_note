@@ -44,5 +44,50 @@ void main() {
       expect(bookmarksBlockModel.maxVisibleBookmakrs, 10);
       expect(bookmarksBlockModel.viewMode, BookmarkViewMode.grid);
     });
+
+    test(
+        'should convert BookmarksBlock to BookmarksBlockModel using fromEntity',
+        () {
+      const bookmarkItem1 = BookmarkItem(
+        id: 1,
+        title: 'Item 1',
+        url: 'http://example.com/1',
+        faviconUrl: 'http://example.com/1/favicon.ico',
+        description: 'Description 1',
+      );
+
+      const bookmarkItem2 = BookmarkItem(
+        id: 2,
+        title: 'Item 2',
+        url: 'http://example.com/2',
+        faviconUrl: 'http://example.com/2/favicon.ico',
+        description: 'Description 2',
+      );
+
+      const bookmarksBlock = BookmarksBlock(
+        id: 1,
+        title: 'Bookmarks Block',
+        hasTitle: true,
+        items: [bookmarkItem1, bookmarkItem2],
+        visibleFavicons: true,
+        maxVisibleBookmakrs: 10,
+        viewMode: BookmarkViewMode.grid,
+      );
+
+      final bookmarksBlockModel =
+          BookmarksBlockModel.fromEntity(bookmarksBlock);
+
+      expect(bookmarksBlockModel.id, bookmarksBlock.id);
+      expect(bookmarksBlockModel.title, bookmarksBlock.title);
+      expect(bookmarksBlockModel.hasTitle, bookmarksBlock.hasTitle);
+      expect(bookmarksBlockModel.items.length, bookmarksBlock.items.length);
+      expect(bookmarksBlockModel.items[0].id, bookmarkItem1.id);
+      expect(bookmarksBlockModel.items[1].id, bookmarkItem2.id);
+      expect(
+          bookmarksBlockModel.visibleFavicons, bookmarksBlock.visibleFavicons);
+      expect(bookmarksBlockModel.maxVisibleBookmakrs,
+          bookmarksBlock.maxVisibleBookmakrs);
+      expect(bookmarksBlockModel.viewMode, bookmarksBlock.viewMode);
+    });
   });
 }
