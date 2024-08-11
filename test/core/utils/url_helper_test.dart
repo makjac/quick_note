@@ -20,6 +20,17 @@ void main() {
         expect(UrlHelper.isValidUrl('example'), isFalse);
       });
     });
+
+    group('completeUrl', () {
+      test('adds http:// and www. when necessary', () {
+        expect(UrlHelper.completeUrl('example.com'), 'http://www.example.com');
+        expect(
+            UrlHelper.completeUrl('www.example.com'), 'http://www.example.com');
+        expect(
+            UrlHelper.completeUrl('http://example.com'), 'http://example.com');
+        expect(UrlHelper.completeUrl('https://example.com'),
+            'https://example.com');
+      });
     });
   });
 }
