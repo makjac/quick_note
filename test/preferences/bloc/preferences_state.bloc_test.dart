@@ -37,5 +37,15 @@ void main() {
 
       expect(newState, state);
     });
+
+    test('props should include theme, language, and sideMenuCollapsed', () {
+      const state = PreferencesState(
+        theme: AppTheme.light,
+        language: AppLanguage.spanish,
+        sideMenuCollapsed: true,
+      );
+
+      expect(state.props, [AppTheme.light, AppLanguage.spanish, true]);
+    });
   });
 }
