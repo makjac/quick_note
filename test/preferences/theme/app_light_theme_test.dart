@@ -50,3 +50,12 @@ void main() {
       expect(lightTheme.checkboxTheme.side!.color, Colors.black38);
       expect(lightTheme.checkboxTheme.checkColor!.resolve({}), Colors.black);
     });
+
+    test('should have correct dialog theme', () {
+      expect(lightTheme.dialogTheme.titleTextStyle!.color, Colors.black87);
+      expect(
+          lightTheme.dialogTheme.shape,
+          const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(Insets.xs)),
+          ));
+    });
