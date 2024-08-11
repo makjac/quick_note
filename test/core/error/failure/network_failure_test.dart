@@ -20,5 +20,10 @@ void main() {
 
       expect(failure1, equals(failure2));
     });
+
+    test('should have an empty props list', () {
+      const failure = NetworkFailure();
+      expect(failure.props, ['Network error occurred.']);
+    });
   });
 }
