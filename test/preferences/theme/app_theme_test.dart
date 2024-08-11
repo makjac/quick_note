@@ -12,5 +12,13 @@ void main() {
 
       expect(themeData, darkTheme);
     });
+
+    test('should return lightTheme when AppTheme is light', () {
+      const appTheme = AppTheme.light;
+
+      final themeData = appTheme.themeData;
+
+      expect(themeData, lightTheme);
+    });
   });
 }
