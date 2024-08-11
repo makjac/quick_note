@@ -111,5 +111,17 @@ void main() {
         },
       )).called(1);
     });
+
+    test('logRemoveBlockEvent logs the correct event with block type', () {
+      analyticsService.logRemoveBlockEvent(NoteBlockType.text);
+
+      verify(mockFirebaseAnalytics.logEvent(
+        name: 'note_event',
+        parameters: {
+          'action': NoteAction.removedBlock.name,
+          'block_type': NoteBlockType.text.name,
+        },
+      )).called(1);
+    });
   });
 }
