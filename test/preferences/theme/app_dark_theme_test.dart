@@ -8,5 +8,9 @@ void main() {
     test('should use Material3', () {
       expect(darkTheme.useMaterial3, isTrue);
     });
+
+    test('should have dark brightness', () {
+      expect(darkTheme.brightness, Brightness.dark);
+    });
   });
 }
