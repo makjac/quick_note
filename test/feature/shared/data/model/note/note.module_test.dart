@@ -130,5 +130,35 @@ void main() {
       expect(note.isStarred, noteModel.isStarred);
       expect(note.color, noteModel.color);
     });
+
+    test('should compare two NoteModel instances with the same values as equal',
+        () {
+      final now = DateTime.now();
+      final noteModel1 = NoteModel(
+        id: 1,
+        created: now,
+        modified: now,
+        title: 'Test Note',
+        content: const [],
+        archived: false,
+        author: 'Author',
+        isStarred: true,
+        color: NoteColors.color2,
+      );
+
+      final noteModel2 = NoteModel(
+        id: 1,
+        created: now,
+        modified: now,
+        title: 'Test Note',
+        content: const [],
+        archived: false,
+        author: 'Author',
+        isStarred: true,
+        color: NoteColors.color2,
+      );
+
+      expect(noteModel1, noteModel2);
+    });
   });
 }
