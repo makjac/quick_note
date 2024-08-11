@@ -68,5 +68,29 @@ void main() {
 
       expect(textBlockModel1, textBlockModel2);
     });
+
+    test(
+        'should compare two TextBlockModel instances with different values as not equal',
+        () {
+      const textBlockModel1 = TextBlockModel(
+        id: 1,
+        title: 'Sample Title',
+        hasTitle: true,
+        text: 'Sample text',
+        hasMaxLineLimit: true,
+        maxLines: 5,
+      );
+
+      const textBlockModel2 = TextBlockModel(
+        id: 2,
+        title: 'Different Title',
+        hasTitle: false,
+        text: 'Different text',
+        hasMaxLineLimit: false,
+        maxLines: 3,
+      );
+
+      expect(textBlockModel1, isNot(textBlockModel2));
+    });
   });
 }
