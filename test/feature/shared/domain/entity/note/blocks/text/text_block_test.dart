@@ -27,5 +27,14 @@ void main() {
         hasMaxLineLimit: true,
         maxLines: 5,
       );
+
+      expect(textBlock.id, 2);
+      expect(textBlock.title, "Custom Title");
+      expect(textBlock.hasTitle, false);
+      expect(textBlock.type, NoteBlockType.text);
+      expect(textBlock.text, "Sample text");
+      expect(textBlock.hasMaxLineLimit, true);
+      expect(textBlock.maxLines, 5);
+    });
   });
 }
