@@ -38,5 +38,35 @@ void main() {
       expect(todoBlockModel.maxVisibleTasks, 5);
       expect(todoBlockModel.dedline, DateTime(2024, 8, 10));
     });
+
+    test('should convert TodoBlock to TodoBlockModel using fromEntity', () {
+      const checklistItem = ChecklistItem(
+        id: 1,
+        title: 'Task 1',
+        isChecked: true,
+      );
+      final todoBlock = TodoBlock(
+        id: 1,
+        title: 'My Todo Block',
+        hasTitle: true,
+        items: const [checklistItem],
+        showCompleteTasks: true,
+        showProgressBar: false,
+        maxVisibleTasks: 5,
+        dedline: DateTime(2024, 8, 10),
+      );
+
+      final todoBlockModel = TodoBlockModel.fromEntity(todoBlock);
+
+      expect(todoBlockModel.id, todoBlock.id);
+      expect(todoBlockModel.title, todoBlock.title);
+      expect(todoBlockModel.hasTitle, todoBlock.hasTitle);
+      expect(todoBlockModel.items.length, todoBlock.items.length);
+      expect(todoBlockModel.items[0].id, todoBlock.items[0].id);
+      expect(todoBlockModel.showCompleteTasks, todoBlock.showCompleteTasks);
+      expect(todoBlockModel.showProgressBar, todoBlock.showProgressBar);
+      expect(todoBlockModel.maxVisibleTasks, todoBlock.maxVisibleTasks);
+      expect(todoBlockModel.dedline, todoBlock.dedline);
+    });
   });
 }
