@@ -68,5 +68,44 @@ void main() {
       expect(todoBlockModel.maxVisibleTasks, todoBlock.maxVisibleTasks);
       expect(todoBlockModel.dedline, todoBlock.dedline);
     });
+
+    test(
+        'should compare two TodoBlockModel instances with the same values as equal',
+        () {
+      final checklistItemModel1 = ChecklistItemModel(
+        id: 1,
+        title: 'Task 1',
+        isChecked: true,
+      );
+      final checklistItemModel2 = ChecklistItemModel(
+        id: 2,
+        title: 'Task 2',
+        isChecked: false,
+      );
+
+      final todoBlockModel1 = TodoBlockModel(
+        id: 1,
+        title: 'My Todo Block',
+        hasTitle: true,
+        items: [checklistItemModel1, checklistItemModel2],
+        showCompleteTasks: true,
+        showProgressBar: false,
+        maxVisibleTasks: 5,
+        dedline: DateTime(2024, 8, 10),
+      );
+
+      final todoBlockModel2 = TodoBlockModel(
+        id: 1,
+        title: 'My Todo Block',
+        hasTitle: true,
+        items: [checklistItemModel1, checklistItemModel2],
+        showCompleteTasks: true,
+        showProgressBar: false,
+        maxVisibleTasks: 5,
+        dedline: DateTime(2024, 8, 10),
+      );
+
+      expect(todoBlockModel1, todoBlockModel2);
+    });
   });
 }
