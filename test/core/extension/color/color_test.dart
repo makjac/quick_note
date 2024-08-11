@@ -12,5 +12,12 @@ void main() {
       expect(lighterColor, isNot(equals(color)));
       expect(darkerColor, isNot(equals(color)));
     });
+
+    test('should return the same color when brightness change is 0', () {
+      const color = Colors.red;
+      final resultColor = color.changeBrightness(0.0);
+
+      expect(resultColor.value, equals(color.value));
+    });
   });
 }
