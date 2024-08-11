@@ -46,5 +46,12 @@ void main() {
       final darkTheme = ThemeData(brightness: Brightness.dark);
       expect(darkTheme.todoTaskActiveCheckboxColor, Colors.white70);
     });
+
+    test(
+        'todoTaskActiveCheckboxColor should return correct color for light theme',
+        () {
+      final lightTheme = ThemeData(brightness: Brightness.light);
+      expect(lightTheme.todoTaskActiveCheckboxColor, Colors.black87);
+    });
   });
 }
