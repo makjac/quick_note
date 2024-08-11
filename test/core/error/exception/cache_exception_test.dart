@@ -12,5 +12,10 @@ void main() {
       final exception = CacheException();
       expect(exception, isA<CacheException>());
     });
+
+    test('should have no additional properties or methods', () {
+      final exception = CacheException();
+      expect(exception.toString(), 'Instance of \'CacheException\'');
+    });
   });
 }
