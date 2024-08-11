@@ -18,5 +18,10 @@ void main() {
 
       expect(result, const Right('Success'));
     });
+
+    test('NoParams should be an instance of Equatable', () {
+      final noParams = NoParams();
+      expect(noParams.props, isEmpty);
+    });
   });
 }
