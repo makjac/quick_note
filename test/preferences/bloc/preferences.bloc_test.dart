@@ -30,5 +30,18 @@ void main() {
     test('initial state is PreferencesInitial', () {
       expect(preferencesBloc.state, isA<PreferencesInitial>());
     });
+
+    blocTest<PreferencesBloc, PreferencesState>(
+      'emits new state with default values when PreferencesLoad is added',
+      build: () => preferencesBloc,
+      act: (bloc) => bloc.add(PreferencesLoad()),
+      expect: () => [
+        const PreferencesState(
+          theme: AppTheme.dark,
+          language: AppLanguage.english,
+          sideMenuCollapsed: false,
+        ),
+      ],
+    );
   });
 }
