@@ -51,5 +51,34 @@ void main() {
       expect(todoBlock.maxVisibleTasks, 5);
       expect(todoBlock.dedline, dedline);
     });
+
+    test('should copy TodoBlock with updated values using copyWith', () {
+      final items = [
+        const ChecklistItem(id: 1, title: "Task 1", isChecked: false),
+        const ChecklistItem(id: 2, title: "Task 2", isChecked: true),
+      ];
+
+      final todoBlock = TodoBlock(
+        id: 3,
+        items: items,
+        showCompleteTasks: false,
+        showProgressBar: false,
+        maxVisibleTasks: 3,
+      );
+
+      final updatedBlock = todoBlock.copyWith(
+        title: "Updated Todo List",
+        showCompleteTasks: true,
+        maxVisibleTasks: 10,
+      );
+
+      expect(updatedBlock.id, 3); // id remains the same
+      expect(updatedBlock.title, "Updated Todo List");
+      expect(updatedBlock.items, items); // items remain the same
+      expect(updatedBlock.showCompleteTasks, true); // updated
+      expect(updatedBlock.showProgressBar, false); // unchanged
+      expect(updatedBlock.maxVisibleTasks, 10); // updated
+      expect(updatedBlock.dedline, isNull); // unchanged
+    });
   });
 }
