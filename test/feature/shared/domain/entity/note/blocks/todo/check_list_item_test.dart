@@ -24,5 +24,22 @@ void main() {
       expect(checklistItem.title, "Sample Task");
       expect(checklistItem.isChecked, true);
     });
+
+    test('should copy ChecklistItem with updated values using copyWith', () {
+      const checklistItem = ChecklistItem(
+        id: 3,
+        title: "Original Task",
+        isChecked: false,
+      );
+
+      final copiedItem = checklistItem.copyWith(
+        title: "Updated Task",
+        isChecked: true,
+      );
+
+      expect(copiedItem.id, 3); // id remains the same
+      expect(copiedItem.title, "Updated Task");
+      expect(copiedItem.isChecked, true);
+    });
   });
 }
