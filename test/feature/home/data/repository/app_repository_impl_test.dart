@@ -130,5 +130,18 @@ void main() {
       // Assert
       expect(result, equals(const Left(CacheFailure())));
     });
+
+    test('should delete a note successfully', () async {
+      // Arrange
+      when(() => mockLocalDataSource.deleteNote(note.id))
+          .thenAnswer((_) async {});
+
+      // Act
+      final result = await repository.deleteNote(note.id);
+
+      // Assert
+      expect(result, equals(const Right(null)));
+      verify(() => mockLocalDataSource.deleteNote(note.id)).called(1);
+    });
   });
 }
