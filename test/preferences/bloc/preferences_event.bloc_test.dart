@@ -34,5 +34,20 @@ void main() {
       expect(event.language, language);
       expect(event.props, [language]);
     });
+
+    test('Different PreferencesEvents with same properties should be equal',
+        () {
+      const theme = AppTheme.dark;
+      const language = AppLanguage.english;
+      const event1 = PreferencesSetTheme(theme: theme);
+      const event2 = PreferencesSetTheme(theme: theme);
+
+      expect(event1, event2);
+
+      const event3 = PreferencesSetLanguage(language: language);
+      const event4 = PreferencesSetLanguage(language: language);
+
+      expect(event3, event4);
+    });
   });
 }
