@@ -17,5 +17,13 @@ void main() {
 
       expect(result, isFalse);
     });
+
+    test('getTextColorBasedOnBackground returns white for dark background', () {
+      const darkBackgroundColor = Colors.black;
+      final result =
+          TextHelper.getTextColorBasedOnBackground(darkBackgroundColor);
+
+      expect(result, Colors.white);
+    });
   });
 }
