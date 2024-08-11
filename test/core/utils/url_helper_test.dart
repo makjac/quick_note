@@ -31,6 +31,14 @@ void main() {
         expect(UrlHelper.completeUrl('https://example.com'),
             'https://example.com');
       });
+
+      test('does not alter URLs with http:// or https://', () {
+        expect(UrlHelper.completeUrl('http://www.example.com'),
+            'http://www.example.com');
+        expect(UrlHelper.completeUrl('https://www.example.com'),
+            'https://www.example.com');
+      });
+    });
     });
   });
 }
