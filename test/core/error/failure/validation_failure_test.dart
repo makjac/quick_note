@@ -8,5 +8,10 @@ void main() {
       const failure = ValidationFailure();
       expect(failure, isA<Failure>());
     });
+
+    test('should have the correct default message', () {
+      const failure = ValidationFailure();
+      expect(failure.message, 'Validation error occurred.');
+    });
   });
 }
