@@ -79,5 +79,23 @@ void main() {
         ),
       ],
     );
+
+    blocTest<PreferencesBloc, PreferencesState>(
+      'emits new state with updated side menu collapse when PreferencesSetSideMenuCollapse is added',
+      build: () => preferencesBloc,
+      act: (bloc) {
+        when(() => mockSharedPreferences.setBool(
+                SharedKeys.colapseSideMenuPerf.name, true))
+            .thenAnswer((_) async => true);
+        bloc.add(const PreferencesSetSideMenuCollapse(collapsed: true));
+      },
+      expect: () => [
+        const PreferencesState(
+          theme: AppTheme.dark,
+          language: AppLanguage.english,
+          sideMenuCollapsed: true,
+        ),
+      ],
+    );
   });
 }
