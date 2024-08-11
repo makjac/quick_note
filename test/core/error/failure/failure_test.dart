@@ -26,5 +26,10 @@ void main() {
       expect(failure1, equals(failure2));
       expect(failure1, isNot(equals(failure3)));
     });
+
+    test('should have an empty props list', () {
+      const failure = _TestFailure();
+      expect(failure.props, ['']);
+    });
   });
 }
