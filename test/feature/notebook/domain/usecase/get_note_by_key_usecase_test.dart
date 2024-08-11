@@ -69,5 +69,21 @@ void main() {
         expect(result, equals(const Left(CacheFailure())));
         verify(() => mockRepository.getNoteByKey(tKey)).called(1);
       });
+
+      test(
+          'should return UnknownFailure when repository returns UnknownFailure',
+          () async {
+        // Arrange
+        when(() => mockRepository.getNoteByKey(tKey))
+            .thenAnswer((_) async => const Left(UnknownFailure()));
+
+        // Act
+        final result = await usecase(tKey);
+
+        // Assert
+        expect(result, equals(const Left(UnknownFailure())));
+        verify(() => mockRepository.getNoteByKey(tKey)).called(1);
+      });
+    });
   });
 }
