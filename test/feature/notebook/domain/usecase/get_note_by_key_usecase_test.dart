@@ -55,5 +55,19 @@ void main() {
         expect(result, equals(const Left(CacheValueFailure())));
         verify(() => mockRepository.getNoteByKey(tKey)).called(1);
       });
+
+      test('should return CacheFailure when repository returns CacheFailure',
+          () async {
+        // Arrange
+        when(() => mockRepository.getNoteByKey(tKey))
+            .thenAnswer((_) async => const Left(CacheFailure()));
+
+        // Act
+        final result = await usecase(tKey);
+
+        // Assert
+        expect(result, equals(const Left(CacheFailure())));
+        verify(() => mockRepository.getNoteByKey(tKey)).called(1);
+      });
   });
 }
