@@ -83,5 +83,9 @@ void main() {
     test('should have correct bottom sheet theme', () {
       expect(darkTheme.bottomSheetTheme.backgroundColor, Colors.grey[800]);
     });
+
+    test('should have correct text selection theme', () {
+      expect(darkTheme.textSelectionTheme.cursorColor, Colors.white38);
+    });
   });
 }
