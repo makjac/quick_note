@@ -8,5 +8,10 @@ void main() {
       const failure = UnknownFailure();
       expect(failure, isA<Failure>());
     });
+
+    test('should have the correct default message', () {
+      const failure = UnknownFailure();
+      expect(failure.message, 'An unknown error occurred.');
+    });
   });
 }
