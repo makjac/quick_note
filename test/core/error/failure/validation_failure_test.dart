@@ -13,5 +13,12 @@ void main() {
       const failure = ValidationFailure();
       expect(failure.message, 'Validation error occurred.');
     });
+
+    test('should be equatable', () {
+      const failure1 = ValidationFailure();
+      const failure2 = ValidationFailure();
+
+      expect(failure1, equals(failure2));
+    });
   });
 }
