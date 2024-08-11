@@ -92,5 +92,10 @@ void main() {
       expect(darkTheme.textButtonTheme.style!.foregroundColor!.resolve({}),
           Colors.white);
     });
+
+    test('should have correct outlined button theme', () {
+      expect(darkTheme.outlinedButtonTheme.style!.foregroundColor!.resolve({}),
+          Colors.white);
+    });
   });
 }
