@@ -28,3 +28,7 @@ void main() {
           FontWeight.w400);
       expect(lightTheme.inputDecorationTheme.hintStyle!.letterSpacing, 0.6);
     });
+
+    test('should have correct icon theme', () {
+      expect(lightTheme.iconTheme.color, Colors.black);
+    });
