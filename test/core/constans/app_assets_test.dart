@@ -10,5 +10,9 @@ void main() {
     test('should have correct logoSVG path', () {
       expect(AppAssets.logoSVG, "assets/svg/quick_note.svg");
     });
+
+    test('should have correct logoBoxSVG path', () {
+      expect(AppAssets.logoBoxSVG, "assets/svg/quickNote_box.svg");
+    });
   });
 }
