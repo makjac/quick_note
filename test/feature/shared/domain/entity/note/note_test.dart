@@ -66,5 +66,24 @@ void main() {
 
       expect(note1, note2);
     });
+
+    test('should compare two Note instances with different values as not equal',
+        () {
+      final note1 = Note(
+        id: 4,
+        created: DateTime(2023, 8, 10),
+        modified: DateTime(2023, 8, 11),
+        title: "Note 1",
+      );
+
+      final note2 = Note(
+        id: 4,
+        created: DateTime(2023, 8, 10),
+        modified: DateTime(2023, 8, 11),
+        title: "Note 2",
+      );
+
+      expect(note1, isNot(note2));
+    });
   });
 }
