@@ -12,5 +12,22 @@ void main() {
       expect(state.language, AppLanguage.english);
       expect(state.sideMenuCollapsed, false);
     });
+
+    test('copyWith should return a new instance with updated values', () {
+      const state = PreferencesState(
+        theme: AppTheme.light,
+        language: AppLanguage.french,
+        sideMenuCollapsed: true,
+      );
+
+      final newState = state.copyWith(
+        theme: AppTheme.dark,
+        sideMenuCollapsed: false,
+      );
+
+      expect(newState.theme, AppTheme.dark);
+      expect(newState.language, AppLanguage.french);
+      expect(newState.sideMenuCollapsed, false);
+    });
   });
 }
