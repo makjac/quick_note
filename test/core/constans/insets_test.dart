@@ -6,5 +6,9 @@ void main() {
     test('should have correct none value', () {
       expect(Insets.none, 0.0);
     });
+
+    test('should have correct xxs value', () {
+      expect(Insets.xxs, 4.0);
+    });
   });
 }
