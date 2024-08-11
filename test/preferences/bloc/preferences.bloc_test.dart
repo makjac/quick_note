@@ -61,5 +61,23 @@ void main() {
         ),
       ],
     );
+
+    blocTest<PreferencesBloc, PreferencesState>(
+      'emits new state with updated theme when PreferencesSetTheme is added',
+      build: () => preferencesBloc,
+      act: (bloc) {
+        when(() => mockSharedPreferences.setString(
+                SharedKeys.themePref.name, AppTheme.light.name))
+            .thenAnswer((_) async => true);
+        bloc.add(const PreferencesSetTheme(theme: AppTheme.light));
+      },
+      expect: () => [
+        const PreferencesState(
+          theme: AppTheme.light,
+          language: AppLanguage.english,
+          sideMenuCollapsed: false,
+        ),
+      ],
+    );
   });
 }
