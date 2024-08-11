@@ -30,5 +30,9 @@ void main() {
     test('should have correct xl value', () {
       expect(Insets.xl, 40.0);
     });
+
+    test('should have correct xxl value', () {
+      expect(Insets.xxl, 48.0);
+    });
   });
 }
