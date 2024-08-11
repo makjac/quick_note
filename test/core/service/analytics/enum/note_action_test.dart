@@ -41,5 +41,22 @@ void main() {
       expect(NoteAction.reorderBlocks.index, equals(11));
     });
 
+    test('toString returns the correct string representation', () {
+      expect(NoteAction.created.toString(), equals('NoteAction.created'));
+      expect(NoteAction.deleted.toString(), equals('NoteAction.deleted'));
+      expect(NoteAction.updated.toString(), equals('NoteAction.updated'));
+      expect(NoteAction.restored.toString(), equals('NoteAction.restored'));
+      expect(NoteAction.archived.toString(), equals('NoteAction.archived'));
+      expect(NoteAction.unarchived.toString(), equals('NoteAction.unarchived'));
+      expect(NoteAction.stared.toString(), equals('NoteAction.stared'));
+      expect(NoteAction.unstared.toString(), equals('NoteAction.unstared'));
+      expect(NoteAction.colorChanged.toString(),
+          equals('NoteAction.colorChanged'));
+      expect(NoteAction.addedBlock.toString(), equals('NoteAction.addedBlock'));
+      expect(NoteAction.removedBlock.toString(),
+          equals('NoteAction.removedBlock'));
+      expect(NoteAction.reorderBlocks.toString(),
+          equals('NoteAction.reorderBlocks'));
+    });
   });
 }
