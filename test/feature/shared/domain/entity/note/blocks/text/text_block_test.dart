@@ -17,5 +17,15 @@ void main() {
       expect(textBlock.hasMaxLineLimit, false);
       expect(textBlock.maxLines, 3);
     });
+
+    test('should create a TextBlock instance with custom values', () {
+      const textBlock = TextBlock(
+        id: 2,
+        title: "Custom Title",
+        hasTitle: false,
+        text: "Sample text",
+        hasMaxLineLimit: true,
+        maxLines: 5,
+      );
   });
 }
