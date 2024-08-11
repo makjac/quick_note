@@ -156,5 +156,19 @@ void main() {
       // Assert
       expect(result, equals(const Left(CacheFailure())));
     });
+
+    test('should delete multiple notes successfully', () async {
+      // Arrange
+      final ids = [note.id];
+      when(() => mockLocalDataSource.deleteMultipleNotes(ids))
+          .thenAnswer((_) async {});
+
+      // Act
+      final result = await repository.deleteMultipleNotes(ids);
+
+      // Assert
+      expect(result, equals(const Right(null)));
+      verify(() => mockLocalDataSource.deleteMultipleNotes(ids)).called(1);
+    });
   });
 }
