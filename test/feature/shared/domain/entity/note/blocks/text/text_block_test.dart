@@ -36,5 +36,27 @@ void main() {
       expect(textBlock.hasMaxLineLimit, true);
       expect(textBlock.maxLines, 5);
     });
+
+    test('should copy TextBlock with updated values using copyWith', () {
+      const textBlock = TextBlock(
+        id: 3,
+        title: "Original Title",
+        text: "Original text",
+        hasMaxLineLimit: true,
+        maxLines: 4,
+      );
+
+      final copiedBlock = textBlock.copyWith(
+        title: "Updated Title",
+        text: "Updated text",
+        maxLines: 6,
+      );
+
+      expect(copiedBlock.id, 3); // id remains the same
+      expect(copiedBlock.title, "Updated Title");
+      expect(copiedBlock.text, "Updated text");
+      expect(copiedBlock.hasMaxLineLimit, true); // unchanged
+      expect(copiedBlock.maxLines, 6); // updated
+    });
   });
 }
