@@ -22,5 +22,9 @@ void main() {
     test('should have correct m value', () {
       expect(Insets.m, 24.0);
     });
+
+    test('should have correct l value', () {
+      expect(Insets.l, 32.0);
+    });
   });
 }
