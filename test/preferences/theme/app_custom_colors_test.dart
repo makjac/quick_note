@@ -21,5 +21,11 @@ void main() {
       final darkTheme = ThemeData(brightness: Brightness.dark);
       expect(darkTheme.searchBarBackgroundColor, Colors.grey[900]);
     });
+
+    test('searchBarBackgroundColor should return correct color for light theme',
+        () {
+      final lightTheme = ThemeData(brightness: Brightness.light);
+      expect(lightTheme.searchBarBackgroundColor, Colors.grey);
+    });
   });
 }
