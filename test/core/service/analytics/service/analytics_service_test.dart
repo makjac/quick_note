@@ -99,5 +99,17 @@ void main() {
         parameters: {'action': NoteAction.colorChanged.name},
       )).called(1);
     });
+
+    test('logAddBlockEvent logs the correct event with block type', () {
+      analyticsService.logAddBlockEvent(NoteBlockType.text);
+
+      verify(mockFirebaseAnalytics.logEvent(
+        name: 'note_event',
+        parameters: {
+          'action': NoteAction.addedBlock.name,
+          'block_type': NoteBlockType.text.name,
+        },
+      )).called(1);
+    });
   });
 }
