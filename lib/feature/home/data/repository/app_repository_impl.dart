@@ -18,7 +18,7 @@ class AppRepositoryImpl implements AppRepository {
       final notes = await localDataSource.getNotes();
       return Right(notes);
     } catch (e) {
-      return left(CacheFailure());
+      return left(const CacheFailure());
     }
   }
 
@@ -29,7 +29,7 @@ class AppRepositoryImpl implements AppRepository {
 
       return Right(key);
     } catch (e) {
-      return Left(CacheFailure());
+      return const Left(CacheFailure());
     }
   }
 
@@ -42,7 +42,7 @@ class AppRepositoryImpl implements AppRepository {
 
       return Right(result);
     } catch (e) {
-      return Left(CacheFailure());
+      return const Left(CacheFailure());
     }
   }
 
@@ -61,7 +61,7 @@ class AppRepositoryImpl implements AppRepository {
 
       return Right(result);
     } catch (e) {
-      return Left(CacheFailure());
+      return const Left(CacheFailure());
     }
   }
 
@@ -72,7 +72,7 @@ class AppRepositoryImpl implements AppRepository {
 
       return Right(result);
     } catch (e) {
-      return Left(CacheFailure());
+      return const Left(CacheFailure());
     }
   }
 
@@ -83,7 +83,7 @@ class AppRepositoryImpl implements AppRepository {
 
       return Right(result);
     } catch (e) {
-      return Left(CacheFailure());
+      return const Left(CacheFailure());
     }
   }
 
@@ -94,7 +94,7 @@ class AppRepositoryImpl implements AppRepository {
 
       return Right(result);
     } catch (e) {
-      return Left(CacheFailure());
+      return const Left(CacheFailure());
     }
   }
 }

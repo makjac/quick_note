@@ -64,14 +64,14 @@ class BookmarksBlockCubit extends Cubit<BookmarksBlockState> {
   }
 
   void _addBookmarkWithoutFavicon(String url) {
-    _addBookmark(url, "");
+    _addBookmark(url, "", AddBookmarkStatus.error);
   }
 
   void _addBookmarkWithFavicon(String url, String? favicon) {
-    _addBookmark(url, favicon);
+    _addBookmark(url, favicon, AddBookmarkStatus.success);
   }
 
-  void _addBookmark(String url, String? faviconUrl) {
+  void _addBookmark(String url, String? faviconUrl, AddBookmarkStatus status) {
     final domain = UrlHelper.extractDomain(url);
     final maxId = state.block.items.isNotEmpty
         ? state.block.items
@@ -92,7 +92,7 @@ class BookmarksBlockCubit extends Cubit<BookmarksBlockState> {
 
     emit(state.copyWith(
       block: updatedBlock,
-      addingStatus: AddBookmarkStatus.success,
+      addingStatus: status,
     ));
   }
 

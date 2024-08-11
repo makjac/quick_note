@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/foundation.dart';
 
 class PlatformHelper {
@@ -9,7 +7,8 @@ class PlatformHelper {
     }
 
     try {
-      return Platform.isAndroid || Platform.isIOS;
+      return defaultTargetPlatform == TargetPlatform.iOS ||
+          defaultTargetPlatform == TargetPlatform.android;
     } catch (_) {
       return false;
     }
