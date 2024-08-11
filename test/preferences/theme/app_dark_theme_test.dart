@@ -28,5 +28,9 @@ void main() {
           FontWeight.w400);
       expect(darkTheme.inputDecorationTheme.hintStyle!.letterSpacing, 0.6);
     });
+
+    test('should have correct icon theme', () {
+      expect(darkTheme.iconTheme.color, Colors.white);
+    });
   });
 }
