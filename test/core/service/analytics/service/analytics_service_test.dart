@@ -36,5 +36,14 @@ void main() {
         parameters: {'action': NoteAction.created.name},
       )).called(1);
     });
+
+    test('logDeleteNoteEvent logs the correct event', () {
+      analyticsService.logDeleteNoteEvent();
+
+      verify(mockFirebaseAnalytics.logEvent(
+        name: 'note_event',
+        parameters: {'action': NoteAction.deleted.name},
+      )).called(1);
+    });
   });
 }
