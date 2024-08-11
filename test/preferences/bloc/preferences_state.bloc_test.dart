@@ -47,5 +47,13 @@ void main() {
 
       expect(state.props, [AppTheme.light, AppLanguage.spanish, true]);
     });
+
+    test('PreferencesInitial should have default values', () {
+      final initial = PreferencesInitial();
+
+      expect(initial.theme, AppTheme.dark);
+      expect(initial.language, AppLanguage.english);
+      expect(initial.sideMenuCollapsed, false);
+    });
   });
 }
