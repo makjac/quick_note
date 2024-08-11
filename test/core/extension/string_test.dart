@@ -11,5 +11,10 @@ void main() {
       expect('a'.capitalize(), equals('A'));
       expect(''.capitalize(), equals(''));
     });
+
+    test('capitalize should handle single character string', () {
+      expect('a'.capitalize(), equals('A'));
+      expect('b'.capitalize(), equals('B'));
+    });
   });
 }
