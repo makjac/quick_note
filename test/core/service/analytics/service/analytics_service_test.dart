@@ -27,5 +27,14 @@ void main() {
       verify(mockFirebaseAnalytics.logScreenView(screenName: 'home_screen'))
           .called(1);
     });
+
+    test('logCreateNoteEvent logs the correct event', () {
+      analyticsService.logCreateNoteEvent();
+
+      verify(mockFirebaseAnalytics.logEvent(
+        name: 'note_event',
+        parameters: {'action': NoteAction.created.name},
+      )).called(1);
+    });
   });
 }
