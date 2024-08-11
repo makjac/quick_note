@@ -45,3 +45,8 @@ void main() {
       expect(lightTheme.listTileTheme.iconColor, Colors.black);
       expect(lightTheme.listTileTheme.textColor, Colors.black);
     });
+
+    test('should have correct checkbox theme', () {
+      expect(lightTheme.checkboxTheme.side!.color, Colors.black38);
+      expect(lightTheme.checkboxTheme.checkColor!.resolve({}), Colors.black);
+    });
