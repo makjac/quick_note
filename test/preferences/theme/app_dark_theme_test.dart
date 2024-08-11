@@ -50,5 +50,14 @@ void main() {
       expect(darkTheme.checkboxTheme.side!.color, Colors.white38);
       expect(darkTheme.checkboxTheme.checkColor!.resolve({}), Colors.black);
     });
+
+    test('should have correct dialog theme', () {
+      expect(darkTheme.dialogTheme.titleTextStyle!.color, Colors.white);
+      expect(
+          darkTheme.dialogTheme.shape,
+          const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(Insets.xs)),
+          ));
+    });
   });
 }
