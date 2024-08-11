@@ -18,5 +18,15 @@ void main() {
       expect(result.text, '123');
       expect(result.selection.baseOffset, 3);
     });
+
+    test('should remove non-numeric characters', () {
+      const oldValue = TextEditingValue(text: '');
+      const newValue = TextEditingValue(text: '12a34b');
+
+      final result = formatter.formatEditUpdate(oldValue, newValue);
+
+      expect(result.text, '');
+      expect(result.selection.baseOffset, -1);
+    });
   });
 }
