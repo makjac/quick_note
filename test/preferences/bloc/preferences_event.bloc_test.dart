@@ -26,5 +26,13 @@ void main() {
       expect(event.collapsed, collapsed);
       expect(event.props, [collapsed]);
     });
+
+    test('PreferencesSetLanguage should have correct props', () {
+      const language = AppLanguage.spanish;
+      const event = PreferencesSetLanguage(language: language);
+
+      expect(event.language, language);
+      expect(event.props, [language]);
+    });
   });
 }
