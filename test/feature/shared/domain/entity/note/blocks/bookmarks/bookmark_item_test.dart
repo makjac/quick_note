@@ -48,5 +48,24 @@ void main() {
       expect(updatedItem.faviconUrl,
           "https://example.com/favicon.ico"); // faviconUrl remains the same
     });
+
+    test('should compare two BookmarkItem instances with same values as equal',
+        () {
+      const bookmarkItem1 = BookmarkItem(
+        id: 4,
+        title: "Example",
+        url: "https://example.com",
+        faviconUrl: "https://example.com/favicon.ico",
+      );
+
+      const bookmarkItem2 = BookmarkItem(
+        id: 4,
+        title: "Example",
+        url: "https://example.com",
+        faviconUrl: "https://example.com/favicon.ico",
+      );
+
+      expect(bookmarkItem1, bookmarkItem2);
+    });
   });
 }
