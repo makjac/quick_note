@@ -16,5 +16,10 @@ void main() {
       expect(HexColor.fromHex('#f44336').value, equals(Colors.red.value));
       expect(HexColor.fromHex('#2196f3').value, equals(Colors.blue.value));
     });
+
+    test('toHex should convert Color to hex string with leading hash', () {
+      expect(const Color(0xffaabbcc).toHex(), equals('#ffaabbcc'));
+      expect(const Color(0xff000000).toHex(), equals('#ff000000'));
+    });
   });
 }
