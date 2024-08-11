@@ -10,5 +10,13 @@ void main() {
 
       expect(event.props, isEmpty);
     });
+
+    test('PreferencesSetTheme should have correct props', () {
+      const theme = AppTheme.light;
+      const event = PreferencesSetTheme(theme: theme);
+
+      expect(event.theme, theme);
+      expect(event.props, [theme]);
+    });
   });
 }
