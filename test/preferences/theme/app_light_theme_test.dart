@@ -16,3 +16,7 @@ void main() {
     test('should have correct AppBar theme', () {
       expect(lightTheme.appBarTheme.iconTheme!.color, Colors.black);
     });
+
+    test('should have correct scaffold background color', () {
+      expect(lightTheme.scaffoldBackgroundColor, Colors.grey[200]);
+    });
