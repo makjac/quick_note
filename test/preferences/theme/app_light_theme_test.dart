@@ -12,3 +12,7 @@ void main() {
     test('should have light brightness', () {
       expect(lightTheme.brightness, Brightness.light);
     });
+
+    test('should have correct AppBar theme', () {
+      expect(lightTheme.appBarTheme.iconTheme!.color, Colors.black);
+    });
