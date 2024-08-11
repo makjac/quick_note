@@ -38,5 +38,24 @@ void main() {
       expect(noteBlock.hasTitle, false);
       expect(noteBlock.type, NoteBlockType.todo);
     });
+
+    test('should compare two NoteBlock instances with same values as equal',
+        () {
+      const noteBlock1 = _TestNoteBlock(
+        id: 3,
+        title: "Test Title",
+        hasTitle: true,
+        type: NoteBlockType.bookmarks,
+      );
+
+      const noteBlock2 = _TestNoteBlock(
+        id: 3,
+        title: "Test Title",
+        hasTitle: true,
+        type: NoteBlockType.bookmarks,
+      );
+
+      expect(noteBlock1, noteBlock2);
+    });
   });
 }
