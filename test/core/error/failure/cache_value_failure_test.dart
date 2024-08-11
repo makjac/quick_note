@@ -19,5 +19,14 @@ void main() {
       const failure = CacheValueFailure(message: customMessage);
       expect(failure.message, customMessage);
     });
+
+    test('should be equatable', () {
+      const failure1 = CacheValueFailure();
+      const failure2 = CacheValueFailure();
+      const failure3 = CacheValueFailure(message: 'Different message');
+
+      expect(failure1, equals(failure2));
+      expect(failure1, isNot(equals(failure3)));
+    });
   });
 }
