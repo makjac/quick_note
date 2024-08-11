@@ -12,5 +12,12 @@ void main() {
       expect(SharedKeys.values[1], SharedKeys.themePref);
       expect(SharedKeys.values[2], SharedKeys.colapseSideMenuPerf);
     });
+
+    test('should have correct values by name', () {
+      expect(SharedKeys.languagePref.toString(), 'SharedKeys.languagePref');
+      expect(SharedKeys.themePref.toString(), 'SharedKeys.themePref');
+      expect(SharedKeys.colapseSideMenuPerf.toString(),
+          'SharedKeys.colapseSideMenuPerf');
+    });
   });
 }
