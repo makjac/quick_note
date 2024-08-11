@@ -74,5 +74,10 @@ void main() {
       expect(darkTheme.progressIndicatorTheme.color, Colors.white);
       expect(darkTheme.progressIndicatorTheme.linearTrackColor, Colors.white12);
     });
+
+    test('should have correct drawer theme', () {
+      expect(darkTheme.drawerTheme.backgroundColor, Colors.grey[850]);
+      expect(darkTheme.drawerTheme.elevation, 3);
+    });
   });
 }
