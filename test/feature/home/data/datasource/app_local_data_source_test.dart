@@ -198,5 +198,19 @@ void main() {
       expect(
           () => localDataSource.deleteNote(1), throwsA(isA<CacheException>()));
     });
+
+    test('should delete multiple notes successfully', () async {
+      // Arrange
+      final ids = [1, 2];
+      when(() => mockHive.openBox<NoteModel>(HiveBoxes.note.name))
+          .thenAnswer((_) async => mockBox);
+      when(() => mockBox.deleteAll(ids)).thenAnswer((_) async => 0);
+
+      // Act
+      await localDataSource.deleteMultipleNotes(ids);
+
+      // Assert
+      verify(() => mockBox.deleteAll(ids)).called(1);
+    });
   });
 }
