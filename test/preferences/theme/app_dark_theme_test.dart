@@ -79,5 +79,9 @@ void main() {
       expect(darkTheme.drawerTheme.backgroundColor, Colors.grey[850]);
       expect(darkTheme.drawerTheme.elevation, 3);
     });
+
+    test('should have correct bottom sheet theme', () {
+      expect(darkTheme.bottomSheetTheme.backgroundColor, Colors.grey[800]);
+    });
   });
 }
