@@ -72,5 +72,14 @@ void main() {
         parameters: {'action': NoteAction.restored.name},
       )).called(1);
     });
+
+    test('logStarNoteEvent logs the correct event', () {
+      analyticsService.logStarNoteEvent();
+
+      verify(mockFirebaseAnalytics.logEvent(
+        name: 'note_event',
+        parameters: {'action': NoteAction.stared.name},
+      )).called(1);
+    });
   });
 }
