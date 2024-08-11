@@ -40,5 +40,10 @@ void main() {
       expect(textTheme.titleLarge!.fontWeight, FontWeight.w600);
       expect(textTheme.titleSmall!.letterSpacing, 0.6);
     });
+
+    test('should have correct list tile theme', () {
+      expect(darkTheme.listTileTheme.iconColor, Colors.white);
+      expect(darkTheme.listTileTheme.textColor, Colors.white);
+    });
   });
 }
