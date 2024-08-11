@@ -1,0 +1,13 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:quick_note/preferences/theme/app_custom_colors.dart';
+
+void main() {
+  group('AppColors extension', () {
+    test('sideMenuBackgroundColor should return correct color for dark theme',
+        () {
+      final darkTheme = ThemeData(brightness: Brightness.dark);
+      expect(darkTheme.sideMenuBackgroundColor, Colors.grey[900]);
+    });
+  });
+}
