@@ -11,5 +11,11 @@ void main() {
       const failure = _TestFailure();
       expect(failure.message, '');
     });
+
+    test('should have the correct message', () {
+      const customMessage = 'Custom error message';
+      const failure = _TestFailure(message: customMessage);
+      expect(failure.message, customMessage);
+    });
   });
 }
