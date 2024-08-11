@@ -160,5 +160,36 @@ void main() {
 
       expect(noteModel1, noteModel2);
     });
+
+    test(
+        'should compare two NoteModel instances with different values as not equal',
+        () {
+      final now = DateTime.now();
+      final noteModel1 = NoteModel(
+        id: 1,
+        created: now,
+        modified: now,
+        title: 'Test Note',
+        content: const [],
+        archived: false,
+        author: 'Author',
+        isStarred: true,
+        color: NoteColors.color2,
+      );
+
+      final noteModel2 = NoteModel(
+        id: 2,
+        created: now,
+        modified: now,
+        title: 'Different Note',
+        content: const [],
+        archived: true,
+        author: 'Another Author',
+        isStarred: false,
+        color: NoteColors.color1,
+      );
+
+      expect(noteModel1, isNot(noteModel2));
+    });
   });
 }
