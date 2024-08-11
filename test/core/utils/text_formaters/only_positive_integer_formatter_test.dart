@@ -38,5 +38,15 @@ void main() {
       expect(result.text, '');
       expect(result.selection.baseOffset, 0);
     });
+
+    test('should handle input with only non-numeric characters', () {
+      const oldValue = TextEditingValue(text: '');
+      const newValue = TextEditingValue(text: 'abc');
+
+      final result = formatter.formatEditUpdate(oldValue, newValue);
+
+      expect(result.text, '');
+      expect(result.selection.baseOffset, 0);
+    });
   });
 }
