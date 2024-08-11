@@ -49,5 +49,23 @@ void main() {
 
       expect(checklistItemModel1, checklistItemModel2);
     });
+
+    test(
+        'should compare two ChecklistItemModel instances with different values as not equal',
+        () {
+      final checklistItemModel1 = ChecklistItemModel(
+        id: 1,
+        title: 'Sample Item',
+        isChecked: true,
+      );
+
+      final checklistItemModel2 = ChecklistItemModel(
+        id: 2,
+        title: 'Different Item',
+        isChecked: false,
+      );
+
+      expect(checklistItemModel1, isNot(checklistItemModel2));
+    });
   });
 }
