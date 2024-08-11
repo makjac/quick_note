@@ -102,5 +102,37 @@ void main() {
 
       expect(block1, block2);
     });
+
+    test(
+        'should compare two BookmarksBlock instances with different values as not equal',
+        () {
+      const items1 = [
+        BookmarkItem(id: 1, title: "Google", url: "https://google.com"),
+      ];
+
+      const items2 = [
+        BookmarkItem(id: 2, title: "Flutter", url: "https://flutter.dev"),
+      ];
+
+      const block1 = BookmarksBlock(
+        id: 5,
+        title: "Bookmarks 1",
+        items: items1,
+        visibleFavicons: true,
+        maxVisibleBookmakrs: 5,
+        viewMode: BookmarkViewMode.list,
+      );
+
+      const block2 = BookmarksBlock(
+        id: 5,
+        title: "Bookmarks 2",
+        items: items2,
+        visibleFavicons: false,
+        maxVisibleBookmakrs: 10,
+        viewMode: BookmarkViewMode.icons,
+      );
+
+      expect(block1, isNot(block2));
+    });
   });
 }
