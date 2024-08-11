@@ -54,5 +54,18 @@ void main() {
       expect(result, equals(const Right(null)));
       verify(() => mockLocalDataSource.createNote(noteModel)).called(1);
     });
+
+    test('should return CacheFailure when createNote throws an exception',
+        () async {
+      // Arrange
+      when(() => mockLocalDataSource.createNote(noteModel))
+          .thenThrow(Exception());
+
+      // Act
+      final result = await repository.createNote(note);
+
+      // Assert
+      expect(result, equals(const Left(CacheFailure())));
+    });
   });
 }
