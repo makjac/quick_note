@@ -12,5 +12,17 @@ void main() {
       expect(checklistItem.title, "");
       expect(checklistItem.isChecked, false);
     });
+
+    test('should create a ChecklistItem instance with custom values', () {
+      const checklistItem = ChecklistItem(
+        id: 2,
+        title: "Sample Task",
+        isChecked: true,
+      );
+
+      expect(checklistItem.id, 2);
+      expect(checklistItem.title, "Sample Task");
+      expect(checklistItem.isChecked, true);
+    });
   });
 }
