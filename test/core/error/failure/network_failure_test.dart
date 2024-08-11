@@ -13,5 +13,12 @@ void main() {
       const failure = NetworkFailure();
       expect(failure.message, 'Network error occurred.');
     });
+
+    test('should be equatable', () {
+      const failure1 = NetworkFailure();
+      const failure2 = NetworkFailure();
+
+      expect(failure1, equals(failure2));
+    });
   });
 }
