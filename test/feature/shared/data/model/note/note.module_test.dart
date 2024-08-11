@@ -69,5 +69,39 @@ void main() {
       expect(noteModel.color, note.color);
     });
 
+    test('should update NoteModel using updateEntity', () {
+      final now = DateTime.now();
+      final note = Note(
+        id: 1,
+        created: now,
+        modified: now,
+        title: 'Old Note',
+        content: const [],
+        archived: false,
+        author: 'Author',
+        isStarred: false,
+        color: NoteColors.color1,
+      );
+
+      final updatedNote = NoteUpdates(
+        modified: now.add(const Duration(days: 1)),
+        title: 'Updated Note',
+        archived: true,
+        isStarred: true,
+        color: NoteColors.color2,
+      );
+
+      final updatedNoteModel = NoteModel.updateEntity(note, updatedNote);
+
+      expect(updatedNoteModel.id, note.id);
+      expect(updatedNoteModel.created, note.created);
+      expect(updatedNoteModel.modified, updatedNote.modified);
+      expect(updatedNoteModel.title, 'Updated Note');
+      expect(updatedNoteModel.content, note.content);
+      expect(updatedNoteModel.archived, true);
+      expect(updatedNoteModel.author, note.author);
+      expect(updatedNoteModel.isStarred, true);
+      expect(updatedNoteModel.color, NoteColors.color2);
+    });
   });
 }
