@@ -8,4 +8,7 @@ void main() {
     test('should use Material3', () {
       expect(lightTheme.useMaterial3, isTrue);
     });
-  });
+
+    test('should have light brightness', () {
+      expect(lightTheme.brightness, Brightness.light);
+    });
