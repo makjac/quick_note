@@ -67,5 +67,20 @@ void main() {
       // Assert
       expect(result, equals(const Left(CacheFailure())));
     });
+
+    test('should update a note successfully', () async {
+      // Arrange
+      when(() => mockLocalDataSource.updateNote(
+              note.id, NoteModel.updateEntity(note, noteUpdates)))
+          .thenAnswer((_) async {});
+
+      // Act
+      final result = await repository.updateNote(note, noteUpdates);
+
+      // Assert
+      expect(result, equals(const Right(null)));
+      verify(() => mockLocalDataSource.updateNote(
+          note.id, NoteModel.updateEntity(note, noteUpdates))).called(1);
+    });
   });
 }
