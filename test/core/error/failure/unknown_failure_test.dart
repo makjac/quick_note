@@ -13,5 +13,12 @@ void main() {
       const failure = UnknownFailure();
       expect(failure.message, 'An unknown error occurred.');
     });
+
+    test('should be equatable', () {
+      const failure1 = UnknownFailure();
+      const failure2 = UnknownFailure();
+
+      expect(failure1, equals(failure2));
+    });
   });
 }
