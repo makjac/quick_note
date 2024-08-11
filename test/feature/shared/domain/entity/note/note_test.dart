@@ -38,5 +38,17 @@ void main() {
         isStarred: true,
         color: NoteColors.color5,
       );
+
+      expect(note.id, 2);
+      expect(note.created, DateTime(2023, 8, 10));
+      expect(note.modified, DateTime(2023, 8, 11));
+      expect(note.expiryDate, DateTime(2023, 12, 31));
+      expect(note.title, "Test Note");
+      expect(note.content, [noteBlock]);
+      expect(note.archived, true);
+      expect(note.author, "John Doe");
+      expect(note.isStarred, true);
+      expect(note.color, NoteColors.color5);
+    });
   });
 }
