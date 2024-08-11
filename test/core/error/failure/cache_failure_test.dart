@@ -8,5 +8,10 @@ void main() {
       const failure = CacheFailure();
       expect(failure, isA<Failure>());
     });
+
+    test('should have the correct default message', () {
+      const failure = CacheFailure();
+      expect(failure.message, '');
+    });
   });
 }
