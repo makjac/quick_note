@@ -39,5 +39,21 @@ void main() {
       verify(() => mockRepository.isValidFaviconUrl(testUrl)).called(1);
       verifyNoMoreInteractions(mockRepository);
     });
+
+    test('should return a Failure when the repository call is unsuccessful',
+        () async {
+      // arrange
+      const failure = NetworkFailure();
+      when(() => mockRepository.isValidFaviconUrl(any()))
+          .thenAnswer((_) async => const Left(failure));
+
+      // act
+      final result = await usecase.call(testUrl);
+
+      // assert
+      expect(result, const Left(failure));
+      verify(() => mockRepository.isValidFaviconUrl(testUrl)).called(1);
+      verifyNoMoreInteractions(mockRepository);
+    });
   });
 }
