@@ -63,5 +63,11 @@ void main() {
     test('should have correct divider color', () {
       expect(darkTheme.dividerColor, Colors.white70);
     });
+
+    test('should have correct popup menu theme', () {
+      expect(darkTheme.popupMenuTheme.color, Colors.grey[800]);
+      expect(darkTheme.popupMenuTheme.iconColor, Colors.white70);
+      expect(darkTheme.popupMenuTheme.textStyle!.color, Colors.white70);
+    });
   });
 }
