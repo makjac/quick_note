@@ -10,5 +10,12 @@ void main() {
 
       expect(result, isTrue);
     });
+
+    test('isTextContrastDark returns false for light colors', () {
+      const lightColor = Colors.white;
+      final result = TextHelper.isTextContrastDark(lightColor);
+
+      expect(result, isFalse);
+    });
   });
 }
