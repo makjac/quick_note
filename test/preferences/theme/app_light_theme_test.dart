@@ -20,3 +20,11 @@ void main() {
     test('should have correct scaffold background color', () {
       expect(lightTheme.scaffoldBackgroundColor, Colors.grey[200]);
     });
+
+    test('should have correct input decoration theme', () {
+      expect(lightTheme.inputDecorationTheme.hintStyle!.color, Colors.black54);
+      expect(lightTheme.inputDecorationTheme.hintStyle!.fontSize, 16);
+      expect(lightTheme.inputDecorationTheme.hintStyle!.fontWeight,
+          FontWeight.w400);
+      expect(lightTheme.inputDecorationTheme.hintStyle!.letterSpacing, 0.6);
+    });
