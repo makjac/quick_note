@@ -10,5 +10,11 @@ void main() {
       expect(HexColor.fromHex('#ffaabbcc'), equals(const Color(0xffaabbcc)));
       expect(HexColor.fromHex('ffaabbcc'), equals(const Color(0xffaabbcc)));
     });
+
+    test('fromHex should return grey color for invalid hex string', () {
+      expect(HexColor.fromHex('#9e9e9e').value, equals(Colors.grey.value));
+      expect(HexColor.fromHex('#f44336').value, equals(Colors.red.value));
+      expect(HexColor.fromHex('#2196f3').value, equals(Colors.blue.value));
+    });
   });
 }
