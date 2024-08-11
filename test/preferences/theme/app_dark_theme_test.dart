@@ -16,5 +16,9 @@ void main() {
     test('should have correct AppBar theme', () {
       expect(darkTheme.appBarTheme.iconTheme!.color, Colors.white);
     });
+
+    test('should have correct scaffold background color', () {
+      expect(darkTheme.scaffoldBackgroundColor, Colors.grey[850]);
+    });
   });
 }
