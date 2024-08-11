@@ -45,5 +45,9 @@ void main() {
       expect(AppRoutes.notebook.name, 'notebook');
       expect(AppRoutes.notebookReorderBlocks.name, 'notebookReorderBlocks');
     });
+
+    test('AppRoutes should have correct number of values', () {
+      expect(AppRoutes.values.length, 11);
+    });
   });
 }
