@@ -69,3 +69,9 @@ void main() {
       expect(lightTheme.popupMenuTheme.iconColor, Colors.black54);
       expect(lightTheme.popupMenuTheme.textStyle!.color, Colors.black54);
     });
+
+    test('should have correct progress indicator theme', () {
+      expect(lightTheme.progressIndicatorTheme.color, Colors.black54);
+      expect(
+          lightTheme.progressIndicatorTheme.linearTrackColor, Colors.black12);
+    });
