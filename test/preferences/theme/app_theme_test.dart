@@ -20,5 +20,17 @@ void main() {
 
       expect(themeData, lightTheme);
     });
+
+    test('should return darkTheme by default if enum value is unrecognized',
+        () {
+      final appTheme = AppTheme.values.firstWhere(
+        (e) => e.toString() == 'AppTheme.unknown',
+        orElse: () => AppTheme.dark,
+      );
+
+      final themeData = appTheme.themeData;
+
+      expect(themeData, darkTheme);
+    });
   });
 }
