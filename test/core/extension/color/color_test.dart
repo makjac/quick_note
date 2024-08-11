@@ -28,5 +28,10 @@ void main() {
       expect(darkColor.computeLuminance(), lessThanOrEqualTo(0.0));
       expect(lightColor.computeLuminance(), greaterThanOrEqualTo(1.0));
     });
+
+    test('should throw assertion error for invalid brightness amount', () {
+      expect(() => Colors.purple.changeBrightness(-1.1), throwsAssertionError);
+      expect(() => Colors.purple.changeBrightness(1.1), throwsAssertionError);
+    });
   });
 }
