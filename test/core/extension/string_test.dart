@@ -16,5 +16,9 @@ void main() {
       expect('a'.capitalize(), equals('A'));
       expect('b'.capitalize(), equals('B'));
     });
+
+    test('capitalize should return an empty string for empty input', () {
+      expect(''.capitalize(), equals(''));
+    });
   });
 }
