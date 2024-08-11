@@ -21,5 +21,12 @@ void main() {
       expect(const Color(0xffaabbcc).toHex(), equals('#ffaabbcc'));
       expect(const Color(0xff000000).toHex(), equals('#ff000000'));
     });
+
+    test('toHex should convert Color to hex string without leading hash', () {
+      expect(const Color(0xffaabbcc).toHex(leadingHashSign: false),
+          equals('ffaabbcc'));
+      expect(const Color(0xff000000).toHex(leadingHashSign: false),
+          equals('ff000000'));
+    });
   });
 }
