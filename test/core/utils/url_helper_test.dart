@@ -39,6 +39,17 @@ void main() {
             'https://www.example.com');
       });
     });
+
+    group('extractDomain', () {
+      test('extracts domain from URLs', () {
+        expect(UrlHelper.extractDomain('http://www.example.com/path'),
+            'www.example.com');
+        expect(UrlHelper.extractDomain('example.com/path'), 'www.example.com');
+        expect(
+            UrlHelper.extractDomain('http://example.com/path'), 'example.com');
+        expect(UrlHelper.extractDomain('https://sub.example.co.uk/path'),
+            'sub.example.co.uk');
+      });
     });
   });
 }
