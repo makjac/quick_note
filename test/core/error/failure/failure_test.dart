@@ -17,5 +17,14 @@ void main() {
       const failure = _TestFailure(message: customMessage);
       expect(failure.message, customMessage);
     });
+
+    test('should be equatable', () {
+      const failure1 = _TestFailure(message: 'Message');
+      const failure2 = _TestFailure(message: 'Message');
+      const failure3 = _TestFailure(message: 'Different message');
+
+      expect(failure1, equals(failure2));
+      expect(failure1, isNot(equals(failure3)));
+    });
   });
 }
