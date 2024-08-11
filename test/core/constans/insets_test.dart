@@ -14,5 +14,9 @@ void main() {
     test('should have correct xs value', () {
       expect(Insets.xs, 8.0);
     });
+
+    test('should have correct s value', () {
+      expect(Insets.s, 16.0);
+    });
   });
 }
