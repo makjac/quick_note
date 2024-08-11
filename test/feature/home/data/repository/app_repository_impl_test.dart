@@ -82,5 +82,19 @@ void main() {
       verify(() => mockLocalDataSource.updateNote(
           note.id, NoteModel.updateEntity(note, noteUpdates))).called(1);
     });
+
+    test('should return CacheFailure when updateNote throws an exception',
+        () async {
+      // Arrange
+      when(() => mockLocalDataSource.updateNote(
+              note.id, NoteModel.updateEntity(note, noteUpdates)))
+          .thenThrow(Exception());
+
+      // Act
+      final result = await repository.updateNote(note, noteUpdates);
+
+      // Assert
+      expect(result, equals(const Left(CacheFailure())));
+    });
   });
 }
