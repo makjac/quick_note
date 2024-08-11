@@ -11,39 +11,45 @@ on:
       - develop
 
 jobs:
-  build:
-    name: Build and Test Flutter App
+  build-linux:
+    name: Build Flutter App for Linux
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
+      - name: Clone repository
+        uses: actions/checkout@v4
       - name: Set up Flutter
-        uses: subosito/flutter-action@v3
+        uses: subosito/flutter-action@v2
         with:
-          flutter-version: 'latest'
+          channel: stable
+      - run: |
+          sudo apt-get update -y
+          sudo apt-get install -y ninja-build libgtk-3-dev
+      - run: flutter build linux
 
-      - name: Install dependencies
-        run: flutter pub get
-
-      - name: Run tests
-        run: flutter test
-
-      - name: Build APK
-        run: flutter build apk --release
-        # Optional step for Android builds
-
-      - name: Upload test results
-        if: success()
-        uses: actions/upload-artifact@v3
+  build-windows:
+    name: Build Flutter App for Windows
+    runs-on: windows-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
         with:
-          name: test-results
-          path: build/test-results
+          channel: stable
+      - run: flutter build windows
 
-      - name: Archive build artifacts
-        if: success()
-        uses: actions/upload-artifact@v3
+  build-android:
+    name: Build Flutter App for Android
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
         with:
-          name: build
-          path: build/app/outputs/flutter-apk
+          flutter-version: 3.19.0
+      - run: flutter pub get
+      - run: flutter test
+      - run: flutter build apk
+      - run: flutter build appbundle
+
