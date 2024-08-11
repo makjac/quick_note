@@ -239,5 +239,16 @@ void main() {
       expect(result, 0);
       verify(() => mockBox.clear()).called(1);
     });
+
+    test('should throw CacheException when deleteAllNotes throws an exception',
+        () async {
+      // Arrange
+      when(() => mockHive.openBox<NoteModel>(HiveBoxes.note.name))
+          .thenThrow(Exception());
+
+      // Act & Assert
+      expect(() => localDataSource.deleteAllNotes(),
+          throwsA(isA<CacheException>()));
+    });
   });
 }
