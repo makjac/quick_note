@@ -28,5 +28,15 @@ void main() {
       expect(result.text, '');
       expect(result.selection.baseOffset, -1);
     });
+
+    test('should handle empty input', () {
+      const oldValue = TextEditingValue(text: '');
+      const newValue = TextEditingValue(text: '');
+
+      final result = formatter.formatEditUpdate(oldValue, newValue);
+
+      expect(result.text, '');
+      expect(result.selection.baseOffset, 0);
+    });
   });
 }
