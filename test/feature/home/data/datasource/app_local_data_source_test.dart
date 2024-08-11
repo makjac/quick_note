@@ -153,5 +153,26 @@ void main() {
       // Assert
       verify(() => mockBox.putAll(updates)).called(1);
     });
+
+    test(
+        'should throw CacheException when updateMultipleNotes throws an exception',
+        () async {
+      // Arrange
+      final updates = {
+        1: NoteModel(
+          id: 1,
+          created: DateTime.now(),
+          modified: DateTime.now(),
+          title: 'Test Note',
+          content: const [],
+        )
+      };
+      when(() => mockHive.openBox<NoteModel>(HiveBoxes.note.name))
+          .thenThrow(Exception());
+
+      // Act & Assert
+      expect(() => localDataSource.updateMultipleNotes(updates),
+          throwsA(isA<CacheException>()));
+    });
   });
 }
