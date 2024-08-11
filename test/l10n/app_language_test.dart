@@ -17,5 +17,17 @@ void main() {
       expect(AppLanguage.hindi.locale, const Locale('hi'));
       expect(AppLanguage.chinese.locale, const Locale('zh'));
     });
+
+    test('should have correct language codes', () {
+      expect(AppLanguage.english.locale.languageCode, 'en');
+      expect(AppLanguage.polish.locale.languageCode, 'pl');
+      expect(AppLanguage.german.locale.languageCode, 'de');
+      expect(AppLanguage.spanish.locale.languageCode, 'es');
+      expect(AppLanguage.portuguese.locale.languageCode, 'pt');
+      expect(AppLanguage.french.locale.languageCode, 'fr');
+      expect(AppLanguage.russian.locale.languageCode, 'ru');
+      expect(AppLanguage.hindi.locale.languageCode, 'hi');
+      expect(AppLanguage.chinese.locale.languageCode, 'zh');
+    });
   });
 }
