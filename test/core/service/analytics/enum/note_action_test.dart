@@ -21,5 +21,10 @@ void main() {
             NoteAction.reorderBlocks,
           ]));
     });
+
+    test('has the correct number of values', () {
+      expect(NoteAction.values.length, equals(12));
+    });
+
   });
 }
