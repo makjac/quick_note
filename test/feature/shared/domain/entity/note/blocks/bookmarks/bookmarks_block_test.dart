@@ -74,5 +74,33 @@ void main() {
           updatedBlock.maxVisibleBookmakrs, 10); // maxVisibleBookmakrs updated
       expect(updatedBlock.viewMode, BookmarkViewMode.icons); // viewMode updated
     });
+
+    test(
+        'should compare two BookmarksBlock instances with the same values as equal',
+        () {
+      const items = [
+        BookmarkItem(id: 1, title: "Google", url: "https://google.com"),
+      ];
+
+      const block1 = BookmarksBlock(
+        id: 4,
+        title: "Bookmarks",
+        items: items,
+        visibleFavicons: true,
+        maxVisibleBookmakrs: 5,
+        viewMode: BookmarkViewMode.list,
+      );
+
+      const block2 = BookmarksBlock(
+        id: 4,
+        title: "Bookmarks",
+        items: items,
+        visibleFavicons: true,
+        maxVisibleBookmakrs: 5,
+        viewMode: BookmarkViewMode.list,
+      );
+
+      expect(block1, block2);
+    });
   });
 }
