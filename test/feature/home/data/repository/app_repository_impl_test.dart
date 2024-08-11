@@ -41,5 +41,18 @@ void main() {
       // Assert
       expect(result, equals(const Left(CacheFailure())));
     });
+
+    test('should create a note successfully', () async {
+      // Arrange
+      when(() => mockLocalDataSource.createNote(noteModel))
+          .thenAnswer((_) async {});
+
+      // Act
+      final result = await repository.createNote(note);
+
+      // Assert
+      expect(result, equals(const Right(null)));
+      verify(() => mockLocalDataSource.createNote(noteModel)).called(1);
+    });
   });
 }
