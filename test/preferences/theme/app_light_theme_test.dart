@@ -32,3 +32,11 @@ void main() {
     test('should have correct icon theme', () {
       expect(lightTheme.iconTheme.color, Colors.black);
     });
+
+    test('should have correct text theme', () {
+      final textTheme = lightTheme.textTheme;
+      expect(textTheme.bodySmall!.color, Colors.black);
+      expect(textTheme.titleLarge!.fontSize, 26);
+      expect(textTheme.titleLarge!.fontWeight, FontWeight.w600);
+      expect(textTheme.titleSmall!.letterSpacing, 0.6);
+    });
