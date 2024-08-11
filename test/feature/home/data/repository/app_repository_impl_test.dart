@@ -96,5 +96,22 @@ void main() {
       // Assert
       expect(result, equals(const Left(CacheFailure())));
     });
+
+    test('should update multiple notes successfully', () async {
+      // Arrange
+      final notes = [noteModel];
+      final changes = {note.id: NoteModel.updateEntity(note, noteUpdates)};
+      when(() => mockLocalDataSource.getNotes()).thenAnswer((_) async => notes);
+      when(() => mockLocalDataSource.updateMultipleNotes(changes))
+          .thenAnswer((_) async {});
+
+      // Act
+      final result =
+          await repository.updateMultipleNotes({note.id}, noteUpdates);
+
+      // Assert
+      expect(result, equals(const Right(null)));
+      verify(() => mockLocalDataSource.updateMultipleNotes(changes)).called(1);
+    });
   });
 }
