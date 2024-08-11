@@ -56,6 +56,10 @@ void main() {
         expect(UrlHelper.extractDomain('https://www.example.com'),
             'www.example.com');
       });
+
+      test('returns domain from IP address', () {
+        expect(UrlHelper.extractDomain('http://192.168.1.1'), '192.168.1.1');
+      });
     });
   });
 }
