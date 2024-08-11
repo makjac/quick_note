@@ -12,5 +12,21 @@ void main() {
       expect(bookmarkItem.faviconUrl, "");
       expect(bookmarkItem.description, "");
     });
+
+    test('should create a BookmarkItem instance with custom values', () {
+      const bookmarkItem = BookmarkItem(
+        id: 2,
+        title: "Example",
+        url: "https://example.com",
+        faviconUrl: "https://example.com/favicon.ico",
+        description: "This is an example bookmark.",
+      );
+
+      expect(bookmarkItem.id, 2);
+      expect(bookmarkItem.title, "Example");
+      expect(bookmarkItem.url, "https://example.com");
+      expect(bookmarkItem.faviconUrl, "https://example.com/favicon.ico");
+      expect(bookmarkItem.description, "This is an example bookmark.");
+    });
   });
 }
