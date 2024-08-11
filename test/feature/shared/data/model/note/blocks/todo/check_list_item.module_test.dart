@@ -16,5 +16,20 @@ void main() {
       expect(checklistItemModel.title, 'Sample Item');
       expect(checklistItemModel.isChecked, true);
     });
+
+    test('should convert ChecklistItem to ChecklistItemModel using fromEntity',
+        () {
+      const checklistItem = ChecklistItem(
+        id: 1,
+        title: 'Sample Item',
+        isChecked: true,
+      );
+
+      final checklistItemModel = ChecklistItemModel.fromEntity(checklistItem);
+
+      expect(checklistItemModel.id, checklistItem.id);
+      expect(checklistItemModel.title, checklistItem.title);
+      expect(checklistItemModel.isChecked, checklistItem.isChecked);
+    });
   });
 }
