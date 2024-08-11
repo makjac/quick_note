@@ -49,5 +49,25 @@ void main() {
     test('AppRoutes should have correct number of values', () {
       expect(AppRoutes.values.length, 11);
     });
+
+    test('AppRoutes paths can have duplicates when intended', () {
+      final pathOccurrences = <String, int>{};
+      for (var route in AppRoutes.values) {
+        pathOccurrences[route.path] = (pathOccurrences[route.path] ?? 0) + 1;
+      }
+
+      // Ensure that only known paths have duplicates
+      expect(pathOccurrences['/'],
+          2); // '/' should appear twice (unknown and homePage)
+      expect(pathOccurrences['notes'], 1);
+      expect(pathOccurrences['reminders'], 1);
+      expect(pathOccurrences['archive'], 1);
+      expect(pathOccurrences['trash'], 1);
+      expect(pathOccurrences['settings'], 1);
+      expect(pathOccurrences['help'], 1);
+      expect(pathOccurrences['license'], 1);
+      expect(pathOccurrences['/notebook/:id'], 1);
+      expect(pathOccurrences['reorder'], 1);
+    });
   });
 }
