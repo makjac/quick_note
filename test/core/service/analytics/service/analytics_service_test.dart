@@ -123,5 +123,14 @@ void main() {
         },
       )).called(1);
     });
+
+    test('logReorderBlocksEvent logs the correct event', () {
+      analyticsService.logReorderBlocksEvent();
+
+      verify(mockFirebaseAnalytics.logEvent(
+        name: 'note_event',
+        parameters: {'action': NoteAction.reorderBlocks.name},
+      )).called(1);
+    });
   });
 }
