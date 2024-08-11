@@ -40,3 +40,8 @@ void main() {
       expect(textTheme.titleLarge!.fontWeight, FontWeight.w600);
       expect(textTheme.titleSmall!.letterSpacing, 0.6);
     });
+
+    test('should have correct list tile theme', () {
+      expect(lightTheme.listTileTheme.iconColor, Colors.black);
+      expect(lightTheme.listTileTheme.textColor, Colors.black);
+    });
