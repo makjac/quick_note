@@ -18,5 +18,13 @@ void main() {
       expect(event.theme, theme);
       expect(event.props, [theme]);
     });
+
+    test('PreferencesSetSideMenuCollapse should have correct props', () {
+      const collapsed = true;
+      const event = PreferencesSetSideMenuCollapse(collapsed: collapsed);
+
+      expect(event.collapsed, collapsed);
+      expect(event.props, [collapsed]);
+    });
   });
 }
