@@ -75,5 +75,23 @@ void main() {
       // Assert
       verify(() => mockBox.put(note.id.toInt(), note)).called(1);
     });
+
+    test('should throw CacheException when createNote throws an exception',
+        () async {
+      // Arrange
+      final note = NoteModel(
+        id: 1,
+        created: DateTime.now(),
+        modified: DateTime.now(),
+        title: 'Test Note',
+        content: const [],
+      );
+      when(() => mockHive.openBox<NoteModel>(HiveBoxes.note.name))
+          .thenThrow(Exception());
+
+      // Act & Assert
+      expect(() => localDataSource.createNote(note),
+          throwsA(isA<CacheException>()));
+    });
   });
 }
