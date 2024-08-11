@@ -90,5 +90,14 @@ void main() {
         parameters: {'action': NoteAction.unstared.name},
       )).called(1);
     });
+
+    test('logChangeNoteColorEvent logs the correct event', () {
+      analyticsService.logChangeNoteColorEvent();
+
+      verify(mockFirebaseAnalytics.logEvent(
+        name: 'note_event',
+        parameters: {'action': NoteAction.colorChanged.name},
+      )).called(1);
+    });
   });
 }
