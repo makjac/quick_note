@@ -13,5 +13,12 @@ void main() {
       const failure = ParsingFailure();
       expect(failure.message, 'Failed to parse data.');
     });
+
+    test('should be equatable', () {
+      const failure1 = ParsingFailure();
+      const failure2 = ParsingFailure();
+
+      expect(failure1, equals(failure2));
+    });
   });
 }
