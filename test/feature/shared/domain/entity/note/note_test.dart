@@ -23,5 +23,20 @@ void main() {
       expect(note.isStarred, false);
       expect(note.color, NoteColors.color1);
     });
+
+    test('should create a Note instance with custom values', () {
+      const noteBlock = TextBlock(id: 1, text: 'Example content');
+      final note = Note(
+        id: 2,
+        created: DateTime(2023, 8, 10),
+        modified: DateTime(2023, 8, 11),
+        expiryDate: DateTime(2023, 12, 31),
+        title: "Test Note",
+        content: const [noteBlock],
+        archived: true,
+        author: "John Doe",
+        isStarred: true,
+        color: NoteColors.color5,
+      );
   });
 }
