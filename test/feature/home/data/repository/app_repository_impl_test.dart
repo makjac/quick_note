@@ -113,5 +113,22 @@ void main() {
       expect(result, equals(const Right(null)));
       verify(() => mockLocalDataSource.updateMultipleNotes(changes)).called(1);
     });
+
+    test(
+        'should return CacheFailure when updateMultipleNotes throws an exception',
+        () async {
+      // Arrange
+      when(() => mockLocalDataSource.getNotes())
+          .thenAnswer((_) async => [noteModel]);
+      when(() => mockLocalDataSource.updateMultipleNotes(any()))
+          .thenThrow(Exception());
+
+      // Act
+      final result =
+          await repository.updateMultipleNotes({note.id}, noteUpdates);
+
+      // Assert
+      expect(result, equals(const Left(CacheFailure())));
+    });
   });
 }
