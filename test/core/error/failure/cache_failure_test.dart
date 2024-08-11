@@ -13,5 +13,11 @@ void main() {
       const failure = CacheFailure();
       expect(failure.message, '');
     });
+
+    test('should have the correct message when provided', () {
+      const customMessage = 'Custom cache error message';
+      const failure = CacheFailure(message: customMessage);
+      expect(failure.message, customMessage);
+    });
   });
 }
