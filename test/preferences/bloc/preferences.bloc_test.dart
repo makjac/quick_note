@@ -43,5 +43,23 @@ void main() {
         ),
       ],
     );
+
+    blocTest<PreferencesBloc, PreferencesState>(
+      'emits new state with updated language when PreferencesSetLanguage is added',
+      build: () => preferencesBloc,
+      act: (bloc) {
+        when(() => mockSharedPreferences.setString(
+                SharedKeys.languagePref.name, AppLanguage.spanish.name))
+            .thenAnswer((_) async => true);
+        bloc.add(const PreferencesSetLanguage(language: AppLanguage.spanish));
+      },
+      expect: () => [
+        const PreferencesState(
+          theme: AppTheme.dark,
+          language: AppLanguage.spanish,
+          sideMenuCollapsed: false,
+        ),
+      ],
+    );
   });
 }
