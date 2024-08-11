@@ -31,5 +31,23 @@ void main() {
       expect(checklistItemModel.title, checklistItem.title);
       expect(checklistItemModel.isChecked, checklistItem.isChecked);
     });
+
+    test(
+        'should compare two ChecklistItemModel instances with the same values as equal',
+        () {
+      final checklistItemModel1 = ChecklistItemModel(
+        id: 1,
+        title: 'Sample Item',
+        isChecked: true,
+      );
+
+      final checklistItemModel2 = ChecklistItemModel(
+        id: 1,
+        title: 'Sample Item',
+        isChecked: true,
+      );
+
+      expect(checklistItemModel1, checklistItemModel2);
+    });
   });
 }
