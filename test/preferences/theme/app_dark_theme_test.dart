@@ -45,5 +45,10 @@ void main() {
       expect(darkTheme.listTileTheme.iconColor, Colors.white);
       expect(darkTheme.listTileTheme.textColor, Colors.white);
     });
+
+    test('should have correct checkbox theme', () {
+      expect(darkTheme.checkboxTheme.side!.color, Colors.white38);
+      expect(darkTheme.checkboxTheme.checkColor!.resolve({}), Colors.black);
+    });
   });
 }
