@@ -32,5 +32,13 @@ void main() {
     test('should have correct icon theme', () {
       expect(darkTheme.iconTheme.color, Colors.white);
     });
+
+    test('should have correct text theme', () {
+      final textTheme = darkTheme.textTheme;
+      expect(textTheme.bodySmall!.color, Colors.white);
+      expect(textTheme.titleLarge!.fontSize, 26);
+      expect(textTheme.titleLarge!.fontWeight, FontWeight.w600);
+      expect(textTheme.titleSmall!.letterSpacing, 0.6);
+    });
   });
 }
