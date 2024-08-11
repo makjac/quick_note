@@ -41,5 +41,22 @@ void main() {
       expect(copiedItem.title, "Updated Task");
       expect(copiedItem.isChecked, true);
     });
+
+    test('should compare two ChecklistItem instances with same values as equal',
+        () {
+      const checklistItem1 = ChecklistItem(
+        id: 4,
+        title: "Task 1",
+        isChecked: false,
+      );
+
+      const checklistItem2 = ChecklistItem(
+        id: 4,
+        title: "Task 1",
+        isChecked: false,
+      );
+
+      expect(checklistItem1, checklistItem2);
+    });
   });
 }
