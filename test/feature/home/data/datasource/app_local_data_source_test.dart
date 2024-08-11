@@ -212,5 +212,18 @@ void main() {
       // Assert
       verify(() => mockBox.deleteAll(ids)).called(1);
     });
+
+    test(
+        'should throw CacheException when deleteMultipleNotes throws an exception',
+        () async {
+      // Arrange
+      final ids = [1, 2];
+      when(() => mockHive.openBox<NoteModel>(HiveBoxes.note.name))
+          .thenThrow(Exception());
+
+      // Act & Assert
+      expect(() => localDataSource.deleteMultipleNotes(ids),
+          throwsA(isA<CacheException>()));
+    });
   });
 }
