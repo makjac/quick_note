@@ -3,12 +3,11 @@ import 'package:quick_note/core/service/analytics/enum/note_action.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note_block_type.dart';
 
 class AnalyticsService {
-  factory AnalyticsService() => _instance;
+  factory AnalyticsService({FirebaseAnalytics? analytics}) =>
+      AnalyticsService._(analytics: analytics);
 
   AnalyticsService._({FirebaseAnalytics? analytics})
       : _analytics = analytics ?? FirebaseAnalytics.instance;
-
-  static final _instance = AnalyticsService._();
 
   final FirebaseAnalytics _analytics;
 

@@ -21,11 +21,11 @@ class NotebookRepositoryImpl implements NotebookRepository {
 
       return Right(note);
     } on CacheValueException {
-      return Left(CacheValueFailure());
+      return const Left(CacheValueFailure());
     } on CacheException {
-      return Left(CacheFailure());
+      return const Left(CacheFailure());
     } catch (_) {
-      return Left(UnknownFailure());
+      return const Left(UnknownFailure());
     }
   }
 }
