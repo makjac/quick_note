@@ -106,5 +106,35 @@ void main() {
 
       expect(todoBlock1, todoBlock2);
     });
+
+    test(
+        'should compare two TodoBlock instances with different values as not equal',
+        () {
+      final items1 = [
+        const ChecklistItem(id: 1, title: "Task 1", isChecked: false),
+      ];
+
+      final items2 = [
+        const ChecklistItem(id: 2, title: "Task 2", isChecked: true),
+      ];
+
+      final todoBlock1 = TodoBlock(
+        id: 5,
+        title: "Todo Block 1",
+        items: items1,
+        showCompleteTasks: false,
+        showProgressBar: false,
+      );
+
+      final todoBlock2 = TodoBlock(
+        id: 5,
+        title: "Todo Block 2",
+        items: items2,
+        showCompleteTasks: true,
+        showProgressBar: true,
+      );
+
+      expect(todoBlock1, isNot(todoBlock2));
+    });
   });
 }
