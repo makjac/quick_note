@@ -31,5 +31,19 @@ void main() {
       expect(AppRoutes.notebook.path, '/notebook/:id');
       expect(AppRoutes.notebookReorderBlocks.path, 'reorder');
     });
+
+    test('AppRoutes values should match their respective enum names', () {
+      expect(AppRoutes.unknown.name, 'unknown');
+      expect(AppRoutes.homePage.name, 'homePage');
+      expect(AppRoutes.notesPage.name, 'notesPage');
+      expect(AppRoutes.remindersPage.name, 'remindersPage');
+      expect(AppRoutes.archivePage.name, 'archivePage');
+      expect(AppRoutes.trashPage.name, 'trashPage');
+      expect(AppRoutes.settingsPage.name, 'settingsPage');
+      expect(AppRoutes.helpPage.name, 'helpPage');
+      expect(AppRoutes.license.name, 'license');
+      expect(AppRoutes.notebook.name, 'notebook');
+      expect(AppRoutes.notebookReorderBlocks.name, 'notebookReorderBlocks');
+    });
   });
 }
