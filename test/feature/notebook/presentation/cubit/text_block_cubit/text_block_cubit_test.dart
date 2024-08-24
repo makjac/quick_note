@@ -105,7 +105,7 @@ void main() {
           block: TextBlock(
             id: 1,
             text: 'Initial Text',
-            hasTitle: true,
+            hasTitle: false,
             hasMaxLineLimit: true,
             maxLines: 3,
           ),
@@ -122,7 +122,7 @@ void main() {
           block: TextBlock(
             id: 1,
             text: 'Initial Text',
-            hasTitle: true,
+            hasTitle: false,
             hasMaxLineLimit: false,
             maxLines: 10,
           ),
