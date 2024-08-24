@@ -11,7 +11,7 @@ void main() {
 
       expect(textBlock.id, 1);
       expect(textBlock.title, "");
-      expect(textBlock.hasTitle, true);
+      expect(textBlock.hasTitle, false);
       expect(textBlock.type, NoteBlockType.text);
       expect(textBlock.text, "");
       expect(textBlock.hasMaxLineLimit, false);
