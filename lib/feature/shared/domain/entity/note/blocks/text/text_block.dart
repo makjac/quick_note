@@ -6,7 +6,7 @@ class TextBlock extends NoteBlock {
   const TextBlock({
     required super.id,
     super.title = "",
-    super.hasTitle = true,
+    super.hasTitle = false,
     super.type = NoteBlockType.text,
     this.text = "",
     this.hasMaxLineLimit = false,
