@@ -9,7 +9,16 @@ enum AppLanguage {
   french(locale: Locale('fr')),
   russian(locale: Locale('ru')),
   hindi(locale: Locale('hi')),
-  chinese(locale: Locale('zh'));
+  arabic(locale: Locale('ar')),
+  chinese(locale: Locale('zh')),
+  czech(locale: Locale('cs')),
+  hungarian(locale: Locale('hu')),
+  indonesian(locale: Locale('id')),
+  italian(locale: Locale('it')),
+  japanese(locale: Locale('ja')),
+  korean(locale: Locale('ko')),
+  ukrainian(locale: Locale('uk')),
+  vietnamese(locale: Locale('vi'));
 
   final Locale locale;
 

@@ -11,7 +11,7 @@ void main() {
 
       expect(bookmarksBlock.id, 1);
       expect(bookmarksBlock.title, "");
-      expect(bookmarksBlock.hasTitle, true);
+      expect(bookmarksBlock.hasTitle, false);
       expect(bookmarksBlock.type, NoteBlockType.bookmarks);
       expect(bookmarksBlock.items, []);
       expect(bookmarksBlock.visibleFavicons, true);

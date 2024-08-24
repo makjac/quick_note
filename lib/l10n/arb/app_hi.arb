@@ -94,6 +94,15 @@
   "language_russian" : "रूसी",
   "language_hindi" : "हिंदी",
   "language_chinese" : "चीनी",
+  "language_arabic" : "अरबी",
+  "language_czech" : "चेक",
+  "language_hungarian" : "हंगेरियन",
+  "language_indonesian" : "इंडोनेशियाई",
+  "language_italian" : "इतालवी",
+  "language_japanese" : "जापानी",
+  "language_korean" : "कोरियाई",
+  "language_ukrainian" : "यूक्रेनी",
+  "language_vietnamese" : "वियतनामी",
   "trash_info": "किसी भी नोट को रीसायकल बिन में 7 दिनों के बाद हमेशा के लिए हटा दिया जाएगा।",
   "trash_empty": "रीसायकल बिन खाली करें"
 }

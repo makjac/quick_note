@@ -118,6 +118,15 @@
   "language_russian" : "Russian",
   "language_hindi" : "Hindi",
   "language_chinese" : "Chinese",
+  "language_arabic" : "Arabic",
+  "language_czech" : "Czech",
+  "language_hungarian" : "Hungarian",
+  "language_indonesian" : "Indonesian",
+  "language_italian" : "Italian",
+  "language_japanese" : "Japanese",
+  "language_korean" : "Korean",
+  "language_ukrainian" : "Ukrainian",
+  "language_vietnamese" : "Vietnamese",
   "trash_info" : "Any notes in recycle bin will be deleted forever after 7 days.",
   "trash_empty" : "Empty Recycle Bin"
 }

@@ -94,6 +94,15 @@
   "language_russian" : "Russe",
   "language_hindi" : "Hindi",
   "language_chinese" : "Chinois",
+  "language_arabic" : "Arabe",
+  "language_czech" : "Tchèque",
+  "language_hungarian" : "Hongrois",
+  "language_indonesian" : "Indonésien",
+  "language_italian" : "Italien",
+  "language_japanese" : "Japonais",
+  "language_korean" : "Coréen",
+  "language_ukrainian" : "Ukrainien",
+  "language_vietnamese" : "Vietnamien",
   "trash_info": "Toutes les notes dans la corbeille seront supprimées définitivement après 7 jours.",
   "trash_empty": "Vider la corbeille"
 }

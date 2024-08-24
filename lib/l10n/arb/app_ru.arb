@@ -94,6 +94,15 @@
   "language_russian" : "Русский",
   "language_hindi" : "Хинди",
   "language_chinese" : "Китайский",
+  "language_arabic" : "Арабский",
+  "language_czech" : "Чешский",
+  "language_hungarian" : "Венгерский",
+  "language_indonesian" : "Индонезийский",
+  "language_italian" : "Итальянский",
+  "language_japanese" : "Японский",
+  "language_korean" : "Корейский",
+  "language_ukrainian" : "Украинский",
+  "language_vietnamese" : "Вьетнамский",
   "trash_info": "Любые заметки в корзине будут удалены навсегда через 7 дней.",
   "trash_empty": "Очистить корзину"
 }

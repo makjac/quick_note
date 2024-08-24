@@ -84,6 +84,24 @@ class LanguageSelection extends StatelessWidget {
         return "🇮🇳 ${context.l10n.language_hindi}";
       case AppLanguage.chinese:
         return "🇨🇳 ${context.l10n.language_chinese}";
+      case AppLanguage.arabic:
+        return "🇸🇦 ${context.l10n.language_arabic}";
+      case AppLanguage.czech:
+        return "🇨🇿 ${context.l10n.language_czech}";
+      case AppLanguage.hungarian:
+        return "🇭🇺 ${context.l10n.language_hungarian}";
+      case AppLanguage.indonesian:
+        return "🇮🇩 ${context.l10n.language_indonesian}";
+      case AppLanguage.italian:
+        return "🇮🇹 ${context.l10n.language_italian}";
+      case AppLanguage.japanese:
+        return "🇯🇵 ${context.l10n.language_japanese}";
+      case AppLanguage.korean:
+        return "🇰🇷 ${context.l10n.language_korean}";
+      case AppLanguage.ukrainian:
+        return "🇺🇦 ${context.l10n.language_ukrainian}";
+      case AppLanguage.vietnamese:
+        return "🇻🇳 ${context.l10n.language_vietnamese}";
       default:
         return "🏳️";
     }

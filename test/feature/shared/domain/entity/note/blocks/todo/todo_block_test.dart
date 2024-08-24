@@ -13,7 +13,7 @@ void main() {
 
       expect(todoBlock.id, 1);
       expect(todoBlock.title, "");
-      expect(todoBlock.hasTitle, true);
+      expect(todoBlock.hasTitle, false);
       expect(todoBlock.type, NoteBlockType.todo);
       expect(todoBlock.items, []);
       expect(todoBlock.showCompleteTasks, false);
