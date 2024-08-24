@@ -94,6 +94,15 @@
   "language_russian" : "俄语",
   "language_hindi" : "印地语",
   "language_chinese" : "中文",
+  "language_arabic" : "阿拉伯语",
+  "language_czech" : "捷克语",
+  "language_hungarian" : "匈牙利语",
+  "language_indonesian" : "印尼语",
+  "language_italian" : "意大利语",
+  "language_japanese" : "日语",
+  "language_korean" : "韩语",
+  "language_ukrainian" : "乌克兰语",
+  "language_vietnamese" : "越南语",
   "trash_info": "回收站中的任何笔记将在7天后被永久删除。",
   "trash_empty": "清空回收站"
 }
