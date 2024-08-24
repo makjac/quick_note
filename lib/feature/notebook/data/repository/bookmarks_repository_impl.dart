@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:quick_note/core/error/failure/Parsing_failure.dart';
+import 'package:quick_note/core/error/failure/parsing_failure.dart';
 import 'package:quick_note/core/error/failure/failure.dart';
 import 'package:quick_note/core/error/failure/network_failure.dart';
 import 'package:quick_note/core/error/failure/validation_failure.dart';

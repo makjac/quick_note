@@ -6,14 +6,14 @@ abstract class NoteBlock extends Equatable {
   const NoteBlock(
       {required this.id,
       this.title = "",
-      this.hasTitle = true,
+      this.hasTitle = false,
       required this.type});
 
   @HiveField(0)
   final num id;
   @HiveField(1, defaultValue: "")
   final String title;
-  @HiveField(2, defaultValue: true)
+  @HiveField(2, defaultValue: false)
   final bool hasTitle;
   @HiveField(10)
   final NoteBlockType type;
