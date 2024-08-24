@@ -95,6 +95,15 @@
   "language_russian": "rosyjski",
   "language_hindi": "hindi",
   "language_chinese" : "Chiński",
+  "language_arabic" : "Arabski",
+  "language_czech" : "Czeski",
+  "language_hungarian" : "Węgierski",
+  "language_indonesian" : "Indonezyjski",
+  "language_italian" : "Włoski",
+  "language_japanese" : "Japoński",
+  "language_korean" : "Koreański",
+  "language_ukrainian" : "Ukraiński",
+  "language_vietnamese" : "Wietnamski",
   "trash_info": "Wszystkie notatki w koszu zostaną trwale usunięte po 7 dniach.",
   "trash_empty": "Opróżnij kosz"
 }
