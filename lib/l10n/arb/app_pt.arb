@@ -94,6 +94,15 @@
   "language_russian" : "Russo",
   "language_hindi" : "Hindi",
   "language_chinese" : "Chinês",
+  "language_arabic" : "Árabe",
+  "language_czech" : "Tcheco",
+  "language_hungarian" : "Húngaro",
+  "language_indonesian" : "Indonésio",
+  "language_italian" : "Italiano",
+  "language_japanese" : "Japonês",
+  "language_korean" : "Coreano",
+  "language_ukrainian" : "Ucraniano",
+  "language_vietnamese" : "Vietnamita",
   "trash_info": "Quaisquer notas na lixeira serão excluídas para sempre após 7 dias.",
   "trash_empty": "Esvaziar Lixeira"
 }
