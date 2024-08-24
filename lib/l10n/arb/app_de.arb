@@ -94,6 +94,15 @@
   "language_russian" : "Russisch",
   "language_hindi" : "Hindi",
   "language_chinese" : "Chinesisch",
+  "language_arabic" : "Arabisch",
+  "language_czech" : "Tschechisch",
+  "language_hungarian" : "Ungarisch",
+  "language_indonesian" : "Indonesisch",
+  "language_italian" : "Italienisch",
+  "language_japanese" : "Japanisch",
+  "language_korean" : "Koreanisch",
+  "language_ukrainian" : "Ukrainisch",
+  "language_vietnamese" : "Vietnamesisch",
   "trash_info": "Alle Notizen im Papierkorb werden nach 7 Tagen endgültig gelöscht.",
   "trash_empty": "Papierkorb leeren"
 }
