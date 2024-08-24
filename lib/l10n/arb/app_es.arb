@@ -94,6 +94,15 @@
   "language_russian" : "Ruso",
   "language_hindi" : "Hindi",
   "language_chinese" : "Chino",
+  "language_arabic" : "Árabe",
+  "language_czech" : "Checo",
+  "language_hungarian" : "Húngaro",
+  "language_indonesian" : "Indonesio",
+  "language_italian" : "Italiano",
+  "language_japanese" : "Japonés",
+  "language_korean" : "Coreano",
+  "language_ukrainian" : "Ucraniano",
+  "language_vietnamese" : "Vietnamita",
   "trash_info": "Cualquier nota en la papelera será eliminada para siempre después de 7 días.",
   "trash_empty": "Vaciar papelera"
 }
