@@ -16,6 +16,7 @@ import 'package:quick_note/feature/home/presentation/widget/bottom_navigation_ba
 import 'package:quick_note/feature/home/presentation/widget/home_page_layout/home_page_menu/home_page_darwer.dart';
 import 'package:quick_note/feature/home/presentation/widget/home_page_layout/home_page_layout.dart';
 import 'package:quick_note/injection_container.dart';
+import 'package:quick_note/l10n/l10n.dart';
 import 'package:quick_note/router/app_routes.dart';
 
 class HomePage extends StatelessWidget {
@@ -44,7 +45,7 @@ class HomePage extends StatelessWidget {
                 backgroundColor: Colors.grey[900],
                 foregroundColor: Colors.white,
                 icon: const Icon(Icons.add),
-                label: const Text("Add note"),
+                label: Text(context.l10n.add_note),
               )
             : null,
         bottomNavigationBar: _buildBottomNavigationBar(),
