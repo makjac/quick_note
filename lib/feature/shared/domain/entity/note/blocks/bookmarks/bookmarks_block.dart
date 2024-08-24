@@ -8,7 +8,7 @@ class BookmarksBlock extends NoteBlock {
   const BookmarksBlock({
     required super.id,
     super.title = "",
-    super.hasTitle = true,
+    super.hasTitle = false,
     super.type = NoteBlockType.bookmarks,
     this.items = const [],
     this.visibleFavicons = true,
