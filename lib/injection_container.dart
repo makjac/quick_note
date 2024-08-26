@@ -11,6 +11,7 @@ import 'package:quick_note/feature/home/data/repository/app_repository_impl.dart
 import 'package:quick_note/feature/home/domain/repository/app_repository.dart';
 import 'package:quick_note/feature/home/domain/usecase/create_note_usecase.dart';
 import 'package:quick_note/feature/home/domain/usecase/delete_all_notes_usecase.dart';
+import 'package:quick_note/feature/home/domain/usecase/delete_empty_notes_usecase.dart';
 import 'package:quick_note/feature/home/domain/usecase/delete_miltiple_notes_usecase.dart';
 import 'package:quick_note/feature/home/domain/usecase/delete_single_note_usecase.dart';
 import 'package:quick_note/feature/home/domain/usecase/load_cached_notes_usecase.dart';
