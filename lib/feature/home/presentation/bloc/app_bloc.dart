@@ -60,6 +60,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   FutureOr<void> _loadCachedNotes(
       AppLoadCachedNotes event, Emitter<AppState> emit) async {
+    await deleteEmptyNotes.call(NoParams());
     final notes = await loadCachedNotes.call(NoParams());
 
     notes.fold((failure) {}, (notes) => emit(state.copyWith(notes: notes)));
