@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:quick_note/core/constans/insets.dart';
 import 'package:quick_note/core/utils/note_helper.dart';
 import 'package:quick_note/feature/home/domain/usecase/update_multiple_notes_usecase.dart';
@@ -56,6 +57,7 @@ class NotebookPopupMenu extends StatelessWidget {
                   context.l10n.note_settings_delete, Icons.delete_outline),
               onTap: () {
                 notebookBloc.add(NotebookDeleteNote());
+                context.pop();
               },
             ),
           ];
