@@ -198,7 +198,15 @@ class NotebookBloc extends Bloc<NotebookEvent, NotebookState> {
 
   FutureOr<void> _handleDeleteNote(
       NotebookDeleteNote event, Emitter<NotebookState> emit) async {
-    final result = await deleteNote.call(state.note?.id ?? -1);
-    _handleResult(result, () => emit(NotebookNoteDeleted()));
+    if (state.note == null) return;
+
+    await updateSingleNote.call(
+      UpdateSingleNoteParams(
+        note: state.note!,
+        updates: NoteUpdates(
+          expirydate: DateTime.now().add(const Duration(days: 7)),
+        ),
+      ),
+    );
   }
 }
