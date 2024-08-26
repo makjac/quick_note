@@ -97,4 +97,19 @@ class AppRepositoryImpl implements AppRepository {
       return const Left(CacheFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, void>> deleteEmptyNotes() async {
+    try {
+      final notes = await localDataSource.getNotes();
+      final emptyNotes = notes.where((note) => note.isEmpty);
+
+      final result = await localDataSource
+          .deleteMultipleNotes(emptyNotes.map((note) => note.id).toList());
+
+      return Right(result);
+    } catch (e) {
+      return const Left(CacheFailure());
+    }
+  }
 }
