@@ -45,6 +45,16 @@ class NoteHelper {
     final displayColor =
         color.color(context.read<PreferencesBloc>().state.theme);
 
+    Color setupBorderColor() {
+      final isDarkTheme = Theme.of(context).brightness == Brightness.dark;
+
+      if (isDarkTheme) {
+        return displayColor.changeBrightness(.22);
+      } else {
+        return displayColor.changeBrightness(-.35).withAlpha(150);
+      }
+    }
+
     return GestureDetector(
       onTap: () {
         Navigator.pop(context, color);
@@ -53,8 +63,10 @@ class NoteHelper {
         decoration: BoxDecoration(
           color: displayColor,
           borderRadius: const BorderRadius.all(Radius.circular(1000)),
-          border:
-              Border.all(color: displayColor.changeBrightness(.22), width: 3),
+          border: Border.all(
+            color: setupBorderColor(),
+            width: 3,
+          ),
         ),
       ),
     );
