@@ -4,6 +4,7 @@ import 'package:quick_note/core/constans/insets.dart';
 import 'package:quick_note/core/extension/color/color.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note_colors.dart';
 import 'package:quick_note/preferences/bloc/preferences.bloc.dart';
+import 'package:quick_note/preferences/theme/app_custom_colors.dart';
 
 class NoteHelper {
   static Future<NoteColors?> showNoteColorPickerDialog(BuildContext context) {
@@ -11,7 +12,7 @@ class NoteHelper {
       context: context,
       builder: (BuildContext context) {
         return Dialog(
-          backgroundColor: Colors.grey[800],
+          backgroundColor: Theme.of(context).changeNoteColorPopupBacgroundColor,
           child: Padding(
             padding: const EdgeInsets.all(Insets.s),
             child: ConstrainedBox(
