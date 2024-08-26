@@ -58,6 +58,7 @@ FutureOr<void> _initApp() async {
         updateMultipleNotes: locator(),
         updateSingleNote: locator(),
         deleteSingleNote: locator(),
+        deleteEmptyNotes: locator(),
       ),
     );
 }

@@ -7,6 +7,7 @@ import 'package:quick_note/core/error/failure/cache_value_failure.dart';
 import 'package:quick_note/core/usecase/usecase.dart';
 import 'package:quick_note/feature/home/domain/usecase/create_note_usecase.dart';
 import 'package:quick_note/feature/home/domain/usecase/delete_all_notes_usecase.dart';
+import 'package:quick_note/feature/home/domain/usecase/delete_empty_notes_usecase.dart';
 import 'package:quick_note/feature/home/domain/usecase/delete_miltiple_notes_usecase.dart';
 import 'package:quick_note/feature/home/domain/usecase/delete_single_note_usecase.dart';
 import 'package:quick_note/feature/home/domain/usecase/load_cached_notes_usecase.dart';
@@ -25,6 +26,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   final UpdateMultipleNotesUsecase updateMultipleNotes;
   final UpdateSingleNoteUsecase updateSingleNote;
   final DeleteSingleNoteUsecase deleteSingleNote;
+  final DeleteEmptyNotesUsecase deleteEmptyNotes;
 
   AppBloc({
     required this.loadCachedNotes,
@@ -34,6 +36,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     required this.updateMultipleNotes,
     required this.updateSingleNote,
     required this.deleteSingleNote,
+    required this.deleteEmptyNotes,
   }) : super(AppInitial()) {
     on<AppLoadCachedNotes>(_loadCachedNotes);
     on<AppCreateNote>(_createNote);
