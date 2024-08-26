@@ -21,6 +21,8 @@ extension AppColors on ThemeData {
       brightness == Brightness.dark ? Colors.white30 : Colors.black26;
   Color? get editHeaderForegroundColor =>
       brightness == Brightness.dark ? Colors.white : Colors.black;
+  Color? get changeNoteColorPopupBacgroundColor =>
+      brightness == Brightness.dark ? Colors.grey[800] : Colors.grey[300];
   //
   // Note tile
   Color? get noteTilecontentColor =>

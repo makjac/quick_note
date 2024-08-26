@@ -47,6 +47,8 @@ FutureOr<void> _initApp() async {
         () => UpdateSingleNoteUsecase(repository: locator()))
     ..registerLazySingleton<DeleteSingleNoteUsecase>(
         () => DeleteSingleNoteUsecase(repository: locator()))
+    ..registerLazySingleton<DeleteEmptyNotesUsecase>(
+        () => DeleteEmptyNotesUsecase(repository: locator()))
     ..registerFactory<AppBloc>(
       () => AppBloc(
         loadCachedNotes: locator(),
@@ -56,6 +58,7 @@ FutureOr<void> _initApp() async {
         updateMultipleNotes: locator(),
         updateSingleNote: locator(),
         deleteSingleNote: locator(),
+        deleteEmptyNotes: locator(),
       ),
     );
 }

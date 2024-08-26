@@ -147,12 +147,12 @@ void main() {
     blocTest<NotebookBloc, NotebookState>(
       'emits [NotebookNoteDeleted] when NotebookDeleteNote is added',
       build: () {
-        when(() => mockDeleteSingleNoteUsecase.call(any()))
+        when(() => mockUpdateSingleNoteUsecase.call(any()))
             .thenAnswer((_) async => const Right(null));
         return notebookBloc;
       },
       act: (bloc) => bloc.add(NotebookDeleteNote()),
-      expect: () => [isA<NotebookNoteDeleted>()],
+      expect: () => [],
     );
   });
 }

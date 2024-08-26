@@ -24,6 +24,13 @@ class NoteModel extends Note with HiveObjectMixin {
     super.color,
   });
 
+  bool get isEmpty {
+    final hasTitle = title.isNotEmpty;
+    final hasContent = content.isNotEmpty;
+
+    return !hasTitle && !hasContent;
+  }
+
   factory NoteModel.fromEntity(Note entity) {
     return NoteModel(
       id: entity.id,

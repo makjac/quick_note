@@ -94,7 +94,8 @@ class NotePage extends StatelessWidget {
           ),
           const SizedBox(height: Insets.xxs),
           TextButton(
-            onPressed: () {},
+            onPressed: () =>
+                BlocProvider.of<AppBloc>(context).add(AppCreateNote()),
             child: Text(
               context.l10n.note_page_create_first_note,
               style: Theme.of(context)
