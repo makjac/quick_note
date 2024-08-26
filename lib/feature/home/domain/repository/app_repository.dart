@@ -12,4 +12,5 @@ abstract class AppRepository {
   Future<Either<Failure, void>> deleteNote(num key);
   Future<Either<Failure, void>> deleteMultipleNotes(List<num> keys);
   Future<Either<Failure, int>> deleteAllNotes();
+  Future<Either<Failure, void>> deleteEmptyNotes();
 }
