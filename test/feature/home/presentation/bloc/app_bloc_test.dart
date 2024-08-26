@@ -6,6 +6,7 @@ import 'package:quick_note/core/error/failure/cache_failure.dart';
 import 'package:quick_note/core/usecase/usecase.dart';
 import 'package:quick_note/feature/home/domain/usecase/create_note_usecase.dart';
 import 'package:quick_note/feature/home/domain/usecase/delete_all_notes_usecase.dart';
+import 'package:quick_note/feature/home/domain/usecase/delete_empty_notes_usecase.dart';
 import 'package:quick_note/feature/home/domain/usecase/delete_miltiple_notes_usecase.dart';
 import 'package:quick_note/feature/home/domain/usecase/delete_single_note_usecase.dart';
 import 'package:quick_note/feature/home/domain/usecase/load_cached_notes_usecase.dart';
@@ -33,6 +34,9 @@ class MockUpdateMultipleNotesUsecase extends Mock
 class MockUpdateSingleNoteUsecase extends Mock
     implements UpdateSingleNoteUsecase {}
 
+class MockDeleteEmptyNotesUsecase extends Mock
+    implements DeleteEmptyNotesUsecase {}
+
 // Dummy Classes
 class NoteFake extends Fake implements Note {}
 
@@ -45,6 +49,7 @@ void main() {
   late MockDeleteSingleNoteUsecase mockDeleteSingleNote;
   late MockUpdateMultipleNotesUsecase mockUpdateMultipleNotes;
   late MockUpdateSingleNoteUsecase mockUpdateSingleNote;
+  late MockDeleteEmptyNotesUsecase mockDeleteEmptyNotes;
 
   late Note note;
 
@@ -66,6 +71,7 @@ void main() {
     mockDeleteSingleNote = MockDeleteSingleNoteUsecase();
     mockUpdateMultipleNotes = MockUpdateMultipleNotesUsecase();
     mockUpdateSingleNote = MockUpdateSingleNoteUsecase();
+    mockDeleteEmptyNotes = MockDeleteEmptyNotesUsecase();
 
     note = Note(
       id: 1,
@@ -83,6 +89,7 @@ void main() {
       updateMultipleNotes: mockUpdateMultipleNotes,
       updateSingleNote: mockUpdateSingleNote,
       deleteSingleNote: mockDeleteSingleNote,
+      deleteEmptyNotes: mockDeleteEmptyNotes,
     );
   });
 
@@ -100,6 +107,8 @@ void main() {
       build: () {
         when(() => mockLoadCachedNotes.call(NoParams()))
             .thenAnswer((_) async => Right([note]));
+        when(() => mockDeleteEmptyNotes.call(NoParams()))
+            .thenAnswer((_) async => const Right(null));
         return appBloc;
       },
       act: (bloc) => bloc.add(AppLoadCachedNotes()),
