@@ -68,6 +68,7 @@ class AddBookmarkWidgetState extends State<AddBookmarkWidget>
               Expanded(
                 child: TextField(
                   controller: _controller,
+                  autocorrect: false,
                   enabled: state.addingStatus != AddBookmarkStatus.loading,
                   decoration: InputDecoration(
                     border: const OutlineInputBorder(),
