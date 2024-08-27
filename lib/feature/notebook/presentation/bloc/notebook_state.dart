@@ -35,6 +35,23 @@ class NotebookErrorState extends NotebookState {
 
 class NotebookNoteDeleted extends NotebookState {}
 
+class NotebookNoteBlockAdded extends NotebookState {
+  const NotebookNoteBlockAdded({super.note, required this.block});
+
+  final NoteBlock block;
+
+  factory NotebookNoteBlockAdded.fromState(
+      NotebookState state, NoteBlock block) {
+    return NotebookNoteBlockAdded(
+      note: state.note,
+      block: block,
+    );
+  }
+
+  @override
+  List<Object> get props => [super.props, block];
+}
+
 Note _emptyNote = Note(
   id: -1,
   created: DateTime(1000),
