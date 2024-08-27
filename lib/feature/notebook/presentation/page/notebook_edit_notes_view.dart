@@ -22,6 +22,7 @@ class NotebookEditNotesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final focusNode = FocusNode();
     final noteColor = (note?.color ?? NoteColors.color1)
         .color(context.read<PreferencesBloc>().state.theme);
     final width = MediaQuery.of(context).size.width;
@@ -41,8 +42,12 @@ class NotebookEditNotesView extends StatelessWidget {
                 const NotebookDesktopIconsMenu(),
             ],
           ),
-          const SliverToBoxAdapter(
-            child: NotebookTitleTextField(),
+          SliverToBoxAdapter(
+            child: NotebookTitleTextField(
+              focusNode: _setFocus
+                  ? (focusNode..requestFocus())
+                  : (focusNode..unfocus()),
+            ),
           ),
           ...(note?.content ?? []).map(
             (block) => SliverToBoxAdapter(
