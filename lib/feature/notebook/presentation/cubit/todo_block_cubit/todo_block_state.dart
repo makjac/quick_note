@@ -16,4 +16,21 @@ class TodoBlockState extends Equatable {
   List<Object> get props => [block];
 }
 
+class TodoBlockAddedNewTaskItem extends TodoBlockState {
+  const TodoBlockAddedNewTaskItem({super.block, required this.item});
+
+  final ChecklistItem item;
+
+  factory TodoBlockAddedNewTaskItem.fromState(
+      TodoBlockState state, ChecklistItem item) {
+    return TodoBlockAddedNewTaskItem(
+      block: state.block,
+      item: item,
+    );
+  }
+
+  @override
+  List<Object> get props => [item];
+}
+
 final class TodoBlockInitial extends TodoBlockState {}
