@@ -85,6 +85,7 @@ class _TextBlockContentState extends State<TextBlockContent> {
             maxLines: _maxLinesLimit(),
             minLines: 1,
             keyboardType: TextInputType.multiline,
+            textCapitalization: TextCapitalization.sentences,
             scrollPhysics: _setScroll(),
             decoration: InputDecoration(
               hintText: context.l10n.text_block_note_hint_text,
