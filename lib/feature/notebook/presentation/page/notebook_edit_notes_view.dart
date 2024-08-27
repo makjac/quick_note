@@ -11,19 +11,46 @@ import 'package:quick_note/feature/shared/domain/entity/note/note.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note_colors.dart';
 import 'package:quick_note/preferences/bloc/preferences.bloc.dart';
 
-class NotebookEditNotesView extends StatelessWidget {
+class NotebookEditNotesView extends StatefulWidget {
   const NotebookEditNotesView({super.key, this.note});
 
   final Note? note;
 
-  bool get _hasTitle => note?.title.isNotEmpty ?? false;
+  @override
+  State<NotebookEditNotesView> createState() => _NotebookEditNotesViewState();
+}
 
-  bool get _setFocus => !_hasTitle && note != null;
+class _NotebookEditNotesViewState extends State<NotebookEditNotesView> {
+  late FocusNode _focusNode;
+
+  bool get _hasTitle => widget.note?.title.isNotEmpty ?? false;
+
+  bool get _setFocus => !_hasTitle && widget.note != null;
+
+  @override
+  void initState() {
+    _focusNode = FocusNode();
+
+    super.initState();
+  }
+
+  @override
+  void didUpdateWidget(covariant NotebookEditNotesView oldWidget) {
+    if (oldWidget.note == null) {
+      _setFocus ? (_focusNode..requestFocus()) : (_focusNode..unfocus());
+    }
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final focusNode = FocusNode();
-    final noteColor = (note?.color ?? NoteColors.color1)
+    final noteColor = (widget.note?.color ?? NoteColors.color1)
         .color(context.read<PreferencesBloc>().state.theme);
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -44,12 +71,10 @@ class NotebookEditNotesView extends StatelessWidget {
           ),
           SliverToBoxAdapter(
             child: NotebookTitleTextField(
-              focusNode: _setFocus
-                  ? (focusNode..requestFocus())
-                  : (focusNode..unfocus()),
+              focusNode: _focusNode,
             ),
           ),
-          ...(note?.content ?? []).map(
+          ...(widget.note?.content ?? []).map(
             (block) => SliverToBoxAdapter(
               child: NoteBlockBuilder(
                 noteBlock: block,
