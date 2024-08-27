@@ -56,6 +56,10 @@ class AddBookmarkWidgetState extends State<AddBookmarkWidget>
 
   void _addBookmark() {
     final String url = _controller.text;
+
+    final isurlValid = UrlHelper.isValidUrl(url);
+    if (!isurlValid) return;
+
     final String completedUrl = UrlHelper.completeUrl(url);
 
     if (UrlHelper.isValidUrl(completedUrl)) {
