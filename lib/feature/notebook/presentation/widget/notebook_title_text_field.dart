@@ -7,7 +7,9 @@ import 'package:quick_note/l10n/l10n.dart';
 import 'package:quick_note/preferences/theme/app_custom_colors.dart';
 
 class NotebookTitleTextField extends StatefulWidget {
-  const NotebookTitleTextField({super.key});
+  const NotebookTitleTextField({super.key, this.focusNode});
+
+  final FocusNode? focusNode;
 
   @override
   State<NotebookTitleTextField> createState() => _NotebookTitleTextFieldState();
@@ -35,6 +37,7 @@ class _NotebookTitleTextFieldState extends State<NotebookTitleTextField> {
         padding: const EdgeInsets.symmetric(horizontal: Insets.s),
         child: TextField(
           controller: _controller,
+          focusNode: widget.focusNode,
           onChanged: (value) {
             BlocProvider.of<NotebookBloc>(context)
                 .add(NotebookUpdateNote(updates: NoteUpdates(title: value)));
