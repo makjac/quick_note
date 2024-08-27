@@ -93,7 +93,7 @@ class NoteTilePopupMenu extends StatelessWidget {
         updates: NoteUpdates(archived: !note.archived, isStarred: false),
       )),
       child: ListTile(
-        leading: const Icon(Icons.archive_outlined),
+        leading: Icon(note.archived ? Icons.archive : Icons.archive_outlined),
         title: Text(context.l10n.note_settings_archive),
       ),
     );
