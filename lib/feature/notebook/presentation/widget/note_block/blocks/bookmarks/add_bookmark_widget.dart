@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_note/core/utils/url_helper.dart';
+import 'package:quick_note/feature/notebook/presentation/bloc/notebook_bloc.dart';
 import 'package:quick_note/feature/notebook/presentation/cubit/bookmarks_block_cubit/bookmarks_block_cubit.dart';
 import 'package:quick_note/l10n/l10n.dart';
 
@@ -19,11 +20,11 @@ class AddBookmarkWidgetState extends State<AddBookmarkWidget>
   final TextEditingController _controller = TextEditingController();
   late AnimationController _animationController;
   late Animation<double> _animation;
+  late FocusNode _focusNode;
   Timer? _debounce;
 
   @override
   void initState() {
-    super.initState();
     _animationController = AnimationController(
       duration: const Duration(milliseconds: 200),
       vsync: this,
@@ -31,7 +32,18 @@ class AddBookmarkWidgetState extends State<AddBookmarkWidget>
 
     _animation = Tween<double>(begin: 0, end: 1).animate(_animationController);
 
+    _focusNode = FocusNode();
+
+    final notebookState = context.read<NotebookBloc>().state;
+
+    if (notebookState is NotebookNoteBlockAdded) {
+      if (notebookState.block.id == widget.blockId) {
+        _focusNode.requestFocus();
+      }
+    }
+
     _controller.addListener(_onTextChanged);
+    super.initState();
   }
 
   void _onTextChanged() {
@@ -48,7 +60,6 @@ class AddBookmarkWidgetState extends State<AddBookmarkWidget>
 
     if (UrlHelper.isValidUrl(completedUrl)) {
       context.read<BookmarksBlockCubit>().addBookmark(completedUrl);
-      _controller.clear();
     } else {
       // Handle invalid URL case if needed
     }
@@ -61,6 +72,13 @@ class AddBookmarkWidgetState extends State<AddBookmarkWidget>
         if (state.addingStatus == AddBookmarkStatus.success) {
           _controller.clear();
         }
+
+        if (state.addingStatus == AddBookmarkStatus.success ||
+            state.addingStatus == AddBookmarkStatus.error) {
+          _animationController.reverse().then((value) {
+            _focusNode.requestFocus();
+          });
+        }
       },
       builder: (context, state) {
         return Padding(
@@ -70,6 +88,7 @@ class AddBookmarkWidgetState extends State<AddBookmarkWidget>
               Expanded(
                 child: TextField(
                   controller: _controller,
+                  focusNode: _focusNode,
                   autocorrect: false,
                   enabled: state.addingStatus != AddBookmarkStatus.loading,
                   decoration: InputDecoration(
@@ -123,6 +142,7 @@ class AddBookmarkWidgetState extends State<AddBookmarkWidget>
     _controller.dispose();
     _animationController.dispose();
     _debounce?.cancel();
+    _focusNode.dispose();
     super.dispose();
   }
 }
