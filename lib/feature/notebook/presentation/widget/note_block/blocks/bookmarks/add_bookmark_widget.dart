@@ -6,7 +6,9 @@ import 'package:quick_note/feature/notebook/presentation/cubit/bookmarks_block_c
 import 'package:quick_note/l10n/l10n.dart';
 
 class AddBookmarkWidget extends StatefulWidget {
-  const AddBookmarkWidget({super.key});
+  const AddBookmarkWidget({super.key, required this.blockId});
+
+  final num blockId;
 
   @override
   AddBookmarkWidgetState createState() => AddBookmarkWidgetState();
