@@ -18,16 +18,27 @@ class TodoBlockCheckListItem extends StatefulWidget {
 
 class _TodoBlockCheckListItem extends State<TodoBlockCheckListItem> {
   late TextEditingController _controller;
+  late FocusNode _focusNode;
 
   @override
   void initState() {
-    super.initState();
     _controller = TextEditingController(text: widget.item.title);
+    _focusNode = FocusNode();
+
+    final todoState = context.read<TodoBlockCubit>().state;
+
+    if (todoState is TodoBlockAddedNewTaskItem) {
+      if (todoState.item.id == widget.item.id) {
+        _focusNode.requestFocus();
+      }
+    }
+    super.initState();
   }
 
   @override
   void dispose() {
     _controller.dispose();
+    _focusNode.dispose();
     super.dispose();
   }
 
@@ -75,7 +86,7 @@ class _TodoBlockCheckListItem extends State<TodoBlockCheckListItem> {
     return Expanded(
       child: TextField(
         controller: _controller,
-        textCapitalization: TextCapitalization.sentences,
+        focusNode: _focusNode,
         style: TextStyle(
           color: widget.item.isChecked
               ? Theme.of(context).todoCheckedTextColor
