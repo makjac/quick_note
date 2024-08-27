@@ -75,6 +75,7 @@ class _TodoBlockCheckListItem extends State<TodoBlockCheckListItem> {
     return Expanded(
       child: TextField(
         controller: _controller,
+        textCapitalization: TextCapitalization.sentences,
         style: TextStyle(
           color: widget.item.isChecked
               ? Theme.of(context).todoCheckedTextColor
