@@ -22,6 +22,9 @@ class PlatformHelper {
     }
   }
 
+  /// Returns `true` if the current platform is web.
+  ///
+  /// Otherwise, it returns `false`.
   static bool isWeb() {
     return kIsWeb;
   }
