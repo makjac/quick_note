@@ -23,7 +23,7 @@ class NoteTilePopupMenu extends StatelessWidget {
       itemBuilder: (_) => <PopupMenuEntry<_Menu>>[
         _buildSelectMenuItem(context),
         _buildColorMenuItem(context),
-        _buildStarMenuItem(context),
+        if (!note.archived) _buildStarMenuItem(context),
         _buildArchiveMenuItem(context),
         const PopupMenuDivider(),
         _buildDeleteMenuItem(context),
