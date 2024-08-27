@@ -115,7 +115,12 @@ class NotebookBloc extends Bloc<NotebookEvent, NotebookState> {
     );
 
     final result = await updateSingleNote.call(updates);
-    _handleResult(result, () => emit(state.copyWith(note: updates.update())));
+    _handleResult(result, () {
+      emit(NotebookNoteBlockAdded.fromState(
+        state.copyWith(note: updates.update()),
+        block,
+      ));
+    });
   }
 
   NoteBlock? _createNoteBlock(NoteBlockType type) {
