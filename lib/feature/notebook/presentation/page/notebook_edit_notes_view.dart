@@ -18,6 +18,8 @@ class NotebookEditNotesView extends StatelessWidget {
 
   bool get _hasTitle => note?.title.isNotEmpty ?? false;
 
+  bool get _setFocus => !_hasTitle && note != null;
+
   @override
   Widget build(BuildContext context) {
     final noteColor = (note?.color ?? NoteColors.color1)
