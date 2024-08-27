@@ -31,6 +31,7 @@ class _NoteBlockTitleState extends State<NoteBlockTitle> {
   Widget build(BuildContext context) {
     return TextField(
       controller: _controller,
+      textCapitalization: TextCapitalization.sentences,
       maxLines: null,
       decoration: InputDecoration(
         hintText: widget.hintText,
