@@ -78,7 +78,7 @@ class NoteTilePopupMenu extends StatelessWidget {
         updates: NoteUpdates(isStarred: !note.isStarred),
       )),
       child: ListTile(
-        leading: const Icon(Icons.star_border),
+        leading: Icon(note.isStarred ? Icons.star_outlined : Icons.star_border),
         title: Text(context.l10n.note_settings_star),
       ),
     );
