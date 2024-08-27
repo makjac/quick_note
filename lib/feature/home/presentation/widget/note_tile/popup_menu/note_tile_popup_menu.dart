@@ -23,7 +23,7 @@ class NoteTilePopupMenu extends StatelessWidget {
       itemBuilder: (_) => <PopupMenuEntry<_Menu>>[
         _buildSelectMenuItem(context),
         _buildColorMenuItem(context),
-        _buildStarMenuItem(context),
+        if (!note.archived) _buildStarMenuItem(context),
         _buildArchiveMenuItem(context),
         const PopupMenuDivider(),
         _buildDeleteMenuItem(context),
@@ -78,7 +78,7 @@ class NoteTilePopupMenu extends StatelessWidget {
         updates: NoteUpdates(isStarred: !note.isStarred),
       )),
       child: ListTile(
-        leading: const Icon(Icons.star_border),
+        leading: Icon(note.isStarred ? Icons.star_outlined : Icons.star_border),
         title: Text(context.l10n.note_settings_star),
       ),
     );
@@ -93,7 +93,7 @@ class NoteTilePopupMenu extends StatelessWidget {
         updates: NoteUpdates(archived: !note.archived, isStarred: false),
       )),
       child: ListTile(
-        leading: const Icon(Icons.archive_outlined),
+        leading: Icon(note.archived ? Icons.archive : Icons.archive_outlined),
         title: Text(context.l10n.note_settings_archive),
       ),
     );

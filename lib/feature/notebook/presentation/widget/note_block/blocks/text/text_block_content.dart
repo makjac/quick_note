@@ -11,6 +11,7 @@ class TextBlockContent extends StatefulWidget {
 
 class _TextBlockContentState extends State<TextBlockContent> {
   late TextEditingController _controller;
+  late FocusNode _focusNode;
 
   int _displayedLineCount = 0;
   bool _isExpanded = false;
@@ -18,12 +19,23 @@ class _TextBlockContentState extends State<TextBlockContent> {
   @override
   void initState() {
     _controller = TextEditingController(text: widget.block.text);
+    _focusNode = FocusNode();
+
+    final notebookState = context.read<NotebookBloc>().state;
+
+    if (notebookState is NotebookNoteBlockAdded) {
+      if (notebookState.block.id == widget.block.id) {
+        _focusNode.requestFocus();
+      }
+    }
+
     super.initState();
   }
 
   @override
   void dispose() {
     _controller.dispose();
+    _focusNode.dispose();
     super.dispose();
   }
 
@@ -82,9 +94,11 @@ class _TextBlockContentState extends State<TextBlockContent> {
           alignment: Alignment.topCenter,
           child: TextField(
             controller: _controller,
+            focusNode: _focusNode,
             maxLines: _maxLinesLimit(),
             minLines: 1,
             keyboardType: TextInputType.multiline,
+            textCapitalization: TextCapitalization.sentences,
             scrollPhysics: _setScroll(),
             decoration: InputDecoration(
               hintText: context.l10n.text_block_note_hint_text,

@@ -80,6 +80,20 @@ class UrlHelper {
     return uri.host;
   }
 
+  /// Launches the provided URL.
+  ///
+  /// This method takes a [url] as a parameter and launches it using the [ul.launchUrl] method.
+  /// It first parses the [url] into a [Uri] object using the [Uri.parse] method.
+  /// Then, it checks if the URL can be launched using the [ul.canLaunchUrl] method.
+  /// If the URL cannot be launched, the method returns without performing any further actions.
+  /// If the URL can be launched, it calls the [ul.launchUrl] method with the parsed [uri] and the launch mode set to [ul.LaunchMode.externalApplication].
+  ///
+  /// Example usage:
+  /// ```dart
+  /// await launchUrl('https://example.com');
+  /// ```
+  ///
+  /// Throws an exception if the [url] is invalid or if an error occurs while launching the UR
   static Future<void> launchUrl(String url) async {
     final uri = Uri.parse(url);
 

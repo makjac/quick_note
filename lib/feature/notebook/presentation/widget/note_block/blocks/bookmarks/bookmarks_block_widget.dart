@@ -53,7 +53,7 @@ class _BookmarksBlockBody extends StatelessWidget {
               ),
             ),
             const SizedBox(height: Insets.xs),
-            const AddBookmarkWidget(),
+            AddBookmarkWidget(blockId: state.block.id),
           ],
         );
       },

@@ -5,7 +5,7 @@ class TodoBlockList extends StatelessWidget {
 
   final List<ChecklistItem> items;
 
-  List<ChecklistItem> _fiteredItems(BuildContext context) {
+  List<ChecklistItem> _filteredItems(BuildContext context) {
     final showCompletedItems =
         context.read<TodoBlockCubit>().state.block.showCompleteTasks;
 
@@ -22,7 +22,7 @@ class TodoBlockList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tasks = _fiteredItems(context);
+    final tasks = _filteredItems(context);
     return ReorderableListView.builder(
       itemBuilder: (context, index) => TodoBlockCheckListItem(
         key: ValueKey("${tasks[index].id}"),

@@ -9,6 +9,16 @@ import 'package:quick_note/router/app_routes.dart';
 class HomePageDarwer extends StatelessWidget {
   const HomePageDarwer({super.key});
 
+  bool _isSelected(BuildContext context, AppRoutes route) {
+    final currentRouteName = GoRouterState.of(context).topRoute?.path;
+    final currentRoute = AppRoutes.values.firstWhere(
+      (value) => value.path == currentRouteName,
+      orElse: () => AppRoutes.notesPage,
+    );
+
+    return currentRoute == route;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -18,19 +28,22 @@ class HomePageDarwer extends StatelessWidget {
             child: Column(
               children: [
                 _drawerHeader(context),
-                ListTile(
+                _menuOption(
                   leading: const Icon(Icons.notes_rounded),
                   title: Text(context.l10n.menu_notes),
+                  selected: _isSelected(context, AppRoutes.notesPage),
                   onTap: () => context.pushNamed(AppRoutes.notesPage.name),
                 ),
-                ListTile(
+                _menuOption(
                   leading: const Icon(Icons.archive),
                   title: Text(context.l10n.menu_archive),
+                  selected: _isSelected(context, AppRoutes.archivePage),
                   onTap: () => context.pushNamed(AppRoutes.archivePage.name),
                 ),
-                ListTile(
+                _menuOption(
                   leading: const Icon(Icons.delete),
                   title: Text(context.l10n.menu_trash),
+                  selected: _isSelected(context, AppRoutes.trashPage),
                   onTap: () => context.pushNamed(AppRoutes.trashPage.name),
                 ),
                 const Divider(),
@@ -46,14 +59,16 @@ class HomePageDarwer extends StatelessWidget {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   const Divider(),
-                  ListTile(
+                  _menuOption(
                     leading: const Icon(Icons.settings),
                     title: Text(context.l10n.menu_settings),
+                    selected: _isSelected(context, AppRoutes.settingsPage),
                     onTap: () => context.pushNamed(AppRoutes.settingsPage.name),
                   ),
-                  ListTile(
+                  _menuOption(
                     leading: const Icon(Icons.help),
                     title: Text(context.l10n.menu_help),
+                    selected: _isSelected(context, AppRoutes.helpPage),
                     onTap: () => context.pushNamed(AppRoutes.helpPage.name),
                   ),
                   const SizedBox(height: Insets.s)
@@ -62,6 +77,22 @@ class HomePageDarwer extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _menuOption({
+    Widget? leading,
+    Widget? title,
+    bool selected = false,
+    void Function()? onTap,
+  }) {
+    return Ink(
+      color: selected ? Colors.white10 : Colors.transparent,
+      child: ListTile(
+        leading: leading,
+        title: title,
+        onTap: onTap,
       ),
     );
   }

@@ -56,7 +56,7 @@ void main() {
       build: () => cubit,
       act: (cubit) => cubit.addCheckbox(),
       expect: () => [
-        const TodoBlockState(
+        const TodoBlockAddedNewTaskItem(
           block: TodoBlock(
             id: 1,
             items: [
@@ -65,6 +65,7 @@ void main() {
               ChecklistItem(id: 3, title: '', isChecked: false),
             ],
           ),
+          item: ChecklistItem(id: 3, title: '', isChecked: false),
         ),
       ],
     );
