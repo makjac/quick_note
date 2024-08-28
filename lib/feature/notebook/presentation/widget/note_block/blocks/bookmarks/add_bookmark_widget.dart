@@ -59,14 +59,18 @@ class AddBookmarkWidgetState extends State<AddBookmarkWidget>
     final String url = _controller.text;
 
     final isurlValid = UrlHelper.isValidUrl(url);
-    if (!isurlValid) return;
+    if (!isurlValid) {
+      _focusNode.requestFocus();
+      return;
+    }
 
     final String completedUrl = UrlHelper.completeUrl(url);
 
     if (UrlHelper.isValidUrl(completedUrl)) {
       context.read<BookmarksBlockCubit>().addBookmark(completedUrl);
+      _controller.clear();
     } else {
-      // Handle invalid URL case if needed
+      _focusNode.requestFocus();
     }
   }
 
@@ -88,7 +92,7 @@ class AddBookmarkWidgetState extends State<AddBookmarkWidget>
             state.addingStatus == AddBookmarkStatus.error) {
           _animationController.reverse().then((value) {
             _focusNode.requestFocus();
-_enableFocus = false;
+            _enableFocus = false;
           });
         }
       },
