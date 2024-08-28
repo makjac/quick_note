@@ -22,6 +22,7 @@ class AddBookmarkWidgetState extends State<AddBookmarkWidget>
   late Animation<double> _animation;
   late FocusNode _focusNode;
   Timer? _debounce;
+  bool _enableFocus = false;
 
   @override
   void initState() {
@@ -77,10 +78,17 @@ class AddBookmarkWidgetState extends State<AddBookmarkWidget>
           _controller.clear();
         }
 
+        if (state.addingStatus == AddBookmarkStatus.loading) {
+          _enableFocus = true;
+        }
+
+        if (!_enableFocus) return;
+
         if (state.addingStatus == AddBookmarkStatus.success ||
             state.addingStatus == AddBookmarkStatus.error) {
           _animationController.reverse().then((value) {
             _focusNode.requestFocus();
+_enableFocus = false;
           });
         }
       },
