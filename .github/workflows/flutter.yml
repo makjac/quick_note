@@ -1,23 +1,44 @@
-name: Flutter CI
+name: QuickNote test
 
 on:
   push:
     branches:
       - main
-      - develop
 
 jobs:
   build-android:
     name: Test Flutter App
     runs-on: ubuntu-latest
+
     steps:
-      - name: Clone repository
+      - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Set up Flutter
+
+      - name: Download Firebase config
+        run: echo "${{ secrets.FIREBASE_JSON }}" > firebase.json
+
+      - name: Download Firebase options Dart file
+        run: echo "${{ secrets.FIREBASE_OPTIONS_DART }}" > lib/firebase_options.dart
+
+      - name: Download Google services JSON
+        run: echo "${{ secrets.GOOGLE_SERVICE_JSON }}" > android/app/google-services.json
+
+      - name: Replace Publisher Placeholder in pubspec.yaml
+        run: sed -i 's/PLACEHOLDER_PUBLISHER/${{ secrets.PLACEHOLDER_PUBLISHER }}/g' pubspec.yaml
+
+      - name: Replace Identity Name Placeholder in pubspec.yaml
+        run: sed -i 's/PLACEHOLDER_IDENTITY_NAME/${{ secrets.PLACEHOLDER_IDENTITY_NAME }}/g' pubspec.yaml
+
+      - name: Set Up Flutter (version 3.24.0)
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.24.0'
-      - run: flutter pub get
-      - run: flutter analyze
-      - run: flutter test
+          flutter-version: "3.24.0"
 
+      - name: Install Dependencies
+        run: flutter pub get
+
+      - name: Run Flutter Analyze
+        run: flutter analyze
+
+      - name: Run Flutter Tests
+        run: flutter test
