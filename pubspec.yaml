@@ -49,9 +49,7 @@ dev_dependencies:
   mockito: ^5.4.4
   bloc_test: ^9.1.7
   mocktail: ^1.0.4
-
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
+  msix: ^3.16.8
 
 flutter:
   generate: true
