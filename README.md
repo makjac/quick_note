@@ -13,7 +13,7 @@ QuickNote is a note-taking application developed using Flutter. It allows users 
 - **Archive Notes**: Move notes to the archive to keep your workspace organized.
 - **Search Notes**: Quickly find notes with the search feature.
 - **Delete Notes**: Permanently remove notes that are no longer needed.
-- **Note Blocks**: Supports two types of blocks:
+- **Note Blocks**: Supports three types of blocks:
   - **Text Block**: For adding and formatting text.
   - **To-Do Block**: For creating task lists.
   - **Bookmark Block**: Save and organize important bookmarks for quick access.
