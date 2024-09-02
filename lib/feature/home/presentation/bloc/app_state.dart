@@ -60,15 +60,6 @@ class AppNoteCreated extends AppState {
 }
 
 class AppError extends AppState {
-  const AppError({
-    super.notes,
-    super.selectedNoteIds,
-    super.isSelecting,
-    required this.errorMessage,
-  });
-
-  final String errorMessage;
-
   factory AppError.fromState(AppState state, String error) {
     return AppError(
       notes: state.notes,
@@ -77,6 +68,14 @@ class AppError extends AppState {
       errorMessage: error,
     );
   }
+  const AppError({
+    super.notes,
+    super.selectedNoteIds,
+    super.isSelecting,
+    required this.errorMessage,
+  });
+
+  final String errorMessage;
 
   @override
   List<Object> get props => [notes, selectedNoteIds, isSelecting, errorMessage];
