@@ -247,7 +247,7 @@ class BookmarksRemoteDatasourceImpl implements BookmarksRemoteDatasource {
   /// Returns the width part of the size if it is in 'widthxheight' format; otherwise, returns a default size of 16.
   int _parseSize(String? size) {
     if (size == null) return 16;
-    var sizeParts = size.split('x');
+    final sizeParts = size.split('x');
     if (sizeParts.length == 2) {
       return int.parse(sizeParts[0]);
     }
