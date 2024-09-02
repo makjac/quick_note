@@ -144,9 +144,9 @@ class _CloseButton extends StatelessWidget {
 }
 
 class _SelectedNotesCount extends StatelessWidget {
-  final int count;
-
   const _SelectedNotesCount({required this.count});
+
+  final int count;
 
   @override
   Widget build(BuildContext context) {
