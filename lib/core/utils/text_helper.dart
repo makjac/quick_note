@@ -23,9 +23,9 @@ class TextHelper {
   ///
   /// Returns the appropriate text color based on the background color.
   static Color getTextColorBasedOnBackground(Color backgroundColor) {
-    double backgroundBrightness = backgroundColor.computeLuminance();
+    final double backgroundBrightness = backgroundColor.computeLuminance();
 
-    double threshold = 0.5;
+    const double threshold = 0.5;
 
     return backgroundBrightness < threshold ? Colors.white : Colors.black;
   }
