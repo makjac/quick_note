@@ -232,9 +232,9 @@ class _ArchivedButton extends StatelessWidget {
 }
 
 class _DeleteButton extends StatelessWidget {
-  final AppBloc appBloc;
-
   const _DeleteButton({required this.appBloc});
+
+  final AppBloc appBloc;
 
   @override
   Widget build(BuildContext context) {
