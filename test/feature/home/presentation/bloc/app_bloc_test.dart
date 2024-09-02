@@ -54,7 +54,7 @@ void main() {
   late Note note;
 
   setUpAll(() {
-    Set<num> selectedNoteIds = {};
+    final Set<num> selectedNoteIds = {};
     registerFallbackValue(NoteFake());
     registerFallbackValue(NoParams());
     registerFallbackValue(
