@@ -29,7 +29,7 @@ class NotebookUpdateNote extends NotebookEvent {
   List<Object> get props => [updates];
 }
 
-class NotebookDeleteNote extends NotebookEvent {}
+class NotebookMoveToTrash extends NotebookEvent {}
 
 class NotebookAddNoteBlock extends NotebookEvent {
   const NotebookAddNoteBlock({required this.type});
