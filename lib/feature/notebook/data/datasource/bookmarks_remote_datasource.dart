@@ -214,9 +214,9 @@ class BookmarksRemoteDatasourceImpl implements BookmarksRemoteDatasource {
   ///
   /// This method checks the content type and optionally verifies the file signature for ICO files.
   Future<bool> _verifyImage(String url) async {
-    var response = await client.get(Uri.parse(url));
+    final response = await client.get(Uri.parse(url));
 
-    var contentType = response.headers['content-type'];
+    final contentType = response.headers['content-type'];
     if (contentType == null || !contentType.contains('image')) return false;
 
     if (url.endsWith('.ico')) {
