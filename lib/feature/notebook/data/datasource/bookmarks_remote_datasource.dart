@@ -235,7 +235,7 @@ class BookmarksRemoteDatasourceImpl implements BookmarksRemoteDatasource {
 
   /// Verifies if the file signature matches the provided signature.
   bool _verifySignature(Uint8List bodyBytes, List<int> signature) {
-    var fileSignature = bodyBytes.sublist(0, signature.length);
+    final fileSignature = bodyBytes.sublist(0, signature.length);
     for (var i = 0; i < fileSignature.length; i++) {
       if (fileSignature[i] != signature[i]) return false;
     }
