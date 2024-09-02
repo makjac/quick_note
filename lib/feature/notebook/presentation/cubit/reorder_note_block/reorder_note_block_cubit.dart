@@ -23,7 +23,7 @@ class ReorderNoteBlockCubit extends Cubit<ReorderNoteBlockState> {
       return;
     }
 
-    List<NoteBlock> updatedblocks = List.from(state.blocks);
+    final List<NoteBlock> updatedblocks = List.from(state.blocks);
     final NoteBlock blockToMove = updatedblocks.removeAt(oldIndex);
     updatedblocks.insert(newIndex, blockToMove);
 
