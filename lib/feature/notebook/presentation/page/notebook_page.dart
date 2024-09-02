@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:quick_note/feature/notebook/presentation/bloc/notebook_bloc.dart';
 import 'package:quick_note/feature/notebook/presentation/page/notebook_edit_note_blocks_order.dart';
 import 'package:quick_note/feature/notebook/presentation/page/notebook_edit_notes_view.dart';
-import 'package:quick_note/feature/shared/data/model/note/note.module.dart';
 import 'package:quick_note/injection_container.dart';
 import 'package:quick_note/router/app_routes.dart';
 
@@ -30,17 +29,7 @@ class _NotebookPageState extends State<NotebookPage> {
           locator<NotebookBloc>()..add(NotebookGetNote(noteId: widget.noteId)),
       child: BlocBuilder<NotebookBloc, NotebookState>(
         builder: (context, state) {
-          return PopScope(
-            canPop: true,
-            onPopInvoked: (_) {
-              if (state.note == null) return;
-              final noteModel = NoteModel.fromEntity(state.note!);
-              if (noteModel.isEmpty) {
-                context.read<NotebookBloc>().add(NotebookDeleteNote());
-              }
-            },
-            child: _buildPage(state),
-          );
+          return _buildPage(state);
         },
       ),
     );
