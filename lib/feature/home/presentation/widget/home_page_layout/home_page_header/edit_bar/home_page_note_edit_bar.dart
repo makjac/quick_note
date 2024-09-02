@@ -192,9 +192,9 @@ class _ColorPickerButton extends StatelessWidget {
 }
 
 class _StarButton extends StatelessWidget {
-  final AppBloc appBloc;
-
   const _StarButton({required this.appBloc});
+
+  final AppBloc appBloc;
 
   @override
   Widget build(BuildContext context) {
