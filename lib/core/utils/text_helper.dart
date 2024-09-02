@@ -9,7 +9,7 @@ class TextHelper {
   ///
   /// Returns `true` if the contrast is dark, `false` otherwise.
   static bool isTextContrastDark(Color color) {
-    double brightness = color.computeLuminance();
+    final double brightness = color.computeLuminance();
 
     return brightness < 0.5;
   }
