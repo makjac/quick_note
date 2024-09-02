@@ -11,8 +11,6 @@ part 'preferences_event.bloc.dart';
 part 'preferences_state.bloc.dart';
 
 class PreferencesBloc extends Bloc<PreferencesEvent, PreferencesState> {
-  final SharedPreferences sharedPreferences;
-
   PreferencesBloc({required this.sharedPreferences})
       : super(PreferencesInitial()) {
     on<PreferencesLoad>(_load);
@@ -20,6 +18,8 @@ class PreferencesBloc extends Bloc<PreferencesEvent, PreferencesState> {
     on<PreferencesSetTheme>(_setTheme);
     on<PreferencesSetSideMenuCollapse>(_setSideMenuCollapse);
   }
+
+  final SharedPreferences sharedPreferences;
 
   Future<void> _load(
       PreferencesLoad event, Emitter<PreferencesState> emit) async {

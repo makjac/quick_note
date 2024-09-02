@@ -11,8 +11,8 @@ enum AppRoutes {
   notebook('Notebook_page', '/notebook/:id'),
   notebookReorderBlocks('Notebook_reorder_blocks_page', 'reorder');
 
+  const AppRoutes(this.routeName, this.path);
+
   final String routeName;
   final String path;
-
-  const AppRoutes(this.routeName, this.path);
 }

@@ -1,9 +1,9 @@
 import 'package:flutter/services.dart';
 
 class OnlyPositiveIntegerFormatter extends TextInputFormatter {
-  final int maxLength;
-
   OnlyPositiveIntegerFormatter({this.maxLength = 3});
+
+  final int maxLength;
 
   @override
   TextEditingValue formatEditUpdate(

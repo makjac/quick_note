@@ -11,6 +11,18 @@ part 'bookmarks_block.module.g.dart';
 
 @HiveType(typeId: 7)
 class BookmarksBlockModel extends BookmarksBlock implements NoteBlockModel {
+  factory BookmarksBlockModel.fromEntity(BookmarksBlock block) {
+    return BookmarksBlockModel(
+      id: block.id,
+      title: block.title,
+      hasTitle: block.hasTitle,
+      items: block.items.map(BookmarkItemModel.fromEntity).toList(),
+      visibleFavicons: block.visibleFavicons,
+      maxVisibleBookmakrs: block.maxVisibleBookmakrs,
+      viewMode: block.viewMode,
+    );
+  }
+
   const BookmarksBlockModel({
     required super.id,
     super.title = "",
@@ -25,18 +37,6 @@ class BookmarksBlockModel extends BookmarksBlock implements NoteBlockModel {
   @override
   @HiveField(20, defaultValue: [])
   final List<BookmarkItemModel> items;
-
-  factory BookmarksBlockModel.fromEntity(BookmarksBlock block) {
-    return BookmarksBlockModel(
-      id: block.id,
-      title: block.title,
-      hasTitle: block.hasTitle,
-      items: block.items.map(BookmarkItemModel.fromEntity).toList(),
-      visibleFavicons: block.visibleFavicons,
-      maxVisibleBookmakrs: block.maxVisibleBookmakrs,
-      viewMode: block.viewMode,
-    );
-  }
 
   @override
   List<Object?> get props => [super.props, title, hasTitle, items, type];

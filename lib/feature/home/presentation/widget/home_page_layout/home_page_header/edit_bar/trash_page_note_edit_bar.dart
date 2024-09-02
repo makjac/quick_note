@@ -104,9 +104,9 @@ class _DesktopEditButtons extends StatelessWidget {
 }
 
 class _CloseButton extends StatelessWidget {
-  final AppBloc appBloc;
-
   const _CloseButton({required this.appBloc});
+
+  final AppBloc appBloc;
 
   @override
   Widget build(BuildContext context) {
@@ -121,9 +121,9 @@ class _CloseButton extends StatelessWidget {
 }
 
 class _SelectedNotesCount extends StatelessWidget {
-  final int count;
-
   const _SelectedNotesCount({required this.count});
+
+  final int count;
 
   @override
   Widget build(BuildContext context) {
@@ -163,9 +163,9 @@ class _RestoreButton extends StatelessWidget {
 }
 
 class _DeleteButton extends StatelessWidget {
-  final AppBloc appBloc;
-
   const _DeleteButton({required this.appBloc});
+
+  final AppBloc appBloc;
 
   @override
   Widget build(BuildContext context) {

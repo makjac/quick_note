@@ -9,16 +9,16 @@ abstract class NotebookLocalDatasource {
 }
 
 class NotebookLocalDatasourceImpl extends NotebookLocalDatasource {
-  final HiveInterface hive;
-
   NotebookLocalDatasourceImpl({required this.hive});
+
+  final HiveInterface hive;
 
   @override
   Future<NoteModel> getNoteByKey(num key) async {
     try {
       try {
         final box = await hive.openBox<NoteModel>(HiveBoxes.note.name);
-        NoteModel? note = box.get(key);
+        final NoteModel? note = box.get(key);
 
         if (note == null) throw CacheValueException();
 

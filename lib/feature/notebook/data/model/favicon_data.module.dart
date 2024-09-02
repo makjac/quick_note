@@ -37,8 +37,8 @@ class FaviconDataModel extends FaviconData
     if (url.endsWith('.svg')) return -1;
     if (other.url.endsWith('.svg')) return 1;
 
-    int thisSize = _parseSize(sizes);
-    int otherSize = _parseSize(other.sizes);
+    final int thisSize = _parseSize(sizes);
+    final int otherSize = _parseSize(other.sizes);
 
     if (thisSize == otherSize) {
       return url.length.compareTo(other.url.length);
@@ -49,7 +49,7 @@ class FaviconDataModel extends FaviconData
 
   int _parseSize(String? size) {
     if (size == null) return 16;
-    var sizeParts = size.split('x');
+    final sizeParts = size.split('x');
     if (sizeParts.length == 2) {
       return int.parse(sizeParts[0]);
     }

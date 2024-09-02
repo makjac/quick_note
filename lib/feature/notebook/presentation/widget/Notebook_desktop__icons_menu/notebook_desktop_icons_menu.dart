@@ -39,9 +39,9 @@ class NotebookDesktopIconsMenu extends StatelessWidget {
 }
 
 class _ColorPickerButton extends StatelessWidget {
-  final NotebookBloc notebookBloc;
-
   const _ColorPickerButton({required this.notebookBloc});
+
+  final NotebookBloc notebookBloc;
 
   @override
   Widget build(BuildContext context) {
@@ -68,9 +68,9 @@ class _ColorPickerButton extends StatelessWidget {
 }
 
 class _StarButton extends StatelessWidget {
-  final NotebookBloc notebookBloc;
-
   const _StarButton({required this.notebookBloc});
+
+  final NotebookBloc notebookBloc;
 
   @override
   Widget build(BuildContext context) {
@@ -122,9 +122,9 @@ class _ArchivedButton extends StatelessWidget {
 }
 
 class _DeleteButton extends StatelessWidget {
-  final NotebookBloc notebookBloc;
-
   const _DeleteButton({required this.notebookBloc});
+
+  final NotebookBloc notebookBloc;
 
   @override
   Widget build(BuildContext context) {

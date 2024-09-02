@@ -5,9 +5,9 @@ Future<void> showTodoBlockSettings(BuildContext context) async {
   final showAlertDialog = AppConstans.mobileSize < width;
 
   if (showAlertDialog) {
-    _showTodoBlockSettingsDialog(context);
+    await _showTodoBlockSettingsDialog(context);
   } else {
-    _showTodoBlockModalBottomSheet(context);
+    await _showTodoBlockModalBottomSheet(context);
   }
 }
 
@@ -24,7 +24,7 @@ Future<void> _showTodoBlockSettingsDialog(BuildContext context) async {
 }
 
 Future<void> _showTodoBlockModalBottomSheet(BuildContext context) async {
-  showModalBottomSheet(
+  await showModalBottomSheet(
     context: context,
     useSafeArea: true,
     builder: (_) => NoteBlockModalBottomSheet(

@@ -5,9 +5,9 @@ Future<void> showTextBlockSettings(BuildContext context) async {
   final showAlertDialog = AppConstans.mobileSize < width;
 
   if (showAlertDialog) {
-    _showTextBlockSettingsDialog(context);
+    await _showTextBlockSettingsDialog(context);
   } else {
-    _showTextBlockModalBottomSheet(context);
+    await _showTextBlockModalBottomSheet(context);
   }
 }
 
@@ -24,7 +24,7 @@ Future<void> _showTextBlockSettingsDialog(BuildContext context) async {
 }
 
 Future<void> _showTextBlockModalBottomSheet(BuildContext context) async {
-  showModalBottomSheet(
+  await showModalBottomSheet(
     context: context,
     isScrollControlled: true,
     useSafeArea: true,

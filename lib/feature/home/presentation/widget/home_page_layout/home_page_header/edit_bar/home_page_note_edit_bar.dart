@@ -127,9 +127,9 @@ class _DesktopEditButtons extends StatelessWidget {
 }
 
 class _CloseButton extends StatelessWidget {
-  final AppBloc appBloc;
-
   const _CloseButton({required this.appBloc});
+
+  final AppBloc appBloc;
 
   @override
   Widget build(BuildContext context) {
@@ -144,9 +144,9 @@ class _CloseButton extends StatelessWidget {
 }
 
 class _SelectedNotesCount extends StatelessWidget {
-  final int count;
-
   const _SelectedNotesCount({required this.count});
+
+  final int count;
 
   @override
   Widget build(BuildContext context) {
@@ -166,9 +166,9 @@ class _SelectedNotesCount extends StatelessWidget {
 }
 
 class _ColorPickerButton extends StatelessWidget {
-  final AppBloc appBloc;
-
   const _ColorPickerButton({required this.appBloc});
+
+  final AppBloc appBloc;
 
   @override
   Widget build(BuildContext context) {
@@ -192,9 +192,9 @@ class _ColorPickerButton extends StatelessWidget {
 }
 
 class _StarButton extends StatelessWidget {
-  final AppBloc appBloc;
-
   const _StarButton({required this.appBloc});
+
+  final AppBloc appBloc;
 
   @override
   Widget build(BuildContext context) {
@@ -232,9 +232,9 @@ class _ArchivedButton extends StatelessWidget {
 }
 
 class _DeleteButton extends StatelessWidget {
-  final AppBloc appBloc;
-
   const _DeleteButton({required this.appBloc});
+
+  final AppBloc appBloc;
 
   @override
   Widget build(BuildContext context) {

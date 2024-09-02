@@ -5,9 +5,9 @@ Future<void> showBookmarksBlockSettings(BuildContext context) async {
   final showAlertDialog = AppConstans.mobileSize < width;
 
   if (showAlertDialog) {
-    _showBookmarksBlockSettingsDialog(context);
+    await _showBookmarksBlockSettingsDialog(context);
   } else {
-    _showBookmarksBlockModalBottomSheet(context);
+    await _showBookmarksBlockModalBottomSheet(context);
   }
 }
 
@@ -24,7 +24,7 @@ Future<void> _showBookmarksBlockSettingsDialog(BuildContext context) async {
 }
 
 Future<void> _showBookmarksBlockModalBottomSheet(BuildContext context) async {
-  showModalBottomSheet(
+  await showModalBottomSheet(
     context: context,
     useSafeArea: true,
     builder: (_) => NoteBlockModalBottomSheet(

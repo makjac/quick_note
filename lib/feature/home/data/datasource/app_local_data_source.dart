@@ -14,16 +14,16 @@ abstract class AppLocalDataSource {
 }
 
 class AppLocalDataSourceImpl implements AppLocalDataSource {
+  AppLocalDataSourceImpl({required this.hive});
+
   final HiveInterface hive;
   late Box<NoteModel>? _noteBox;
-
-  AppLocalDataSourceImpl({required this.hive});
 
   @override
   Future<List<NoteModel>> getNotes() async {
     try {
       final box = await hive.openBox<NoteModel>(HiveBoxes.note.name);
-      List<NoteModel> note = box.values.toList();
+      final List<NoteModel> note = box.values.toList();
 
       return note;
     } catch (_) {
@@ -65,7 +65,7 @@ class AppLocalDataSourceImpl implements AppLocalDataSource {
   Future<void> deleteNote(num id) async {
     try {
       final box = await hive.openBox<NoteModel>(HiveBoxes.note.name);
-      box.delete(id);
+      await box.delete(id);
     } catch (_) {
       throw CacheException();
     }
@@ -75,7 +75,7 @@ class AppLocalDataSourceImpl implements AppLocalDataSource {
   Future<void> deleteMultipleNotes(List<num> ids) async {
     try {
       final box = await hive.openBox<NoteModel>(HiveBoxes.note.name);
-      box.deleteAll(ids);
+      await box.deleteAll(ids);
     } catch (_) {
       throw CacheException();
     }
