@@ -186,8 +186,8 @@ class BookmarksRemoteDatasourceImpl implements BookmarksRemoteDatasource {
   @override
   Future<List<FaviconDataModel>> fetchFaviconsByDomain(String domain) async {
     // Convert domain to base URL and fetch all favicons for that domain
-    var uri = Uri.parse(domain);
-    var url = '${uri.scheme}://${uri.host}';
+    final uri = Uri.parse(domain);
+    final url = '${uri.scheme}://${uri.host}';
     return await fetchAllFaviconUrls(url);
   }
 
