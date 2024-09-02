@@ -130,7 +130,7 @@ class _DeleteButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: () {
-        notebookBloc.add(NotebookDeleteNote());
+        notebookBloc.add(NotebookMoveToTrash());
         context.pop();
       },
       icon: Tooltip(

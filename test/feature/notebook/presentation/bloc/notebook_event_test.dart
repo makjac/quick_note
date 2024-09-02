@@ -28,8 +28,8 @@ void main() {
       expect(event.props, [updates]);
     });
 
-    test('NotebookDeleteNote props are empty list', () {
-      final event = NotebookDeleteNote();
+    test('NotebookMoveToTrash props are empty list', () {
+      final event = NotebookMoveToTrash();
       expect(event.props, []);
     });
 
