@@ -37,8 +37,8 @@ class FaviconDataModel extends FaviconData
     if (url.endsWith('.svg')) return -1;
     if (other.url.endsWith('.svg')) return 1;
 
-    int thisSize = _parseSize(sizes);
-    int otherSize = _parseSize(other.sizes);
+    final int thisSize = _parseSize(sizes);
+    final int otherSize = _parseSize(other.sizes);
 
     if (thisSize == otherSize) {
       return url.length.compareTo(other.url.length);
