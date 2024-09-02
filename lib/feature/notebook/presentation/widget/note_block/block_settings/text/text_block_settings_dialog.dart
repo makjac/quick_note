@@ -24,7 +24,7 @@ Future<void> _showTextBlockSettingsDialog(BuildContext context) async {
 }
 
 Future<void> _showTextBlockModalBottomSheet(BuildContext context) async {
-  showModalBottomSheet(
+  await showModalBottomSheet(
     context: context,
     isScrollControlled: true,
     useSafeArea: true,
