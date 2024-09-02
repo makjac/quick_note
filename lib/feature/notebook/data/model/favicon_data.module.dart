@@ -49,7 +49,7 @@ class FaviconDataModel extends FaviconData
 
   int _parseSize(String? size) {
     if (size == null) return 16;
-    var sizeParts = size.split('x');
+    final sizeParts = size.split('x');
     if (sizeParts.length == 2) {
       return int.parse(sizeParts[0]);
     }
