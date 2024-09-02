@@ -20,7 +20,7 @@ enum AppLanguage {
   ukrainian(locale: Locale('uk')),
   vietnamese(locale: Locale('vi'));
 
-  final Locale locale;
-
   const AppLanguage({required this.locale});
+
+  final Locale locale;
 }
