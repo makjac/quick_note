@@ -39,9 +39,9 @@ class NotebookDesktopIconsMenu extends StatelessWidget {
 }
 
 class _ColorPickerButton extends StatelessWidget {
-  final NotebookBloc notebookBloc;
-
   const _ColorPickerButton({required this.notebookBloc});
+
+  final NotebookBloc notebookBloc;
 
   @override
   Widget build(BuildContext context) {
