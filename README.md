@@ -1,6 +1,6 @@
 # QuickNote
 
-[![QuickNote test](https://github.com/makjac/quick_note/actions/workflows/flutter.yml/badge.svg)](https://github.com/makjac/quick_note/actions/workflows/flutter.yml)
+[![QuickNote test](https://github.com/makjac/quick_note/actions/workflows/flutter.yml/badge.svg?branch=main)](https://github.com/makjac/quick_note/actions/workflows/flutter.yml)
 
 ![header](https://i.imgur.com/C4vrC2B.png)
 
