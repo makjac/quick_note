@@ -19,15 +19,6 @@ part 'app_event.dart';
 part 'app_state.dart';
 
 class AppBloc extends Bloc<AppEvent, AppState> {
-  final LoadCachedNotesUsecase loadCachedNotes;
-  final CreateNoteUsecase createNote;
-  final DeleteAllNotesUsecase deleteAllNotes;
-  final DeleteMiltipleNotesUsecase deleteMultipleNotes;
-  final UpdateMultipleNotesUsecase updateMultipleNotes;
-  final UpdateSingleNoteUsecase updateSingleNote;
-  final DeleteSingleNoteUsecase deleteSingleNote;
-  final DeleteEmptyNotesUsecase deleteEmptyNotes;
-
   AppBloc({
     required this.loadCachedNotes,
     required this.createNote,
@@ -57,6 +48,15 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     on<AppEmptyRecycleBin>(_emptyRecycleBin);
     on<AppCheckDeleteNotes>(_checkDeletedNotes);
   }
+
+  final LoadCachedNotesUsecase loadCachedNotes;
+  final CreateNoteUsecase createNote;
+  final DeleteAllNotesUsecase deleteAllNotes;
+  final DeleteMiltipleNotesUsecase deleteMultipleNotes;
+  final UpdateMultipleNotesUsecase updateMultipleNotes;
+  final UpdateSingleNoteUsecase updateSingleNote;
+  final DeleteSingleNoteUsecase deleteSingleNote;
+  final DeleteEmptyNotesUsecase deleteEmptyNotes;
 
   FutureOr<void> _loadCachedNotes(
       AppLoadCachedNotes event, Emitter<AppState> emit) async {
