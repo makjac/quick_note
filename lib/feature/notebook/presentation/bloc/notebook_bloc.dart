@@ -19,11 +19,6 @@ part 'notebook_event.dart';
 part 'notebook_state.dart';
 
 class NotebookBloc extends Bloc<NotebookEvent, NotebookState> {
-  final CreateNoteUsecase createNote;
-  final UpdateSingleNoteUsecase updateSingleNote;
-  final DeleteSingleNoteUsecase deleteNote;
-  final GetNoteByKeyUsecase getNoteByKey;
-
   NotebookBloc({
     required this.createNote,
     required this.updateSingleNote,
@@ -42,6 +37,11 @@ class NotebookBloc extends Bloc<NotebookEvent, NotebookState> {
     on<NotebookMoveToTrash>(_handleMoveToTrash);
     on<NotebookDeleteNote>(_handleDeleteNote);
   }
+
+  final CreateNoteUsecase createNote;
+  final UpdateSingleNoteUsecase updateSingleNote;
+  final DeleteSingleNoteUsecase deleteNote;
+  final GetNoteByKeyUsecase getNoteByKey;
 
   FutureOr<void> _handleGetNote(
       NotebookGetNote event, Emitter<NotebookState> emit) async {
