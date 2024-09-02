@@ -18,16 +18,16 @@ class NotebookState extends Equatable {
 final class NotebookInitial extends NotebookState {}
 
 class NotebookErrorState extends NotebookState {
-  const NotebookErrorState({super.note, required this.message});
-
-  final String message;
-
   factory NotebookErrorState.fromState(NotebookState state, String message) {
     return NotebookErrorState(
       note: state.note,
       message: message,
     );
   }
+
+  const NotebookErrorState({super.note, required this.message});
+
+  final String message;
 
   @override
   List<Object> get props => [note ?? _emptyNote, message];
