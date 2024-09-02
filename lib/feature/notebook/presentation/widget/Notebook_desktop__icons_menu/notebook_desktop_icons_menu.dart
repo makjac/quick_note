@@ -122,9 +122,9 @@ class _ArchivedButton extends StatelessWidget {
 }
 
 class _DeleteButton extends StatelessWidget {
-  final NotebookBloc notebookBloc;
-
   const _DeleteButton({required this.notebookBloc});
+
+  final NotebookBloc notebookBloc;
 
   @override
   Widget build(BuildContext context) {
