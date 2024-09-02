@@ -75,7 +75,7 @@ class AppLocalDataSourceImpl implements AppLocalDataSource {
   Future<void> deleteMultipleNotes(List<num> ids) async {
     try {
       final box = await hive.openBox<NoteModel>(HiveBoxes.note.name);
-      box.deleteAll(ids);
+      await box.deleteAll(ids);
     } catch (_) {
       throw CacheException();
     }
