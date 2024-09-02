@@ -14,10 +14,10 @@ abstract class AppLocalDataSource {
 }
 
 class AppLocalDataSourceImpl implements AppLocalDataSource {
+  AppLocalDataSourceImpl({required this.hive});
+
   final HiveInterface hive;
   late Box<NoteModel>? _noteBox;
-
-  AppLocalDataSourceImpl({required this.hive});
 
   @override
   Future<List<NoteModel>> getNotes() async {
