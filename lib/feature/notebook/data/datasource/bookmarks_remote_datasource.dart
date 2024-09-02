@@ -106,18 +106,18 @@ class BookmarksRemoteDatasourceImpl implements BookmarksRemoteDatasource {
 
   @override
   Future<List<FaviconDataModel>> fetchAllFaviconUrls(String url) async {
-    var favicons = <FaviconDataModel>[];
+    final favicons = <FaviconDataModel>[];
     var iconUrls = <String>[];
 
     // Parse the URL and fetch the webpage content
-    var uri = Uri.parse(url);
-    var document = html_parser.parse((await client.get(uri)).body);
+    final uri = Uri.parse(url);
+    final document = html_parser.parse((await client.get(uri)).body);
 
     // Look for link tags with various rel attributes to find favicon URLs
     for (var rel in ['icon', 'shortcut icon', 'apple-touch-icon']) {
       for (var iconTag in document.querySelectorAll("link[rel='$rel']")) {
         if (iconTag.attributes['href'] != null) {
-          var iconUrl = _sanitizeUrl(iconTag.attributes['href']!.trim(), uri);
+          final iconUrl = _sanitizeUrl(iconTag.attributes['href']!.trim(), uri);
           if (await _verifyImage(iconUrl)) {
             iconUrls.add(iconUrl);
           }
@@ -126,7 +126,7 @@ class BookmarksRemoteDatasourceImpl implements BookmarksRemoteDatasource {
     }
 
     // Check the standard location for the favicon
-    var iconUrl = '${uri.scheme}://${uri.host}/favicon.ico';
+    final iconUrl = '${uri.scheme}://${uri.host}/favicon.ico';
     if (await _verifyImage(iconUrl)) {
       iconUrls.add(iconUrl);
     }
@@ -147,7 +147,8 @@ class BookmarksRemoteDatasourceImpl implements BookmarksRemoteDatasource {
       }
 
       // Fetch image and get its dimensions
-      var image = decodeImage((await client.get(Uri.parse(iconUrl))).bodyBytes);
+      final image =
+          decodeImage((await client.get(Uri.parse(iconUrl))).bodyBytes);
       if (image != null) {
         favicons.add(FaviconDataModel(
             url: iconUrl, sizes: '${image.width}x${image.height}'));
