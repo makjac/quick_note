@@ -94,7 +94,7 @@ class BookmarksRemoteDatasourceImpl implements BookmarksRemoteDatasource {
   @override
   Future<String?> fetchBestFaviconUrl(String url) async {
     // Fetch all available favicon URLs
-    var favicons = await fetchAllFaviconUrls(url);
+    final favicons = await fetchAllFaviconUrls(url);
     // Return null if no favicons are found
     if (favicons.isEmpty) return null;
 
