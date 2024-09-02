@@ -18,7 +18,7 @@ class NotebookLocalDatasourceImpl extends NotebookLocalDatasource {
     try {
       try {
         final box = await hive.openBox<NoteModel>(HiveBoxes.note.name);
-        NoteModel? note = box.get(key);
+        final NoteModel? note = box.get(key);
 
         if (note == null) throw CacheValueException();
 
