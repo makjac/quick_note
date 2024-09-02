@@ -72,3 +72,5 @@ class NotebookChangeColor extends NotebookEvent {
 class NotebookToggleStar extends NotebookEvent {}
 
 class NotebookToggleArchive extends NotebookEvent {}
+
+class NotebookDeleteNote extends NotebookEvent {}
