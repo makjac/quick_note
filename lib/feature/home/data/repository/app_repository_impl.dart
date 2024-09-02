@@ -8,9 +8,9 @@ import 'package:quick_note/feature/shared/data/model/note/note.module.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note.dart';
 
 class AppRepositoryImpl implements AppRepository {
-  final AppLocalDataSource localDataSource;
-
   const AppRepositoryImpl({required this.localDataSource});
+
+  final AppLocalDataSource localDataSource;
 
   @override
   Future<Either<Failure, List<Note>>> getAllNotes() async {
