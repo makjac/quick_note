@@ -9,9 +9,9 @@ abstract class NotebookLocalDatasource {
 }
 
 class NotebookLocalDatasourceImpl extends NotebookLocalDatasource {
-  final HiveInterface hive;
-
   NotebookLocalDatasourceImpl({required this.hive});
+
+  final HiveInterface hive;
 
   @override
   Future<NoteModel> getNoteByKey(num key) async {
