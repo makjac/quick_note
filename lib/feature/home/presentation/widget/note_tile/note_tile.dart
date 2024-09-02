@@ -58,7 +58,8 @@ class _NoteTileState extends State<NoteTile> {
   }
 
   void _onTap(BuildContext context) {
-    bool isSelecting = BlocProvider.of<AppBloc>(context).state.isSelecting;
+    final bool isSelecting =
+        BlocProvider.of<AppBloc>(context).state.isSelecting;
 
     if (isSelecting) {
       BlocProvider.of<AppBloc>(context)
