@@ -37,7 +37,7 @@ class _AddNoteBlockButtonState extends State<AddNoteBlockButton> {
   }
 
   void _showContextMenu(BuildContext context) {
-    PopupMenu menu = PopupMenu(
+    final PopupMenu menu = PopupMenu(
       context: context,
       config: const MenuConfig(maxColumn: 3),
       items: [
