@@ -23,7 +23,7 @@ class AppLocalDataSourceImpl implements AppLocalDataSource {
   Future<List<NoteModel>> getNotes() async {
     try {
       final box = await hive.openBox<NoteModel>(HiveBoxes.note.name);
-      List<NoteModel> note = box.values.toList();
+      final List<NoteModel> note = box.values.toList();
 
       return note;
     } catch (_) {
