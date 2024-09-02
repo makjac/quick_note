@@ -11,26 +11,6 @@ part 'note.module.g.dart';
 
 @HiveType(typeId: 0)
 class NoteModel extends Note with HiveObjectMixin {
-  NoteModel({
-    required super.id,
-    required super.created,
-    required super.modified,
-    super.expiryDate,
-    required super.title,
-    required super.content,
-    super.archived,
-    super.author,
-    super.isStarred,
-    super.color,
-  });
-
-  bool get isEmpty {
-    final hasTitle = title.isNotEmpty;
-    final hasContent = content.isNotEmpty;
-
-    return !hasTitle && !hasContent;
-  }
-
   factory NoteModel.fromEntity(Note entity) {
     return NoteModel(
       id: entity.id,
@@ -60,6 +40,26 @@ class NoteModel extends Note with HiveObjectMixin {
       isStarred: updates.isStarred ?? entity.isStarred,
       color: updates.color ?? entity.color,
     );
+  }
+
+  NoteModel({
+    required super.id,
+    required super.created,
+    required super.modified,
+    super.expiryDate,
+    required super.title,
+    required super.content,
+    super.archived,
+    super.author,
+    super.isStarred,
+    super.color,
+  });
+
+  bool get isEmpty {
+    final hasTitle = title.isNotEmpty;
+    final hasContent = content.isNotEmpty;
+
+    return !hasTitle && !hasContent;
   }
 
   Note toEntity() {
