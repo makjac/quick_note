@@ -40,6 +40,7 @@ class NotebookBloc extends Bloc<NotebookEvent, NotebookState> {
     on<NotebookToggleStar>(_toggleStar);
     on<NotebookToggleArchive>(_toggleArchive);
     on<NotebookMoveToTrash>(_handleMoveToTrash);
+    on<NotebookDeleteNote>(_handleDeleteNote);
   }
 
   FutureOr<void> _handleGetNote(
@@ -213,5 +214,12 @@ class NotebookBloc extends Bloc<NotebookEvent, NotebookState> {
         ),
       ),
     );
+  }
+
+  FutureOr<void> _handleDeleteNote(
+      NotebookDeleteNote event, Emitter<NotebookState> emit) async {
+    if (state.note == null) return;
+
+    await deleteNote.call(state.note!.id);
   }
 }
