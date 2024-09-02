@@ -166,9 +166,9 @@ class _SelectedNotesCount extends StatelessWidget {
 }
 
 class _ColorPickerButton extends StatelessWidget {
-  final AppBloc appBloc;
-
   const _ColorPickerButton({required this.appBloc});
+
+  final AppBloc appBloc;
 
   @override
   Widget build(BuildContext context) {
