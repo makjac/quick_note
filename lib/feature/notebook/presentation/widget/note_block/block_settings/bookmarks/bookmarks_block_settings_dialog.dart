@@ -24,7 +24,7 @@ Future<void> _showBookmarksBlockSettingsDialog(BuildContext context) async {
 }
 
 Future<void> _showBookmarksBlockModalBottomSheet(BuildContext context) async {
-  showModalBottomSheet(
+  await showModalBottomSheet(
     context: context,
     useSafeArea: true,
     builder: (_) => NoteBlockModalBottomSheet(
