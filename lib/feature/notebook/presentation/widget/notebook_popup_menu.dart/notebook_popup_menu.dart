@@ -56,7 +56,7 @@ class NotebookPopupMenu extends StatelessWidget {
               child: _buildPopupMenuItem(
                   context.l10n.note_settings_delete, Icons.delete_outline),
               onTap: () {
-                notebookBloc.add(NotebookDeleteNote());
+                notebookBloc.add(NotebookMoveToTrash());
                 context.pop();
               },
             ),

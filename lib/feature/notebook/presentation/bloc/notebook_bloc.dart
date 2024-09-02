@@ -39,6 +39,7 @@ class NotebookBloc extends Bloc<NotebookEvent, NotebookState> {
     on<NotebookChangeColor>(_changeColor);
     on<NotebookToggleStar>(_toggleStar);
     on<NotebookToggleArchive>(_toggleArchive);
+    on<NotebookMoveToTrash>(_handleMoveToTrash);
     on<NotebookDeleteNote>(_handleDeleteNote);
   }
 
@@ -201,8 +202,8 @@ class NotebookBloc extends Bloc<NotebookEvent, NotebookState> {
     _handleResult(result, () => emit(state.copyWith(note: updates.update())));
   }
 
-  FutureOr<void> _handleDeleteNote(
-      NotebookDeleteNote event, Emitter<NotebookState> emit) async {
+  FutureOr<void> _handleMoveToTrash(
+      NotebookMoveToTrash event, Emitter<NotebookState> emit) async {
     if (state.note == null) return;
 
     await updateSingleNote.call(
@@ -213,5 +214,12 @@ class NotebookBloc extends Bloc<NotebookEvent, NotebookState> {
         ),
       ),
     );
+  }
+
+  FutureOr<void> _handleDeleteNote(
+      NotebookDeleteNote event, Emitter<NotebookState> emit) async {
+    if (state.note == null) return;
+
+    await deleteNote.call(state.note!.id);
   }
 }
