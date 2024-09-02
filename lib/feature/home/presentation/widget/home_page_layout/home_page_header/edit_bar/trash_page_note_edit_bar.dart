@@ -104,9 +104,9 @@ class _DesktopEditButtons extends StatelessWidget {
 }
 
 class _CloseButton extends StatelessWidget {
-  final AppBloc appBloc;
-
   const _CloseButton({required this.appBloc});
+
+  final AppBloc appBloc;
 
   @override
   Widget build(BuildContext context) {
