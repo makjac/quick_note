@@ -68,9 +68,9 @@ class _ColorPickerButton extends StatelessWidget {
 }
 
 class _StarButton extends StatelessWidget {
-  final NotebookBloc notebookBloc;
-
   const _StarButton({required this.notebookBloc});
+
+  final NotebookBloc notebookBloc;
 
   @override
   Widget build(BuildContext context) {
