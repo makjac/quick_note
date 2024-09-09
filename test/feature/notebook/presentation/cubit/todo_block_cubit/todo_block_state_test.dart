@@ -44,5 +44,14 @@ void main() {
       expect(newState.block, block);
       expect(newState.item, item);
     });
+
+    test('TodoBlockUndoRedoState creates a new state from existing state', () {
+      const block = TodoBlock(id: 1, items: []);
+      const state = TodoBlockState(block: block);
+
+      final newState = TodoBlockUndoRedoState.fromState(state);
+
+      expect(newState.block, block);
+    });
   });
 }
