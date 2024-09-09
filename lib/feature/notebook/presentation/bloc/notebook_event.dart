@@ -87,3 +87,5 @@ class NotebookChangeNoteTitle extends NotebookEvent {
 }
 
 class NotebookUndo extends NotebookEvent {}
+
+class NotebookRedo extends NotebookEvent {}
