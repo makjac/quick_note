@@ -70,14 +70,15 @@ class TodoBlockCubit extends Cubit<TodoBlockState> {
   }
 
   FutureOr<void> changeCheckboxName(num checkboxId, String name) async {
-    final updatedItems = state.block.items.map((item) {
-      if (item.id == checkboxId) {
-        return item.copyWith(title: name);
-      }
-      return item;
-    }).toList();
-    final updatedBlock = state.block.copyWith(items: updatedItems);
-    emit(state.copyWith(block: updatedBlock));
+    final command = TodoBlockRenameTaskCommand(
+      block: state.block,
+      taskId: checkboxId,
+      newTaskName: name,
+    );
+
+    final updatedBlock = command.execute();
+
+    emit(state.copyWith(block: updatedBlock, command: command));
   }
 
   FutureOr<void> removeCheckbox(num checkboxId) async {
