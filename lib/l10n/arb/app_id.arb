@@ -57,6 +57,8 @@
   "note_settings_color": "Ganti warna",
   "note_settings_star": "Tambahkan bintang",
   "note_settings_archive": "Arsipkan",
+  "note_settings_undo" : "Batalkan",
+  "note_settings_redo" : "Ulangi",
   "note_settings_delete": "Hapus",
   "note_settings_delete_forever": "Hapus selamanya",
   "note_settings_restore": "Pulihkan",
