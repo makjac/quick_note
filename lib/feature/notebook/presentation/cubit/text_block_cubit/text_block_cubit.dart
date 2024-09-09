@@ -2,12 +2,34 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:quick_note/feature/notebook/domain/command/notebook_command.dart';
+import 'package:quick_note/feature/notebook/domain/command/text_block_command/text_block_change_note_text_command.dart';
+import 'package:quick_note/feature/notebook/domain/command/text_block_command/text_block_change_title_command.dart';
+import 'package:quick_note/feature/notebook/domain/command/text_block_command/text_block_set_text_line_limit_command.dart';
+import 'package:quick_note/feature/notebook/domain/command/text_block_command/text_block_title_visibility_command.dart';
+import 'package:quick_note/feature/notebook/domain/command/text_block_command/text_block_toggle_lines_limit_command.dart';
+import 'package:quick_note/feature/notebook/presentation/bloc/notebook_bloc.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/blocks/text/text_block.dart';
 
 part 'text_block_state.dart';
 
 class TextBlockCubit extends Cubit<TextBlockState> {
-  TextBlockCubit({TextBlock? block}) : super(TextBlockState(block: block));
+  TextBlockCubit({required NotebookBloc notebookBloc, TextBlock? block})
+      : super(TextBlockState(block: block)) {
+    notebookBlocSubscription = notebookBloc.stream.listen((notebookState) {
+      if (notebookState is NotebookNoteBlockCommand) {
+        if (notebookState.command.type != NotebookCommandType.text) return;
+        if (notebookState.command.ownerId != state.block.id) return;
+        if (notebookState.isUndo) {
+          undo(notebookState.command);
+        } else {
+          redo(notebookState.command);
+        }
+      }
+    });
+  }
+
+  StreamSubscription<NotebookState>? notebookBlocSubscription;
 
   FutureOr<void> loadNoteBlock(TextBlock block) {
     emit(state.copyWith(block: block));
