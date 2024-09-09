@@ -23,6 +23,7 @@ import 'package:quick_note/feature/notebook/data/datasource/bookmarks_remote_dat
 import 'package:quick_note/feature/notebook/data/datasource/notebook_local_datasource.dart';
 import 'package:quick_note/feature/notebook/data/repository/bookmarks_repository_impl.dart';
 import 'package:quick_note/feature/notebook/data/repository/notebook_repository_impl.dart';
+import 'package:quick_note/feature/notebook/domain/command_manager/notebook_command_manager.dart';
 import 'package:quick_note/feature/notebook/domain/repository/bookmarks_repository.dart';
 import 'package:quick_note/feature/notebook/domain/repository/notebook_repository.dart';
 import 'package:quick_note/feature/notebook/domain/usecase/fetch_all_favicon_data_usecase.dart';

@@ -71,8 +71,11 @@ FutureOr<void> _initNotebook() async {
         () => NotebookRepositoryImpl(datasource: locator()))
     ..registerLazySingleton<GetNoteByKeyUsecase>(
         () => GetNoteByKeyUsecase(repository: locator()))
+    ..registerFactory<NotebookCommandManager>(
+        () => NotebookCommandManagerImpl())
     ..registerFactory(
       () => NotebookBloc(
+        commandManager: locator(),
         createNote: locator(),
         updateSingleNote: locator(),
         deleteNote: locator(),
