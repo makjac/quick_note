@@ -27,6 +27,14 @@ class _TodoBlockBody extends StatefulWidget {
   const _TodoBlockBody();
 
   @override
+  State<_TodoBlockBody> createState() => _TodoBlockBodyState();
+}
+
+class _TodoBlockBodyState extends State<_TodoBlockBody> {
+  late TextEditingController _titleController;
+
+
+  @override
   Widget build(BuildContext context) {
     return BlocConsumer<TodoBlockCubit, TodoBlockState>(
       listenWhen: (previous, current) => previous.block != current.block,
