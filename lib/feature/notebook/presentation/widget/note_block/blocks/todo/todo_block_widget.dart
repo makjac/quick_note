@@ -51,8 +51,12 @@ class _TodoBlockBodyState extends State<_TodoBlockBody> {
     return BlocConsumer<TodoBlockCubit, TodoBlockState>(
       listenWhen: (previous, current) => previous.block != current.block,
       listener: (context, state) {
-        BlocProvider.of<NotebookBloc>(context)
-            .add(NotebookUpdateNoteBlock(block: state.block));
+        BlocProvider.of<NotebookBloc>(context)            .add(
+NotebookUpdateNoteBlock(
+block: state.block,
+            command: state.command,
+          ),
+);
       },
       builder: (context, state) {
         return Column(
