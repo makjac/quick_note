@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quick_note/core/constans/insets.dart';
 import 'package:quick_note/core/utils/note_helper.dart';
-import 'package:quick_note/feature/home/domain/usecase/update_multiple_notes_usecase.dart';
 import 'package:quick_note/feature/notebook/presentation/bloc/notebook_bloc.dart';
 import 'package:quick_note/l10n/l10n.dart';
 
@@ -32,9 +31,7 @@ class NotebookPopupMenu extends StatelessWidget {
                     await NoteHelper.showNoteColorPickerDialog(context);
                 if (color != null) {
                   notebookBloc.add(
-                    NotebookUpdateNote(
-                      updates: NoteUpdates(color: color),
-                    ),
+                    NotebookChangeColor(color: color),
                   );
                 }
               },
