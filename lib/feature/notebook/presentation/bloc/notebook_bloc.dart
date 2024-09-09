@@ -287,4 +287,40 @@ final NotebookCommandManager commandManager;
     _handleResult(
         result, () => emit(state.copyWith(note: noteUpdates.update())));
   }
+
+  FutureOr<void> _handleUndo(
+      NotebookUndo event, Emitter<NotebookState> emit) async {
+    if (state.note == null) return;
+    final note = state.note!;
+
+    final currentCommandType = commandManager.getCurrentUndoType;
+    if (currentCommandType == null) return;
+
+    switch (currentCommandType) {
+      case NotebookCommandType.global:
+        final updates = commandManager.undo();
+        if (updates == null) return;
+
+        final noteUpdates = UpdateSingleNoteParams(
+          note: note,
+          updates: updates,
+        );
+
+        final result = await updateSingleNote.call(noteUpdates);
+        _handleResult(
+          result,
+          () => emit(
+            NotebookUndoRedoState.fromState(
+              state.copyWith(note: noteUpdates.update()),
+            ),
+          ),
+        );
+        break;
+      case _:
+        final command = commandManager.popUndoStack();
+        if (command == null) return;
+        emit(NotebookNoteBlockCommand.fromState(state, command));
+        break;
+    }
+  }
 }
