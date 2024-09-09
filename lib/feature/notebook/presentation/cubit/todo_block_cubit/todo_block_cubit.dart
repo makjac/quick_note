@@ -93,17 +93,15 @@ class TodoBlockCubit extends Cubit<TodoBlockState> {
   }
 
   FutureOr<void> changeCheckboxOrder(int oldIndex, int newIndex) async {
-    if (oldIndex < 0 ||
-        oldIndex >= state.block.items.length ||
-        newIndex < 0 ||
-        newIndex >= state.block.items.length) {
-      return;
-    }
-    final updatedItems = List<ChecklistItem>.from(state.block.items);
-    final item = updatedItems.removeAt(oldIndex);
-    updatedItems.insert(newIndex, item);
-    final updatedBlock = state.block.copyWith(items: updatedItems);
-    emit(state.copyWith(block: updatedBlock));
+    final command = TodoBlockReorderTasksCommand(
+      block: state.block,
+      oldIndex: oldIndex,
+      newIndex: newIndex,
+    );
+
+    final updatedBlock = command.execute();
+
+    emit(state.copyWith(block: updatedBlock, command: command));
   }
 
   FutureOr<void> changeBlockTitle(String title) async {
