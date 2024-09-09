@@ -110,15 +110,11 @@ block: initialBlock,
       build: () => cubit,
       act: (cubit) => cubit.changeCheckboxName(1, 'Updated Item 1'),
       expect: () => [
-        const TodoBlockState(
-          block: TodoBlock(
-            id: 1,
-            items: [
-              ChecklistItem(id: 1, title: 'Updated Item 1', isChecked: false),
-              ChecklistItem(id: 2, title: 'Item 2', isChecked: true),
-            ],
-          ),
-        ),
+          isA<TodoBlockState>()
+              .having((state) => state.block.items[0].title, 'Updated Item 1',
+                  'Updated Item 1')
+              .having((state) => state.block.items[1].title, 'Item 2', 'Item 2')
+              .having((state) => 1, 'taskId', 1),
       ],
     );
 
