@@ -57,6 +57,8 @@
   "note_settings_color" : "रंग बदलें",
   "note_settings_star" : "स्टार",
   "note_settings_archive" : "आर्काइव",
+  "note_settings_undo" : "पूर्ववत करें",
+  "note_settings_redo" : "फिर से करें",
   "note_settings_delete" : "हटाएँ",
   "note_settings_delete_forever": "हमेशा के लिए हटाएं",
   "note_settings_restore": "बहाल करें",
