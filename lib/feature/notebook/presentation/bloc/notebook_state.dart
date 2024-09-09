@@ -65,6 +65,30 @@ class NotebookUndoRedoState extends NotebookState {
   List<Object> get props => [super.props];
 }
 
+class NotebookNoteBlockCommand extends NotebookState {
+  factory NotebookNoteBlockCommand.fromState(
+      NotebookState state, NotebookCommand command,
+      [bool? isUndo]) {
+    return NotebookNoteBlockCommand(
+      note: state.note,
+      command: command,
+      isUndo: isUndo ?? true,
+    );
+  }
+
+  const NotebookNoteBlockCommand({
+    super.note,
+    required this.command,
+    this.isUndo = true,
+  });
+
+  final NotebookCommand command;
+  final bool isUndo;
+
+  @override
+  List<Object> get props => [super.props, command, isUndo];
+}
+
 Note _emptyNote = Note(
   id: -1,
   created: DateTime(1000),
