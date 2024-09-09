@@ -51,7 +51,7 @@ class NotebookBloc extends Bloc<NotebookEvent, NotebookState> {
     on<NotebookRedo>(_handleRedo);
   }
 
-final NotebookCommandManager commandManager;
+  final NotebookCommandManager commandManager;
   final CreateNoteUsecase createNote;
   final UpdateSingleNoteUsecase updateSingleNote;
   final DeleteSingleNoteUsecase deleteNote;
@@ -188,7 +188,12 @@ final NotebookCommandManager commandManager;
     );
 
     final result = await updateSingleNote.call(updates);
-    _handleResult(result, () => emit(state.copyWith(note: updates.update())));
+    _handleResult(result, () {
+      if (event.command != null) {
+        commandManager.pushToUndoStack(event.command!);
+      }
+      emit(state.copyWith(note: updates.update()));
+    });
   }
 
   FutureOr<void> _changeColor(
