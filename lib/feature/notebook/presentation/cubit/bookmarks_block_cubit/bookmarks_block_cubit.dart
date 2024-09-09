@@ -45,8 +45,11 @@ class BookmarksBlockCubit extends Cubit<BookmarksBlockState> {
   Future<void> changeBookmarksViewMode(BookmarkViewMode? visible) async {
     if (visible == null) return;
 
-    final updatedBlock = state.block.copyWith(viewMode: visible);
-    emit(state.copyWith(block: updatedBlock));
+    final command = BookmarkBlockChangeBlockViewModeCommand(
+        block: state.block, newViewMode: visible);
+
+    final updatedBlock = command.execute();
+    emit(state.copyWith(block: updatedBlock, command: command));
   }
 
   FutureOr<void> changeBlockTitle(String title) {
