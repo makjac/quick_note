@@ -105,8 +105,14 @@ class TodoBlockCubit extends Cubit<TodoBlockState> {
   }
 
   FutureOr<void> changeBlockTitle(String title) async {
-    final updatedBlock = state.block.copyWith(title: title);
-    emit(state.copyWith(block: updatedBlock));
+    final command = TodoBlockChangeTitleCommand(
+      block: state.block,
+      newTitle: title,
+    );
+
+    final updatedBlock = command.execute();
+
+    emit(state.copyWith(block: updatedBlock, command: command));
   }
 
   Future<void> changeBlockTitleVisibility(bool? visible) async {
