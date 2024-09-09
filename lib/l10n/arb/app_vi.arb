@@ -57,6 +57,8 @@
   "note_settings_color": "Thay đổi màu",
   "note_settings_star": "Gắn sao",
   "note_settings_archive": "Lưu trữ",
+  "note_settings_undo" : "Hoàn tác",
+  "note_settings_redo" : "Làm lại",
   "note_settings_delete": "Xóa",
   "note_settings_delete_forever": "Xóa vĩnh viễn",
   "note_settings_restore": "Khôi phục",
