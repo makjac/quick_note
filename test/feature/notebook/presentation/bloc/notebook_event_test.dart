@@ -99,5 +99,10 @@ void main() {
       final event = NotebookUndo();
       expect(event.props, []);
     });
+
+    test('NotebookRedo props are empty list', () {
+      final event = NotebookRedo();
+      expect(event.props, []);
+    });
   });
 }
