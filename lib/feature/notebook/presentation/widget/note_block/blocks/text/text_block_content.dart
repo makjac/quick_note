@@ -92,25 +92,31 @@ class _TextBlockContentState extends State<TextBlockContent> {
         AnimatedSize(
           duration: const Duration(milliseconds: 250),
           alignment: Alignment.topCenter,
-            child: DebounceTextField(
-            controller: _controller,
-            focusNode: _focusNode,
-            maxLines: _maxLinesLimit(),
-            minLines: 1,
-            keyboardType: TextInputType.multiline,
-            textCapitalization: TextCapitalization.sentences,
-            scrollPhysics: _setScroll(),
-            decoration: InputDecoration(
-              hintText: context.l10n.text_block_note_hint_text,
-              border: InputBorder.none,
-            ),
-            style: const TextStyle(
-              letterSpacing: .6,
-            ),
-              onDebounceChange: (value) {
-              context.read<TextBlockCubit>().changeNoteText(value);
-              if (widget.block.hasMaxLineLimit) _updateDisplayedLineCount();
+          child: BlocListener<TextBlockCubit, TextBlockState>(
+            listener: (context, state) {
+              _controller.text = state.block.text;
             },
+            listenWhen: (previous, current) =>
+                current is TextBlockUndoRedoState,
+            child: DebounceTextField(
+              controller: _controller,
+              focusNode: _focusNode,
+              maxLines: _maxLinesLimit(),
+              minLines: 1,
+              keyboardType: TextInputType.multiline,
+              textCapitalization: TextCapitalization.sentences,
+              scrollPhysics: _setScroll(),
+              decoration: InputDecoration(
+                hintText: context.l10n.text_block_note_hint_text,
+                border: InputBorder.none,
+              ),
+              style: const TextStyle(
+                letterSpacing: .6,
+              ),
+              onDebounceChange: (value) {
+                context.read<TextBlockCubit>().changeNoteText(value);
+                if (widget.block.hasMaxLineLimit) _updateDisplayedLineCount();
+              },
             ),
           ),
         ),
