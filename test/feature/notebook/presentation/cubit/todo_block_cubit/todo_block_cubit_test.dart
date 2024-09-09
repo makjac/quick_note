@@ -200,15 +200,16 @@ block: initialBlock,
       build: () => cubit,
       act: (cubit) => cubit.changeBlockCompleteTasksVisibility(true),
       expect: () => [
-        const TodoBlockState(
-          block: TodoBlock(
-            id: 1,
-            items: [
-              ChecklistItem(id: 1, title: 'Item 1', isChecked: false),
-              ChecklistItem(id: 2, title: 'Item 2', isChecked: true),
-            ],
-            showCompleteTasks: true,
-          ),
+          isA<TodoBlockState>()
+              .having(
+                (state) => state.block.showCompleteTasks,
+                'showCompleteTasks',
+                true,
+              )
+              .having(
+                (state) => state.command,
+                'command',
+                isA<TodoBlockToggleHideCompleteTasksCommand>(),
         ),
       ],
     );
