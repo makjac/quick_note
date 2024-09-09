@@ -89,5 +89,22 @@ void main() {
       expect(noteBlockCommandState.isUndo, equals(true));
       expect(noteBlockCommandState, isA<NotebookNoteBlockCommand>());
     });
+
+    test('NotebookNoteBlockCommand props include note, command, and isUndo',
+        () {
+      final command =
+          NotebookChangeNoteTitleCommand(newTitle: "", note: testNote);
+      final noteBlockCommandState = NotebookNoteBlockCommand(
+          note: testNote, command: command, isUndo: false);
+
+      expect(
+        noteBlockCommandState.props,
+        equals([
+          [testNote],
+          command,
+          false
+        ]),
+      );
+    });
   });
 }
