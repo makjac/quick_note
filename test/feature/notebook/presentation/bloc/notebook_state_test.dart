@@ -67,5 +67,14 @@ void main() {
       expect(undoRedoState.note, equals(testNote));
       expect(undoRedoState, isA<NotebookUndoRedoState>());
     });
+
+    test('NotebookUndoRedoState props include note', () {
+      final undoRedoState = NotebookUndoRedoState(note: testNote);
+
+      expect(
+        undoRedoState.props[0],
+        contains(testNote),
+      );
+    });
   });
 }
