@@ -1,8 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quick_note/feature/home/domain/usecase/update_multiple_notes_usecase.dart';
+import 'package:quick_note/feature/notebook/domain/command/notebook_change_note_title_command.dart';
 import 'package:quick_note/feature/notebook/presentation/bloc/notebook_bloc.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/blocks/text/text_block.dart';
+import 'package:quick_note/feature/shared/domain/entity/note/note.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note_block_type.dart';
+import 'package:quick_note/feature/shared/domain/entity/note/note_colors.dart';
 
 void main() {
   group('NotebookEvent', () {
@@ -42,7 +45,8 @@ void main() {
     test('NotebookUpdateNoteBlock props include block', () {
       const block = TextBlock(id: 1, type: NoteBlockType.text);
       const event = NotebookUpdateNoteBlock(block: block);
-      expect(event.props, [block]);
+      expect(event.props, [block, -1]);
+    });
     });
 
     test('NotebookDeleteBlock props include blockId', () {
