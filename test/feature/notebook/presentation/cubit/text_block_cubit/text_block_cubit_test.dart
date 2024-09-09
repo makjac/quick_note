@@ -86,14 +86,16 @@ void main() {
       build: () => cubit,
       act: (cubit) => cubit.changeBlockTitleVisibility(false),
       expect: () => [
-        const TextBlockState(
-          block: TextBlock(
-            id: 1,
-            text: 'Initial Text',
-            hasTitle: false,
-            hasMaxLineLimit: false,
-            maxLines: 3,
-          ),
+        isA<TextBlockState>()
+            .having(
+              (state) => state.block.hasTitle,
+              'hasTitle',
+              false,
+            )
+            .having(
+              (state) => state.command,
+              'command',
+              isA<TextBlockTitleVisibilityCommand>(),
         ),
       ],
     );
