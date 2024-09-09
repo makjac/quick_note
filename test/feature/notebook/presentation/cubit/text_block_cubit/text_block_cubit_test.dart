@@ -77,7 +77,7 @@ void main() {
               (state) => state.command,
               'command',
               isA<TextBlockChangeNoteTextCommand>(),
-        ),
+            ),
       ],
     );
 
@@ -96,7 +96,7 @@ void main() {
               (state) => state.command,
               'command',
               isA<TextBlockTitleVisibilityCommand>(),
-        ),
+            ),
       ],
     );
 
@@ -115,7 +115,7 @@ void main() {
               (state) => state.command,
               'command',
               isA<TextBlockToggleLinesLimitCommand>(),
-        ),
+            ),
       ],
     );
 
@@ -134,7 +134,7 @@ void main() {
               (state) => state.command,
               'command',
               isA<TextBlockSetTextLineLimitCommand>(),
-        ),
+            ),
       ],
     );
   });
