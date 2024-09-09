@@ -90,6 +90,12 @@ class TextBlockCubit extends Cubit<TextBlockState> {
     final updatedBlock = command.execute();
     emit(state.copyWith(block: updatedBlock, command: command));
   }
+
+  Future<void> undo(NotebookCommand command) async {
+    final updatedBlock = command.undo();
+
+    emit(TextBlockUndoRedoState.fromState(state.copyWith(block: updatedBlock)));
+  }
   @override
   Future<void> close() {
     notebookBlocSubscription?.cancel();
