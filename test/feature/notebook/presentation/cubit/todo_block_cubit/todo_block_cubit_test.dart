@@ -18,111 +18,111 @@ void main() {
   group(
     'TodoBlockCubit',
     () {
-    late TodoBlockCubit cubit;
+      late TodoBlockCubit cubit;
       late NotebookBloc mockNotebookBloc;
 
-    setUp(() {
+      setUp(() {
         mockNotebookBloc = MockNotebookBloc();
 
         when(() => mockNotebookBloc.stream)
             .thenAnswer((_) => const Stream<NotebookState>.empty());
 
-      const initialBlock = TodoBlock(
-        id: 1,
-        items: [
-          ChecklistItem(id: 1, title: 'Item 1', isChecked: false),
-          ChecklistItem(id: 2, title: 'Item 2', isChecked: true),
-        ],
-      );
-      cubit = TodoBlockCubit(
-block: initialBlock,
+        const initialBlock = TodoBlock(
+          id: 1,
+          items: [
+            ChecklistItem(id: 1, title: 'Item 1', isChecked: false),
+            ChecklistItem(id: 2, title: 'Item 2', isChecked: true),
+          ],
+        );
+        cubit = TodoBlockCubit(
+          block: initialBlock,
           notebookBloc: mockNotebookBloc,
-);
-    });
+        );
+      });
 
-    test('initial state is correct', () {
-      expect(
-          cubit.state,
-          equals(const TodoBlockState(
-              block: TodoBlock(
-            id: 1,
-            items: [
-              ChecklistItem(id: 1, title: 'Item 1', isChecked: false),
-              ChecklistItem(id: 2, title: 'Item 2', isChecked: true),
-            ],
-          ))));
-    });
+      test('initial state is correct', () {
+        expect(
+            cubit.state,
+            equals(const TodoBlockState(
+                block: TodoBlock(
+              id: 1,
+              items: [
+                ChecklistItem(id: 1, title: 'Item 1', isChecked: false),
+                ChecklistItem(id: 2, title: 'Item 2', isChecked: true),
+              ],
+            ))));
+      });
 
-    blocTest<TodoBlockCubit, TodoBlockState>(
-      'loadBlock updates the block',
-      build: () => cubit,
-      act: (cubit) => cubit.loadBlock(
-        const TodoBlock(
-          id: 2,
-          items: [ChecklistItem(id: 3, title: 'New Item', isChecked: false)],
-        ),
-      ),
-      expect: () => [
-        const TodoBlockState(
-          block: TodoBlock(
+      blocTest<TodoBlockCubit, TodoBlockState>(
+        'loadBlock updates the block',
+        build: () => cubit,
+        act: (cubit) => cubit.loadBlock(
+          const TodoBlock(
             id: 2,
+            items: [ChecklistItem(id: 3, title: 'New Item', isChecked: false)],
+          ),
+        ),
+        expect: () => [
+          const TodoBlockState(
+            block: TodoBlock(
+              id: 2,
               items: [
                 ChecklistItem(id: 3, title: 'New Item', isChecked: false)
               ],
+            ),
           ),
-        ),
-      ],
-    );
+        ],
+      );
 
-    blocTest<TodoBlockCubit, TodoBlockState>(
-      'addCheckbox adds a new checkbox',
-      build: () => cubit,
-      act: (cubit) => cubit.addCheckbox(),
-      expect: () => [
-        const TodoBlockAddedNewTaskItem(
-          block: TodoBlock(
-            id: 1,
-            items: [
-              ChecklistItem(id: 1, title: 'Item 1', isChecked: false),
-              ChecklistItem(id: 2, title: 'Item 2', isChecked: true),
-              ChecklistItem(id: 3, title: '', isChecked: false),
-            ],
+      blocTest<TodoBlockCubit, TodoBlockState>(
+        'addCheckbox adds a new checkbox',
+        build: () => cubit,
+        act: (cubit) => cubit.addCheckbox(),
+        expect: () => [
+          const TodoBlockAddedNewTaskItem(
+            block: TodoBlock(
+              id: 1,
+              items: [
+                ChecklistItem(id: 1, title: 'Item 1', isChecked: false),
+                ChecklistItem(id: 2, title: 'Item 2', isChecked: true),
+                ChecklistItem(id: 3, title: '', isChecked: false),
+              ],
+            ),
+            item: ChecklistItem(id: 3, title: '', isChecked: false),
           ),
-          item: ChecklistItem(id: 3, title: '', isChecked: false),
-        ),
-      ],
-    );
+        ],
+      );
 
-    blocTest<TodoBlockCubit, TodoBlockState>(
-      'toggleCheckbox toggles checkbox status',
-      build: () => cubit,
-      act: (cubit) => cubit.toggleCheckbox(1),
-      expect: () => [
+      blocTest<TodoBlockCubit, TodoBlockState>(
+        'toggleCheckbox toggles checkbox status',
+        build: () => cubit,
+        act: (cubit) => cubit.toggleCheckbox(1),
+        expect: () => [
           isA<TodoBlockState>()
               .having((state) => state.block.items[0].isChecked,
                   'first item isChecked', true)
               .having((state) => 1, 'taskId', 1),
-      ],
-    );
+        ],
+      );
 
-    blocTest<TodoBlockCubit, TodoBlockState>(
-      'changeCheckboxName updates checkbox title',
-      build: () => cubit,
-      act: (cubit) => cubit.changeCheckboxName(1, 'Updated Item 1'),
-      expect: () => [
+      blocTest<TodoBlockCubit, TodoBlockState>(
+        'changeCheckboxName updates checkbox title',
+        build: () => cubit,
+        act: (cubit) => cubit.changeCheckboxName(1, 'Updated Item 1'),
+        expect: () => [
           isA<TodoBlockState>()
               .having((state) => state.block.items[0].title, 'Updated Item 1',
                   'Updated Item 1')
               .having((state) => state.block.items[1].title, 'Item 2', 'Item 2')
               .having((state) => 1, 'taskId', 1),
-      ],
-    );
+        ],
+      );
 
-    blocTest<TodoBlockCubit, TodoBlockState>(
-      'removeCheckbox removes a checkbox',
-      build: () => cubit,
-      act: (cubit) => cubit.removeCheckbox(1),
-      expect: () => [
+      blocTest<TodoBlockCubit, TodoBlockState>(
+        'removeCheckbox removes a checkbox',
+        build: () => cubit,
+        act: (cubit) => cubit.removeCheckbox(1),
+        expect: () => [
           isA<TodoBlockState>()
               .having(
                 (state) => state.block.items.length,
@@ -133,15 +133,15 @@ block: initialBlock,
                 (state) => state.command,
                 'command',
                 isA<TodoBlockRemoveTaskCommand>(),
-        ),
-      ],
-    );
+              ),
+        ],
+      );
 
-    blocTest<TodoBlockCubit, TodoBlockState>(
-      'changeCheckboxOrder updates checkbox order',
-      build: () => cubit,
-      act: (cubit) => cubit.changeCheckboxOrder(0, 1),
-      expect: () => [
+      blocTest<TodoBlockCubit, TodoBlockState>(
+        'changeCheckboxOrder updates checkbox order',
+        build: () => cubit,
+        act: (cubit) => cubit.changeCheckboxOrder(0, 1),
+        expect: () => [
           isA<TodoBlockState>().having(
             (state) => state.block.items,
             'items order',
@@ -153,15 +153,15 @@ block: initialBlock,
             (state) => state.command,
             'command',
             isA<TodoBlockReorderTasksCommand>(),
-        ),
-      ],
-    );
+          ),
+        ],
+      );
 
-    blocTest<TodoBlockCubit, TodoBlockState>(
-      'changeBlockTitle updates block title',
-      build: () => cubit,
-      act: (cubit) => cubit.changeBlockTitle('New Title'),
-      expect: () => [
+      blocTest<TodoBlockCubit, TodoBlockState>(
+        'changeBlockTitle updates block title',
+        build: () => cubit,
+        act: (cubit) => cubit.changeBlockTitle('New Title'),
+        expect: () => [
           isA<TodoBlockState>()
               .having(
                 (state) => state.block.title,
@@ -172,15 +172,15 @@ block: initialBlock,
                 (state) => state.command,
                 'command',
                 isA<TodoBlockChangeTitleCommand>(),
-        ),
-      ],
-    );
+              ),
+        ],
+      );
 
-    blocTest<TodoBlockCubit, TodoBlockState>(
-      'changeBlockTitleVisibility updates block title visibility',
-      build: () => cubit,
-      act: (cubit) => cubit.changeBlockTitleVisibility(false),
-      expect: () => [
+      blocTest<TodoBlockCubit, TodoBlockState>(
+        'changeBlockTitleVisibility updates block title visibility',
+        build: () => cubit,
+        act: (cubit) => cubit.changeBlockTitleVisibility(false),
+        expect: () => [
           isA<TodoBlockState>()
               .having(
                 (state) => state.block.hasTitle,
@@ -191,15 +191,15 @@ block: initialBlock,
                 (state) => state.command,
                 'command',
                 isA<TodoBlockTitleVisibilityCommand>(),
-        ),
-      ],
-    );
+              ),
+        ],
+      );
 
-    blocTest<TodoBlockCubit, TodoBlockState>(
-      'changeBlockCompleteTasksVisibility updates block complete tasks visibility',
-      build: () => cubit,
-      act: (cubit) => cubit.changeBlockCompleteTasksVisibility(true),
-      expect: () => [
+      blocTest<TodoBlockCubit, TodoBlockState>(
+        'changeBlockCompleteTasksVisibility updates block complete tasks visibility',
+        build: () => cubit,
+        act: (cubit) => cubit.changeBlockCompleteTasksVisibility(true),
+        expect: () => [
           isA<TodoBlockState>()
               .having(
                 (state) => state.block.showCompleteTasks,
@@ -210,26 +210,28 @@ block: initialBlock,
                 (state) => state.command,
                 'command',
                 isA<TodoBlockToggleHideCompleteTasksCommand>(),
-        ),
-      ],
-    );
+              ),
+        ],
+      );
 
-    blocTest<TodoBlockCubit, TodoBlockState>(
-      'changeBlockProgressBarVisibility updates block progress bar visibility',
-      build: () => cubit,
-      act: (cubit) => cubit.changeBlockProgressBarVisibility(true),
-      expect: () => [
-        const TodoBlockState(
-          block: TodoBlock(
-            id: 1,
-            items: [
-              ChecklistItem(id: 1, title: 'Item 1', isChecked: false),
-              ChecklistItem(id: 2, title: 'Item 2', isChecked: true),
-            ],
-            showProgressBar: true,
-          ),
-        ),
-      ],
-    );
-  });
+      blocTest<TodoBlockCubit, TodoBlockState>(
+        'changeBlockProgressBarVisibility updates block progress bar visibility',
+        build: () => cubit,
+        act: (cubit) => cubit.changeBlockProgressBarVisibility(true),
+        expect: () => [
+          isA<TodoBlockState>()
+              .having(
+                (state) => state.block.showProgressBar,
+                'showProgressBar',
+                true,
+              )
+              .having(
+                (state) => state.command,
+                'command',
+                isA<TodoBlockToggleShowProgressBarCommand>(),
+              ),
+        ],
+      );
+    },
+  );
 }
