@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_note/core/constans/insets.dart';
-import 'package:quick_note/feature/home/domain/usecase/update_multiple_notes_usecase.dart';
 import 'package:quick_note/feature/notebook/presentation/bloc/notebook_bloc.dart';
+import 'package:quick_note/feature/shared/presentation/widget/debounce_text_field.dart';
 import 'package:quick_note/l10n/l10n.dart';
 import 'package:quick_note/preferences/theme/app_custom_colors.dart';
 
@@ -20,28 +20,36 @@ class _NotebookTitleTextFieldState extends State<NotebookTitleTextField> {
 
   @override
   void initState() {
-    _controller = TextEditingController();
+    _controller = TextEditingController()
+      ..text = BlocProvider.of<NotebookBloc>(context).state.note?.title ?? "";
     super.initState();
   }
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _onTextChanged(String value) {
+    BlocProvider.of<NotebookBloc>(context)
+        .add(NotebookChangeNoteTitle(title: value));
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BlocListener<NotebookBloc, NotebookState>(
-      listener: (context, state) {
-        _controller.text = state.note?.title ?? "";
-      },
-      listenWhen: (previous, current) {
-        return _controller.text.isEmpty;
-      },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: Insets.s),
-        child: TextField(
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: Insets.s),
+      child: BlocListener<NotebookBloc, NotebookState>(
+        listener: (context, state) {
+          _controller.text = state.note?.title ?? "";
+        },
+        listenWhen: (previous, current) =>
+            current is NotebookUndoRedoState || previous.note?.title == null,
+        child: DebounceTextField(
           controller: _controller,
+          onDebounceChange: _onTextChanged,
           focusNode: widget.focusNode,
-          onChanged: (value) {
-            BlocProvider.of<NotebookBloc>(context)
-                .add(NotebookUpdateNote(updates: NoteUpdates(title: value)));
-          },
           maxLines: null,
           keyboardType: TextInputType.multiline,
           style: Theme.of(context).textTheme.titleMedium,

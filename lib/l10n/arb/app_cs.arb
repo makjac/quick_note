@@ -57,6 +57,8 @@
   "note_settings_color": "Změnit barvu",
   "note_settings_star": "Přidat hvězdičku",
   "note_settings_archive": "Archivovat",
+  "note_settings_undo" : "Zpět",
+  "note_settings_redo" : "Znovu",
   "note_settings_delete": "Smazat",
   "note_settings_delete_forever": "Smazat navždy",
   "note_settings_restore": "Obnovit",

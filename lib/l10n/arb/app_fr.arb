@@ -57,6 +57,8 @@
   "note_settings_color" : "Changer la couleur",
   "note_settings_star" : "Étoile",
   "note_settings_archive" : "Archiver",
+  "note_settings_undo" : "Annuler",
+  "note_settings_redo" : "Rétablir",
   "note_settings_delete": "Supprimer",
   "note_settings_delete_forever": "Supprimer définitivement",
   "note_settings_restore": "Restaurer",

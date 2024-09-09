@@ -38,7 +38,27 @@ void main() {
 
     test('TextBlockState props are correct', () {
       final props = state.props;
-      expect(props, [initialBlock]);
+      expect(props, [initialBlock, -1]);
+    });
+  });
+
+  group('TextBlockUndoRedoState', () {
+    late TextBlock initialBlock;
+    late TextBlockState state;
+
+    setUp(() {
+      initialBlock = const TextBlock(id: 1, text: 'Sample Text');
+      state = TextBlockState(block: initialBlock);
+    });
+
+    test('fromState factory creates correct instance', () {
+      final undoRedoState = TextBlockUndoRedoState.fromState(state);
+      expect(undoRedoState.block, equals(state.block));
+    });
+
+    test('props are correct', () {
+      final undoRedoState = TextBlockUndoRedoState.fromState(state);
+      expect(undoRedoState.props, [state.props]);
     });
   });
 }

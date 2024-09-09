@@ -1,21 +1,38 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+import 'package:quick_note/feature/notebook/domain/command/text_block_command/text_block_change_note_text_command.dart';
+import 'package:quick_note/feature/notebook/domain/command/text_block_command/text_block_set_text_line_limit_command.dart';
+import 'package:quick_note/feature/notebook/domain/command/text_block_command/text_block_title_visibility_command.dart';
+import 'package:quick_note/feature/notebook/domain/command/text_block_command/text_block_toggle_lines_limit_command.dart';
+import 'package:quick_note/feature/notebook/presentation/bloc/notebook_bloc.dart';
 import 'package:quick_note/feature/notebook/presentation/cubit/text_block_cubit/text_block_cubit.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/blocks/text/text_block.dart';
+
+class MockNotebookBloc extends Mock implements NotebookBloc {}
 
 void main() {
   group('TextBlockCubit', () {
     late TextBlockCubit cubit;
     late TextBlock initialBlock;
+    late NotebookBloc mockNotebookBloc;
 
     setUp(() {
+      mockNotebookBloc = MockNotebookBloc();
+
+      when(() => mockNotebookBloc.stream)
+          .thenAnswer((_) => const Stream<NotebookState>.empty());
+
       initialBlock = const TextBlock(
         id: 1,
         text: 'Initial Text',
         hasMaxLineLimit: false,
         maxLines: 3,
       );
-      cubit = TextBlockCubit(block: initialBlock);
+      cubit = TextBlockCubit(
+        block: initialBlock,
+        notebookBloc: mockNotebookBloc,
+      );
     });
 
     test('initial state is correct', () {
@@ -50,32 +67,17 @@ void main() {
       build: () => cubit,
       act: (cubit) => cubit.changeNoteText('Updated Text'),
       expect: () => [
-        const TextBlockState(
-          block: TextBlock(
-            id: 1,
-            text: 'Updated Text',
-            hasMaxLineLimit: false,
-            maxLines: 3,
-          ),
-        ),
-      ],
-    );
-
-    blocTest<TextBlockCubit, TextBlockState>(
-      'changeBlockTitle updates the title and sets hasTitle to true',
-      build: () => cubit,
-      act: (cubit) => cubit.changeBlockTitle('New Title'),
-      expect: () => [
-        const TextBlockState(
-          block: TextBlock(
-            id: 1,
-            text: 'Initial Text',
-            title: 'New Title',
-            hasTitle: true,
-            hasMaxLineLimit: false,
-            maxLines: 3,
-          ),
-        ),
+        isA<TextBlockState>()
+            .having(
+              (state) => state.block.text,
+              'text',
+              'Updated Text',
+            )
+            .having(
+              (state) => state.command,
+              'command',
+              isA<TextBlockChangeNoteTextCommand>(),
+            ),
       ],
     );
 
@@ -84,15 +86,17 @@ void main() {
       build: () => cubit,
       act: (cubit) => cubit.changeBlockTitleVisibility(false),
       expect: () => [
-        const TextBlockState(
-          block: TextBlock(
-            id: 1,
-            text: 'Initial Text',
-            hasTitle: false,
-            hasMaxLineLimit: false,
-            maxLines: 3,
-          ),
-        ),
+        isA<TextBlockState>()
+            .having(
+              (state) => state.block.hasTitle,
+              'hasTitle',
+              false,
+            )
+            .having(
+              (state) => state.command,
+              'command',
+              isA<TextBlockTitleVisibilityCommand>(),
+            ),
       ],
     );
 
@@ -101,15 +105,17 @@ void main() {
       build: () => cubit,
       act: (cubit) => cubit.setMaxLinesLimitOption(true),
       expect: () => [
-        const TextBlockState(
-          block: TextBlock(
-            id: 1,
-            text: 'Initial Text',
-            hasTitle: false,
-            hasMaxLineLimit: true,
-            maxLines: 3,
-          ),
-        ),
+        isA<TextBlockState>()
+            .having(
+              (state) => state.block.hasMaxLineLimit,
+              'hasMaxLineLimit',
+              true,
+            )
+            .having(
+              (state) => state.command,
+              'command',
+              isA<TextBlockToggleLinesLimitCommand>(),
+            ),
       ],
     );
 
@@ -118,15 +124,17 @@ void main() {
       build: () => cubit,
       act: (cubit) => cubit.setTextLinecountLimit(10),
       expect: () => [
-        const TextBlockState(
-          block: TextBlock(
-            id: 1,
-            text: 'Initial Text',
-            hasTitle: false,
-            hasMaxLineLimit: false,
-            maxLines: 10,
-          ),
-        ),
+        isA<TextBlockState>()
+            .having(
+              (state) => state.block.maxLines,
+              'maxLines',
+              10,
+            )
+            .having(
+              (state) => state.command,
+              'command',
+              isA<TextBlockSetTextLineLimitCommand>(),
+            ),
       ],
     );
   });

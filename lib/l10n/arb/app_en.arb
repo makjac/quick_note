@@ -83,6 +83,8 @@
   "note_settings_archive" : "Archive",
   "note_settings_delete" : "Delete",
   "note_settings_delete_forever" : "Delete forever",
+  "note_settings_undo" : "Undo",
+  "note_settings_redo" : "Redo",
   "note_settings_restore" : "Restore",
   "reorder_block_info" : "Drag and drop the blocks to reorder them. Hold and drag the handle on the right side of each block to move it. Release the block to drop it in its new position.",
   "block_type_text" : "Text block",

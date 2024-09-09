@@ -55,6 +55,7 @@ class TodoBlock extends NoteBlock {
 
   @override
   List<Object?> get props => [
+        super.props,
         id,
         title,
         hasTitle,

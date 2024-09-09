@@ -57,6 +57,8 @@
   "note_settings_color": "Szín módosítása",
   "note_settings_star": "Csillag",
   "note_settings_archive": "Archiválás",
+  "note_settings_undo" : "Visszavonás",
+  "note_settings_redo" : "Újra",
   "note_settings_delete": "Törlés",
   "note_settings_delete_forever": "Végleges törlés",
   "note_settings_restore": "Visszaállítás",

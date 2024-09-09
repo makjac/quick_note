@@ -57,6 +57,8 @@
   "note_settings_color" : "Изменить цвет",
   "note_settings_star" : "Звезда",
   "note_settings_archive" : "Архивировать",
+  "note_settings_undo" : "Отмена",
+  "note_settings_redo" : "Повтор",
   "note_settings_delete" : "Удалить",
   "note_settings_delete_forever": "Удалить навсегда",
   "note_settings_restore": "Восстановить",

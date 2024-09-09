@@ -58,6 +58,8 @@
   "note_settings_color": "Zmień kolor",
   "note_settings_star": "Wyróżnij",
   "note_settings_archive": "Archiwizuj",
+  "note_settings_undo" : "Cofnij",
+  "note_settings_redo" : "Ponów",
   "note_settings_delete": "Usuń",
   "note_settings_delete_forever": "Usuń na zawsze",
   "note_settings_restore": "Przywróć",

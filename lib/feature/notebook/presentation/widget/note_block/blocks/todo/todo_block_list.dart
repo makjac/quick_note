@@ -26,6 +26,7 @@ class TodoBlockList extends StatelessWidget {
     return ReorderableListView.builder(
       itemBuilder: (context, index) => TodoBlockCheckListItem(
         key: ValueKey("${tasks[index].id}"),
+        cubit: context.read<TodoBlockCubit>(),
         item: tasks[index],
         index: index,
       ),

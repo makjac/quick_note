@@ -57,6 +57,8 @@
   "note_settings_color" : "Farbe ändern",
   "note_settings_star" : "Stern",
   "note_settings_archive" : "Archivieren",
+  "note_settings_undo" : "Rückgängig",
+  "note_settings_redo" : "Wiederholen",
   "note_settings_delete": "Löschen",
   "note_settings_delete_forever": "Endgültig löschen",
   "note_settings_restore": "Wiederherstellen",

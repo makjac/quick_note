@@ -57,6 +57,8 @@
   "note_settings_color": "Cambia colore",
   "note_settings_star": "Aggiungi stella",
   "note_settings_archive": "Archivia",
+  "note_settings_undo" : "Annulla",
+  "note_settings_redo" : "Ripeti",
   "note_settings_delete": "Elimina",
   "note_settings_delete_forever": "Elimina per sempre",
   "note_settings_restore": "Ripristina",

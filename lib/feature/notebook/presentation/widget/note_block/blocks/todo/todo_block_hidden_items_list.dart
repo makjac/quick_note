@@ -109,6 +109,7 @@ class _TodoBlockHiddenItemsListState extends State<TodoBlockHiddenItemsList>
     return ListView.builder(
       itemBuilder: (context, index) => TodoBlockCheckListItem(
         key: ValueKey("${tasks[index].id}_hidden"),
+        cubit: context.read<TodoBlockCubit>(),
         item: tasks[index],
         draggable: false,
         index: index,

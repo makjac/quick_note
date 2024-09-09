@@ -57,6 +57,8 @@
   "note_settings_color" : "Alterar cor",
   "note_settings_star" : "Estrela",
   "note_settings_archive" : "Arquivar",
+  "note_settings_undo" : "Desfazer",
+  "note_settings_redo" : "Refazer",
   "note_settings_delete" : "Excluir",
   "note_settings_delete_forever": "Excluir para sempre",
   "note_settings_restore": "Restaurar",

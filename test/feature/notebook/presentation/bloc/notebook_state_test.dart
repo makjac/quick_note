@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:quick_note/feature/notebook/domain/command/notebook_change_note_title_command.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note.dart';
 import 'package:quick_note/feature/notebook/presentation/bloc/notebook_bloc.dart';
 
@@ -57,6 +58,53 @@ void main() {
 
     test('NotebookNoteDeleted is a subclass of NotebookState', () {
       expect(NotebookNoteDeleted(), isA<NotebookState>());
+    });
+
+    test('NotebookUndoRedoState can be created from state', () {
+      final state = NotebookState(note: testNote);
+      final undoRedoState = NotebookUndoRedoState.fromState(state);
+
+      expect(undoRedoState.note, equals(testNote));
+      expect(undoRedoState, isA<NotebookUndoRedoState>());
+    });
+
+    test('NotebookUndoRedoState props include note', () {
+      final undoRedoState = NotebookUndoRedoState(note: testNote);
+
+      expect(
+        undoRedoState.props[0],
+        contains(testNote),
+      );
+    });
+
+    test('NotebookNoteBlockCommand can be created from state with command', () {
+      final state = NotebookState(note: testNote);
+      final command =
+          NotebookChangeNoteTitleCommand(newTitle: "", note: testNote);
+      final noteBlockCommandState =
+          NotebookNoteBlockCommand.fromState(state, command);
+
+      expect(noteBlockCommandState.note, equals(testNote));
+      expect(noteBlockCommandState.command, equals(command));
+      expect(noteBlockCommandState.isUndo, equals(true));
+      expect(noteBlockCommandState, isA<NotebookNoteBlockCommand>());
+    });
+
+    test('NotebookNoteBlockCommand props include note, command, and isUndo',
+        () {
+      final command =
+          NotebookChangeNoteTitleCommand(newTitle: "", note: testNote);
+      final noteBlockCommandState = NotebookNoteBlockCommand(
+          note: testNote, command: command, isUndo: false);
+
+      expect(
+        noteBlockCommandState.props,
+        equals([
+          [testNote],
+          command,
+          false
+        ]),
+      );
     });
   });
 }

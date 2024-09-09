@@ -57,6 +57,8 @@
   "note_settings_color" : "Cambiar color",
   "note_settings_star" : "Marcar",
   "note_settings_archive" : "Archivar",
+  "note_settings_undo" : "Deshacer",
+  "note_settings_redo" : "Rehacer",
   "note_settings_delete": "Eliminar",
   "note_settings_delete_forever": "Eliminar para siempre",
   "note_settings_restore": "Restaurar",

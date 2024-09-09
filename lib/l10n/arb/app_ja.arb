@@ -57,6 +57,8 @@
   "note_settings_color": "色を変更",
   "note_settings_star": "スターを追加",
   "note_settings_archive": "アーカイブ",
+  "note_settings_undo" : "元に戻す",
+  "note_settings_redo" : "やり直す",
   "note_settings_delete": "削除",
   "note_settings_delete_forever": "完全に削除",
   "note_settings_restore": "復元",

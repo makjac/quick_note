@@ -71,8 +71,11 @@ FutureOr<void> _initNotebook() async {
         () => NotebookRepositoryImpl(datasource: locator()))
     ..registerLazySingleton<GetNoteByKeyUsecase>(
         () => GetNoteByKeyUsecase(repository: locator()))
+    ..registerFactory<NotebookCommandManager>(
+        () => NotebookCommandManagerImpl())
     ..registerFactory(
       () => NotebookBloc(
+        commandManager: locator(),
         createNote: locator(),
         updateSingleNote: locator(),
         deleteNote: locator(),
@@ -93,9 +96,10 @@ FutureOr<void> _initBookmarks() async {
         () => FetchBestFaviconUrlUsecase(repository: locator()))
     ..registerLazySingleton<IsValidFaviconUrlUsecase>(
         () => IsValidFaviconUrlUsecase(repository: locator()))
-    ..registerFactoryParam<BookmarksBlockCubit, BookmarksBlock?, void>(
-      (block, _) => BookmarksBlockCubit(
+    ..registerFactoryParam<BookmarksBlockCubit, BookmarksBlock?, NotebookBloc>(
+      (block, notebookBlocSubscription) => BookmarksBlockCubit(
         block: block,
+        notebookBloc: notebookBlocSubscription,
         fetchBestFaviconUrlUsecase: locator(),
       ),
     );

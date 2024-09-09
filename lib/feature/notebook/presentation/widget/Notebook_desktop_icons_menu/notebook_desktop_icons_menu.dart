@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quick_note/core/constans/insets.dart';
 import 'package:quick_note/core/utils/note_helper.dart';
-import 'package:quick_note/feature/home/domain/usecase/update_multiple_notes_usecase.dart';
 import 'package:quick_note/feature/notebook/presentation/bloc/notebook_bloc.dart';
 import 'package:quick_note/l10n/l10n.dart';
 import 'package:quick_note/preferences/theme/app_custom_colors.dart';
@@ -20,6 +19,10 @@ class NotebookDesktopIconsMenu extends StatelessWidget {
 
         return Row(
           children: [
+            _UndoButton(notebookBloc: notebookBloc),
+            const SizedBox(width: Insets.xxs),
+            _RedoButton(notebookBloc: notebookBloc),
+            const SizedBox(width: Insets.s),
             _ColorPickerButton(notebookBloc: notebookBloc),
             const SizedBox(width: Insets.xxs),
             if (isNotArchived)
@@ -50,9 +53,7 @@ class _ColorPickerButton extends StatelessWidget {
         final color = await NoteHelper.showNoteColorPickerDialog(context);
         if (color != null) {
           notebookBloc.add(
-            NotebookUpdateNote(
-              updates: NoteUpdates(color: color),
-            ),
+            NotebookChangeColor(color: color),
           );
         }
       },
@@ -137,6 +138,50 @@ class _DeleteButton extends StatelessWidget {
         message: context.l10n.note_settings_delete,
         child: Icon(
           Icons.delete_outline,
+          color: Theme.of(context).editHeaderForegroundColor?.withAlpha(200),
+        ),
+      ),
+    );
+  }
+}
+
+class _UndoButton extends StatelessWidget {
+  const _UndoButton({required this.notebookBloc});
+
+  final NotebookBloc notebookBloc;
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: () {
+        notebookBloc.add(NotebookUndo());
+      },
+      icon: Tooltip(
+        message: context.l10n.note_settings_undo,
+        child: Icon(
+          Icons.undo,
+          color: Theme.of(context).editHeaderForegroundColor?.withAlpha(200),
+        ),
+      ),
+    );
+  }
+}
+
+class _RedoButton extends StatelessWidget {
+  const _RedoButton({required this.notebookBloc});
+
+  final NotebookBloc notebookBloc;
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: () {
+        notebookBloc.add(NotebookRedo());
+      },
+      icon: Tooltip(
+        message: context.l10n.note_settings_redo,
+        child: Icon(
+          Icons.redo,
           color: Theme.of(context).editHeaderForegroundColor?.withAlpha(200),
         ),
       ),
