@@ -57,6 +57,8 @@
   "note_settings_color": "색상 변경",
   "note_settings_star": "별표",
   "note_settings_archive": "보관",
+  "note_settings_undo" : "실행 취소",
+  "note_settings_redo" : "다시 실행",
   "note_settings_delete": "삭제",
   "note_settings_delete_forever": "영구 삭제",
   "note_settings_restore": "복원",
