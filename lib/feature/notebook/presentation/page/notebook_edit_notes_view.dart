@@ -83,11 +83,14 @@ class _NotebookEditNotesViewState extends State<NotebookEditNotesView> {
             ],
     );
   }
+
+  Widget _buildTitleTextField() {
+    return SliverToBoxAdapter(
             child: NotebookTitleTextField(
               focusNode: _focusNode,
             ),
-          ),
-          ...(widget.note?.content ?? []).map(
+    );
+  }
             (block) => SliverToBoxAdapter(
               child: NoteBlockBuilder(
                 noteBlock: block,
