@@ -189,7 +189,24 @@ final NotebookCommandManager commandManager;
   }
 
   FutureOr<void> _changeColor(
-      NotebookChangeColor event, Emitter<NotebookState> emit) async {}
+      NotebookChangeColor event, Emitter<NotebookState> emit) async {
+    final note = state.note;
+    if (note == null) return;
+
+    final command =
+        NotebookChangeNoteColorCommand(note: note, color: event.color);
+
+    final updates = commandManager.execute(command);
+
+    final noteUpdates = UpdateSingleNoteParams(
+      note: note,
+      updates: updates,
+    );
+
+    final result = await updateSingleNote.call(noteUpdates);
+    _handleResult(
+        result, () => emit(state.copyWith(note: noteUpdates.update())));
+  }
 
   FutureOr<void> _toggleStar(
       NotebookToggleStar event, Emitter<NotebookState> emit) async {
