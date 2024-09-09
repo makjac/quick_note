@@ -39,7 +39,6 @@ void main() {
       expect(newState.block, updatedBlock);
       expect(newState.addingStatus, updatedStatus);
 
-      // Ensure the original state has not changed
       expect(initialState.block, const BookmarksBlock(id: -1));
       expect(initialState.addingStatus, AddBookmarkStatus.none);
     });
@@ -63,6 +62,31 @@ void main() {
 
       const updatedBlock = BookmarksBlock(id: 2);
       const state3 = BookmarksBlockState(block: updatedBlock);
+
+      expect(state1, isNot(state3));
+    });
+  });
+
+  group('BookmarksBlockUndoRedoState', () {
+    test('should create a new state from an existing state', () {
+      const initialState = BookmarksBlockState(
+        block: BookmarksBlock(id: 1),
+        addingStatus: AddBookmarkStatus.none,
+      );
+
+      final undoRedoState = BookmarksBlockUndoRedoState.fromState(initialState);
+
+      expect(undoRedoState.block, initialState.block);
+      expect(undoRedoState.addingStatus, initialState.addingStatus);
+    });
+
+    test('should be equatable based on its properties', () {
+      const state1 = BookmarksBlockUndoRedoState(block: BookmarksBlock(id: 1));
+      const state2 = BookmarksBlockUndoRedoState(block: BookmarksBlock(id: 1));
+
+      expect(state1, state2);
+
+      const state3 = BookmarksBlockUndoRedoState(block: BookmarksBlock(id: 2));
 
       expect(state1, isNot(state3));
     });
