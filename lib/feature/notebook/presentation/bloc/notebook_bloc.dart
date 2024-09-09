@@ -230,16 +230,20 @@ final NotebookCommandManager commandManager;
   FutureOr<void> _toggleArchive(
       NotebookToggleArchive event, Emitter<NotebookState> emit) async {
     final note = state.note;
-
     if (note == null) return;
 
-    final updates = UpdateSingleNoteParams(
+    final command = NotebookToggleArchiveCommand(note: note);
+
+    final updates = commandManager.execute(command);
+
+    final noteUpdates = UpdateSingleNoteParams(
       note: note,
-      updates: NoteUpdates(archived: !note.archived),
+      updates: updates,
     );
 
-    final result = await updateSingleNote.call(updates);
-    _handleResult(result, () => emit(state.copyWith(note: updates.update())));
+    final result = await updateSingleNote.call(noteUpdates);
+    _handleResult(
+        result, () => emit(state.copyWith(note: noteUpdates.update())));
   }
 
   FutureOr<void> _handleMoveToTrash(
