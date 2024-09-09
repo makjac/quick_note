@@ -33,6 +33,12 @@ class _TodoBlockBody extends StatefulWidget {
 class _TodoBlockBodyState extends State<_TodoBlockBody> {
   late TextEditingController _titleController;
 
+  @override
+  void initState() {
+    _titleController = TextEditingController()
+      ..text = BlocProvider.of<TodoBlockCubit>(context).state.block.title;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
