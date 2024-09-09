@@ -181,15 +181,16 @@ block: initialBlock,
       build: () => cubit,
       act: (cubit) => cubit.changeBlockTitleVisibility(false),
       expect: () => [
-        const TodoBlockState(
-          block: TodoBlock(
-            id: 1,
-            items: [
-              ChecklistItem(id: 1, title: 'Item 1', isChecked: false),
-              ChecklistItem(id: 2, title: 'Item 2', isChecked: true),
-            ],
-            hasTitle: false,
-          ),
+          isA<TodoBlockState>()
+              .having(
+                (state) => state.block.hasTitle,
+                'hasTitle',
+                false,
+              )
+              .having(
+                (state) => state.command,
+                'command',
+                isA<TodoBlockTitleVisibilityCommand>(),
         ),
       ],
     );
