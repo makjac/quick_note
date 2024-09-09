@@ -31,4 +31,13 @@ class NotebookCommandManagerImpl implements NotebookCommandManager {
     _redoStack.clear();
     return command.execute();
   }
+
+  @override
+  NoteUpdates? undo() {
+    if (_undoStack.isEmpty) return null;
+
+    final command = _undoStack.removeLast();
+    _redoStack.add(command);
+    return command.undo();
+  }
 }
