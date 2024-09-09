@@ -70,8 +70,13 @@ class TextBlockCubit extends Cubit<TextBlockState> {
   Future<void> setMaxLinesLimitOption(bool? isEnabled) async {
     if (isEnabled == null) return;
 
-    final updatedBlock = state.block.copyWith(hasMaxLineLimit: isEnabled);
-    emit(state.copyWith(block: updatedBlock));
+    final command = TextBlockToggleLinesLimitCommand(
+      block: state.block,
+      newHasLinesLimit: isEnabled,
+    );
+
+    final updatedBlock = command.execute();
+    emit(state.copyWith(block: updatedBlock, command: command));
   }
 
   Future<void> setTextLinecountLimit(int? limit) async {
