@@ -92,7 +92,7 @@ class _TextBlockContentState extends State<TextBlockContent> {
         AnimatedSize(
           duration: const Duration(milliseconds: 250),
           alignment: Alignment.topCenter,
-          child: TextField(
+            child: DebounceTextField(
             controller: _controller,
             focusNode: _focusNode,
             maxLines: _maxLinesLimit(),
@@ -107,10 +107,11 @@ class _TextBlockContentState extends State<TextBlockContent> {
             style: const TextStyle(
               letterSpacing: .6,
             ),
-            onChanged: (value) {
+              onDebounceChange: (value) {
               context.read<TextBlockCubit>().changeNoteText(value);
               if (widget.block.hasMaxLineLimit) _updateDisplayedLineCount();
             },
+            ),
           ),
         ),
         if (_showExpandButton())
