@@ -33,5 +33,16 @@ void main() {
       expect(newState.block, block);
       expect(newState, equals(state));
     });
+
+    test('TodoBlockAddedNewTaskItem creates a new state with added item', () {
+      const block = TodoBlock(id: 1, items: []);
+      const state = TodoBlockState(block: block);
+      const item = ChecklistItem(id: 1, title: 'New Task');
+
+      final newState = TodoBlockAddedNewTaskItem.fromState(state, item);
+
+      expect(newState.block, block);
+      expect(newState.item, item);
+    });
   });
 }
