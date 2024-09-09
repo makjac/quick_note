@@ -122,4 +122,11 @@ class BookmarksBlockCubit extends Cubit<BookmarksBlockState> {
 
     emit(state.copyWith(block: updatedBlock));
   }
+
+  Future<void> undo(NotebookCommand command) async {
+    final updatedBlock = command.undo();
+
+    emit(BookmarksBlockUndoRedoState.fromState(
+        state.copyWith(block: updatedBlock)));
+  }
 }
