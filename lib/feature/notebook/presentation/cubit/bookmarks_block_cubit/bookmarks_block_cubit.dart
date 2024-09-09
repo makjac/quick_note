@@ -53,8 +53,11 @@ class BookmarksBlockCubit extends Cubit<BookmarksBlockState> {
   }
 
   FutureOr<void> changeBlockTitle(String title) {
-    final updatedBlock = state.block.copyWith(title: title);
-    emit(state.copyWith(block: updatedBlock));
+    final command =
+        BookmarkBlockChangeTitleCommand(block: state.block, newTitle: title);
+
+    final updatedBlock = command.execute();
+    emit(state.copyWith(block: updatedBlock, command: command));
   }
 
   FutureOr<void> addBookmark(String url) async {
