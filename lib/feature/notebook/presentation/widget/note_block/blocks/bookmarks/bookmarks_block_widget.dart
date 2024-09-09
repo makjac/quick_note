@@ -33,16 +33,40 @@ class BookmarksBlockWidget extends StatelessWidget {
   }
 }
 
-class _BookmarksBlockBody extends StatelessWidget {
+class _BookmarksBlockBody extends StatefulWidget {
   const _BookmarksBlockBody();
+
+  @override
+  State<_BookmarksBlockBody> createState() => _BookmarksBlockBodyState();
+}
+
+class _BookmarksBlockBodyState extends State<_BookmarksBlockBody> {
+  late TextEditingController _titleController;
+
+  @override
+  void initState() {
+    _titleController = TextEditingController()
+      ..text = BlocProvider.of<BookmarksBlockCubit>(context).state.block.title;
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<BookmarksBlockCubit, BookmarksBlockState>(
       listenWhen: (previous, current) => previous.block != current.block,
       listener: (context, state) {
-        BlocProvider.of<NotebookBloc>(context)
-            .add(NotebookUpdateNoteBlock(block: state.block));
+        BlocProvider.of<NotebookBloc>(context).add(
+          NotebookUpdateNoteBlock(
+            block: state.block,
+            command: state.command,
+          ),
+        );
       },
       builder: (context, state) {
         return Column(
@@ -65,11 +89,19 @@ class _BookmarksBlockBody extends StatelessWidget {
 
   Widget _blockTitle(BuildContext context, BookmarksBlockState state) {
     if (state.block.hasTitle) {
-      return NoteBlockTitle(
-        initValue: state.block.title,
-        hintText: context.l10n.bookmark_block_title_hint_text,
-        onChanged: (title) =>
-            context.read<BookmarksBlockCubit>().changeBlockTitle(title),
+      return BlocListener<BookmarksBlockCubit, BookmarksBlockState>(
+        listener: (context, state) {
+          _titleController.text = state.block.title;
+        },
+        listenWhen: (previous, current) =>
+            current is BookmarksBlockUndoRedoState,
+        child: NoteBlockTitle(
+          controller: _titleController,
+          initValue: state.block.title,
+          hintText: context.l10n.bookmark_block_title_hint_text,
+          onChanged: (title) =>
+              context.read<BookmarksBlockCubit>().changeBlockTitle(title),
+        ),
       );
     } else {
       return const SizedBox(height: Insets.s);
