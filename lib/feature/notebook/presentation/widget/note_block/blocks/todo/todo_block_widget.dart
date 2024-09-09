@@ -41,6 +41,12 @@ class _TodoBlockBodyState extends State<_TodoBlockBody> {
   }
 
   @override
+  void dispose() {
+    _titleController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocConsumer<TodoBlockCubit, TodoBlockState>(
       listenWhen: (previous, current) => previous.block != current.block,
