@@ -7,7 +7,6 @@ import 'package:quick_note/feature/notebook/domain/entity/favicon_data.dart';
 import 'package:quick_note/feature/notebook/domain/repository/bookmarks_repository.dart';
 import 'package:quick_note/feature/notebook/domain/usecase/fetch_all_favicon_data_usecase.dart';
 
-// Tworzymy klasę mockującą interfejs BookmarkRepository
 class MockBookmarkRepository extends Mock implements BookmarkRepository {}
 
 void main() {
@@ -27,7 +26,6 @@ void main() {
         url: 'https://example.com/high-res-icon.png', sizes: '32x32')
   ];
 
-  // Rejestracja parametrów, które będą używane w mockowaniu
   setUpAll(() {
     registerFallbackValue(testUrl);
   });

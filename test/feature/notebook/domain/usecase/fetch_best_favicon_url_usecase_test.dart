@@ -5,7 +5,6 @@ import 'package:quick_note/core/error/failure/network_failure.dart';
 import 'package:quick_note/feature/notebook/domain/repository/bookmarks_repository.dart';
 import 'package:quick_note/feature/notebook/domain/usecase/fetch_best_favicon_url_usecase.dart';
 
-// Tworzymy klasę mockującą interfejs BookmarkRepository
 class MockBookmarkRepository extends Mock implements BookmarkRepository {}
 
 void main() {
@@ -20,7 +19,6 @@ void main() {
   const testUrl = 'https://example.com';
   const expectedFaviconUrl = 'https://example.com/favicon.ico';
 
-  // Rejestracja parametrów, które będą używane w mockowaniu
   setUpAll(() {
     registerFallbackValue(testUrl);
   });
