@@ -1,12 +1,18 @@
 part of '../../note_block_builder.dart';
 
 class NoteBlockTitle extends StatefulWidget {
-  const NoteBlockTitle(
-      {super.key, this.initValue, this.onChanged, required this.hintText});
+  const NoteBlockTitle({
+    super.key,
+    this.initValue,
+    this.onChanged,
+    required this.hintText,
+    this.controller,
+  });
 
   final String? initValue;
   final String hintText;
   final void Function(String title)? onChanged;
+  final TextEditingController? controller;
 
   @override
   State<NoteBlockTitle> createState() => _NoteBlockTitleState();
@@ -17,19 +23,22 @@ class _NoteBlockTitleState extends State<NoteBlockTitle> {
 
   @override
   void initState() {
-    _controller = TextEditingController(text: widget.initValue);
+    _controller =
+        widget.controller ?? TextEditingController(text: widget.initValue);
     super.initState();
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    if (widget.controller == null) {
+      _controller.dispose();
+    }
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return DebounceTextField(
       controller: _controller,
       textCapitalization: TextCapitalization.sentences,
       maxLines: null,
@@ -42,7 +51,7 @@ class _NoteBlockTitleState extends State<NoteBlockTitle> {
         letterSpacing: .7,
         fontSize: 17,
       ),
-      onChanged: widget.onChanged,
+      onDebounceChange: widget.onChanged ?? (_) {},
     );
   }
 }
