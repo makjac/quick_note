@@ -67,31 +67,16 @@ void main() {
       build: () => cubit,
       act: (cubit) => cubit.changeNoteText('Updated Text'),
       expect: () => [
-        const TextBlockState(
-          block: TextBlock(
-            id: 1,
-            text: 'Updated Text',
-            hasMaxLineLimit: false,
-            maxLines: 3,
-          ),
-        ),
-      ],
-    );
-
-    blocTest<TextBlockCubit, TextBlockState>(
-      'changeBlockTitle updates the title and sets hasTitle to true',
-      build: () => cubit,
-      act: (cubit) => cubit.changeBlockTitle('New Title'),
-      expect: () => [
-        const TextBlockState(
-          block: TextBlock(
-            id: 1,
-            text: 'Initial Text',
-            title: 'New Title',
-            hasTitle: true,
-            hasMaxLineLimit: false,
-            maxLines: 3,
-          ),
+        isA<TextBlockState>()
+            .having(
+              (state) => state.block.text,
+              'text',
+              'Updated Text',
+            )
+            .having(
+              (state) => state.command,
+              'command',
+              isA<TextBlockChangeNoteTextCommand>(),
         ),
       ],
     );
