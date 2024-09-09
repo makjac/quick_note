@@ -1,21 +1,38 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+import 'package:quick_note/feature/notebook/domain/command/text_block_command/text_block_change_note_text_command.dart';
+import 'package:quick_note/feature/notebook/domain/command/text_block_command/text_block_set_text_line_limit_command.dart';
+import 'package:quick_note/feature/notebook/domain/command/text_block_command/text_block_title_visibility_command.dart';
+import 'package:quick_note/feature/notebook/domain/command/text_block_command/text_block_toggle_lines_limit_command.dart';
+import 'package:quick_note/feature/notebook/presentation/bloc/notebook_bloc.dart';
 import 'package:quick_note/feature/notebook/presentation/cubit/text_block_cubit/text_block_cubit.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/blocks/text/text_block.dart';
+
+class MockNotebookBloc extends Mock implements NotebookBloc {}
 
 void main() {
   group('TextBlockCubit', () {
     late TextBlockCubit cubit;
     late TextBlock initialBlock;
+    late NotebookBloc mockNotebookBloc;
 
     setUp(() {
+      mockNotebookBloc = MockNotebookBloc();
+
+      when(() => mockNotebookBloc.stream)
+          .thenAnswer((_) => const Stream<NotebookState>.empty());
+
       initialBlock = const TextBlock(
         id: 1,
         text: 'Initial Text',
         hasMaxLineLimit: false,
         maxLines: 3,
       );
-      cubit = TextBlockCubit(block: initialBlock);
+      cubit = TextBlockCubit(
+        block: initialBlock,
+        notebookBloc: mockNotebookBloc,
+      );
     });
 
     test('initial state is correct', () {
