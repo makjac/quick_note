@@ -80,7 +80,15 @@ class TextBlockCubit extends Cubit<TextBlockState> {
   }
 
   Future<void> setTextLinecountLimit(int? limit) async {
-    final updatedBlock = state.block.copyWith(maxLines: limit);
-    emit(state.copyWith(block: updatedBlock));
+    if (limit == null) return;
+
+    final command = TextBlockSetTextLineLimitCommand(
+      block: state.block,
+      newLineLimit: limit,
+    );
+
+    final updatedBlock = command.execute();
+    emit(state.copyWith(block: updatedBlock, command: command));
+  }
   }
 }
