@@ -266,4 +266,25 @@ final NotebookCommandManager commandManager;
 
     await deleteNote.call(state.note!.id);
   }
+
+  FutureOr<void> _changeNoteTitle(
+      NotebookChangeNoteTitle event, Emitter<NotebookState> emit) async {
+    if (state.note == null) return;
+
+    final note = state.note!;
+
+    final command =
+        NotebookChangeNoteTitleCommand(note: note, newTitle: event.title);
+
+    final updates = commandManager.execute(command);
+
+    final noteUpdates = UpdateSingleNoteParams(
+      note: note,
+      updates: updates,
+    );
+
+    final result = await updateSingleNote.call(noteUpdates);
+    _handleResult(
+        result, () => emit(state.copyWith(note: noteUpdates.update())));
+  }
 }
