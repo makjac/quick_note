@@ -60,4 +60,13 @@ class NotebookCommandManagerImpl implements NotebookCommandManager {
   void pushToRedoStack(NotebookCommand command) {
     _redoStack.add(command);
   }
+
+  @override
+  NotebookCommand? popUndoStack() {
+    if (_undoStack.isEmpty) return null;
+
+    final command = _undoStack.removeLast();
+    _redoStack.add(command);
+    return command;
+  }
 }
