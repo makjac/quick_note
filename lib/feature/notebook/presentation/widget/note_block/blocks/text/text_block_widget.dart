@@ -66,11 +66,18 @@ class _TextBlockBodyState extends State<_TextBlockBody> {
 
   Widget _blockTitle(BuildContext context, TextBlockState state) {
     if (state.block.hasTitle) {
-      return NoteBlockTitle(
+      return BlocListener<TextBlockCubit, TextBlockState>(
+        listener: (context, state) {
+          _titleController.text = state.block.title;
+        },
+        listenWhen: (previous, current) => current is TextBlockUndoRedoState,
+        child: NoteBlockTitle(
+          controller: _titleController,
         initValue: state.block.title,
         hintText: context.l10n.text_block_title_hint_text,
         onChanged: (title) =>
             context.read<TextBlockCubit>().changeBlockTitle(title),
+        ),
       );
     } else {
       return const SizedBox(height: Insets.s);
