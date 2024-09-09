@@ -7,6 +7,13 @@ import 'package:quick_note/feature/home/domain/usecase/create_note_usecase.dart'
 import 'package:quick_note/feature/home/domain/usecase/delete_single_note_usecase.dart';
 import 'package:quick_note/feature/home/domain/usecase/update_multiple_notes_usecase.dart';
 import 'package:quick_note/feature/home/domain/usecase/update_note_usecase.dart';
+import 'package:quick_note/feature/notebook/domain/command/notebook_add_note_block_command.dart';
+import 'package:quick_note/feature/notebook/domain/command/notebook_change_note_color_command.dart';
+import 'package:quick_note/feature/notebook/domain/command/notebook_change_note_title_command.dart';
+import 'package:quick_note/feature/notebook/domain/command/notebook_command.dart';
+import 'package:quick_note/feature/notebook/domain/command/notebook_remove_note_block_command.dart';
+import 'package:quick_note/feature/notebook/domain/command/notebook_toggle_archive_command.dart';
+import 'package:quick_note/feature/notebook/domain/command/notebook_toggle_note_star_command.dart';
 import 'package:quick_note/feature/notebook/domain/command_manager/notebook_command_manager.dart';
 import 'package:quick_note/feature/notebook/domain/usecase/get_note_by_key_usecase.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/blocks/bookmarks/bookmarks_block.dart';
@@ -15,6 +22,7 @@ import 'package:quick_note/feature/shared/domain/entity/note/blocks/todo/todo_bl
 import 'package:quick_note/feature/shared/domain/entity/note/note.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note_block.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note_block_type.dart';
+import 'package:quick_note/feature/shared/domain/entity/note/note_colors.dart';
 
 part 'notebook_event.dart';
 part 'notebook_state.dart';
@@ -93,17 +101,20 @@ final NotebookCommandManager commandManager;
       NotebookDeleteBlock event, Emitter<NotebookState> emit) async {
     if (state.note == null) return;
 
-    final updatedContent = state.note!.content
-        .where((block) => block.id != event.blockId)
-        .toList();
+    final command = NotebookRemoveNoteBlockCommand(
+        note: state.note, blockId: event.blockId);
 
-    final updates = UpdateSingleNoteParams(
+    final updates = commandManager.execute(command);
+
+    final noteUpdates = UpdateSingleNoteParams(
       note: state.note!,
-      updates: NoteUpdates(content: updatedContent),
+      updates: updates,
     );
 
-    final result = await updateSingleNote.call(updates);
-    _handleResult(result, () => emit(state.copyWith(note: updates.update())));
+    final result = await updateSingleNote.call(noteUpdates);
+    _handleResult(result, () {
+      emit(state.copyWith(note: noteUpdates.update()));
+    });
   }
 
   FutureOr<void> _handleAddNoteBlock(
