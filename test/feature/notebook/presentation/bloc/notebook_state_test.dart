@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:quick_note/feature/notebook/domain/command/notebook_change_note_title_command.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note.dart';
 import 'package:quick_note/feature/notebook/presentation/bloc/notebook_bloc.dart';
 
@@ -57,6 +58,14 @@ void main() {
 
     test('NotebookNoteDeleted is a subclass of NotebookState', () {
       expect(NotebookNoteDeleted(), isA<NotebookState>());
+    });
+
+    test('NotebookUndoRedoState can be created from state', () {
+      final state = NotebookState(note: testNote);
+      final undoRedoState = NotebookUndoRedoState.fromState(state);
+
+      expect(undoRedoState.note, equals(testNote));
+      expect(undoRedoState, isA<NotebookUndoRedoState>());
     });
   });
 }
