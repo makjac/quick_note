@@ -96,9 +96,10 @@ FutureOr<void> _initBookmarks() async {
         () => FetchBestFaviconUrlUsecase(repository: locator()))
     ..registerLazySingleton<IsValidFaviconUrlUsecase>(
         () => IsValidFaviconUrlUsecase(repository: locator()))
-    ..registerFactoryParam<BookmarksBlockCubit, BookmarksBlock?, void>(
-      (block, _) => BookmarksBlockCubit(
+    ..registerFactoryParam<BookmarksBlockCubit, BookmarksBlock?, NotebookBloc>(
+      (block, notebookBlocSubscription) => BookmarksBlockCubit(
         block: block,
+        notebookBloc: notebookBlocSubscription,
         fetchBestFaviconUrlUsecase: locator(),
       ),
     );
