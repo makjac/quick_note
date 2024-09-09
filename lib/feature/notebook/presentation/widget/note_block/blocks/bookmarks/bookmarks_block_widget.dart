@@ -18,7 +18,10 @@ class BookmarksBlockWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => locator<BookmarksBlockCubit>(param1: block),
+      create: (context) => locator<BookmarksBlockCubit>(
+        param1: block,
+        param2: context.read<NotebookBloc>(),
+      ),
       child: Builder(builder: (context) {
         return NoteBlockWidget(
           block: const _BookmarksBlockBody(),
