@@ -43,12 +43,14 @@ class NotebookAddNoteBlock extends NotebookEvent {
 class NotebookUpdateNoteBlock extends NotebookEvent {
   const NotebookUpdateNoteBlock({
     required this.block,
+    this.command,
   });
 
   final NoteBlock block;
+  final NotebookCommand? command;
 
   @override
-  List<Object> get props => [block];
+  List<Object> get props => [block, command ?? -1];
 }
 
 class NotebookDeleteBlock extends NotebookEvent {
