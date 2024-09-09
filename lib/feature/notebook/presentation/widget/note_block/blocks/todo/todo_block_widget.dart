@@ -10,8 +10,8 @@ class TodoBlockWidget extends StatelessWidget {
     return BlocProvider(
       create: (context) => TodoBlockCubit(
         notebookBloc: context.read<NotebookBloc>(),
-block: block,
-),
+        block: block,
+      ),
       child: Builder(
         builder: (context) => NoteBlockWidget(
           block: const _TodoBlockBody(),
@@ -51,12 +51,12 @@ class _TodoBlockBodyState extends State<_TodoBlockBody> {
     return BlocConsumer<TodoBlockCubit, TodoBlockState>(
       listenWhen: (previous, current) => previous.block != current.block,
       listener: (context, state) {
-        BlocProvider.of<NotebookBloc>(context)            .add(
-NotebookUpdateNoteBlock(
-block: state.block,
+        BlocProvider.of<NotebookBloc>(context).add(
+          NotebookUpdateNoteBlock(
+            block: state.block,
             command: state.command,
           ),
-);
+        );
       },
       builder: (context, state) {
         return Column(
@@ -76,11 +76,18 @@ block: state.block,
 
   Widget _blockTitle(BuildContext context, TodoBlockState state) {
     if (state.block.hasTitle) {
-      return NoteBlockTitle(
-        initValue: state.block.title,
-        hintText: context.l10n.todo_block_title_hint_text,
-        onChanged: (title) =>
-            context.read<TodoBlockCubit>().changeBlockTitle(title),
+      return BlocListener<TodoBlockCubit, TodoBlockState>(
+        listener: (context, state) {
+          _titleController.text = state.block.title;
+        },
+        listenWhen: (previous, current) => current is TodoBlockUndoRedoState,
+        child: NoteBlockTitle(
+          controller: _titleController,
+          initValue: state.block.title,
+          hintText: context.l10n.todo_block_title_hint_text,
+          onChanged: (title) =>
+              context.read<TodoBlockCubit>().changeBlockTitle(title),
+        ),
       );
     } else {
       return const SizedBox(height: Insets.s);
