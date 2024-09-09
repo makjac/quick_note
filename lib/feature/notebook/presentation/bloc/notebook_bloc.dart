@@ -124,15 +124,20 @@ final NotebookCommandManager commandManager;
     final block = _createNoteBlock(event.type);
     if (block == null) return;
 
-    final updates = UpdateSingleNoteParams(
+    final command =
+        NotebookAddNoteBlockCommand(note: state.note, noteBlock: block);
+
+    final updates = commandManager.execute(command);
+
+    final noteUpdates = UpdateSingleNoteParams(
       note: state.note!,
-      updates: NoteUpdates(content: [...state.note!.content, block]),
+      updates: updates,
     );
 
-    final result = await updateSingleNote.call(updates);
+    final result = await updateSingleNote.call(noteUpdates);
     _handleResult(result, () {
       emit(NotebookNoteBlockAdded.fromState(
-        state.copyWith(note: updates.update()),
+        state.copyWith(note: noteUpdates.update()),
         block,
       ));
     });
