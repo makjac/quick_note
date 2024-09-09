@@ -35,8 +35,11 @@ class BookmarksBlockCubit extends Cubit<BookmarksBlockState> {
   Future<void> changeFaviconsVisibility(bool? visible) async {
     if (visible == null) return;
 
-    final updatedBlock = state.block.copyWith(visibleFavicons: visible);
-    emit(state.copyWith(block: updatedBlock));
+    final command = BookmarkBlockToggleShowFaviconCommand(
+        block: state.block, showFavicon: visible);
+
+    final updatedBlock = command.execute();
+    emit(state.copyWith(block: updatedBlock, command: command));
   }
 
   Future<void> changeBookmarksViewMode(BookmarkViewMode? visible) async {
