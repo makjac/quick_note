@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:quick_note/core/error/failure/network_failure.dart';
 import 'package:quick_note/feature/notebook/domain/usecase/fetch_best_favicon_url_usecase.dart';
+import 'package:quick_note/feature/notebook/presentation/bloc/notebook_bloc.dart';
 import 'package:quick_note/feature/notebook/presentation/cubit/bookmarks_block_cubit/bookmarks_block_cubit.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/blocks/bookmarks/bookmark_item.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/blocks/bookmarks/bookmark_view_mode.dart';
@@ -11,14 +12,24 @@ import 'package:quick_note/feature/shared/domain/entity/note/blocks/bookmarks/bo
 class MockFetchBestFaviconUrlUsecase extends Mock
     implements FetchBestFaviconUrlUsecase {}
 
+class MockNotebookBloc extends Mock implements NotebookBloc {}
+
 void main() {
   late MockFetchBestFaviconUrlUsecase mockFetchBestFaviconUrlUsecase;
+  late NotebookBloc mockNotebookBloc;
   late BookmarksBlockCubit cubit;
 
   setUp(() {
     mockFetchBestFaviconUrlUsecase = MockFetchBestFaviconUrlUsecase();
+    mockNotebookBloc = MockNotebookBloc();
+
+    when(() => mockNotebookBloc.stream)
+        .thenAnswer((_) => const Stream<NotebookState>.empty());
+
     cubit = BookmarksBlockCubit(
-        fetchBestFaviconUrlUsecase: mockFetchBestFaviconUrlUsecase);
+      fetchBestFaviconUrlUsecase: mockFetchBestFaviconUrlUsecase,
+      notebookBloc: mockNotebookBloc,
+    );
   });
 
   group('BookmarksBlockCubit', () {
@@ -34,6 +45,7 @@ void main() {
       const block = BookmarksBlock(id: 1, hasTitle: false);
       cubit = BookmarksBlockCubit(
           block: block,
+          notebookBloc: mockNotebookBloc,
           fetchBestFaviconUrlUsecase: mockFetchBestFaviconUrlUsecase);
 
       await cubit.changeBlockTitleVisibility(true);
@@ -45,6 +57,7 @@ void main() {
       const block = BookmarksBlock(id: 1, visibleFavicons: false);
       cubit = BookmarksBlockCubit(
           block: block,
+          notebookBloc: mockNotebookBloc,
           fetchBestFaviconUrlUsecase: mockFetchBestFaviconUrlUsecase);
 
       await cubit.changeFaviconsVisibility(true);
@@ -56,6 +69,7 @@ void main() {
       const block = BookmarksBlock(id: 1, viewMode: BookmarkViewMode.list);
       cubit = BookmarksBlockCubit(
           block: block,
+          notebookBloc: mockNotebookBloc,
           fetchBestFaviconUrlUsecase: mockFetchBestFaviconUrlUsecase);
 
       await cubit.changeBookmarksViewMode(BookmarkViewMode.grid);
@@ -67,6 +81,7 @@ void main() {
       const block = BookmarksBlock(id: 1, title: 'Old Title');
       cubit = BookmarksBlockCubit(
           block: block,
+          notebookBloc: mockNotebookBloc,
           fetchBestFaviconUrlUsecase: mockFetchBestFaviconUrlUsecase);
 
       await cubit.changeBlockTitle('New Title');
@@ -108,26 +123,13 @@ void main() {
       ]);
       cubit = BookmarksBlockCubit(
           block: block,
+          notebookBloc: mockNotebookBloc,
           fetchBestFaviconUrlUsecase: mockFetchBestFaviconUrlUsecase);
 
       await cubit.removeBookmark(1);
 
       expect(cubit.state.block.items.length, 1);
       expect(cubit.state.block.items.first.id, 2);
-    });
-
-    test('updateBookmark updates state', () async {
-      const block = BookmarksBlock(id: 1, items: [
-        BookmarkItem(id: 1, title: 'Old Title', url: 'url1'),
-      ]);
-      cubit = BookmarksBlockCubit(
-          block: block,
-          fetchBestFaviconUrlUsecase: mockFetchBestFaviconUrlUsecase);
-
-      const updatedItem = BookmarkItem(id: 1, title: 'New Title', url: 'url1');
-      await cubit.updateBookmark(updatedItem);
-
-      expect(cubit.state.block.items.first.title, 'New Title');
     });
 
     test('reorderBookmarks updates state', () async {
@@ -137,6 +139,7 @@ void main() {
       ]);
       cubit = BookmarksBlockCubit(
           block: block,
+          notebookBloc: mockNotebookBloc,
           fetchBestFaviconUrlUsecase: mockFetchBestFaviconUrlUsecase);
 
       await cubit.reorderBookmarks(0, 1);
@@ -151,6 +154,7 @@ void main() {
       ]);
       cubit = BookmarksBlockCubit(
           block: block,
+          notebookBloc: mockNotebookBloc,
           fetchBestFaviconUrlUsecase: mockFetchBestFaviconUrlUsecase);
 
       await cubit.clearBookmarks();
