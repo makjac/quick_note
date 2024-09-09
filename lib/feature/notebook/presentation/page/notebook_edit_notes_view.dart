@@ -73,40 +73,47 @@ class _NotebookEditNotesViewState extends State<NotebookEditNotesView> {
 
   Widget _buildAppBar(Color noteColor, double width) {
     return SliverAppBar(
-            centerTitle: true,
-            backgroundColor: noteColor,
-            pinned: true,
-            shadowColor: noteColor,
-            actions: [
-              if (AppConstans.mobileSize > width) NotebookPopupMenu(context),
+      centerTitle: true,
+      backgroundColor: noteColor,
+      pinned: true,
+      shadowColor: noteColor,
+      actions: [
+        if (AppConstans.mobileSize > width) NotebookPopupMenu(context),
         if (AppConstans.mobileSize < width) const NotebookDesktopIconsMenu(),
-            ],
+      ],
     );
   }
 
   Widget _buildTitleTextField() {
     return SliverToBoxAdapter(
-            child: NotebookTitleTextField(
-              focusNode: _focusNode,
-            ),
+      child: NotebookTitleTextField(
+        focusNode: _focusNode,
+      ),
     );
   }
-            (block) => SliverToBoxAdapter(
-              child: NoteBlockBuilder(
-                noteBlock: block,
+
+  List<Widget> _buildNoteBlocks() {
+    return widget.note?.content
+            .map(
+              (block) => SliverToBoxAdapter(
+                key: ValueKey(block.id),
+                child: NoteBlockBuilder(
+                  noteBlock: block,
+                ),
               ),
-            ),
-          ),
-          const SliverToBoxAdapter(
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: EdgeInsets.all(Insets.s),
-                child: AddNoteBlockButton(),
-              ),
-            ),
-          )
-        ],
+            )
+            .toList() ??
+        [];
+  }
+
+  Widget _buildAddNoteButton() {
+    return const SliverToBoxAdapter(
+      child: Align(
+        alignment: Alignment.centerLeft,
+        child: Padding(
+          padding: EdgeInsets.all(Insets.s),
+          child: AddNoteBlockButton(),
+        ),
       ),
     );
   }
