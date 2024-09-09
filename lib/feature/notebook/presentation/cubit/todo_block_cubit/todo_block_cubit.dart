@@ -49,12 +49,13 @@ class TodoBlockCubit extends Cubit<TodoBlockState> {
 
     final newTaskItem = ChecklistItem(id: maxId + 1);
 
-    final updatedItems = List<ChecklistItem>.from(state.block.items)
-      ..add(newTaskItem);
+    final command =
+        TodoBlockAddTaskCommand(block: state.block, newTaskItem: newTaskItem);
 
-    final updatedBlock = state.block.copyWith(items: updatedItems);
+    final updatedBlock = command.execute();
+
     emit(TodoBlockAddedNewTaskItem.fromState(
-      state.copyWith(block: updatedBlock),
+      state.copyWith(block: updatedBlock, command: command),
       newTaskItem,
     ));
   }
