@@ -58,8 +58,13 @@ class TextBlockCubit extends Cubit<TextBlockState> {
   Future<void> changeBlockTitleVisibility(bool? visibility) async {
     if (visibility == null) return;
 
-    final updatedBlock = state.block.copyWith(hasTitle: visibility);
-    emit(state.copyWith(block: updatedBlock));
+    final command = TextBlockTitleVisibilityCommand(
+      block: state.block,
+      newTitleVisibility: visibility,
+    );
+
+    final updatedBlock = command.execute();
+    emit(state.copyWith(block: updatedBlock, command: command));
   }
 
   Future<void> setMaxLinesLimitOption(bool? isEnabled) async {
