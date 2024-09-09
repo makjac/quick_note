@@ -105,14 +105,16 @@ void main() {
       build: () => cubit,
       act: (cubit) => cubit.setMaxLinesLimitOption(true),
       expect: () => [
-        const TextBlockState(
-          block: TextBlock(
-            id: 1,
-            text: 'Initial Text',
-            hasTitle: false,
-            hasMaxLineLimit: true,
-            maxLines: 3,
-          ),
+        isA<TextBlockState>()
+            .having(
+              (state) => state.block.hasMaxLineLimit,
+              'hasMaxLineLimit',
+              true,
+            )
+            .having(
+              (state) => state.command,
+              'command',
+              isA<TextBlockToggleLinesLimitCommand>(          ),
         ),
       ],
     );
