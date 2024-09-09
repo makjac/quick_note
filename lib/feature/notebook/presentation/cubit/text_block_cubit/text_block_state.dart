@@ -1,13 +1,20 @@
 part of 'text_block_cubit.dart';
 
 class TextBlockState extends Equatable {
-  const TextBlockState({TextBlock? block})
+  const TextBlockState({TextBlock? block, this.command})
       : block = block ?? const TextBlock(id: -1);
 
   final TextBlock block;
+  final NotebookCommand? command;
 
-  TextBlockState copyWith({TextBlock? block}) {
-    return TextBlockState(block: block ?? this.block);
+  TextBlockState copyWith({
+    TextBlock? block,
+    NotebookCommand? command,
+  }) {
+    return TextBlockState(
+      block: block ?? this.block,
+      command: command,
+    );
   }
 
   @override
