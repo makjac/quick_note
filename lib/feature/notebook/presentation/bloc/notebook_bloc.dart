@@ -48,6 +48,7 @@ class NotebookBloc extends Bloc<NotebookEvent, NotebookState> {
     on<NotebookDeleteNote>(_handleDeleteNote);
     on<NotebookChangeNoteTitle>(_changeNoteTitle);
     on<NotebookUndo>(_handleUndo);
+    on<NotebookRedo>(_handleRedo);
   }
 
 final NotebookCommandManager commandManager;
