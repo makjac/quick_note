@@ -38,7 +38,9 @@ void main() {
 
     test('TextBlockState props are correct', () {
       final props = state.props;
-      expect(props, [initialBlock]);
+      expect(props, [initialBlock, -1]);
+    });
+  });
     });
   });
 }
