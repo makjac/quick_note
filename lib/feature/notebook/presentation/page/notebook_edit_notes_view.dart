@@ -70,17 +70,19 @@ class _NotebookEditNotesViewState extends State<NotebookEditNotesView> {
     final theme = context.read<PreferencesBloc>().state.theme;
     return (widget.note?.color ?? NoteColors.color1).color(theme);
   }
+
+  Widget _buildAppBar(Color noteColor, double width) {
+    return SliverAppBar(
             centerTitle: true,
             backgroundColor: noteColor,
             pinned: true,
             shadowColor: noteColor,
             actions: [
               if (AppConstans.mobileSize > width) NotebookPopupMenu(context),
-              if (AppConstans.mobileSize < width)
-                const NotebookDesktopIconsMenu(),
+        if (AppConstans.mobileSize < width) const NotebookDesktopIconsMenu(),
             ],
-          ),
-          SliverToBoxAdapter(
+    );
+  }
             child: NotebookTitleTextField(
               focusNode: _focusNode,
             ),
