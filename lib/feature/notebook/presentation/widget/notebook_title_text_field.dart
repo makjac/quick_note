@@ -24,6 +24,13 @@ class _NotebookTitleTextFieldState extends State<NotebookTitleTextField> {
       ..text = BlocProvider.of<NotebookBloc>(context).state.note?.title ?? "";
     super.initState();
   }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   void _onTextChanged(String value) {
     BlocProvider.of<NotebookBloc>(context)
         .add(NotebookChangeNoteTitle(title: value));
@@ -31,10 +38,14 @@ class _NotebookTitleTextFieldState extends State<NotebookTitleTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<NotebookBloc, NotebookState>(
-      listener: (context, state) {
-        _controller.text = state.note?.title ?? "";
-      },
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: Insets.s),
+      child: BlocListener<NotebookBloc, NotebookState>(
+        listener: (context, state) {
+          _controller.text = state.note?.title ?? "";
+        },
+        listenWhen: (previous, current) =>
+            current is NotebookUndoRedoState || previous.note?.title == null,
         child: DebounceTextField(
           controller: _controller,
           onDebounceChange: _onTextChanged,
