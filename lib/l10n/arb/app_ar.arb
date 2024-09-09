@@ -57,6 +57,8 @@
   "note_settings_color": "تغيير اللون",
   "note_settings_star": "تمييز",
   "note_settings_archive": "أرشفة",
+  "note_settings_undo" : "تراجع",
+  "note_settings_redo" : "إعادة",
   "note_settings_delete": "حذف",
   "note_settings_delete_forever": "حذف نهائي",
   "note_settings_restore": "استعادة",
