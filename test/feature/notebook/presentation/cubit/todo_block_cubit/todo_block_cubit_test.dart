@@ -142,14 +142,17 @@ block: initialBlock,
       build: () => cubit,
       act: (cubit) => cubit.changeCheckboxOrder(0, 1),
       expect: () => [
-        const TodoBlockState(
-          block: TodoBlock(
-            id: 1,
-            items: [
-              ChecklistItem(id: 2, title: 'Item 2', isChecked: true),
-              ChecklistItem(id: 1, title: 'Item 1', isChecked: false),
+          isA<TodoBlockState>().having(
+            (state) => state.block.items,
+            'items order',
+            [
+              const ChecklistItem(id: 2, title: 'Item 2', isChecked: true),
+              const ChecklistItem(id: 1, title: 'Item 1', isChecked: false),
             ],
-          ),
+          ).having(
+            (state) => state.command,
+            'command',
+            isA<TodoBlockReorderTasksCommand>(),
         ),
       ],
     );
