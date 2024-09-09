@@ -18,7 +18,11 @@ class TextBlockState extends Equatable {
   }
 
   @override
-  List<Object> get props => [block];
+  List<Object> get props => [
+        block,
+        command ?? -1,
+      ];
+}
 }
 
 final class TextBlockInitial extends TextBlockState {}
