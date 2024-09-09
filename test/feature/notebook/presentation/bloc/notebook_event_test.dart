@@ -94,5 +94,10 @@ void main() {
       const event = NotebookChangeNoteTitle(title: title);
       expect(event.props, [title]);
     });
+
+    test('NotebookUndo props are empty list', () {
+      final event = NotebookUndo();
+      expect(event.props, []);
+    });
   });
 }
