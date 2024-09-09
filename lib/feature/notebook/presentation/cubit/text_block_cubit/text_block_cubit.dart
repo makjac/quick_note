@@ -36,8 +36,13 @@ class TextBlockCubit extends Cubit<TextBlockState> {
   }
 
   Future<void> changeNoteText(String text) async {
-    final updatedBlock = state.block.copyWith(text: text);
-    emit(state.copyWith(block: updatedBlock));
+    final command = TextBlockChangeNoteTextCommand(
+      block: state.block,
+      newNoteText: text,
+    );
+
+    final updatedBlock = command.execute();
+    emit(state.copyWith(block: updatedBlock, command: command));
   }
 
   Future<void> changeBlockTitle(String title) async {
