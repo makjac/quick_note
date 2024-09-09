@@ -2,13 +2,39 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:quick_note/feature/notebook/domain/command/notebook_command.dart';
+import 'package:quick_note/feature/notebook/domain/command/todo_block_command/todo_block_add_task_command.dart';
+import 'package:quick_note/feature/notebook/domain/command/todo_block_command/todo_block_change_title_command.dart';
+import 'package:quick_note/feature/notebook/domain/command/todo_block_command/todo_block_remove_task_command.dart';
+import 'package:quick_note/feature/notebook/domain/command/todo_block_command/todo_block_rename_task_command.dart';
+import 'package:quick_note/feature/notebook/domain/command/todo_block_command/todo_block_reorder_tasks_command.dart';
+import 'package:quick_note/feature/notebook/domain/command/todo_block_command/todo_block_title_visibility_command.dart';
+import 'package:quick_note/feature/notebook/domain/command/todo_block_command/todo_block_toggle_hide_complete_tasks_command.dart';
+import 'package:quick_note/feature/notebook/domain/command/todo_block_command/todo_block_toggle_show_progress_bar_command.dart';
+import 'package:quick_note/feature/notebook/domain/command/todo_block_command/todo_block_toggle_task_command.dart';
+import 'package:quick_note/feature/notebook/presentation/bloc/notebook_bloc.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/blocks/todo/check_list_item.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/blocks/todo/todo_block.dart';
 
 part 'todo_block_state.dart';
 
 class TodoBlockCubit extends Cubit<TodoBlockState> {
-  TodoBlockCubit({TodoBlock? block}) : super(TodoBlockState(block: block));
+  TodoBlockCubit({required NotebookBloc notebookBloc, TodoBlock? block})
+      : super(TodoBlockState(block: block)) {
+    notebookBlocSubscription = notebookBloc.stream.listen((notebookState) {
+      if (notebookState is NotebookNoteBlockCommand) {
+        if (notebookState.command.type != NotebookCommandType.todo) return;
+        if (notebookState.command.ownerId != state.block.id) return;
+        if (notebookState.isUndo) {
+          undo(notebookState.command);
+        } else {
+          redo(notebookState.command);
+        }
+      }
+    });
+  }
+
+  StreamSubscription<NotebookState>? notebookBlocSubscription;
 
   FutureOr<void> loadBlock(TodoBlock block) async {
     emit(state.copyWith(block: block));
@@ -98,7 +124,9 @@ class TodoBlockCubit extends Cubit<TodoBlockState> {
   Future<void> changeBlockProgressBarVisibility(bool? visible) async {
     if (visible == null) return;
 
-    final updatedBlock = state.block.copyWith(showProgressBar: visible);
-    emit(state.copyWith(block: updatedBlock));
+  @override
+  Future<void> close() {
+    notebookBlocSubscription?.cancel();
+    return super.close();
   }
 }
