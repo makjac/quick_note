@@ -65,7 +65,7 @@ class NotebookDeleteBlock extends NotebookEvent {
 class NotebookChangeColor extends NotebookEvent {
   const NotebookChangeColor({required this.color});
 
-  final String color;
+  final NoteColors color;
 
   @override
   List<Object> get props => [color];
