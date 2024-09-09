@@ -24,4 +24,11 @@ class NotebookCommandManagerImpl implements NotebookCommandManager {
   @override
   NotebookCommandType? get getCurrentRedoType =>
       _redoStack.isNotEmpty ? _redoStack.last.type : null;
+
+  @override
+  NoteUpdates execute(NotebookCommand command) {
+    _undoStack.add(command);
+    _redoStack.clear();
+    return command.execute();
+  }
 }
