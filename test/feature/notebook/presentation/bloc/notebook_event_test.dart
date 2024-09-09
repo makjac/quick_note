@@ -83,5 +83,10 @@ void main() {
       final event = NotebookToggleArchive();
       expect(event.props, []);
     });
+
+    test('NotebookDeleteNote props are empty list', () {
+      final event = NotebookDeleteNote();
+      expect(event.props, []);
+    });
   });
 }
