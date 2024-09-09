@@ -52,6 +52,19 @@ class NotebookNoteBlockAdded extends NotebookState {
   List<Object> get props => [super.props, block];
 }
 
+class NotebookUndoRedoState extends NotebookState {
+  factory NotebookUndoRedoState.fromState(NotebookState state) {
+    return NotebookUndoRedoState(
+      note: state.note,
+    );
+  }
+
+  const NotebookUndoRedoState({super.note});
+
+  @override
+  List<Object> get props => [super.props];
+}
+
 Note _emptyNote = Note(
   id: -1,
   created: DateTime(1000),
