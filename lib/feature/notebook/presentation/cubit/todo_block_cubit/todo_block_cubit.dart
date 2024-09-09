@@ -82,10 +82,14 @@ class TodoBlockCubit extends Cubit<TodoBlockState> {
   }
 
   FutureOr<void> removeCheckbox(num checkboxId) async {
-    final updatedItems =
-        state.block.items.where((item) => item.id != checkboxId).toList();
-    final updatedBlock = state.block.copyWith(items: updatedItems);
-    emit(state.copyWith(block: updatedBlock));
+    final command = TodoBlockRemoveTaskCommand(
+      block: state.block,
+      taskId: checkboxId,
+    );
+
+    final updatedBlock = command.execute();
+
+    emit(state.copyWith(block: updatedBlock, command: command));
   }
 
   FutureOr<void> changeCheckboxOrder(int oldIndex, int newIndex) async {
