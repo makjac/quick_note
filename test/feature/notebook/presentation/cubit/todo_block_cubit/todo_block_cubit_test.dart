@@ -1,14 +1,32 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+import 'package:quick_note/feature/notebook/domain/command/todo_block_command/todo_block_change_title_command.dart';
+import 'package:quick_note/feature/notebook/domain/command/todo_block_command/todo_block_remove_task_command.dart';
+import 'package:quick_note/feature/notebook/domain/command/todo_block_command/todo_block_reorder_tasks_command.dart';
+import 'package:quick_note/feature/notebook/domain/command/todo_block_command/todo_block_title_visibility_command.dart';
+import 'package:quick_note/feature/notebook/domain/command/todo_block_command/todo_block_toggle_hide_complete_tasks_command.dart';
+import 'package:quick_note/feature/notebook/domain/command/todo_block_command/todo_block_toggle_show_progress_bar_command.dart';
+import 'package:quick_note/feature/notebook/presentation/bloc/notebook_bloc.dart';
 import 'package:quick_note/feature/notebook/presentation/cubit/todo_block_cubit/todo_block_cubit.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/blocks/todo/todo_block.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/blocks/todo/check_list_item.dart';
 
+class MockNotebookBloc extends Mock implements NotebookBloc {}
+
 void main() {
-  group('TodoBlockCubit', () {
+  group(
+    'TodoBlockCubit',
+    () {
     late TodoBlockCubit cubit;
+      late NotebookBloc mockNotebookBloc;
 
     setUp(() {
+        mockNotebookBloc = MockNotebookBloc();
+
+        when(() => mockNotebookBloc.stream)
+            .thenAnswer((_) => const Stream<NotebookState>.empty());
+
       const initialBlock = TodoBlock(
         id: 1,
         items: [
@@ -16,7 +34,10 @@ void main() {
           ChecklistItem(id: 2, title: 'Item 2', isChecked: true),
         ],
       );
-      cubit = TodoBlockCubit(block: initialBlock);
+      cubit = TodoBlockCubit(
+block: initialBlock,
+          notebookBloc: mockNotebookBloc,
+);
     });
 
     test('initial state is correct', () {
