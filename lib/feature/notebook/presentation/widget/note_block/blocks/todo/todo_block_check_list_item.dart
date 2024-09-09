@@ -6,11 +6,13 @@ class TodoBlockCheckListItem extends StatefulWidget {
     required this.item,
     required this.index,
     this.draggable = true,
+    required this.cubit,
   });
 
   final ChecklistItem item;
   final int index;
   final bool draggable;
+  final TodoBlockCubit cubit;
 
   @override
   State<TodoBlockCheckListItem> createState() => _TodoBlockCheckListItem();
@@ -84,26 +86,42 @@ class _TodoBlockCheckListItem extends State<TodoBlockCheckListItem> {
 
   Widget _buildTextField(BuildContext context) {
     return Expanded(
-      child: TextField(
-        controller: _controller,
-        focusNode: _focusNode,
-        style: TextStyle(
-          color: widget.item.isChecked
-              ? Theme.of(context).todoCheckedTextColor
-              : null,
-          decoration: widget.item.isChecked ? TextDecoration.lineThrough : null,
-          decorationColor: Theme.of(context).todoCheckedTextColor,
+      child: BlocListener<TodoBlockCubit, TodoBlockState>(
+        bloc: widget.cubit,
+        listener: (context, state) {
+          if (state.block.items
+              .any((element) => element.id == widget.item.id)) {
+            final item = state.block.items.firstWhere(
+              (element) => element.id == widget.item.id,
+            );
+            _controller.text = item.title;
+          }
+        },
+        listenWhen: (previous, current) {
+          return current is TodoBlockUndoRedoState;
+        },
+        child: DebounceTextField(
+          controller: _controller,
+          focusNode: _focusNode,
+          style: TextStyle(
+            color: widget.item.isChecked
+                ? Theme.of(context).todoCheckedTextColor
+                : null,
+            decoration:
+                widget.item.isChecked ? TextDecoration.lineThrough : null,
+            decorationColor: Theme.of(context).todoCheckedTextColor,
+          ),
+          maxLines: null,
+          decoration: InputDecoration(
+            isDense: true,
+            contentPadding: const EdgeInsets.symmetric(vertical: Insets.xxs),
+            hintText: context.l10n.todo_block_item_hint_text,
+            border: InputBorder.none,
+          ),
+          onDebounceChange: (value) => context
+              .read<TodoBlockCubit>()
+              .changeCheckboxName(widget.item.id, value),
         ),
-        maxLines: null,
-        decoration: InputDecoration(
-          isDense: true,
-          contentPadding: const EdgeInsets.symmetric(vertical: Insets.xxs),
-          hintText: context.l10n.todo_block_item_hint_text,
-          border: InputBorder.none,
-        ),
-        onChanged: (value) => context
-            .read<TodoBlockCubit>()
-            .changeCheckboxName(widget.item.id, value),
       ),
     );
   }
