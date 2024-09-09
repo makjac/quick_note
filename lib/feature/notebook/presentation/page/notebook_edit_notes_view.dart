@@ -49,15 +49,22 @@ class _NotebookEditNotesViewState extends State<NotebookEditNotesView> {
 
   @override
   Widget build(BuildContext context) {
-    final noteColor = (widget.note?.color ?? NoteColors.color1)
-        .color(context.read<PreferencesBloc>().state.theme);
+    final noteColor = _getNoteColor(context);
     final width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       backgroundColor: noteColor,
       resizeToAvoidBottomInset: true,
       body: CustomScrollView(
         slivers: [
-          SliverAppBar(
+          _buildAppBar(noteColor, width),
+          _buildTitleTextField(),
+          ..._buildNoteBlocks(),
+          _buildAddNoteButton(),
+        ],
+      ),
+    );
+  }
             centerTitle: true,
             backgroundColor: noteColor,
             pinned: true,
