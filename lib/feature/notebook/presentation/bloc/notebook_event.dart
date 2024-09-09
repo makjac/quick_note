@@ -85,3 +85,5 @@ class NotebookChangeNoteTitle extends NotebookEvent {
   @override
   List<Object> get props => [title];
 }
+
+class NotebookUndo extends NotebookEvent {}
