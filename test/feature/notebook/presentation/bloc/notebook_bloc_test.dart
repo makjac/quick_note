@@ -13,6 +13,7 @@ import 'package:quick_note/feature/shared/domain/entity/note/blocks/text/text_bl
 import 'package:quick_note/feature/shared/domain/entity/note/note.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note_block_type.dart';
 import 'package:quick_note/feature/notebook/presentation/bloc/notebook_bloc.dart';
+import 'package:quick_note/feature/shared/domain/entity/note/note_colors.dart';
 
 class MockCreateNoteUsecase extends Mock implements CreateNoteUsecase {}
 
@@ -136,7 +137,8 @@ void main() {
     blocTest<NotebookBloc, NotebookState>(
       'emits [NotebookState] when NotebookChangeColor is added',
       build: () => notebookBloc,
-      act: (bloc) => bloc.add(const NotebookChangeColor(color: 'blue')),
+      act: (bloc) =>
+          bloc.add(const NotebookChangeColor(color: NoteColors.color2)),
       expect: () => [],
     );
 
