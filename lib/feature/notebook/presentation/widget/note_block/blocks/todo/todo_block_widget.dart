@@ -23,7 +23,7 @@ block: block,
   }
 }
 
-class _TodoBlockBody extends StatelessWidget {
+class _TodoBlockBody extends StatefulWidget {
   const _TodoBlockBody();
 
   @override
