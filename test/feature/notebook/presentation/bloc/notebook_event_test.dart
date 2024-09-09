@@ -69,7 +69,7 @@ void main() {
     });
 
     test('NotebookChangeColor props include color', () {
-      const color = 'blue';
+      const color = NoteColors.color12;
       const event = NotebookChangeColor(color: color);
       expect(event.props, [color]);
     });
