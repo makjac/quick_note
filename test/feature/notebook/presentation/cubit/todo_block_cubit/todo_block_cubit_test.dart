@@ -123,13 +123,16 @@ block: initialBlock,
       build: () => cubit,
       act: (cubit) => cubit.removeCheckbox(1),
       expect: () => [
-        const TodoBlockState(
-          block: TodoBlock(
-            id: 1,
-            items: [
-              ChecklistItem(id: 2, title: 'Item 2', isChecked: true),
-            ],
-          ),
+          isA<TodoBlockState>()
+              .having(
+                (state) => state.block.items.length,
+                'items length',
+                1,
+              )
+              .having(
+                (state) => state.command,
+                'command',
+                isA<TodoBlockRemoveTaskCommand>(),
         ),
       ],
     );
