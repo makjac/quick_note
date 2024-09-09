@@ -86,6 +86,15 @@ abstract class NotebookCommandManager {
   /// of commands that can be undone or redone.
   void clear();
 }
+
+/// A concrete implementation of [NotebookCommandManager] that maintains
+/// stacks for undoing and redoing operations on a notebook. This class
+/// manages the history of commands to support undo and redo functionality
+/// for operations such as adding or removing blocks from a note.
+///
+/// It uses two stacks: one for undoing operations (`_undoStack`) and one for
+/// redoing operations (`_redoStack`). The stacks help in keeping track of
+/// commands that have been executed and those that have been undone.
 class NotebookCommandManagerImpl implements NotebookCommandManager {
   final List<NotebookCommand> _undoStack = [];
   final List<NotebookCommand> _redoStack = [];
