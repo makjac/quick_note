@@ -46,6 +46,17 @@ abstract class NotebookCommand<T> {
   /// revert the command.
   T undo();
 }
+
+/// Enum that defines the various types of commands that can be executed in a notebook.
+///
+/// Each command type represents a different category of operation that can be
+/// performed on the notebook. For example, modifying text, adding a to-do item, or
+/// managing bookmarks.
+///
+/// - [global]: A command that affects the notebook at a global level (e.g., applying changes across multiple notes).
+/// - [text]: A command that involves modifying or interacting with text block within a note.
+/// - [todo]: A command related to managing to-do block in a note.
+/// - [bookmark]: A command that manages bookmarks block.
 enum NotebookCommandType {
   global,
   text,
