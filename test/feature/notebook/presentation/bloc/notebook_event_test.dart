@@ -88,5 +88,11 @@ void main() {
       final event = NotebookDeleteNote();
       expect(event.props, []);
     });
+
+    test('NotebookChangeNoteTitle props include title', () {
+      const title = 'New Title';
+      const event = NotebookChangeNoteTitle(title: title);
+      expect(event.props, [title]);
+    });
   });
 }
