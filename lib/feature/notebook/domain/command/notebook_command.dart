@@ -5,3 +5,9 @@ abstract class NotebookCommand<T> {
   T execute();
   T undo();
 }
+enum NotebookCommandType {
+  global,
+  text,
+  todo,
+  bookmark;
+}
