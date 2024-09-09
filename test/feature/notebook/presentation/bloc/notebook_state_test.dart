@@ -76,5 +76,18 @@ void main() {
         contains(testNote),
       );
     });
+
+    test('NotebookNoteBlockCommand can be created from state with command', () {
+      final state = NotebookState(note: testNote);
+      final command =
+          NotebookChangeNoteTitleCommand(newTitle: "", note: testNote);
+      final noteBlockCommandState =
+          NotebookNoteBlockCommand.fromState(state, command);
+
+      expect(noteBlockCommandState.note, equals(testNote));
+      expect(noteBlockCommandState.command, equals(command));
+      expect(noteBlockCommandState.isUndo, equals(true));
+      expect(noteBlockCommandState, isA<NotebookNoteBlockCommand>());
+    });
   });
 }
