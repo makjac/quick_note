@@ -90,5 +90,9 @@ class TextBlockCubit extends Cubit<TextBlockState> {
     final updatedBlock = command.execute();
     emit(state.copyWith(block: updatedBlock, command: command));
   }
+  @override
+  Future<void> close() {
+    notebookBlocSubscription?.cancel();
+    return super.close();
   }
 }
