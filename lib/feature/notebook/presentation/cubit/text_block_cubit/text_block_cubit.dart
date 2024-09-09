@@ -46,8 +46,13 @@ class TextBlockCubit extends Cubit<TextBlockState> {
   }
 
   Future<void> changeBlockTitle(String title) async {
-    final updatedBlock = state.block.copyWith(title: title, hasTitle: true);
-    emit(state.copyWith(block: updatedBlock));
+    final command = TextBlockChangeTitleCommand(
+      block: state.block,
+      newTitle: title,
+    );
+
+    final updatedBlock = command.execute();
+    emit(state.copyWith(block: updatedBlock, command: command));
   }
 
   Future<void> changeBlockTitleVisibility(bool? visibility) async {
