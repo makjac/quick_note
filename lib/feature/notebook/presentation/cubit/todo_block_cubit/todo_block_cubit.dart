@@ -159,6 +159,13 @@ class TodoBlockCubit extends Cubit<TodoBlockState> {
 
     emit(TodoBlockUndoRedoState(block: updatedBlock));
   }
+
+  Future<void> redo(NotebookCommand command) async {
+    final updatedBlock = command.execute();
+
+    emit(TodoBlockUndoRedoState(block: updatedBlock));
+  }
+
   @override
   Future<void> close() {
     notebookBlocSubscription?.cancel();
