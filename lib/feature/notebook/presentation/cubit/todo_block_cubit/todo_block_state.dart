@@ -23,11 +23,16 @@ class TodoBlockAddedNewTaskItem extends TodoBlockState {
       TodoBlockState state, ChecklistItem item) {
     return TodoBlockAddedNewTaskItem(
       block: state.block,
+      command: state.command,
       item: item,
     );
   }
 
-  const TodoBlockAddedNewTaskItem({super.block, required this.item});
+  const TodoBlockAddedNewTaskItem({
+    super.block,
+    super.command,
+    required this.item,
+  });
 
   final ChecklistItem item;
 
