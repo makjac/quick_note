@@ -8,7 +8,10 @@ class TodoBlockWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => TodoBlockCubit(block: block),
+      create: (context) => TodoBlockCubit(
+        notebookBloc: context.read<NotebookBloc>(),
+block: block,
+),
       child: Builder(
         builder: (context) => NoteBlockWidget(
           block: const _TodoBlockBody(),
