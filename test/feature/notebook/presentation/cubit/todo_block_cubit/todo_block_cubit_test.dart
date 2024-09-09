@@ -4,11 +4,21 @@ import 'package:quick_note/feature/notebook/presentation/cubit/todo_block_cubit/
 import 'package:quick_note/feature/shared/domain/entity/note/blocks/todo/todo_block.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/blocks/todo/check_list_item.dart';
 
+class MockNotebookBloc extends Mock implements NotebookBloc {}
+
 void main() {
-  group('TodoBlockCubit', () {
+  group(
+    'TodoBlockCubit',
+    () {
     late TodoBlockCubit cubit;
+      late NotebookBloc mockNotebookBloc;
 
     setUp(() {
+        mockNotebookBloc = MockNotebookBloc();
+
+        when(() => mockNotebookBloc.stream)
+            .thenAnswer((_) => const Stream<NotebookState>.empty());
+
       const initialBlock = TodoBlock(
         id: 1,
         items: [
