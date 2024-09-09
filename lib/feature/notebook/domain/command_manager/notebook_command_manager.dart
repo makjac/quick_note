@@ -55,4 +55,9 @@ class NotebookCommandManagerImpl implements NotebookCommandManager {
     _undoStack.add(command);
     _redoStack.clear();
   }
+
+  @override
+  void pushToRedoStack(NotebookCommand command) {
+    _redoStack.add(command);
+  }
 }
