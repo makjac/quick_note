@@ -31,18 +31,10 @@ class _NotebookTitleTextFieldState extends State<NotebookTitleTextField> {
       listener: (context, state) {
         _controller.text = state.note?.title ?? "";
       },
-      listenWhen: (previous, current) {
-        return _controller.text.isEmpty;
-      },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: Insets.s),
-        child: TextField(
+        child: DebounceTextField(
           controller: _controller,
+          onDebounceChange: _onTextChanged,
           focusNode: widget.focusNode,
-          onChanged: (value) {
-            BlocProvider.of<NotebookBloc>(context)
-                .add(NotebookUpdateNote(updates: NoteUpdates(title: value)));
-          },
           maxLines: null,
           keyboardType: TextInputType.multiline,
           style: Theme.of(context).textTheme.titleMedium,
