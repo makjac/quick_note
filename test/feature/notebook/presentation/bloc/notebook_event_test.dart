@@ -47,6 +47,19 @@ void main() {
       const event = NotebookUpdateNoteBlock(block: block);
       expect(event.props, [block, -1]);
     });
+
+    test('NotebookUpdateNoteBlock props include block and command', () {
+      const block = TextBlock(id: 1, type: NoteBlockType.text);
+      final command = NotebookChangeNoteTitleCommand(
+        newTitle: "newTitle",
+        note: Note(
+          id: 1,
+          created: DateTime.now(),
+          modified: DateTime.now(),
+        ),
+      );
+      final event = NotebookUpdateNoteBlock(block: block, command: command);
+      expect(event.props, [block, command]);
     });
 
     test('NotebookDeleteBlock props include blockId', () {
