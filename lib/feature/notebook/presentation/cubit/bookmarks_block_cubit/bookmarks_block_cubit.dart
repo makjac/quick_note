@@ -84,28 +84,15 @@ class BookmarksBlockCubit extends Cubit<BookmarksBlockState> {
   }
 
   void _addBookmark(String url, String? faviconUrl, AddBookmarkStatus status) {
-    final domain = UrlHelper.extractDomain(url);
-    final maxId = state.block.items.isNotEmpty
-        ? state.block.items
-            .map((item) => item.id)
-            .reduce((a, b) => a > b ? a : b)
-        : 0;
-
-    final newBookmark = BookmarkItem(
-      id: maxId + 1,
-      title: domain,
+    final command = BookmarkBlockAddBookmarkCommand(
+      block: state.block,
       url: url,
-      faviconUrl: faviconUrl ?? "",
+      faviconUrl: faviconUrl,
     );
 
-    final updatedBlock = state.block.copyWith(
-      items: [...state.block.items, newBookmark],
-    );
-
+    final updatedBlock = command.execute();
     emit(state.copyWith(
-      block: updatedBlock,
-      addingStatus: status,
-    ));
+        block: updatedBlock, addingStatus: status, command: command));
   }
 
   FutureOr<void> removeBookmark(num id) {
