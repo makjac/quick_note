@@ -144,6 +144,15 @@ class TodoBlockCubit extends Cubit<TodoBlockState> {
   Future<void> changeBlockProgressBarVisibility(bool? visible) async {
     if (visible == null) return;
 
+    final command = TodoBlockToggleShowProgressBarCommand(
+      block: state.block,
+      isVisible: visible,
+    );
+
+    final updatedBlock = command.execute();
+
+    emit(state.copyWith(block: updatedBlock, command: command));
+  }
   @override
   Future<void> close() {
     notebookBlocSubscription?.cancel();
