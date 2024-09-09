@@ -1,19 +1,21 @@
 part of 'todo_block_cubit.dart';
 
 class TodoBlockState extends Equatable {
-  const TodoBlockState({TodoBlock? block})
+  const TodoBlockState({TodoBlock? block, this.command})
       : block = block ?? const TodoBlock(id: -1, items: []);
 
   final TodoBlock block;
+  final NotebookCommand? command;
 
-  TodoBlockState copyWith({TodoBlock? block}) {
+  TodoBlockState copyWith({TodoBlock? block, NotebookCommand? command}) {
     return TodoBlockState(
       block: block ?? this.block,
+      command: command,
     );
   }
 
   @override
-  List<Object> get props => [block];
+  List<Object> get props => [block, command ?? -1];
 }
 
 class TodoBlockAddedNewTaskItem extends TodoBlockState {
