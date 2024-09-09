@@ -21,8 +21,28 @@ class TextBlockWidget extends StatelessWidget {
   }
 }
 
-class _TextBlockBody extends StatelessWidget {
+class _TextBlockBody extends StatefulWidget {
   const _TextBlockBody();
+
+  @override
+  State<_TextBlockBody> createState() => _TextBlockBodyState();
+}
+
+class _TextBlockBodyState extends State<_TextBlockBody> {
+  late TextEditingController _titleController;
+
+  @override
+  void initState() {
+    _titleController = TextEditingController()
+      ..text = BlocProvider.of<TextBlockCubit>(context).state.block.title;
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
