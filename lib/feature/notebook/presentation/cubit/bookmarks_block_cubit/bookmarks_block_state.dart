@@ -29,7 +29,20 @@ class BookmarksBlockState extends Equatable {
   }
 
   @override
-  List<Object> get props => [block, addingStatus];
+  List<Object> get props => [block, addingStatus, command ?? -1];
+}
+
+class BookmarksBlockUndoRedoState extends BookmarksBlockState {
+  factory BookmarksBlockUndoRedoState.fromState(BookmarksBlockState state) {
+    return BookmarksBlockUndoRedoState(
+      block: state.block,
+    );
+  }
+
+  const BookmarksBlockUndoRedoState({super.block});
+
+  @override
+  List<Object> get props => [super.props];
 }
 
 final class BookmarksBlockInitial extends BookmarksBlockState {}
