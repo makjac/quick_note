@@ -8,7 +8,8 @@ class TextBlockWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => TextBlockCubit(block: block),
+      create: (context) => TextBlockCubit(
+          notebookBloc: context.read<NotebookBloc>(), block: block),
       child: Builder(
         builder: (context) => NoteBlockWidget(
           block: const _TextBlockBody(),
