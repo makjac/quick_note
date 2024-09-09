@@ -7,6 +7,7 @@ import 'package:quick_note/feature/home/domain/usecase/create_note_usecase.dart'
 import 'package:quick_note/feature/home/domain/usecase/delete_single_note_usecase.dart';
 import 'package:quick_note/feature/home/domain/usecase/update_multiple_notes_usecase.dart';
 import 'package:quick_note/feature/home/domain/usecase/update_note_usecase.dart';
+import 'package:quick_note/feature/notebook/domain/command_manager/notebook_command_manager.dart';
 import 'package:quick_note/feature/notebook/domain/usecase/get_note_by_key_usecase.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/blocks/text/text_block.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note.dart';
@@ -26,11 +27,15 @@ class MockGetNoteByKeyUsecase extends Mock implements GetNoteByKeyUsecase {}
 class FakeUpdateSingleNoteParams extends Fake
     implements UpdateSingleNoteParams {}
 
+class MockNotebookCommandManager extends Mock
+    implements NotebookCommandManager {}
+
 void main() {
   late MockCreateNoteUsecase mockCreateNoteUsecase;
   late MockUpdateSingleNoteUsecase mockUpdateSingleNoteUsecase;
   late MockDeleteSingleNoteUsecase mockDeleteSingleNoteUsecase;
   late MockGetNoteByKeyUsecase mockGetNoteByKeyUsecase;
+  late NotebookCommandManager mockNotebookCommandManager;
   late NotebookBloc notebookBloc;
 
   setUpAll(() {
@@ -42,11 +47,13 @@ void main() {
     mockUpdateSingleNoteUsecase = MockUpdateSingleNoteUsecase();
     mockDeleteSingleNoteUsecase = MockDeleteSingleNoteUsecase();
     mockGetNoteByKeyUsecase = MockGetNoteByKeyUsecase();
+    mockNotebookCommandManager = MockNotebookCommandManager();
     notebookBloc = NotebookBloc(
       createNote: mockCreateNoteUsecase,
       updateSingleNote: mockUpdateSingleNoteUsecase,
       deleteNote: mockDeleteSingleNoteUsecase,
       getNoteByKey: mockGetNoteByKeyUsecase,
+      commandManager: mockNotebookCommandManager,
     );
   });
 
