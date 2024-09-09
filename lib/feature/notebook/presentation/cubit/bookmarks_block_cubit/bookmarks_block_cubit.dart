@@ -96,24 +96,13 @@ class BookmarksBlockCubit extends Cubit<BookmarksBlockState> {
   }
 
   FutureOr<void> removeBookmark(num id) {
-    final updatedBlock = state.block.copyWith(
-      items: state.block.items.where((item) => item.id != id).toList(),
+    final command = BookmarkBlockRemoveBookmarkCommand(
+      block: state.block,
+      bookmarkId: id,
     );
 
-    emit(state.copyWith(block: updatedBlock));
-  }
-
-  FutureOr<void> updateBookmark(BookmarkItem item) {
-    final updatedBlock = state.block.copyWith(
-      items: state.block.items.map((oldItem) {
-        if (oldItem.id == item.id) {
-          return item;
-        }
-        return oldItem;
-      }).toList(),
-    );
-
-    emit(state.copyWith(block: updatedBlock));
+    final updatedBlock = command.execute();
+    emit(state.copyWith(block: updatedBlock, command: command));
   }
 
   FutureOr<void> reorderBookmarks(int oldIndex, int newIndex) {
