@@ -106,13 +106,15 @@ class BookmarksBlockCubit extends Cubit<BookmarksBlockState> {
   }
 
   FutureOr<void> reorderBookmarks(int oldIndex, int newIndex) {
-    final updatedItems = List<BookmarkItem>.from(state.block.items);
-    final item = updatedItems.removeAt(oldIndex);
-    updatedItems.insert(newIndex, item);
+    final command = BookmarkBlockReorderBookmarksCommand(
+      block: state.block,
+      oldIndex: oldIndex,
+      newIndex: newIndex,
+    );
 
-    final updatedBlock = state.block.copyWith(items: updatedItems);
+    final updatedBlock = command.execute();
 
-    emit(state.copyWith(block: updatedBlock));
+    emit(state.copyWith(block: updatedBlock, command: command));
   }
 
   FutureOr<void> clearBookmarks() {
