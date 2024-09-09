@@ -24,6 +24,10 @@ class _NotebookTitleTextFieldState extends State<NotebookTitleTextField> {
       ..text = BlocProvider.of<NotebookBloc>(context).state.note?.title ?? "";
     super.initState();
   }
+  void _onTextChanged(String value) {
+    BlocProvider.of<NotebookBloc>(context)
+        .add(NotebookChangeNoteTitle(title: value));
+  }
 
   @override
   Widget build(BuildContext context) {
