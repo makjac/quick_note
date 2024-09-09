@@ -13,3 +13,7 @@ abstract class NotebookCommandManager {
   NotebookCommand? popRedoStack();
   void clear();
 }
+class NotebookCommandManagerImpl implements NotebookCommandManager {
+  final List<NotebookCommand> _undoStack = [];
+  final List<NotebookCommand> _redoStack = [];
+}
