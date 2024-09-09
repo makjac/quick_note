@@ -40,4 +40,17 @@ class TodoBlockAddedNewTaskItem extends TodoBlockState {
   List<Object> get props => [item];
 }
 
+class TodoBlockUndoRedoState extends TodoBlockState {
+  factory TodoBlockUndoRedoState.fromState(TodoBlockState state) {
+    return TodoBlockUndoRedoState(
+      block: state.block,
+    );
+  }
+
+  const TodoBlockUndoRedoState({super.block});
+
+  @override
+  List<Object> get props => [super.props];
+}
+
 final class TodoBlockInitial extends TodoBlockState {}
