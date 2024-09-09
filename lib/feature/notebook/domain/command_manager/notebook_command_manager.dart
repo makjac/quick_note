@@ -20,4 +20,8 @@ class NotebookCommandManagerImpl implements NotebookCommandManager {
   @override
   NotebookCommandType? get getCurrentUndoType =>
       _undoStack.isNotEmpty ? _undoStack.last.type : null;
+
+  @override
+  NotebookCommandType? get getCurrentRedoType =>
+      _redoStack.isNotEmpty ? _redoStack.last.type : null;
 }
