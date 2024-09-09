@@ -23,6 +23,18 @@ class TextBlockState extends Equatable {
         command ?? -1,
       ];
 }
+
+class TextBlockUndoRedoState extends TextBlockState {
+  factory TextBlockUndoRedoState.fromState(TextBlockState state) {
+    return TextBlockUndoRedoState(
+      block: state.block,
+    );
+  }
+
+  const TextBlockUndoRedoState({super.block});
+
+  @override
+  List<Object> get props => [super.props];
 }
 
 final class TextBlockInitial extends TextBlockState {}
