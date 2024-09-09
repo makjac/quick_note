@@ -65,6 +65,11 @@ class _NotebookEditNotesViewState extends State<NotebookEditNotesView> {
       ),
     );
   }
+
+  Color _getNoteColor(BuildContext context) {
+    final theme = context.read<PreferencesBloc>().state.theme;
+    return (widget.note?.color ?? NoteColors.color1).color(theme);
+  }
             centerTitle: true,
             backgroundColor: noteColor,
             pinned: true,
