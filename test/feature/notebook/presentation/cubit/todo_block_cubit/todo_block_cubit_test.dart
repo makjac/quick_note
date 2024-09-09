@@ -66,7 +66,9 @@ block: initialBlock,
         const TodoBlockState(
           block: TodoBlock(
             id: 2,
-            items: [ChecklistItem(id: 3, title: 'New Item', isChecked: false)],
+              items: [
+                ChecklistItem(id: 3, title: 'New Item', isChecked: false)
+              ],
           ),
         ),
       ],
