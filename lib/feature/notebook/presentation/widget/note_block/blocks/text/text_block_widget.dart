@@ -49,8 +49,12 @@ class _TextBlockBodyState extends State<_TextBlockBody> {
     return BlocConsumer<TextBlockCubit, TextBlockState>(
       listenWhen: (previous, current) => previous.block != current.block,
       listener: (context, state) {
-        BlocProvider.of<NotebookBloc>(context)
-            .add(NotebookUpdateNoteBlock(block: state.block));
+        BlocProvider.of<NotebookBloc>(context).add(
+          NotebookUpdateNoteBlock(
+            block: state.block,
+            command: state.command,
+          ),
+        );
       },
       builder: (context, state) {
         return Column(
@@ -73,10 +77,10 @@ class _TextBlockBodyState extends State<_TextBlockBody> {
         listenWhen: (previous, current) => current is TextBlockUndoRedoState,
         child: NoteBlockTitle(
           controller: _titleController,
-        initValue: state.block.title,
-        hintText: context.l10n.text_block_title_hint_text,
-        onChanged: (title) =>
-            context.read<TextBlockCubit>().changeBlockTitle(title),
+          initValue: state.block.title,
+          hintText: context.l10n.text_block_title_hint_text,
+          onChanged: (title) =>
+              context.read<TextBlockCubit>().changeBlockTitle(title),
         ),
       );
     } else {
