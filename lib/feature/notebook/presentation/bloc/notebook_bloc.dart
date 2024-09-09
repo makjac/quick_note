@@ -46,6 +46,7 @@ class NotebookBloc extends Bloc<NotebookEvent, NotebookState> {
     on<NotebookToggleArchive>(_toggleArchive);
     on<NotebookMoveToTrash>(_handleMoveToTrash);
     on<NotebookDeleteNote>(_handleDeleteNote);
+    on<NotebookChangeNoteTitle>(_changeNoteTitle);
   }
 
 final NotebookCommandManager commandManager;
