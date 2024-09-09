@@ -76,3 +76,12 @@ class NotebookToggleStar extends NotebookEvent {}
 class NotebookToggleArchive extends NotebookEvent {}
 
 class NotebookDeleteNote extends NotebookEvent {}
+
+class NotebookChangeNoteTitle extends NotebookEvent {
+  const NotebookChangeNoteTitle({required this.title});
+
+  final String title;
+
+  @override
+  List<Object> get props => [title];
+}
