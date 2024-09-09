@@ -16,4 +16,8 @@ abstract class NotebookCommandManager {
 class NotebookCommandManagerImpl implements NotebookCommandManager {
   final List<NotebookCommand> _undoStack = [];
   final List<NotebookCommand> _redoStack = [];
+
+  @override
+  NotebookCommandType? get getCurrentUndoType =>
+      _undoStack.isNotEmpty ? _undoStack.last.type : null;
 }
