@@ -77,6 +77,7 @@
   "block_settings_todo_show_header": "عرض عنوان الكتلة",
   "block_settings_todo_hide_complete_tasks": "إخفاء المهام المكتملة",
   "block_settings_todo_progress_bar": "عرض شريط التقدم",
+  "block_bookmark_todo" : "كتلة الإشارة المرجعية",
   "bookmarks": "المرجعيات",
   "block_settings_bookmark_title": "تحرير كتلة المرجعية",
   "block_settings_bookmark_show_header": "عرض عنوان الكتلة",
