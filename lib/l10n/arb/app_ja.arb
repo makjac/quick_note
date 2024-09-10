@@ -77,6 +77,7 @@
   "block_settings_todo_show_header": "ブロックタイトルを表示",
   "block_settings_todo_hide_complete_tasks": "完了したタスクを非表示",
   "block_settings_todo_progress_bar": "進捗バーを表示",
+  "block_bookmark_todo" : "ブックマークブロック",
   "bookmarks": "ブックマーク",
   "block_settings_bookmark_title": "ブックマークブロックを編集",
   "block_settings_bookmark_show_header": "ブロックタイトルを表示",
