@@ -77,6 +77,7 @@
   "block_settings_todo_show_header": "Показати заголовок блоку",
   "block_settings_todo_hide_complete_tasks": "Приховати виконані завдання",
   "block_settings_todo_progress_bar": "Показати індикатор прогресу",
+  "block_bookmark_todo" : "Блок закладок",
   "bookmarks": "Закладки",
   "block_settings_bookmark_title": "Редагувати блок закладок",
   "block_settings_bookmark_show_header": "Показати заголовок блоку",
