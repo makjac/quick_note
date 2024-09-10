@@ -77,6 +77,7 @@
   "block_settings_todo_show_header": "Hiển thị tiêu đề khối",
   "block_settings_todo_hide_complete_tasks": "Ẩn công việc đã hoàn thành",
   "block_settings_todo_progress_bar": "Hiển thị thanh tiến trình",
+  "block_bookmark_todo" : "Khối dấu trang",
   "bookmarks": "Đánh dấu trang",
   "block_settings_bookmark_title": "Chỉnh sửa khối đánh dấu trang",
   "block_settings_bookmark_show_header": "Hiển thị tiêu đề khối",
