@@ -77,6 +77,7 @@
   "block_settings_todo_show_header" : "Blocktitel anzeigen",
   "block_settings_todo_hide_complete_tasks" : "Abgeschlossene Aufgaben ausblenden",
   "block_settings_todo_progress_bar" : "Fortschrittsanzeige anzeigen",
+  "block_bookmark_todo" : "Lesezeichen-Block",
   "bookmarks": "Lesezeichen",
   "block_settings_bookmark_title": "Lesezeichenblock bearbeiten",
   "block_settings_bookmark_show_header": "Blocktitel anzeigen",
