@@ -77,6 +77,7 @@
   "block_settings_todo_show_header" : "ब्लॉक शीर्षक दिखाएँ",
   "block_settings_todo_hide_complete_tasks" : "पूर्ण टास्क छिपाएँ",
   "block_settings_todo_progress_bar" : "प्रगति बार दिखाएँ",
+  "block_bookmark_todo" : "बुकमार्क ब्लॉक",
   "bookmarks": "बुकमार्क",
   "block_settings_bookmark_title": "बुकमार्क ब्लॉक संपादित करें",
   "block_settings_bookmark_show_header": "ब्लॉक शीर्षक दिखाएं",
