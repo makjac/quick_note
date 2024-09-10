@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_note/core/constans/app_constans.dart';
 import 'package:quick_note/core/constans/insets.dart';
-import 'package:quick_note/feature/notebook/presentation/widget/Notebook_desktop_icons_menu/notebook_desktop_icons_menu.dart';
-import 'package:quick_note/feature/notebook/presentation/widget/add_note_block_button/add_note_block_button.dart';
+import 'package:quick_note/core/utils/platform_helper.dart';
+import 'package:quick_note/feature/notebook/presentation/widget/notebook_leyout/notebook_header/Notebook_desktop_icons_menu/notebook_desktop_icons_menu.dart';
+import 'package:quick_note/feature/notebook/presentation/widget/notebook_leyout/notebook_add_note_block/notebook_add_note_block_button/add_note_block_button.dart';
 import 'package:quick_note/feature/notebook/presentation/widget/note_block/note_block_builder.dart';
-import 'package:quick_note/feature/notebook/presentation/widget/notebook_popup_menu/notebook_popup_menu.dart';
+import 'package:quick_note/feature/notebook/presentation/widget/notebook_leyout/notebook_bottom_navigation_bar/notebook_bottom_navigation_bar.dart';
+import 'package:quick_note/feature/notebook/presentation/widget/notebook_leyout/notebook_header/notebook_popup_menu/notebook_popup_menu.dart';
 import 'package:quick_note/feature/notebook/presentation/widget/notebook_title_text_field.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note_colors.dart';
@@ -51,16 +53,21 @@ class _NotebookEditNotesViewState extends State<NotebookEditNotesView> {
   Widget build(BuildContext context) {
     final noteColor = _getNoteColor(context);
     final width = MediaQuery.of(context).size.width;
+    final isMobile = PlatformHelper.isMobile();
 
     return Scaffold(
       backgroundColor: noteColor,
       resizeToAvoidBottomInset: true,
+      bottomSheet:
+          isMobile ? NotebookBottomNavigationBar(noteColor: noteColor) : null,
       body: CustomScrollView(
         slivers: [
-          _buildAppBar(noteColor, width),
+          _buildAppBar(noteColor, width, isMobile),
           _buildTitleTextField(),
           ..._buildNoteBlocks(),
-          _buildAddNoteButton(),
+          !isMobile
+              ? _buildAddNoteButton()
+              : const SliverToBoxAdapter(child: SizedBox(height: 65)),
         ],
       ),
     );
@@ -71,16 +78,21 @@ class _NotebookEditNotesViewState extends State<NotebookEditNotesView> {
     return (widget.note?.color ?? NoteColors.color1).color(theme);
   }
 
-  Widget _buildAppBar(Color noteColor, double width) {
+  Widget _buildAppBar(Color noteColor, double width, bool isMobile) {
+    final isWideScreen = AppConstans.mobileSize > width;
+
     return SliverAppBar(
       centerTitle: true,
       backgroundColor: noteColor,
-      pinned: true,
+      pinned: !isMobile,
+      floating: isMobile,
       shadowColor: noteColor,
-      actions: [
-        if (AppConstans.mobileSize > width) NotebookPopupMenu(context),
-        if (AppConstans.mobileSize < width) const NotebookDesktopIconsMenu(),
-      ],
+      actions: isMobile
+          ? []
+          : [
+              if (isWideScreen) NotebookPopupMenu(context),
+              if (!isWideScreen) const NotebookDesktopIconsMenu(),
+            ],
     );
   }
 

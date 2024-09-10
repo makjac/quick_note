@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 class DebounceTextField extends StatefulWidget {
   const DebounceTextField({
+    required this.onDebounceChange,
     super.key,
     this.controller,
     this.debounceDuration = const Duration(milliseconds: 300),
-    required this.onDebounceChange,
     this.onChanged,
     this.focusNode,
     this.minLines,
