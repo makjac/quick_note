@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "QuickNote"
-#define MyAppVersion "1.1.3+8"
+#define MyAppVersion "1.2.0+9"
 #define MyAppPublisher "ecoala.eu sp. z.o.o"
 #define MyAppURL "https://github.com/makjac/quick_note"
 #define MyAppExeName "quick_note.exe"
