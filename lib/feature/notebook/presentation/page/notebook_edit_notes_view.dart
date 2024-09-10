@@ -5,7 +5,7 @@ import 'package:quick_note/core/constans/insets.dart';
 import 'package:quick_note/feature/notebook/presentation/widget/notebook_leyout/notebook_header/Notebook_desktop_icons_menu/notebook_desktop_icons_menu.dart';
 import 'package:quick_note/feature/notebook/presentation/widget/add_note_block_button/add_note_block_button.dart';
 import 'package:quick_note/feature/notebook/presentation/widget/note_block/note_block_builder.dart';
-import 'package:quick_note/feature/notebook/presentation/widget/notebook_popup_menu/notebook_popup_menu.dart';
+import 'package:quick_note/feature/notebook/presentation/widget/notebook_leyout/notebook_bottom_navigation_bar/notebook_bottom_navigation_bar.dart';
 import 'package:quick_note/feature/notebook/presentation/widget/notebook_title_text_field.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note_colors.dart';
