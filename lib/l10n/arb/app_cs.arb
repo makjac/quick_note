@@ -77,6 +77,7 @@
   "block_settings_todo_show_header": "Zobrazit název bloku",
   "block_settings_todo_hide_complete_tasks": "Skrýt dokončené úkoly",
   "block_settings_todo_progress_bar": "Zobrazit ukazatel průběhu",
+  "block_bookmark_todo" : "Blok záložek",
   "bookmarks": "Záložky",
   "block_settings_bookmark_title": "Upravit blok záložek",
   "block_settings_bookmark_show_header": "Zobrazit název bloku",
