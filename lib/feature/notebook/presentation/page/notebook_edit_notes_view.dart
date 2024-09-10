@@ -71,15 +71,20 @@ class _NotebookEditNotesViewState extends State<NotebookEditNotesView> {
     return (widget.note?.color ?? NoteColors.color1).color(theme);
   }
 
-  Widget _buildAppBar(Color noteColor, double width) {
+  Widget _buildAppBar(Color noteColor, double width, bool isMobile) {
+    final isWideScreen = AppConstans.mobileSize > width;
+
     return SliverAppBar(
       centerTitle: true,
       backgroundColor: noteColor,
-      pinned: true,
+      pinned: !isMobile,
+      floating: isMobile,
       shadowColor: noteColor,
-      actions: [
-        if (AppConstans.mobileSize > width) NotebookPopupMenu(context),
-        if (AppConstans.mobileSize < width) const NotebookDesktopIconsMenu(),
+      actions: isMobile
+          ? []
+          : [
+              if (isWideScreen) NotebookPopupMenu(context),
+              if (!isWideScreen) const NotebookDesktopIconsMenu(),
       ],
     );
   }
