@@ -77,6 +77,7 @@
   "block_settings_todo_show_header" : "Показывать заголовок блока",
   "block_settings_todo_hide_complete_tasks" : "Скрыть выполненные задачи",
   "block_settings_todo_progress_bar" : "Показывать индикатор выполнения",
+  "block_bookmark_todo" : "Блок закладок",
   "bookmarks": "Закладки",
   "block_settings_bookmark_title": "Редактировать блок закладок",
   "block_settings_bookmark_show_header": "Показать заголовок блока",
