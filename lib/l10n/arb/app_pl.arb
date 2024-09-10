@@ -78,6 +78,7 @@
   "block_settings_todo_show_header": "Pokaż tytuł bloku",
   "block_settings_todo_hide_complete_tasks": "Ukryj ukończone zadania",
   "block_settings_todo_progress_bar": "Pokaż pasek postępu",
+  "block_bookmark_todo" : "Blok zakładek",
   "bookmarks": "Zakładki",
   "block_settings_bookmark_title": "Edytuj blok zakładek",
   "block_settings_bookmark_show_header": "Pokaż tytuł bloku",
