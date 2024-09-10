@@ -77,6 +77,7 @@
   "block_settings_todo_show_header" : "显示块标题",
   "block_settings_todo_hide_complete_tasks" : "隐藏已完成任务",
   "block_settings_todo_progress_bar" : "显示进度条",
+  "block_bookmark_todo" : "书签块",
   "bookmarks": "书签",
   "block_settings_bookmark_title": "编辑书签块",
   "block_settings_bookmark_show_header": "显示块标题",
