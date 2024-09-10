@@ -77,6 +77,7 @@
   "block_settings_todo_show_header": "블록 제목 표시",
   "block_settings_todo_hide_complete_tasks": "완료된 작업 숨기기",
   "block_settings_todo_progress_bar": "진행률 표시줄 표시",
+  "block_bookmark_todo" : "북마크 블록",
   "bookmarks": "북마크",
   "block_settings_bookmark_title": "북마크 블록 편집",
   "block_settings_bookmark_show_header": "블록 제목 표시",
