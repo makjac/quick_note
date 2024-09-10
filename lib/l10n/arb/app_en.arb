@@ -101,6 +101,7 @@
   "block_settings_todo_show_header" : "Show block title",
   "block_settings_todo_hide_complete_tasks" : "Hide complete tasks",
   "block_settings_todo_progress_bar" : "Show progress bar",
+  "block_bookmark_todo" : "Bookmark block",
   "bookmarks" : "Bookmarks",
   "block_settings_bookmark_title" : "Edit bookmark block",
   "block_settings_bookmark_show_header" : "Show block title",
