@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_note/core/constans/app_constans.dart';
 import 'package:quick_note/core/constans/insets.dart';
-import 'package:quick_note/feature/notebook/presentation/widget/Notebook_desktop_icons_menu/notebook_desktop_icons_menu.dart';
+import 'package:quick_note/feature/notebook/presentation/widget/notebook_leyout/notebook_header/Notebook_desktop_icons_menu/notebook_desktop_icons_menu.dart';
 import 'package:quick_note/feature/notebook/presentation/widget/add_note_block_button/add_note_block_button.dart';
 import 'package:quick_note/feature/notebook/presentation/widget/note_block/note_block_builder.dart';
 import 'package:quick_note/feature/notebook/presentation/widget/notebook_popup_menu/notebook_popup_menu.dart';
