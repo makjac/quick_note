@@ -77,6 +77,7 @@
   "block_settings_todo_show_header": "Mostra titolo del blocco",
   "block_settings_todo_hide_complete_tasks": "Nascondi compiti completati",
   "block_settings_todo_progress_bar": "Mostra barra di progresso",
+  "block_bookmark_todo" : "Blocca segnalibro",
   "bookmarks": "Segnalibri",
   "block_settings_bookmark_title": "Modifica blocco segnalibri",
   "block_settings_bookmark_show_header": "Mostra titolo del blocco",
