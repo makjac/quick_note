@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quick_note/core/service/analytics/service/analytics_service.dart';
 import 'package:quick_note/core/utils/note_helper.dart';
+import 'package:quick_note/core/utils/platform_helper.dart';
 import 'package:quick_note/feature/home/domain/usecase/update_multiple_notes_usecase.dart';
 import 'package:quick_note/feature/home/presentation/bloc/app_bloc.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note.dart';
+import 'package:quick_note/injection_container.dart';
 import 'package:quick_note/l10n/l10n.dart';
 
 enum _Menu { select, color, star, delete }
@@ -58,6 +61,9 @@ class NoteTilePopupMenu extends StatelessWidget {
             note: note,
             updates: NoteUpdates(color: color),
           ));
+          if (PlatformHelper.isMobile()) {
+            locator<AnalyticsService>().logChangeNoteColorEvent();
+          }
         }
       },
       child: ListTile(
@@ -73,10 +79,17 @@ class NoteTilePopupMenu extends StatelessWidget {
     final appBloc = BlocProvider.of<AppBloc>(context);
     return PopupMenuItem<_Menu>(
       value: _Menu.star,
-      onTap: () => appBloc.add(AppUpdateSingleNote(
-        note: note,
-        updates: NoteUpdates(isStarred: !note.isStarred),
-      )),
+      onTap: () {
+        appBloc.add(
+          AppUpdateSingleNote(
+            note: note,
+            updates: NoteUpdates(isStarred: !note.isStarred),
+          ),
+        );
+        if (PlatformHelper.isMobile()) {
+          locator<AnalyticsService>().logToggleStarNoteEvent(!note.isStarred);
+        }
+      },
       child: ListTile(
         leading: Icon(note.isStarred ? Icons.star_outlined : Icons.star_border),
         title: Text(context.l10n.note_settings_star),
@@ -88,10 +101,17 @@ class NoteTilePopupMenu extends StatelessWidget {
     final appBloc = BlocProvider.of<AppBloc>(context);
     return PopupMenuItem<_Menu>(
       value: _Menu.star,
-      onTap: () => appBloc.add(AppUpdateSingleNote(
-        note: note,
-        updates: NoteUpdates(archived: !note.archived, isStarred: false),
-      )),
+      onTap: () {
+        appBloc.add(
+          AppUpdateSingleNote(
+            note: note,
+            updates: NoteUpdates(archived: !note.archived, isStarred: false),
+          ),
+        );
+        if (PlatformHelper.isMobile()) {
+          locator<AnalyticsService>().logToggleArchiveNoteEvent(!note.archived);
+        }
+      },
       child: ListTile(
         leading: Icon(note.archived ? Icons.archive : Icons.archive_outlined),
         title: Text(context.l10n.note_settings_archive),
@@ -104,7 +124,12 @@ class NoteTilePopupMenu extends StatelessWidget {
     const redColor = Colors.red;
     return PopupMenuItem<_Menu>(
       value: _Menu.delete,
-      onTap: () => appBloc.add(AppMoveToTrashSingleNote(note: note)),
+      onTap: () {
+        appBloc.add(AppMoveToTrashSingleNote(note: note));
+        if (PlatformHelper.isMobile()) {
+          locator<AnalyticsService>().logDeleteNoteEvent();
+        }
+      },
       child: ListTile(
         iconColor: redColor,
         textColor: redColor,
