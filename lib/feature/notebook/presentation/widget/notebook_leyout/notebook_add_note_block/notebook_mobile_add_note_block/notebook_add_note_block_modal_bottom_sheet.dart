@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_note/core/constans/insets.dart';
+import 'package:quick_note/core/service/analytics/service/analytics_service.dart';
+import 'package:quick_note/core/utils/platform_helper.dart';
 import 'package:quick_note/feature/notebook/presentation/bloc/notebook_bloc.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note_block_type.dart';
+import 'package:quick_note/injection_container.dart';
 import 'package:quick_note/l10n/l10n.dart';
 
 class NotebookAddNoteBlockModalBottomSheet extends StatelessWidget {
@@ -14,6 +17,12 @@ class NotebookAddNoteBlockModalBottomSheet extends StatelessWidget {
       onPressed: () => _showAddNoteBlockModalBottomSheet(context),
       icon: const Icon(Icons.add_box_outlined),
     );
+  }
+
+  void logCreateNoteEvent(NoteBlockType blockType) {
+    if (PlatformHelper.isMobile()) {
+      locator<AnalyticsService>().logAddBlockEvent(blockType);
+    }
   }
 
   void _showAddNoteBlockModalBottomSheet(BuildContext context) {
