@@ -29,17 +29,13 @@ class AnalyticsService {
     );
   }
 
-  void logArchiveNoteEvent() {
+  void logToggleArchiveNoteEvent(bool isArchived) {
     _analytics.logEvent(
       name: 'note_event',
-      parameters: {'action': NoteAction.archived.name},
-    );
-  }
-
-  void logUnarchiveNoteEvent() {
-    _analytics.logEvent(
-      name: 'note_event',
-      parameters: {'action': NoteAction.unarchived.name},
+      parameters: {
+        'action':
+            isArchived ? NoteAction.archived.name : NoteAction.unarchived.name,
+      },
     );
   }
 
