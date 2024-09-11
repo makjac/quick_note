@@ -47,7 +47,7 @@ void main() {
     });
 
     test('logArchiveNoteEvent logs the correct event', () {
-      analyticsService.logArchiveNoteEvent();
+      analyticsService.logToggleArchiveNoteEvent(true);
 
       verify(mockFirebaseAnalytics.logEvent(
         name: 'note_event',
@@ -56,7 +56,7 @@ void main() {
     });
 
     test('logUnarchiveNoteEvent logs the correct event', () {
-      analyticsService.logUnarchiveNoteEvent();
+      analyticsService.logToggleArchiveNoteEvent(false);
 
       verify(mockFirebaseAnalytics.logEvent(
         name: 'note_event',
@@ -74,7 +74,7 @@ void main() {
     });
 
     test('logStarNoteEvent logs the correct event', () {
-      analyticsService.logStarNoteEvent();
+      analyticsService.logToggleStarNoteEvent(true);
 
       verify(mockFirebaseAnalytics.logEvent(
         name: 'note_event',
@@ -83,7 +83,7 @@ void main() {
     });
 
     test('logUnstarNoteEvent logs the correct event', () {
-      analyticsService.logUnstarNoteEvent();
+      analyticsService.logToggleStarNoteEvent(false);
 
       verify(mockFirebaseAnalytics.logEvent(
         name: 'note_event',
