@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quick_note/core/constans/insets.dart';
+import 'package:quick_note/core/service/analytics/service/analytics_service.dart';
 import 'package:quick_note/core/utils/note_helper.dart';
+import 'package:quick_note/core/utils/platform_helper.dart';
 import 'package:quick_note/feature/notebook/presentation/bloc/notebook_bloc.dart';
+import 'package:quick_note/injection_container.dart';
 import 'package:quick_note/l10n/l10n.dart';
 
 class NotebookMoreNoteOptionButton extends StatelessWidget {
@@ -47,6 +50,10 @@ class NotebookMoreNoteOptionButton extends StatelessWidget {
                           notebookBloc.add(
                             NotebookChangeColor(color: color),
                           );
+                          if (PlatformHelper.isMobile()) {
+                            locator<AnalyticsService>()
+                                .logChangeNoteColorEvent();
+                          }
                         }
                         if (!context.mounted) return;
                         Navigator.pop(context);
@@ -62,6 +69,10 @@ class NotebookMoreNoteOptionButton extends StatelessWidget {
                     ),
                     onTap: () {
                       notebookBloc.add(NotebookToggleStar());
+                      if (PlatformHelper.isMobile()) {
+                        locator<AnalyticsService>()
+                            .logToggleStarNoteEvent(!isStarred);
+                      }
                     },
                   ),
                   ListTile(
@@ -74,6 +85,10 @@ class NotebookMoreNoteOptionButton extends StatelessWidget {
                     ),
                     onTap: () {
                       notebookBloc.add(NotebookToggleArchive());
+                      if (PlatformHelper.isMobile()) {
+                        locator<AnalyticsService>()
+                            .logToggleArchiveNoteEvent(!isArchived);
+                      }
                     },
                   ),
                   ListTile(
@@ -83,6 +98,9 @@ class NotebookMoreNoteOptionButton extends StatelessWidget {
                     title: Text(context.l10n.note_settings_delete),
                     onTap: () {
                       notebookBloc.add(NotebookMoveToTrash());
+                      if (PlatformHelper.isMobile()) {
+                        locator<AnalyticsService>().logDeleteNoteEvent();
+                      }
                       Navigator.pop(context);
                       context.pop();
                     },
