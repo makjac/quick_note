@@ -52,7 +52,7 @@ class NotebookAddNoteBlockModalBottomSheet extends StatelessWidget {
                   notebookBloc.add(
                     const NotebookAddNoteBlock(type: NoteBlockType.text),
                   );
-logCreateNoteEvent(NoteBlockType.text);
+                  logCreateNoteEvent(NoteBlockType.text);
                   Navigator.pop(context);
                 },
               ),
@@ -74,6 +74,7 @@ logCreateNoteEvent(NoteBlockType.text);
                   notebookBloc.add(
                     const NotebookAddNoteBlock(type: NoteBlockType.bookmarks),
                   );
+                  logCreateNoteEvent(NoteBlockType.bookmarks);
                   Navigator.pop(context);
                 },
               ),
