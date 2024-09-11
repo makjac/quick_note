@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:quick_note/core/constans/insets.dart';
+import 'package:quick_note/core/service/analytics/service/analytics_service.dart';
 import 'package:quick_note/core/utils/platform_helper.dart';
 import 'package:quick_note/feature/home/presentation/bloc/app_bloc.dart';
 import 'package:quick_note/feature/home/presentation/widget/note_tile/note_tile.dart';
 import 'package:quick_note/feature/home/presentation/widget/notes_segent_header.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note.dart';
+import 'package:quick_note/injection_container.dart';
 import 'package:quick_note/l10n/l10n.dart';
 
 class NotePage extends StatelessWidget {
@@ -94,8 +96,12 @@ class NotePage extends StatelessWidget {
           ),
           const SizedBox(height: Insets.xxs),
           TextButton(
-            onPressed: () =>
-                BlocProvider.of<AppBloc>(context).add(AppCreateNote()),
+            onPressed: () {
+              if (PlatformHelper.isMobile()) {
+                locator<AnalyticsService>().logCreateNoteEvent();
+              }
+              BlocProvider.of<AppBloc>(context).add(AppCreateNote());
+            },
             child: Text(
               context.l10n.note_page_create_first_note,
               style: Theme.of(context)

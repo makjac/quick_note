@@ -29,17 +29,13 @@ class AnalyticsService {
     );
   }
 
-  void logArchiveNoteEvent() {
+  void logToggleArchiveNoteEvent(bool isArchived) {
     _analytics.logEvent(
       name: 'note_event',
-      parameters: {'action': NoteAction.archived.name},
-    );
-  }
-
-  void logUnarchiveNoteEvent() {
-    _analytics.logEvent(
-      name: 'note_event',
-      parameters: {'action': NoteAction.unarchived.name},
+      parameters: {
+        'action':
+            isArchived ? NoteAction.archived.name : NoteAction.unarchived.name,
+      },
     );
   }
 
@@ -50,17 +46,12 @@ class AnalyticsService {
     );
   }
 
-  void logStarNoteEvent() {
+  void logToggleStarNoteEvent(bool isStarred) {
     _analytics.logEvent(
       name: 'note_event',
-      parameters: {'action': NoteAction.stared.name},
-    );
-  }
-
-  void logUnstarNoteEvent() {
-    _analytics.logEvent(
-      name: 'note_event',
-      parameters: {'action': NoteAction.unstared.name},
+      parameters: {
+        'action': isStarred ? NoteAction.stared.name : NoteAction.unstared.name,
+      },
     );
   }
 
