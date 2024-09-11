@@ -67,7 +67,7 @@ class _BookmarkItemPreview extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          _favicon(),
+          _buildFavicon(),
           const SizedBox(width: Insets.xs),
           Flexible(
             child: Text(
@@ -82,19 +82,37 @@ class _BookmarkItemPreview extends StatelessWidget {
     );
   }
 
-  Widget _favicon() => Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(Insets.xxs),
-        ),
-        padding: const EdgeInsets.all(1),
-        child: CachedNetworkImage(
-          imageUrl: item.faviconUrl,
-          height: 16,
-          width: 16,
-          errorWidget: (context, url, error) => const Icon(
-            Icons.link,
-            size: 18,
-          ),
-        ),
+  Widget _buildFavicon() {
+    const iconSize = 16.0;
+    if (item.faviconUrl.isEmpty) {
+      return _noFaviconWidget();
+    }
+    if (item.faviconUrl.endsWith(".svg")) {
+      return SvgPicture.network(
+        item.faviconUrl,
+        width: iconSize,
+        height: iconSize,
+        placeholderBuilder: (context) => _noFaviconWidget(),
       );
+    }
+    return CachedNetworkImage(
+      imageUrl: item.faviconUrl,
+      width: iconSize,
+      height: iconSize,
+      errorWidget: (context, url, error) => _noFaviconWidget(),
+      progressIndicatorBuilder: (context, url, downloadProgress) =>
+          CircularProgressIndicator(
+        value: downloadProgress.progress ?? 0.0,
+        color: Colors.black87,
+        strokeWidth: 3.0,
+      ),
+    );
+  }
+
+  Widget _noFaviconWidget() {
+    return const Icon(
+      Icons.link,
+      size: 18,
+    );
+  }
 }
