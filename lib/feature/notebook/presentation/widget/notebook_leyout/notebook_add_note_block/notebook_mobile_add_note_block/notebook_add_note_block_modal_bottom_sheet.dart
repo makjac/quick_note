@@ -63,6 +63,7 @@ logCreateNoteEvent(NoteBlockType.text);
                   notebookBloc.add(
                     const NotebookAddNoteBlock(type: NoteBlockType.todo),
                   );
+                  logCreateNoteEvent(NoteBlockType.todo);
                   Navigator.pop(context);
                 },
               ),
