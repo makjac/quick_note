@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_note/core/constans/app_constans.dart';
 import 'package:quick_note/core/constans/insets.dart';
+import 'package:quick_note/core/service/analytics/service/analytics_service.dart';
+import 'package:quick_note/core/utils/platform_helper.dart';
 import 'package:quick_note/feature/home/presentation/bloc/app_bloc.dart';
 import 'package:quick_note/feature/home/presentation/widget/home_page_layout/home_page_header/search_bar/home_page_note_search_text_field.dart';
+import 'package:quick_note/injection_container.dart';
 import 'package:quick_note/l10n/l10n.dart';
 import 'package:quick_note/preferences/theme/app_custom_colors.dart';
 
@@ -95,7 +98,12 @@ class _DesktopSearchbar extends StatelessWidget {
           ),
           const Spacer(),
           InkWell(
-            onTap: () => BlocProvider.of<AppBloc>(context).add(AppCreateNote()),
+            onTap: () {
+              if (PlatformHelper.isMobile()) {
+                locator<AnalyticsService>().logCreateNoteEvent();
+              }
+              BlocProvider.of<AppBloc>(context).add(AppCreateNote());
+            },
             child: Container(
               decoration: BoxDecoration(
                 color: Theme.of(context).searchBarBackgroundColor,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quick_note/core/constans/app_constans.dart';
+import 'package:quick_note/core/service/analytics/service/analytics_service.dart';
 import 'package:quick_note/core/utils/platform_helper.dart';
 import 'package:quick_note/feature/home/presentation/bloc/app_bloc.dart';
 import 'package:quick_note/feature/home/presentation/cubit/note_search_cubit.dart';
@@ -40,8 +41,12 @@ class HomePage extends StatelessWidget {
         ),
         floatingActionButton: width < AppConstans.mobileSize
             ? FloatingActionButton.extended(
-                onPressed: () =>
-                    BlocProvider.of<AppBloc>(context).add(AppCreateNote()),
+                onPressed: () {
+                  if (PlatformHelper.isMobile()) {
+                    locator<AnalyticsService>().logCreateNoteEvent();
+                  }
+                  BlocProvider.of<AppBloc>(context).add(AppCreateNote());
+                },
                 backgroundColor: Colors.grey[900],
                 foregroundColor: Colors.white,
                 icon: const Icon(Icons.add),
