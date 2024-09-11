@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quick_note/core/service/analytics/service/analytics_service.dart';
+import 'package:quick_note/core/utils/platform_helper.dart';
 import 'package:quick_note/feature/home/presentation/bloc/app_bloc.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note.dart';
+import 'package:quick_note/injection_container.dart';
 import 'package:quick_note/l10n/l10n.dart';
 
 enum _Menu { select, restore, deleteForever }
@@ -47,7 +50,12 @@ class NoteTileTrashPopupMenu extends StatelessWidget {
     final appBloc = BlocProvider.of<AppBloc>(context);
     return PopupMenuItem<_Menu>(
       value: _Menu.restore,
-      onTap: () => appBloc.add(AppRestoreSingleNote(note: note)),
+      onTap: () {
+        appBloc.add(AppRestoreSingleNote(note: note));
+        if (PlatformHelper.isMobile()) {
+          locator<AnalyticsService>().logRestoreNoteEvent();
+        }
+      },
       child: ListTile(
         leading: const Icon(Icons.arrow_upward),
         title: Text(context.l10n.note_settings_restore),
