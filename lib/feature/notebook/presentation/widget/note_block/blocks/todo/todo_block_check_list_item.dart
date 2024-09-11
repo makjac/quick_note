@@ -19,6 +19,8 @@ class TodoBlockCheckListItem extends StatefulWidget {
 }
 
 class _TodoBlockCheckListItem extends State<TodoBlockCheckListItem> {
+  bool _isHovered = false;
+
   late TextEditingController _controller;
   late FocusNode _focusNode;
 
@@ -44,19 +46,51 @@ class _TodoBlockCheckListItem extends State<TodoBlockCheckListItem> {
     super.dispose();
   }
 
+  void _handleMouseEnter() {
+    setState(() => _isHovered = true);
+  }
+
+  void _handleMouseExit() {
+    setState(() => _isHovered = false);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        if (widget.draggable) _buildDragHandle(),
-        if (!widget.draggable) const SizedBox(width: Insets.m),
-        _buildCheckbox(context),
-        const SizedBox(width: Insets.xxs),
-        _buildTextField(context),
-        _buildDeleteButton(context),
-      ],
+    return MouseRegion(
+      onEnter: (_) => _handleMouseEnter(),
+      onExit: (_) => _handleMouseExit(),
+      child: _buildContainer(context),
     );
+  }
+
+  Widget _buildContainer(BuildContext context) {
+    return Container(
+      decoration: _buildContainerDecoration(context),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: _buildRowChildren(context),
+      ),
+    );
+  }
+
+  BoxDecoration _buildContainerDecoration(BuildContext context) {
+    return BoxDecoration(
+      color: _isHovered
+          ? Theme.of(context).todoTaskHoverColor
+          : Colors.transparent,
+      borderRadius: BorderRadius.circular(Insets.xs),
+    );
+  }
+
+  List<Widget> _buildRowChildren(BuildContext context) {
+    return [
+      if (widget.draggable) _buildDragHandle(),
+      if (!widget.draggable) const SizedBox(width: Insets.m),
+      _buildCheckbox(context),
+      const SizedBox(width: Insets.xxs),
+      _buildTextField(context),
+      _buildDeleteButton(context),
+    ];
   }
 
   Widget _buildDragHandle() {
