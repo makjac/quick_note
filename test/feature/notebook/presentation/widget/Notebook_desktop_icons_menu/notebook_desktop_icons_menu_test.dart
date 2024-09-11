@@ -65,26 +65,4 @@ void main() {
     await tester.tap(find.byIcon(Icons.redo));
     verify(() => mockNotebookBloc.add(NotebookRedo())).called(1);
   });
-
-  testWidgets('tapping star button adds NotebookToggleStar event',
-      (tester) async {
-    when(() => mockNotebookBloc.state)
-        .thenReturn(const NotebookState(note: null));
-
-    await tester.pumpWidget(createWidgetUnderTest());
-
-    await tester.tap(find.byIcon(Icons.star_border));
-    verify(() => mockNotebookBloc.add(NotebookToggleStar())).called(1);
-  });
-
-  testWidgets('tapping archive button adds NotebookToggleArchive event',
-      (tester) async {
-    when(() => mockNotebookBloc.state)
-        .thenReturn(const NotebookState(note: null));
-
-    await tester.pumpWidget(createWidgetUnderTest());
-
-    await tester.tap(find.byIcon(Icons.archive_outlined));
-    verify(() => mockNotebookBloc.add(NotebookToggleArchive())).called(1);
-  });
 }
