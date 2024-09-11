@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quick_note/core/constans/app_constans.dart';
@@ -20,8 +21,15 @@ import 'package:quick_note/injection_container.dart';
 import 'package:quick_note/l10n/l10n.dart';
 import 'package:quick_note/router/app_routes.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  bool _isFabVisible = true;
 
   @override
   Widget build(BuildContext context) {
@@ -32,14 +40,29 @@ class HomePage extends StatelessWidget {
       child: Scaffold(
         drawer: const HomePageDarwer(),
         body: SafeArea(
-          child: HomePageLayout(
-            isTrash: _isTrashPage(context),
-            child: _HomePageBuilder(
-              currentRoute: _getCurrentRoute(context),
+          child: NotificationListener<ScrollNotification>(
+            onNotification: (scrollNotification) {
+              if (scrollNotification is UserScrollNotification) {
+                setState(() {
+                  if (scrollNotification.direction == ScrollDirection.forward) {
+                    _isFabVisible = true;
+                  } else if (scrollNotification.direction ==
+                      ScrollDirection.reverse) {
+                    _isFabVisible = false;
+                  }
+                });
+              }
+              return true;
+            },
+            child: HomePageLayout(
+              isTrash: _isTrashPage(context),
+              child: _HomePageBuilder(
+                currentRoute: _getCurrentRoute(context),
+              ),
             ),
           ),
         ),
-        floatingActionButton: width < AppConstans.mobileSize
+        floatingActionButton: width < AppConstans.mobileSize && _isFabVisible
             ? FloatingActionButton.extended(
                 onPressed: () {
                   if (PlatformHelper.isMobile()) {
