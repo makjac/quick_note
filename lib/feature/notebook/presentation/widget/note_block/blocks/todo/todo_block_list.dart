@@ -58,7 +58,7 @@ class TodoBlockList extends StatelessWidget {
         return Transform.scale(
           scale: scale,
           child: Card(
-            color: Colors.white24,
+            color: Colors.white12,
             shadowColor: Colors.transparent,
             child: child,
           ),
