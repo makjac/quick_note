@@ -75,9 +75,7 @@ class _TodoBlockCheckListItem extends State<TodoBlockCheckListItem> {
 
   BoxDecoration _buildContainerDecoration(BuildContext context) {
     return BoxDecoration(
-      color: _isHovered
-          ? Theme.of(context).todoTaskHoverColor
-          : Colors.transparent,
+      color: _isHovered ? Theme.of(context).hoverColor : Colors.transparent,
       borderRadius: BorderRadius.circular(Insets.xs),
     );
   }
