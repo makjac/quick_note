@@ -57,6 +57,4 @@ extension AppColors on ThemeData {
       brightness == Brightness.dark ? Colors.white : Colors.white70;
   Color get bookmarkFullUrlColor =>
       brightness == Brightness.dark ? Colors.white54 : Colors.black54;
-  Color get bookmarkHoverColor =>
-      brightness == Brightness.dark ? Colors.white12 : Colors.black12;
 }
