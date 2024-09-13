@@ -48,7 +48,7 @@ class BookmarksGridWidget extends StatelessWidget {
         ),
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.white24,
+            color: Colors.white12,
             borderRadius: BorderRadius.circular(Insets.xs),
           ),
           child: child,

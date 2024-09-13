@@ -2,7 +2,7 @@ name: quick_note
 description: "A new Flutter project."
 publish_to: "none"
 
-version: 1.2.2+11
+version: 1.2.3+12
 
 environment:
   sdk: ">=3.4.3 <4.0.0"
@@ -37,6 +37,7 @@ dependencies:
   url_launcher: ^6.3.0
   reorderable_grid: ^1.0.10
   flutter_svg: ^2.0.10+1
+  flutter_native_splash: ^2.4.1
 
 dev_dependencies:
   hive_generator: ^2.0.1
@@ -62,11 +63,12 @@ flutter:
     - assets/logo/quick_note_rectangle.png
     - assets/svg/quick_note.svg
     - assets/svg/quickNote_box.svg
+    - assets/splash_screen/quick_note.png
 
 msix_config:
   display_name: QuickNotePad
   publisher_display_name: makjac
   publisher: CN=PLACEHOLDER_PUBLISHER
   identity_name: PLACEHOLDER_IDENTITY_NAME
-  msix_version: 1.1.1.0
+  msix_version: 1.1.1.1
   logo_path: .\installers\windows\msix\quick_note.png
