@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 
 extension AppColors on ThemeData {
   // HomePage
+  Color get floatingAcrionButtonBackgroundColor =>
+      brightness == Brightness.dark ? Colors.grey[900]! : Colors.white;
+  Color get floatingAcrionButtonForegroundColor =>
+      brightness == Brightness.dark ? Colors.white : Colors.grey[900]!;
   //
   // Side menu
   Color? get sideMenuBackgroundColor =>

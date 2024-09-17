@@ -140,6 +140,8 @@ class _NotebookNoteBlocksOrder extends StatelessWidget {
         return "${context.l10n.block_type_text} $blockIndex";
       case NoteBlockType.todo:
         return "${context.l10n.block_type_todo} $blockIndex";
+      case NoteBlockType.bookmarks:
+        return "${context.l10n.block_bookmark_todo} $blockIndex";
       default:
         return "Block $blockIndex";
     }
