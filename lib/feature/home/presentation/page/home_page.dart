@@ -20,7 +20,7 @@ import 'package:quick_note/feature/home/presentation/widget/bottom_navigation_ba
 import 'package:quick_note/feature/home/presentation/widget/home_page_layout/home_page_menu/home_page_darwer.dart';
 import 'package:quick_note/feature/home/presentation/widget/home_page_layout/home_page_layout.dart';
 import 'package:quick_note/injection_container.dart';
-import 'package:quick_note/l10n/l10n.dart';
+import 'package:quick_note/preferences/theme/app_custom_colors.dart';
 import 'package:quick_note/router/app_routes.dart';
 
 class HomePage extends StatefulWidget {
@@ -84,7 +84,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         floatingActionButton: width < AppConstans.mobileSize && _isFabVisible
-            ? FloatingActionButton.extended(
+            ? FloatingActionButton(
                 onPressed: () {
                   if (PlatformHelper.isMobile()) {
                     locator<AnalyticsService>().logCreateNoteEvent();
@@ -95,8 +95,7 @@ class _HomePageState extends State<HomePage> {
                     Theme.of(context).floatingAcrionButtonBackgroundColor,
                 foregroundColor:
                     Theme.of(context).floatingAcrionButtonForegroundColor,
-                icon: const Icon(Icons.add),
-                label: Text(context.l10n.add_note),
+                child: const Icon(Icons.add),
               )
             : null,
         bottomNavigationBar: _buildBottomNavigationBar(),
