@@ -28,6 +28,7 @@ class _NotebookEditNotesViewState extends State<NotebookEditNotesView> {
   late ScrollController _scrollController;
 
   bool get _hasTitle => widget.note?.title.isNotEmpty ?? false;
+  bool get _isNoteEmpty => widget.note?.content.isEmpty ?? false;
   bool get _setFocus => !_hasTitle && widget.note != null;
 
   @override
