@@ -4,6 +4,7 @@ import 'package:quick_note/core/constans/app_constans.dart';
 import 'package:quick_note/core/constans/insets.dart';
 import 'package:quick_note/core/utils/platform_helper.dart';
 import 'package:quick_note/feature/notebook/presentation/bloc/notebook_bloc.dart';
+import 'package:quick_note/feature/notebook/presentation/widget/notebook_leyout/notebook_add_note_block/notebook_mobile_add_note_block/show_add_note_block_bottom_sheet.dart';
 import 'package:quick_note/feature/notebook/presentation/widget/notebook_leyout/notebook_header/Notebook_desktop_icons_menu/notebook_desktop_icons_menu.dart';
 import 'package:quick_note/feature/notebook/presentation/widget/notebook_leyout/notebook_add_note_block/notebook_add_note_block_button/add_note_block_button.dart';
 import 'package:quick_note/feature/notebook/presentation/widget/note_block/note_block_builder.dart';
@@ -42,8 +43,18 @@ class _NotebookEditNotesViewState extends State<NotebookEditNotesView> {
   void didUpdateWidget(covariant NotebookEditNotesView oldWidget) {
     super.didUpdateWidget(oldWidget);
 
-    if (oldWidget.note == null) {
-      _setFocus ? _focusNode.requestFocus() : _focusNode.unfocus();
+    if (oldWidget.note == null && widget.note != null) {
+      if (_setFocus) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          _focusNode.requestFocus();
+
+          if (PlatformHelper.isMobile() && _isNoteEmpty) {
+            ShowAddNoteBlockBottomSheet.show(context);
+          }
+        });
+      } else {
+        _focusNode.unfocus();
+      }
     }
   }
 
