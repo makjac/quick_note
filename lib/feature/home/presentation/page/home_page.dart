@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,6 +32,17 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool _isFabVisible = true;
+  Timer? _fabVisibilityTimer;
+
+  @override
+  void initState() {
+    _fabVisibilityTimer = Timer.periodic(const Duration(seconds: 1), (_) {
+      if (mounted) {
+        setState(() {});
+      }
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +62,14 @@ class _HomePageState extends State<HomePage> {
                   } else if (scrollNotification.direction ==
                       ScrollDirection.reverse) {
                     _isFabVisible = false;
+                    _fabVisibilityTimer?.cancel();
+                    _fabVisibilityTimer = Timer(const Duration(seconds: 1), () {
+                      if (mounted) {
+                        setState(() {
+                          _isFabVisible = true;
+                        });
+                      }
+                    });
                   }
                 });
               }
