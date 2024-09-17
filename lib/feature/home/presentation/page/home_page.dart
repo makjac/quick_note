@@ -91,8 +91,10 @@ class _HomePageState extends State<HomePage> {
                   }
                   BlocProvider.of<AppBloc>(context).add(AppCreateNote());
                 },
-                backgroundColor: Colors.grey[900],
-                foregroundColor: Colors.white,
+                backgroundColor:
+                    Theme.of(context).floatingAcrionButtonBackgroundColor,
+                foregroundColor:
+                    Theme.of(context).floatingAcrionButtonForegroundColor,
                 icon: const Icon(Icons.add),
                 label: Text(context.l10n.add_note),
               )
