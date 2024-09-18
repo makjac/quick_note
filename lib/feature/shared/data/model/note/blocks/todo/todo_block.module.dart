@@ -10,19 +10,6 @@ part 'todo_block.module.g.dart';
 
 @HiveType(typeId: 4)
 class TodoBlockModel extends TodoBlock implements NoteBlockModel {
-  factory TodoBlockModel.fromEntity(TodoBlock block) {
-    return TodoBlockModel(
-      id: block.id,
-      title: block.title,
-      hasTitle: block.hasTitle,
-      items: block.items.map(ChecklistItemModel.fromEntity).toList(),
-      showCompleteTasks: block.showCompleteTasks,
-      showProgressBar: block.showProgressBar,
-      maxVisibleTasks: block.maxVisibleTasks,
-      dedline: block.dedline,
-    );
-  }
-
   const TodoBlockModel({
     required super.id,
     super.title = "",
@@ -34,6 +21,20 @@ class TodoBlockModel extends TodoBlock implements NoteBlockModel {
     super.maxVisibleTasks,
     super.dedline,
   }) : super(items: items);
+
+  factory TodoBlockModel.fromEntity(TodoBlock block) {
+    return TodoBlockModel(
+      id: block.id,
+      title: block.title,
+      hasTitle: block.hasTitle,
+      type: block.type,
+      items: block.items.map(ChecklistItemModel.fromEntity).toList(),
+      showCompleteTasks: block.showCompleteTasks,
+      showProgressBar: block.showProgressBar,
+      maxVisibleTasks: block.maxVisibleTasks,
+      dedline: block.dedline,
+    );
+  }
 
   @override
   @HiveField(20, defaultValue: [])
