@@ -55,7 +55,23 @@ class NoteModel extends Note with HiveObjectMixin {
     );
   }
 
- 
+  factory NoteModel.fromJson(Map<String, dynamic> json) {
+    return NoteModel(
+      id: json['id'] as num,
+      created: json['created'] as DateTime,
+      modified: json['modified'] as DateTime,
+      expiryDate: json['expiryDate'] as DateTime?,
+      title: json['title'] as String,
+      content: (json['content'] as List<dynamic>)
+          .map(
+              (block) => NoteBlockModel.fromJson(block as Map<String, dynamic>))
+          .toList(),
+      archived: json['archived'] as bool,
+      author: json['author'] as String?,
+      isStarred: json['isStarred'] as bool,
+      color: NoteColors.values[json['color'] as int],
+    );
+  }
 
   bool get isEmpty {
     final hasTitle = title.isNotEmpty;
