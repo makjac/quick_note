@@ -7,6 +7,7 @@ import 'package:quick_note/feature/shared/domain/entity/note/blocks/bookmarks/bo
 import 'package:quick_note/feature/shared/domain/entity/note/blocks/text/text_block.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/blocks/todo/todo_block.dart';
 import 'package:quick_note/feature/shared/domain/entity/note/note_block.dart';
+import 'package:quick_note/feature/shared/domain/entity/note/note_block_type.dart';
 
 abstract class NoteBlockModel extends NoteBlock {
   const NoteBlockModel({
@@ -25,6 +26,20 @@ abstract class NoteBlockModel extends NoteBlock {
       return BookmarksBlockModel.fromEntity(block);
     } else {
       throw UnimplementedError();
+    }
+  }
+
+  factory NoteBlockModel.fromJson(Map<String, dynamic> json) {
+    final type = NoteBlockType.values[json['type'] as int];
+    switch (type) {
+      case NoteBlockType.text:
+        return TextBlockModel.fromJson(json);
+      case NoteBlockType.todo:
+        return TodoBlockModel.fromJson(json);
+      case NoteBlockType.bookmarks:
+        return BookmarksBlockModel.fromJson(json);
+      default:
+        throw UnimplementedError();
     }
   }
 
