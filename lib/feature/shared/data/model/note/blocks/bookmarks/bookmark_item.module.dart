@@ -25,6 +25,16 @@ class BookmarkItemModel extends BookmarkItem with HiveObjectMixin {
     );
   }
 
+  factory BookmarkItemModel.fromJson(Map<String, dynamic> json) {
+    return BookmarkItemModel(
+      id: json['id'] as num,
+      title: json['title'] as String? ?? "",
+      url: json['url'] as String? ?? "",
+      faviconUrl: json['faviconUrl'] as String? ?? "",
+      description: json['description'] as String? ?? "",
+    );
+  }
+
   @override
   List<Object?> get props => [id, title, url, faviconUrl, description];
 }
