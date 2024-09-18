@@ -29,6 +29,14 @@ class ChecklistItemModel extends ChecklistItem with HiveObjectMixin {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'isChecked': isChecked,
+    };
+  }
+
   @override
   List<Object?> get props => [id, title, isChecked];
 }
