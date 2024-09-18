@@ -191,5 +191,34 @@ void main() {
 
       expect(noteModel1, isNot(noteModel2));
     });
+
+    test('should convert NoteModel from JSON', () {
+      final now = DateTime.now();
+      final json = {
+        'id': 1,
+        'created': now,
+        'modified': now,
+        'expiryDate': null,
+        'title': 'Test Note',
+        'content': [],
+        'archived': false,
+        'author': 'Author',
+        'isStarred': true,
+        'color': 1,
+      };
+
+      final noteModel = NoteModel.fromJson(json);
+
+      expect(noteModel.id, 1);
+      expect(noteModel.created, now);
+      expect(noteModel.modified, now);
+      expect(noteModel.expiryDate, null);
+      expect(noteModel.title, 'Test Note');
+      expect(noteModel.content, []);
+      expect(noteModel.archived, false);
+      expect(noteModel.author, 'Author');
+      expect(noteModel.isStarred, true);
+      expect(noteModel.color, NoteColors.color2);
+    });
   });
 }
