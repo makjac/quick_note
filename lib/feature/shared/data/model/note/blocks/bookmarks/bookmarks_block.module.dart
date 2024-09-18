@@ -35,6 +35,22 @@ class BookmarksBlockModel extends BookmarksBlock implements NoteBlockModel {
     );
   }
 
+  factory BookmarksBlockModel.fromJson(Map<String, dynamic> json) {
+    return BookmarksBlockModel(
+      id: json['id'] as num,
+      title: json['title'] as String,
+      hasTitle: json['hasTitle'] as bool,
+      type: NoteBlockType.values[json['type'] as int],
+      items: (json['items'] as List<dynamic>)
+          .map((item) =>
+              BookmarkItemModel.fromJson(item as Map<String, dynamic>))
+          .toList(),
+      visibleFavicons: json['visibleFavicons'] as bool,
+      maxVisibleBookmakrs: json['maxVisibleBookmakrs'] as int?,
+      viewMode: BookmarkViewMode.values[json['viewMode'] as int],
+    );
+  }
+
   @override
   @HiveField(20, defaultValue: [])
   final List<BookmarkItemModel> items;
