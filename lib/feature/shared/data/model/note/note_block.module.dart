@@ -43,6 +43,8 @@ abstract class NoteBlockModel extends NoteBlock {
     }
   }
 
+  Map<String, dynamic> toJson();
+
   @override
   List<Object?> get props => [id, title, hasTitle, type];
 }
