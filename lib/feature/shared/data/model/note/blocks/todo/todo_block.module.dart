@@ -36,6 +36,23 @@ class TodoBlockModel extends TodoBlock implements NoteBlockModel {
     );
   }
 
+  factory TodoBlockModel.fromJson(Map<String, dynamic> json) {
+    return TodoBlockModel(
+      id: json['id'] as num,
+      title: json['title'] as String? ?? "",
+      hasTitle: json['hasTitle'] as bool? ?? false,
+      type: NoteBlockType.values[json['type'] as int],
+      items: (json['items'] as List<dynamic>)
+          .map((item) =>
+              ChecklistItemModel.fromJson(item as Map<String, dynamic>))
+          .toList(),
+      showCompleteTasks: json['showCompleteTasks'] as bool? ?? false,
+      showProgressBar: json['showProgressBar'] as bool? ?? false,
+      maxVisibleTasks: json['maxVisibleTasks'] as int?,
+      dedline: DateTime.tryParse(json['dedline'] as String? ?? ""),
+    );
+  }
+
   @override
   @HiveField(20, defaultValue: [])
   final List<ChecklistItemModel> items;
