@@ -24,6 +24,7 @@ class TextBlockModel extends TextBlock implements NoteBlockModel {
       id: block.id,
       title: block.title,
       hasTitle: block.hasTitle,
+      type: block.type,
       text: block.text,
       hasMaxLineLimit: block.hasMaxLineLimit,
       maxLines: block.maxLines,
