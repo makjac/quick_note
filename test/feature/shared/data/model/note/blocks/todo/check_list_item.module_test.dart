@@ -46,6 +46,20 @@ void main() {
       expect(checklistItemModel.isChecked, true);
     });
 
+    test('should convert ChecklistItemModel to JSON using toJson', () {
+      final checklistItemModel = ChecklistItemModel(
+        id: 1,
+        title: 'Sample Item',
+        isChecked: true,
+      );
+
+      final json = checklistItemModel.toJson();
+
+      expect(json['id'], 1);
+      expect(json['title'], 'Sample Item');
+      expect(json['isChecked'], true);
+    });
+
     test(
         'should compare two ChecklistItemModel instances with the same values as equal',
         () {
