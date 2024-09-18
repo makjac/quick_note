@@ -56,5 +56,19 @@ class BookmarksBlockModel extends BookmarksBlock implements NoteBlockModel {
   final List<BookmarkItemModel> items;
 
   @override
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'hasTitle': hasTitle,
+      'type': type.index,
+      'items': items.map((item) => item.toJson()).toList(),
+      'visibleFavicons': visibleFavicons,
+      'maxVisibleBookmakrs': maxVisibleBookmakrs,
+      'viewMode': viewMode.index,
+    };
+  }
+
+  @override
   List<Object?> get props => [super.props, title, hasTitle, items, type];
 }
