@@ -220,5 +220,33 @@ void main() {
       expect(noteModel.isStarred, true);
       expect(noteModel.color, NoteColors.color2);
     });
+
+    test('should convert NoteModel to JSON', () {
+      final now = DateTime.now();
+      final noteModel = NoteModel(
+        id: 1,
+        created: now,
+        modified: now,
+        title: 'Test Note',
+        content: const [],
+        archived: false,
+        author: 'Author',
+        isStarred: true,
+        color: NoteColors.color2,
+      );
+
+      final json = noteModel.toJson();
+
+      expect(json['id'], 1);
+      expect(json['created'], now);
+      expect(json['modified'], now);
+      expect(json['expiryDate'], null);
+      expect(json['title'], 'Test Note');
+      expect(json['content'], []);
+      expect(json['archived'], false);
+      expect(json['author'], 'Author');
+      expect(json['isStarred'], true);
+      expect(json['color'], 1);
+    });
   });
 }
