@@ -45,6 +45,28 @@ void main() {
       expect(textBlockModel.type, textBlock.type);
     });
 
+    test('should convert JSON to TextBlockModel using fromJson', () {
+      final json = {
+        'id': 1,
+        'title': 'Sample Title',
+        'hasTitle': true,
+        'type': 0,
+        'text': 'Sample text',
+        'hasMaxLineLimit': true,
+        'maxLines': 5,
+      };
+
+      final textBlockModel = TextBlockModel.fromJson(json);
+
+      expect(textBlockModel.id, 1);
+      expect(textBlockModel.title, 'Sample Title');
+      expect(textBlockModel.hasTitle, true);
+      expect(textBlockModel.text, 'Sample text');
+      expect(textBlockModel.hasMaxLineLimit, true);
+      expect(textBlockModel.maxLines, 5);
+      expect(textBlockModel.type, NoteBlockType.text);
+    });
+
     test(
         'should compare two TextBlockModel instances with the same values as equal',
         () {
