@@ -67,6 +67,27 @@ void main() {
       expect(textBlockModel.type, NoteBlockType.text);
     });
 
+    test('should convert TextBlockModel to JSON using toJson', () {
+      const textBlockModel = TextBlockModel(
+        id: 1,
+        title: 'Sample Title',
+        hasTitle: true,
+        text: 'Sample text',
+        hasMaxLineLimit: true,
+        maxLines: 5,
+      );
+
+      final json = textBlockModel.toJson();
+
+      expect(json['id'], 1);
+      expect(json['title'], 'Sample Title');
+      expect(json['hasTitle'], true);
+      expect(json['type'], NoteBlockType.text.index);
+      expect(json['text'], 'Sample text');
+      expect(json['hasMaxLineLimit'], true);
+      expect(json['maxLines'], 5);
+    });
+
     test(
         'should compare two TextBlockModel instances with the same values as equal',
         () {
