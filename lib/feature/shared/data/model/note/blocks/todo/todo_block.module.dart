@@ -58,6 +58,21 @@ class TodoBlockModel extends TodoBlock implements NoteBlockModel {
   final List<ChecklistItemModel> items;
 
   @override
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'hasTitle': hasTitle,
+      'type': type.index,
+      'items': items.map((item) => item.toJson()).toList(),
+      'showCompleteTasks': showCompleteTasks,
+      'showProgressBar': showProgressBar,
+      'maxVisibleTasks': maxVisibleTasks,
+      'dedline': dedline?.toIso8601String(),
+    };
+  }
+
+  @override
   List<Object?> get props => [
         super.props,
         title,
