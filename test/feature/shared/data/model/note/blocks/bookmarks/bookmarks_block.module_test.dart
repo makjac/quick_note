@@ -173,5 +173,38 @@ void main() {
 
       expect(bookmarksBlockModel1, isNot(bookmarksBlockModel2));
     });
+
+    test('should convert BookmarksBlockModel to JSON and back', () {
+      final bookmarkItemModel1 = BookmarkItemModel(
+        id: 1,
+        title: 'Item 1',
+        url: 'http://example.com/1',
+        faviconUrl: 'http://example.com/1/favicon.ico',
+        description: 'Description 1',
+      );
+
+      final bookmarkItemModel2 = BookmarkItemModel(
+        id: 2,
+        title: 'Item 2',
+        url: 'http://example.com/2',
+        faviconUrl: 'http://example.com/2/favicon.ico',
+        description: 'Description 2',
+      );
+
+      final bookmarksBlockModel = BookmarksBlockModel(
+        id: 1,
+        title: 'Bookmarks Block',
+        hasTitle: true,
+        items: [bookmarkItemModel1, bookmarkItemModel2],
+        visibleFavicons: true,
+        maxVisibleBookmakrs: 10,
+        viewMode: BookmarkViewMode.grid,
+      );
+
+      final json = bookmarksBlockModel.toJson();
+      final fromJsonModel = BookmarksBlockModel.fromJson(json);
+
+      expect(fromJsonModel, bookmarksBlockModel);
+    });
   });
 }
