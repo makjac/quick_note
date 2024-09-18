@@ -58,6 +58,24 @@ void main() {
       expect(bookmarkItemModel.description, 'Sample Description');
     });
 
+    test('should convert BookmarkItemModel to JSON using toJson', () {
+      final bookmarkItemModel = BookmarkItemModel(
+        id: 1,
+        title: 'Sample Title',
+        url: 'http://example.com',
+        faviconUrl: 'http://example.com/favicon.ico',
+        description: 'Sample Description',
+      );
+
+      final json = bookmarkItemModel.toJson();
+
+      expect(json['id'], 1);
+      expect(json['title'], 'Sample Title');
+      expect(json['url'], 'http://example.com');
+      expect(json['faviconUrl'], 'http://example.com/favicon.ico');
+      expect(json['description'], 'Sample Description');
+    });
+
     test(
         'should compare two BookmarkItemModel instances with the same values as equal',
         () {
