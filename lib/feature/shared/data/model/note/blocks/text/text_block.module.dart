@@ -44,6 +44,19 @@ class TextBlockModel extends TextBlock implements NoteBlockModel {
   }
 
   @override
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'hasTitle': hasTitle,
+      'type': type.index,
+      'text': text,
+      'hasMaxLineLimit': hasMaxLineLimit,
+      'maxLines': maxLines,
+    };
+  }
+
+  @override
   List<Object?> get props => [
         super.props,
         title,
