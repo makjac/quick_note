@@ -9,6 +9,16 @@ class NoteDataPackageModel extends NoteDataPackage {
     super.exportVersion = '',
     super.description = '',
   });
+  factory NoteDataPackageModel.fromEntity(NoteDataPackage data) {
+    return NoteDataPackageModel(
+      notes: data.notes,
+      creationDate: data.creationDate,
+      exportedBy: data.exportedBy,
+      exportVersion: data.exportVersion,
+      description: data.description,
+    );
+  }
+
 
   @override
   List<Object?> get props =>
