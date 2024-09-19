@@ -72,5 +72,28 @@ void main() {
       expect(updatedModel.exportVersion, model.exportVersion);
       expect(updatedModel.description, 'Updated description');
     });
+
+    test('should convert model to JSON', () {
+      final model = NoteDataPackageModel.fromEntity(noteDataPackage);
+      final json = model.toJson();
+
+      expect(json['notes'].length, 1);
+      expect(json['notes'][0]['title'], 'Note 1');
+      expect(json['notes'][0]['content'], [
+        {
+          'id': 1,
+          'title': '',
+          'hasTitle': false,
+          'type': 0,
+          'text': 'Content 1',
+          'hasMaxLineLimit': false,
+          'maxLines': 3
+        }
+      ]);
+      expect(json['creationDate'], model.creationDate.toIso8601String());
+      expect(json['exportedBy'], model.exportedBy);
+      expect(json['exportVersion'], model.exportVersion);
+      expect(json['description'], model.description);
+    });
   });
 }
