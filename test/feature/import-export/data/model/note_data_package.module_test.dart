@@ -30,5 +30,36 @@ void main() {
       expect(model.exportVersion, noteDataPackage.exportVersion);
       expect(model.description, noteDataPackage.description);
     });
+
+    test('should create an instance from JSON', () {
+      final json = {
+        'notes': [
+          {
+            'id': 1,
+            'title': 'Note 1',
+            'content': [],
+            'created': DateTime.now().toIso8601String(),
+            'modified': DateTime.now()
+                .add(const Duration(seconds: 1))
+                .toIso8601String(),
+          }
+        ],
+        'creationDate': DateTime.now().toIso8601String(),
+        'exportedBy': 'John Doe',
+        'exportVersion': '1.0',
+        'description': 'Exported notes for project X',
+      };
+
+      final model = NoteDataPackageModel.fromJson(json);
+
+      expect(model.notes.length, 1);
+      expect(model.notes.first.title, 'Note 1');
+      expect(model.notes.first.content, []);
+      expect(
+          model.creationDate, DateTime.parse(json['creationDate'] as String));
+      expect(model.exportedBy, json['exportedBy']);
+      expect(model.exportVersion, json['exportVersion']);
+      expect(model.description, json['description']);
+    });
   });
 }
