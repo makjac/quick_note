@@ -238,8 +238,8 @@ void main() {
       final json = noteModel.toJson();
 
       expect(json['id'], 1);
-      expect(json['created'], now);
-      expect(json['modified'], now);
+      expect(json['created'], now.toIso8601String());
+      expect(json['modified'], now.toIso8601String());
       expect(json['expiryDate'], null);
       expect(json['title'], 'Test Note');
       expect(json['content'], []);
