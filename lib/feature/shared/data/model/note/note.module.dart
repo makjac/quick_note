@@ -83,9 +83,9 @@ class NoteModel extends Note with HiveObjectMixin {
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'created': created,
-      'modified': modified,
-      'expiryDate': expiryDate,
+      'created': created.toIso8601String(),
+      'modified': modified.toIso8601String(),
+      'expiryDate': expiryDate?.toIso8601String(),
       'title': title,
       'content': content
           .map((block) => NoteBlockModel.fromEntity(block).toJson())
