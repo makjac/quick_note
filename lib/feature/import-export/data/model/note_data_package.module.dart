@@ -19,6 +19,18 @@ class NoteDataPackageModel extends NoteDataPackage {
     );
   }
 
+  factory NoteDataPackageModel.fromJson(Map<String, dynamic> json) {
+    return NoteDataPackageModel(
+      notes: (json['notes'] as List)
+          .map((note) => NoteModel.fromJson(note))
+          .toList(),
+      creationDate: DateTime.parse(json['creationDate']),
+      exportedBy: json['exportedBy'],
+      exportVersion: json['exportVersion'],
+      description: json['description'],
+    );
+  }
+
 
   @override
   List<Object?> get props =>
