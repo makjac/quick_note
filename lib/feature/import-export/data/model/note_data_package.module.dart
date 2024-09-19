@@ -47,6 +47,16 @@ class NoteDataPackageModel extends NoteDataPackage {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    return {
+      'notes':
+          notes.map((note) => NoteModel.fromEntity(note).toJson()).toList(),
+      'creationDate': creationDate.toIso8601String(),
+      'exportedBy': exportedBy,
+      'exportVersion': exportVersion,
+      'description': description,
+    };
+  }
 
   @override
   List<Object?> get props =>
