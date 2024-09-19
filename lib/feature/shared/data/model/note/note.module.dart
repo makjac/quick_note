@@ -58,9 +58,9 @@ class NoteModel extends Note with HiveObjectMixin {
   factory NoteModel.fromJson(Map<String, dynamic> json) {
     return NoteModel(
       id: json['id'] as num,
-      created: json['created'] as DateTime,
-      modified: json['modified'] as DateTime,
-      expiryDate: json['expiryDate'] as DateTime?,
+      created: DateTime.parse(json['created'] as String),
+      modified: DateTime.parse(json['modified'] as String),
+      expiryDate: DateTime.tryParse(json['expiryDate'] as String? ?? ''),
       title: json['title'] as String,
       content: (json['content'] as List<dynamic>)
           .map(
