@@ -31,6 +31,22 @@ class NoteDataPackageModel extends NoteDataPackage {
     );
   }
 
+  NoteDataPackageModel copyWith({
+    List<NoteModel>? notes,
+    DateTime? creationDate,
+    String? exportedBy,
+    String? exportVersion,
+    String? description,
+  }) {
+    return NoteDataPackageModel(
+      notes: notes ?? this.notes,
+      creationDate: creationDate ?? this.creationDate,
+      exportedBy: exportedBy ?? this.exportedBy,
+      exportVersion: exportVersion ?? this.exportVersion,
+      description: description ?? this.description,
+    );
+  }
+
 
   @override
   List<Object?> get props =>
