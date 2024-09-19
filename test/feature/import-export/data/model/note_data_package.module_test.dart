@@ -61,5 +61,16 @@ void main() {
       expect(model.exportVersion, json['exportVersion']);
       expect(model.description, json['description']);
     });
+
+    test('should create a copy with modifications', () {
+      final model = NoteDataPackageModel.fromEntity(noteDataPackage);
+      final updatedModel = model.copyWith(description: 'Updated description');
+
+      expect(updatedModel.notes, model.notes);
+      expect(updatedModel.creationDate, model.creationDate);
+      expect(updatedModel.exportedBy, model.exportedBy);
+      expect(updatedModel.exportVersion, model.exportVersion);
+      expect(updatedModel.description, 'Updated description');
+    });
   });
 }
