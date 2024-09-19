@@ -66,10 +66,10 @@ class NoteModel extends Note with HiveObjectMixin {
           .map(
               (block) => NoteBlockModel.fromJson(block as Map<String, dynamic>))
           .toList(),
-      archived: json['archived'] as bool,
+      archived: json['archived'] as bool? ?? false,
       author: json['author'] as String?,
-      isStarred: json['isStarred'] as bool,
-      color: NoteColors.values[json['color'] as int],
+      isStarred: json['isStarred'] as bool? ?? false,
+      color: NoteColors.values[json['color'] as int? ?? 0],
     );
   }
 
