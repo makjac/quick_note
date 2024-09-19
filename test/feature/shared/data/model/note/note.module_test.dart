@@ -196,8 +196,8 @@ void main() {
       final now = DateTime.now();
       final json = {
         'id': 1,
-        'created': now,
-        'modified': now,
+        'created': now.toIso8601String(),
+        'modified': now.toIso8601String(),
         'expiryDate': null,
         'title': 'Test Note',
         'content': [],
