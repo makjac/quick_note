@@ -11,6 +11,19 @@ part 'note.module.g.dart';
 
 @HiveType(typeId: 0)
 class NoteModel extends Note with HiveObjectMixin {
+  NoteModel({
+    required super.id,
+    required super.created,
+    required super.modified,
+    super.expiryDate,
+    required super.title,
+    required super.content,
+    super.archived,
+    super.author,
+    super.isStarred,
+    super.color,
+  });
+
   factory NoteModel.fromEntity(Note entity) {
     return NoteModel(
       id: entity.id,
@@ -42,24 +55,46 @@ class NoteModel extends Note with HiveObjectMixin {
     );
   }
 
-  NoteModel({
-    required super.id,
-    required super.created,
-    required super.modified,
-    super.expiryDate,
-    required super.title,
-    required super.content,
-    super.archived,
-    super.author,
-    super.isStarred,
-    super.color,
-  });
+  factory NoteModel.fromJson(Map<String, dynamic> json) {
+    return NoteModel(
+      id: json['id'] as num,
+      created: DateTime.parse(json['created'] as String),
+      modified: DateTime.parse(json['modified'] as String),
+      expiryDate: DateTime.tryParse(json['expiryDate'] as String? ?? ''),
+      title: json['title'] as String,
+      content: (json['content'] as List<dynamic>)
+          .map(
+              (block) => NoteBlockModel.fromJson(block as Map<String, dynamic>))
+          .toList(),
+      archived: json['archived'] as bool? ?? false,
+      author: json['author'] as String?,
+      isStarred: json['isStarred'] as bool? ?? false,
+      color: NoteColors.values[json['color'] as int? ?? 0],
+    );
+  }
 
   bool get isEmpty {
     final hasTitle = title.isNotEmpty;
     final hasContent = content.isNotEmpty;
 
     return !hasTitle && !hasContent;
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'created': created.toIso8601String(),
+      'modified': modified.toIso8601String(),
+      'expiryDate': expiryDate?.toIso8601String(),
+      'title': title,
+      'content': content
+          .map((block) => NoteBlockModel.fromEntity(block).toJson())
+          .toList(),
+      'archived': archived,
+      'author': author,
+      'isStarred': isStarred,
+      'color': color.index,
+    };
   }
 
   Note toEntity() {

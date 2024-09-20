@@ -24,10 +24,36 @@ class TextBlockModel extends TextBlock implements NoteBlockModel {
       id: block.id,
       title: block.title,
       hasTitle: block.hasTitle,
+      type: block.type,
       text: block.text,
       hasMaxLineLimit: block.hasMaxLineLimit,
       maxLines: block.maxLines,
     );
+  }
+
+  factory TextBlockModel.fromJson(Map<String, dynamic> json) {
+    return TextBlockModel(
+      id: json['id'],
+      title: json['title'] ?? "",
+      hasTitle: json['hasTitle'] ?? false,
+      type: NoteBlockType.values[json['type'] as int],
+      text: json['text'] ?? "",
+      hasMaxLineLimit: json['hasMaxLineLimit'] ?? false,
+      maxLines: json['maxLines'] ?? 3,
+    );
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'hasTitle': hasTitle,
+      'type': type.index,
+      'text': text,
+      'hasMaxLineLimit': hasMaxLineLimit,
+      'maxLines': maxLines,
+    };
   }
 
   @override

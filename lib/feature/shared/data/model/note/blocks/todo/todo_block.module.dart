@@ -10,19 +10,6 @@ part 'todo_block.module.g.dart';
 
 @HiveType(typeId: 4)
 class TodoBlockModel extends TodoBlock implements NoteBlockModel {
-  factory TodoBlockModel.fromEntity(TodoBlock block) {
-    return TodoBlockModel(
-      id: block.id,
-      title: block.title,
-      hasTitle: block.hasTitle,
-      items: block.items.map(ChecklistItemModel.fromEntity).toList(),
-      showCompleteTasks: block.showCompleteTasks,
-      showProgressBar: block.showProgressBar,
-      maxVisibleTasks: block.maxVisibleTasks,
-      dedline: block.dedline,
-    );
-  }
-
   const TodoBlockModel({
     required super.id,
     super.title = "",
@@ -35,9 +22,55 @@ class TodoBlockModel extends TodoBlock implements NoteBlockModel {
     super.dedline,
   }) : super(items: items);
 
+  factory TodoBlockModel.fromEntity(TodoBlock block) {
+    return TodoBlockModel(
+      id: block.id,
+      title: block.title,
+      hasTitle: block.hasTitle,
+      type: block.type,
+      items: block.items.map(ChecklistItemModel.fromEntity).toList(),
+      showCompleteTasks: block.showCompleteTasks,
+      showProgressBar: block.showProgressBar,
+      maxVisibleTasks: block.maxVisibleTasks,
+      dedline: block.dedline,
+    );
+  }
+
+  factory TodoBlockModel.fromJson(Map<String, dynamic> json) {
+    return TodoBlockModel(
+      id: json['id'] as num,
+      title: json['title'] as String? ?? "",
+      hasTitle: json['hasTitle'] as bool? ?? false,
+      type: NoteBlockType.values[json['type'] as int],
+      items: (json['items'] as List<dynamic>)
+          .map((item) =>
+              ChecklistItemModel.fromJson(item as Map<String, dynamic>))
+          .toList(),
+      showCompleteTasks: json['showCompleteTasks'] as bool? ?? false,
+      showProgressBar: json['showProgressBar'] as bool? ?? false,
+      maxVisibleTasks: json['maxVisibleTasks'] as int?,
+      dedline: DateTime.tryParse(json['dedline'] as String? ?? ""),
+    );
+  }
+
   @override
   @HiveField(20, defaultValue: [])
   final List<ChecklistItemModel> items;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'hasTitle': hasTitle,
+      'type': type.index,
+      'items': items.map((item) => item.toJson()).toList(),
+      'showCompleteTasks': showCompleteTasks,
+      'showProgressBar': showProgressBar,
+      'maxVisibleTasks': maxVisibleTasks,
+      'dedline': dedline?.toIso8601String(),
+    };
+  }
 
   @override
   List<Object?> get props => [

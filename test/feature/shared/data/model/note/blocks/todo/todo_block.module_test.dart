@@ -146,5 +146,34 @@ void main() {
 
       expect(todoBlockModel1, isNot(todoBlockModel2));
     });
+
+    test('should convert TodoBlockModel to JSON and back', () {
+      final checklistItemModel1 = ChecklistItemModel(
+        id: 1,
+        title: 'Task 1',
+        isChecked: true,
+      );
+      final checklistItemModel2 = ChecklistItemModel(
+        id: 2,
+        title: 'Task 2',
+        isChecked: false,
+      );
+
+      final todoBlockModel = TodoBlockModel(
+        id: 1,
+        title: 'My Todo Block',
+        hasTitle: true,
+        items: [checklistItemModel1, checklistItemModel2],
+        showCompleteTasks: true,
+        showProgressBar: false,
+        maxVisibleTasks: 5,
+        dedline: DateTime(2024, 8, 10),
+      );
+
+      final json = todoBlockModel.toJson();
+      final newTodoBlockModel = TodoBlockModel.fromJson(json);
+
+      expect(newTodoBlockModel, todoBlockModel);
+    });
   });
 }
