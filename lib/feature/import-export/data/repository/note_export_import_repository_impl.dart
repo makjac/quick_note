@@ -41,4 +41,20 @@ class NoteExportImportRepositoryImpl implements NoteExportImportRepository {
       return const Left(CacheFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, List<Note>>> importNotes({
+    required String filePath,
+  }) async {
+    try {
+      final notes =
+          await noteExportImportDatasouce.readNotes(filePath: filePath);
+
+      return Right(notes);
+    } on FileNotFoundException {
+      return const Left(FileNotFoundFailure());
+    } catch (_) {
+      return const Left(CacheFailure());
+    }
+  }
 }
