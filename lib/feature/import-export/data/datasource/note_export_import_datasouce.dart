@@ -15,6 +15,18 @@ abstract class NoteExportImportDatasouce {
 }
 
 class NoteExportImportDatasouceImpl implements NoteExportImportDatasouce {
+  @override
+  Future<List<NoteModel>> readNotes({required String filePath}) async {
+    final file = File(filePath);
+
+    if (await file.exists()) {
+      final jsonString = await file.readAsString();
+
+      return _fromJson(jsonString);
+    } else {
+      throw Exception('File not found');
+    }
+  }
   String _toJson(NoteDataPackageModel notesPackage) {
     final notes = notesPackage.notes
         .map((note) => NoteModel.fromEntity(note).toJson())
