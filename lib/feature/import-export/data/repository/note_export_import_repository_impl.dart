@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:quick_note/core/error/exception/file_not_found_exception.dart';
@@ -17,7 +19,7 @@ class NoteExportImportRepositoryImpl implements NoteExportImportRepository {
   final NoteExportImportDatasouce noteExportImportDatasouce;
 
   @override
-  Future<Either<Failure, void>> exportNotes({
+  Future<Either<Failure, File>> exportNotes({
     required List<Note> notes,
     String? filePath,
   }) async {
@@ -31,12 +33,12 @@ class NoteExportImportRepositoryImpl implements NoteExportImportRepository {
       final exportFilePath = filePath ??
           "${(await getApplicationDocumentsDirectory()).path}/notes_${creationDate.toIso8601String()}.json";
 
-      await noteExportImportDatasouce.writeNotes(
+      final file = await noteExportImportDatasouce.writeNotes(
         filePath: exportFilePath,
         notesPackage: noteDataPackage,
       );
 
-      return const Right(null);
+      return Right(file);
     } catch (_) {
       return const Left(CacheFailure());
     }
