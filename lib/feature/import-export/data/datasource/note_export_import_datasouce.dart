@@ -15,4 +15,17 @@ abstract class NoteExportImportDatasouce {
 }
 
 class NoteExportImportDatasouceImpl implements NoteExportImportDatasouce {
+  String _toJson(NoteDataPackageModel notesPackage) {
+    final notes = notesPackage.notes
+        .map((note) => NoteModel.fromEntity(note).toJson())
+        .toList();
+
+    return jsonEncode(notes);
+  }
+
+  List<NoteModel> _fromJson(String jsonString) {
+    final jsonData = jsonDecode(jsonString);
+
+    return jsonData.map<NoteModel>((note) => NoteModel.fromJson(note)).toList();
+  }
 }
