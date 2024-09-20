@@ -8,7 +8,7 @@ abstract class NoteExportImportDatasouce {
   Future<List<NoteModel>> readNotes({
     required String filePath,
   });
-  Future<void> writeNotes({
+  Future<File> writeNotes({
     required NoteDataPackageModel notesPackage,
     required String filePath,
   });
@@ -29,14 +29,14 @@ class NoteExportImportDatasouceImpl implements NoteExportImportDatasouce {
   }
 
   @override
-  Future<void> writeNotes({
+  Future<File> writeNotes({
     required NoteDataPackageModel notesPackage,
     required String filePath,
   }) async {
     final jsonString = _toJson(notesPackage);
     final file = File(filePath);
 
-    await file.writeAsString(jsonString);
+    return await file.writeAsString(jsonString);
   }
 
   String _toJson(NoteDataPackageModel notesPackage) {
