@@ -15,4 +15,30 @@ class NoteExportImportRepositoryImpl implements NoteExportImportRepository {
   });
 
   final NoteExportImportDatasouce noteExportImportDatasouce;
+
+  @override
+  Future<Either<Failure, void>> exportNotes({
+    required List<Note> notes,
+    String? filePath,
+  }) async {
+    try {
+      final creationDate = DateTime.now();
+      final noteDataPackage = NoteDataPackageModel(
+        notes: notes,
+        creationDate: creationDate,
+      );
+
+      final exportFilePath = filePath ??
+          "${(await getApplicationDocumentsDirectory()).path}/notes_${creationDate.toIso8601String()}.json";
+
+      await noteExportImportDatasouce.writeNotes(
+        filePath: exportFilePath,
+        notesPackage: noteDataPackage,
+      );
+
+      return const Right(null);
+    } catch (_) {
+      return const Left(CacheFailure());
+    }
+  }
 }
