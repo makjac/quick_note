@@ -13,3 +13,6 @@ abstract class NoteExportImportDatasouce {
     required String filePath,
   });
 }
+
+class NoteExportImportDatasouceImpl implements NoteExportImportDatasouce {
+}
