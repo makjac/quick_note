@@ -7,5 +7,11 @@ void main() {
       const failure = FileNotFoundFailure();
       expect(failure.message, 'File not found');
     });
+
+    test('should allow custom message', () {
+      const customMessage = 'Custom file not found message';
+      const failure = FileNotFoundFailure(message: customMessage);
+      expect(failure.message, customMessage);
+    });
   });
 }
