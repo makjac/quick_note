@@ -8,5 +8,12 @@ void main() {
       expect(exception.message, 'File not found');
       expect(exception.toString(), 'FileNotFoundException: File not found');
     });
+
+    test('should return the provided message', () {
+      const customMessage = 'Custom file not found message';
+      const exception = FileNotFoundException(customMessage);
+      expect(exception.message, customMessage);
+      expect(exception.toString(), 'FileNotFoundException: $customMessage');
+    });
   });
 }
