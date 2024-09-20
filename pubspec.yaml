@@ -38,6 +38,7 @@ dependencies:
   reorderable_grid: ^1.0.10
   flutter_svg: ^2.0.10+1
   flutter_native_splash: ^2.4.1
+  path_provider: ^2.1.4
 
 dev_dependencies:
   hive_generator: ^2.0.1
