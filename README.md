@@ -2,7 +2,7 @@
 
 [![QuickNote test](https://github.com/makjac/quick_note/actions/workflows/flutter.yml/badge.svg?branch=main)](https://github.com/makjac/quick_note/actions/workflows/flutter.yml)
 
-![header](https://i.imgur.com/C4vrC2B.png)
+![header][banner_img]
 
 <div style="display: flex; align-items: center;">
     <a href='https://play.google.com/store/apps/details?id=com.quicknoteecoala.app&pcampaignid=web_share'>
@@ -33,7 +33,14 @@ QuickNote is a note-taking application developed using Flutter. It allows users 
 
 ## Screenshots
 
-![desktop:home_page](https://i.imgur.com/yYNgptY.png)
-![desktop:notebook](https://i.imgur.com/ZGle1P1.png)
-![mobile:home_page](https://i.imgur.com/CPz4ask.png)
-![mobile:notebook](https://i.imgur.com/xFQJfZV.png)
+![desktop:home_page][desktop:home_page]
+![desktop:notebook][desktop:notebook]
+![mobile:home_page][mobile:home_page]
+![mobile:notebook][mobile:notebook]
+
+<!-- end:excluded_rules_table -->
+[banner_img]: https://raw.githubusercontent.com/makjac/images/refs/heads/main/quick_note_banner.png
+[desktop:home_page]: https://raw.githubusercontent.com/makjac/images/refs/heads/main/quick_note_d1.png
+[desktop:notebook]: https://raw.githubusercontent.com/makjac/images/refs/heads/main/quick_note_d2.png
+[mobile:home_page]: https://raw.githubusercontent.com/makjac/images/refs/heads/main/quick_note_m1.webp
+[mobile:notebook]: https://raw.githubusercontent.com/makjac/images/refs/heads/main/quick_note_m2.webp
